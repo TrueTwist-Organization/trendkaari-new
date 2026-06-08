@@ -43,6 +43,10 @@ export function adSlotsToCodeMap(slots = []) {
   return map;
 }
 
+function codeLooksPlainHtml(text = '') {
+  return /<(script|div|ins|iframe|img|a)[\s>]/i.test(String(text || '').trim());
+}
+
 /** Merge saved slots with all placement definitions for admin form */
 export function mergeAdSlotsForAdmin(saved = []) {
   const byKey = {};
@@ -52,7 +56,8 @@ export function mergeAdSlotsForAdmin(saved = []) {
 
   return AD_PLACEMENT_DEFINITIONS.map((def) => {
     const row = byKey[def.key];
-    const code = row ? decodeAdCodeClient(row.code, row.encoded !== false) : '';
+    const shouldDecode = row && row.encoded !== false && !codeLooksPlainHtml(row.code);
+    const code = row ? decodeAdCodeClient(row.code, shouldDecode) : '';
     return {
       placement: def.key,
       title: def.title,

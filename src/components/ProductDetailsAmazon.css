@@ -1,31 +1,64 @@
-/* Amazon.in-style product details block */
+/* Amazon-style product details — card layout per subsection */
 .pdp-product-details {
-  padding-top: 4px;
+  padding-top: 0;
+}
+
+.pdp-details-amazon-head {
+  margin-bottom: 18px;
 }
 
 .pdp-amazon-main-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: #0f1111;
-  margin: 0 0 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #e7e7e7;
-  font-family: var(--font-sans);
-  text-transform: none;
-  letter-spacing: 0;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px;
 }
 
-.pdp-amazon-section {
-  margin-bottom: 22px;
+.pdp-details-amazon-dek {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  max-width: 42ch;
 }
 
-.pdp-amazon-subtitle {
-  font-size: 15px;
+.pdp-detail-card {
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  border: 1px solid var(--pdp-border-soft, #ece6ea);
+}
+
+.pdp-detail-card:last-child {
+  margin-bottom: 0;
+}
+
+.pdp-detail-card__title {
+  font-size: 0.72rem;
   font-weight: 700;
-  color: #0f1111;
-  margin: 0 0 10px;
-  text-transform: none;
-  letter-spacing: 0;
+  color: var(--brand-plum);
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.pdp-detail-card--highlights {
+  background: linear-gradient(135deg, #fff 0%, #faf6f8 100%);
+}
+
+.pdp-detail-card--about {
+  background: #fff;
+  border-left: 3px solid var(--brand-plum);
+}
+
+.pdp-detail-card--description {
+  background: var(--pdp-surface, #faf8f6);
+}
+
+.pdp-detail-card--extra {
+  background: #fff;
+  border-style: dashed;
 }
 
 .pdp-amazon-kv {
@@ -57,9 +90,72 @@
   color: #0f1111;
 }
 
+.pdp-amazon-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: pdp-about;
+}
+
+.pdp-amazon-bullets--numbered li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #0f1111;
+  counter-increment: pdp-about;
+}
+
+.pdp-amazon-bullets--numbered li::before {
+  content: counter(pdp-about);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--brand-peach-light);
+  color: var(--brand-plum);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdp-amazon-bullets li strong {
+  font-weight: 700;
+  color: #0f1111;
+}
+
+.pdp-amazon-desc-box {
+  background: #fff;
+  border: 1px solid var(--pdp-border-soft, #ece6ea);
+  border-radius: 8px;
+  padding: 16px 18px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-primary);
+}
+
+.pdp-amazon-desc-box p {
+  margin: 0;
+}
+
+.pdp-amazon-model-note {
+  font-size: 12px;
+  color: #565959;
+  margin: 10px 0 0;
+}
+
 @media (max-width: 768px) {
   .pdp-amazon-main-title {
-    font-size: 16px;
+    font-size: 18px;
+  }
+
+  .pdp-detail-card {
+    padding: 14px 16px;
   }
 
   .pdp-amazon-kv__row {
@@ -76,57 +172,4 @@
   .pdp-amazon-bullets li {
     font-size: 13px;
   }
-}
-
-@media (max-width: 480px) {
-  .pdp-amazon-section {
-    margin-bottom: 16px;
-  }
-}
-
-.pdp-amazon-bullets {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.pdp-amazon-bullets li {
-  position: relative;
-  padding-left: 14px;
-  margin-bottom: 12px;
-  font-size: 14px;
-  line-height: 1.55;
-  color: #0f1111;
-}
-
-.pdp-amazon-bullets li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  font-weight: 700;
-}
-
-.pdp-amazon-bullets li strong {
-  font-weight: 700;
-  color: #0f1111;
-}
-
-.pdp-amazon-desc-box {
-  background: #f7fafa;
-  border: 1px solid #d5d9d9;
-  border-radius: 4px;
-  padding: 14px 16px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #0f1111;
-}
-
-.pdp-amazon-desc-box p {
-  margin: 0;
-}
-
-.pdp-amazon-model-note {
-  font-size: 12px;
-  color: #565959;
-  margin: 10px 0 0;
 }

@@ -46,7 +46,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'The flared kurta silhouette named after a Mughal court dancer — and why it flatters almost everyone.',
     excerpt: 'Fitted bodice, flowing skirt panel, celebration-ready drama. Here is everything you need to know about the Anarkali.',
     readTime: '5 min read',
-    image: '/kurtas/Kurtas/1/040A2925_700x.webp',
+    image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
     shopCategory: 'kurtas',
     shopCategories: ['kurtas', 'suit sets'],
     collectionLabels: [
@@ -132,7 +132,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Straight, A-line, Anarkali, asymmetric — find your kurti lane.',
     excerpt: 'The kurti is the most versatile piece in Indian wardrobes. This guide maps silhouettes to body type and occasion.',
     readTime: '7 min read',
-    image: '/kurtas/Kurtas/1/040A2925_700x.webp',
+    image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
     shopCategory: 'kurtas',
     shopCategories: ['kurtas', 'tops', 'co-ords'],
     collectionLabels: [
@@ -181,7 +181,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Silk, georgette, cotton, chiffon, pre-draped — know your weave before you buy.',
     excerpt: 'Every saree type drapes differently. Match fabric to occasion, climate, and comfort.',
     readTime: '8 min read',
-    image: '/sarees/Sarees/1/040A3523_700x.webp',
+    image: '/sarees/Sarees/1/0T3A5495_700x.webp',
     shopCategory: 'sarees',
     shopCategories: ['sarees'],
     collectionLabels: [
@@ -279,7 +279,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Crisp, sheer, and dance-floor friendly — the party fabric explained.',
     excerpt: 'Georgette adds movement without weight. Learn when to choose it over silk or chiffon.',
     readTime: '4 min read',
-    image: '/sarees/Sarees/1/040A3523_700x.webp',
+    image: '/sarees/Sarees/1/0T3A5495_700x.webp',
     shopCategory: 'sarees',
     shopCategories: ['sarees', 'suit sets'],
     collectionLabels: [

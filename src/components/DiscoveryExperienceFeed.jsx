@@ -706,13 +706,8 @@ function PosterCard({ block, index, onClick, loading = 'lazy' }) {
 }
 
 function PosterStrip({ posters, onNavigate, stripLabel = 'THIS EDIT', stripSub = 'Tap any chapter to open it' }) {
-  const scrollToChapter = (block) => {
-    const el = document.getElementById(block.id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return;
-    }
-    onNavigate?.(block.route);
+  const openChapter = (block) => {
+    if (block?.route) onNavigate?.(block.route);
   };
 
   const renderGroup = (keyPrefix, hidden = false) => (
@@ -727,7 +722,7 @@ function PosterStrip({ posters, onNavigate, stripLabel = 'THIS EDIT', stripSub =
           block={block}
           index={i}
           loading={!hidden && i < 3 ? 'eager' : 'lazy'}
-          onClick={() => scrollToChapter(block)}
+          onClick={() => openChapter(block)}
         />
       ))}
     </div>

@@ -18,7 +18,7 @@ export function decodeAdCode(stored = '', encoded = true) {
 }
 
 function looksLikeAdHtml(text = '') {
-  return /<(script|div|ins|iframe)/i.test(String(text || ''));
+  return /<(script|div|ins|iframe|img|a)[\s>]/i.test(String(text || ''));
 }
 
 /** Unwrap accidental double-base64 saves back to HTML/plain ad code. */

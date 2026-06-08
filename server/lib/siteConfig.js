@@ -60,7 +60,7 @@ export function getAdSlotsForAdmin(store) {
   return readAdSlotsArray(store).map((s) => ({
     placement: s.placement,
     code: decodeAdCode(s.code, s.encoded !== false),
-    encoded: s.encoded !== false,
+    encoded: false,
     updatedAt: s.updatedAt,
   }));
 }

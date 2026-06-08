@@ -173,7 +173,34 @@ export async function saveAdminAdSlots(slots) {
     if (!isRetryableSaveError(bulkEncodedErr)) throw bulkEncodedErr;
   }
 
-  return putAdSlots(inner);
+  try {
+    return await putAdSlots(inner);
+  } catch (directErr) {
+    if (!isRetryableSaveError(directErr)) throw directErr;
+  }
+
+  const filled = Object.entries(slots).filter(([, code]) => String(code || '').trim());
+  if (!filled.length) {
+    return putAdSlots(inner);
+  }
+
+  let lastResult = null;
+  let savedCount = 0;
+  for (const [placement, code] of filled) {
+    const single = encodeSlotsForWire({ [placement]: code });
+    try {
+      lastResult = await putAdSlots({ ...single, merge: true, replaceAll: false });
+      savedCount += 1;
+    } catch {
+      /* try remaining slots */
+    }
+  }
+
+  if (savedCount === 0) {
+    throw new Error('Could not save ad slots. Paste one slot and save again, or reload and retry.');
+  }
+
+  return lastResult || { saved: savedCount, activeAdSlots: savedCount };
 }
 
 export function fetchAdminGiftCombos() {

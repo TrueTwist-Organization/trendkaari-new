@@ -1,28 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Star, ShoppingBag, Plus, Minus, Heart, Truck, RefreshCw, ShieldCheck, X } from 'lucide-react';
 import { getProductDetailContent, getSizeChartForProduct } from '../utils/productContent';
 import ProductDetailsAmazon from './ProductDetailsAmazon';
 import ProductDiscoveryRails from './ProductDiscoveryRails';
-import DiscoveryLoopSection from './DiscoveryLoopSection';
 import './ProductDetailPage.css';
-import ProductDiscountChip from './ProductDiscountChip';
 import PageBackButton from './PageBackButton';
 import StoreCouponsPromo from './StoreCouponsPromo';
-import PlacedAdSlot from './PlacedAdSlot';
+import PdpAdZone from './PdpAdZone';
 import ProductImage from './ProductImage';
 import { getProductGalleryImages } from '../utils/productImages';
 import { scrollToPageTop } from '../utils/scrollToTop';
 import { recordProductView } from '../utils/viewHistory';
-import { getDiscoveryContext } from '../utils/discoveryContext';
 
-export default function ProductDetailPage({ 
-  product, 
+export default function ProductDetailPage({
+  product,
   onBack,
-  onBackToHome, 
+  onBackToHome,
   onAddToCart,
   onAddToWishlist,
   isInWishlist = false,
-  allProducts = [], 
+  allProducts = [],
   onSelectProduct,
   onSelectCategory,
   coupons = [],
@@ -30,7 +27,6 @@ export default function ProductDetailPage({
   onOpenArticle,
   onOpenKnowledgePage,
   onStartQuiz,
-  onNavigate,
 }) {
   if (!product) return null;
 
@@ -41,8 +37,16 @@ export default function ProductDetailPage({
 
   const detailContent = getProductDetailContent(product);
   const sizeChart = getSizeChartForProduct(product);
+  const pImages = getProductGalleryImages(product);
 
-  // Scroll to top when a product loads in full page mode
+  const breadcrumbCategory = (product.subCategory || product.category || 'Shop')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+
+  const highlightChips = useMemo(() => {
+    const rows = detailContent?.highlights ? Object.entries(detailContent.highlights) : [];
+    return rows.slice(0, 4).map(([label, value]) => ({ label, value }));
+  }, [detailContent]);
+
   useEffect(() => {
     scrollToPageTop();
     setActiveImageIndex(0);
@@ -54,8 +58,8 @@ export default function ProductDetailPage({
     return () => document.body.classList.remove('pdp-page');
   }, []);
 
-  const incrementQty = () => setQuantity(prev => prev + 1);
-  const decrementQty = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+  const incrementQty = () => setQuantity((prev) => prev + 1);
+  const decrementQty = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleAddToBag = () => {
     onAddToCart(product, selectedSize, quantity);
@@ -69,217 +73,235 @@ export default function ProductDetailPage({
     scrollToPageTop();
   };
 
-  // Use the actual list of unzipped images inside the product directory
-  const pImages = getProductGalleryImages(product);
-
   return (
-    <div className="product-detail-page-container container">
-      
-      <nav className="pdp-top-nav" aria-label="Product navigation">
-        <PageBackButton
-          onClick={onBack || onBackToHome}
-          className="page-back-btn--minimal"
-        />
-        <div className="pdp-breadcrumb">
-          <span className="pdp-bread-link" onClick={onBackToHome}>Home</span>
-          <span className="pdp-bread-sep">›</span>
-          <span className="pdp-bread-link" onClick={onBackToHome}>{product.category}</span>
-          <span className="pdp-bread-sep">›</span>
-          <span className="pdp-bread-current">{product.title}</span>
-        </div>
-      </nav>
+    <div className="pdp-page-shell">
+      <div className="product-detail-page-container container">
+        <section className="pdp-hero-zone" aria-label="Product overview">
+          <nav className="pdp-top-nav" aria-label="Product navigation">
+            <PageBackButton onClick={onBack || onBackToHome} className="page-back-btn--minimal" />
+            <div className="pdp-breadcrumb">
+              <span className="pdp-bread-link" onClick={onBackToHome}>Home</span>
+              <span className="pdp-bread-sep">›</span>
+              <span className="pdp-bread-link" onClick={onBackToHome}>{breadcrumbCategory}</span>
+              <span className="pdp-bread-sep">›</span>
+              <span className="pdp-bread-current">{product.title}</span>
+            </div>
+          </nav>
 
-      <PlacedAdSlot adCodes={adCodes} placement="product_top" variant="pdp" />
+          <PdpAdZone adCodes={adCodes} placements={['product_top']} />
 
-      <div className="pdp-main-layout product-layout">
-        
-        {/* LEFT — sticky gallery (page scroll only) */}
-        <div className="pdp-gallery-col left-image-section">
-          <div className="pdp-gallery-media">
-            <div className="pdp-thumbnails-list">
-              {pImages.map((imgUrl, idx) => (
-                <div
-                  key={idx}
-                  className={`pdp-thumb-wrapper ${activeImageIndex === idx ? 'active' : ''}`}
-                  onClick={() => setActiveImageIndex(idx)}
-                >
-                  <div className="pdp-thumb-crop">
+          <div className="pdp-main-layout product-layout">
+            <div className="pdp-gallery-col left-image-section">
+              <div className="pdp-gallery-media">
+                <div className="pdp-thumbnails-list">
+                  {pImages.map((imgUrl, idx) => (
+                    <div
+                      key={idx}
+                      className={`pdp-thumb-wrapper ${activeImageIndex === idx ? 'active' : ''}`}
+                      onClick={() => setActiveImageIndex(idx)}
+                    >
+                      <div className="pdp-thumb-crop">
+                        <ProductImage
+                          src={imgUrl}
+                          alt={`${product.title} view ${idx + 1}`}
+                          className="pdp-thumb-img"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pdp-main-display">
+                  <span className="pdp-discount-tag-label">{product.discount || 'SPECIAL OFFER'}</span>
+                  <span className="pdp-gallery-counter" aria-live="polite">
+                    {activeImageIndex + 1} / {pImages.length}
+                  </span>
+                  <div className="pdp-main-image-viewport">
                     <ProductImage
-                      src={imgUrl}
-                      alt={`${product.title} view ${idx + 1}`}
-                      className="pdp-thumb-img"
+                      key={pImages[activeImageIndex] || pImages[0]}
+                      product={product}
+                      src={pImages[activeImageIndex]}
+                      images={pImages}
+                      alt={product.title}
+                      className="pdp-main-img"
+                      loading="eager"
                     />
                   </div>
                 </div>
-              ))}
+              </div>
+
+              <PdpAdZone adCodes={adCodes} placements={['product_gallery_bottom']} variant="pdp-gallery" />
             </div>
 
-            <div className="pdp-main-display">
-              <span className="pdp-discount-tag-label">{product.discount || 'SPECIAL OFFER'}</span>
-              <div className="pdp-main-image-viewport">
-                <ProductImage
-                  key={pImages[activeImageIndex] || getProductGalleryImages(product)[0]}
-                  product={product}
-                  src={pImages[activeImageIndex]}
-                  images={pImages}
-                  alt={product.title}
-                  className="pdp-main-img"
-                  loading="eager"
+            <div className="pdp-details-col right-info-section">
+              <div className="pdp-details-panel">
+                <section className="pdp-section pdp-section--identity" aria-label="Product summary">
+                  <span className="pdp-category-badge">{breadcrumbCategory}</span>
+                  <h1 className="pdp-title">{product.title}</h1>
+                  {product.isGiftCombo ? (
+                    <div className="pdp-combo-meta">
+                      <span className="pdp-combo-badge">{product.comboBadge || 'Gift combo'}</span>
+                      {product.comboIncludes ? (
+                        <p className="pdp-combo-includes">Includes: {product.comboIncludes}</p>
+                      ) : null}
+                    </div>
+                  ) : null}
+                  {highlightChips.length > 0 ? (
+                    <ul className="pdp-meta-chips" aria-label="Product highlights">
+                      {highlightChips.map(({ label, value }) => (
+                        <li key={label} className="pdp-meta-chip">
+                          <span className="pdp-meta-chip__label">{label}</span>
+                          <span className="pdp-meta-chip__value">{value}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  <p className="pdp-sku-label">SKU: LIB-{(product.id * 8934).toString(16).toUpperCase()}</p>
+                  <div className="pdp-ratings-row">
+                    <div className="pdp-stars-pill">
+                      <span className="pdp-rating-val">{product.rating}</span>
+                      <Star size={13} fill="#600b45" stroke="#600b45" />
+                    </div>
+                    <span className="pdp-ratings-divider">|</span>
+                    <span className="pdp-ratings-count">{product.reviewsCount} Verified Customer Reviews</span>
+                  </div>
+                </section>
+
+                <section className="pdp-section pdp-section--commerce" aria-label="Pricing and offers">
+                  <div className="pdp-pricing-box">
+                    <div className="pdp-price-tag-row">
+                      <span className="pdp-price-current">₹{product.price}</span>
+                      <span className="pdp-price-original">MRP ₹{product.originalPrice}</span>
+                    </div>
+                    <span className="pdp-discount-percentage">({product.discount || '50% OFF'})</span>
+                  </div>
+                  <p className="pdp-inclusive-taxes">inclusive of all taxes</p>
+                  <StoreCouponsPromo coupons={coupons} />
+                </section>
+
+                <PdpAdZone
+                  adCodes={adCodes}
+                  placements={[
+                    'product_after_title',
+                    'product_after_rating',
+                    'product_after_price',
+                    'product_after_offers',
+                  ]}
                 />
+
+                <section className="pdp-section pdp-section--configure" aria-label="Size and purchase">
+                  <div className="pdp-size-selector-section">
+                    <div className="pdp-size-header-row">
+                      <span className="pdp-section-label">SELECT SIZE</span>
+                      <button type="button" className="pdp-size-chart-btn" onClick={() => setShowSizeChart(true)}>
+                        SIZE CHART
+                      </button>
+                    </div>
+                    <div className="pdp-sizes-row">
+                      {product.sizes.map((sz) => (
+                        <button
+                          key={sz}
+                          type="button"
+                          className={`pdp-size-opt-btn ${selectedSize === sz ? 'selected' : ''}`}
+                          onClick={() => setSelectedSize(sz)}
+                        >
+                          {sz}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pdp-qty-section">
+                    <span className="pdp-section-label">QUANTITY</span>
+                    <div className="pdp-qty-counter">
+                      <button type="button" className="pdp-qty-btn" onClick={decrementQty} aria-label="Decrease quantity">
+                        <Minus size={13} />
+                      </button>
+                      <span className="pdp-qty-display">{quantity}</span>
+                      <button type="button" className="pdp-qty-btn" onClick={incrementQty} aria-label="Increase quantity">
+                        <Plus size={13} />
+                      </button>
+                    </div>
+                  </div>
+
+                  <PdpAdZone
+                    adCodes={adCodes}
+                    placements={['product_before_size', 'product_after_size', 'product_above_cart']}
+                  />
+
+                  <div className="pdp-actions-row">
+                    <button type="button" className="btn btn-primary pdp-add-to-bag-btn" onClick={handleAddToBag}>
+                      <ShoppingBag size={16} className="pdp-btn-icon" />
+                      ADD TO BAG
+                    </button>
+                    <button
+                      type="button"
+                      className={`btn btn-outline-plum pdp-wishlist-btn ${isInWishlist ? 'saved' : ''}`}
+                      onClick={() => onAddToWishlist?.(product, selectedSize)}
+                    >
+                      <Heart size={16} className="pdp-btn-icon" fill={isInWishlist ? 'currentColor' : 'none'} />
+                      {isInWishlist ? 'SAVED' : 'WISHLIST'}
+                    </button>
+                  </div>
+                </section>
+
+                <PdpAdZone adCodes={adCodes} placements={['product_below_cart']} />
+
+                <section className="pdp-section pdp-section--assurance" aria-label="Delivery and returns">
+                  <h2 className="pdp-section-heading">Why shop this piece</h2>
+                  <div className="pdp-trust-strip">
+                    <div className="pdp-trust-item">
+                      <Truck size={16} className="pdp-trust-icon" />
+                      <div className="pdp-trust-text-box">
+                        <span className="pdp-trust-title-bold">Express Shipping</span>
+                        <span className="pdp-trust-subtitle-small">Fast dispatch in 24 hrs</span>
+                      </div>
+                    </div>
+                    <div className="pdp-trust-item">
+                      <RefreshCw size={16} className="pdp-trust-icon" />
+                      <div className="pdp-trust-text-box">
+                        <span className="pdp-trust-title-bold">Easy Returns</span>
+                        <span className="pdp-trust-subtitle-small">7 Days Policy</span>
+                      </div>
+                    </div>
+                    <div className="pdp-trust-item">
+                      <ShieldCheck size={16} className="pdp-trust-icon" />
+                      <div className="pdp-trust-text-box">
+                        <span className="pdp-trust-title-bold">100% Original</span>
+                        <span className="pdp-trust-subtitle-small">Direct from Brand</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <PdpAdZone
+                  adCodes={adCodes}
+                  placements={[
+                    'product_before_details',
+                    'product_before_trust',
+                    'product_after_trust',
+                  ]}
+                />
+
+                <section className="pdp-section pdp-section--details" aria-label="Product details">
+                  <ProductDetailsAmazon product={product} />
+                </section>
+
+                <PdpAdZone adCodes={adCodes} placements={['product_after_details']} />
               </div>
             </div>
           </div>
+        </section>
 
-          <PlacedAdSlot
-            adCodes={adCodes}
-            placement="product_gallery_bottom"
-            variant="pdp-gallery"
-          />
-        </div>
-
-
-        {/* RIGHT — product info (page scroll only) */}
-        <div className="pdp-details-col right-info-section">
-          <div className="pdp-details-buy">
-          <h1 className="pdp-title">{product.title}</h1>
-          {product.isGiftCombo ? (
-            <div className="pdp-combo-meta">
-              <span className="pdp-combo-badge">{product.comboBadge || 'Gift combo'}</span>
-              {product.comboIncludes ? (
-                <p className="pdp-combo-includes">Includes: {product.comboIncludes}</p>
-              ) : null}
-            </div>
-          ) : null}
-          <p className="pdp-sku-label">SKU: LIB-{(product.id * 8934).toString(16).toUpperCase()}</p>
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_after_title" variant="pdp" />
-
-          {/* Ratings Summary */}
-          <div className="pdp-ratings-row">
-            <div className="pdp-stars-pill">
-              <span className="pdp-rating-val">{product.rating}</span>
-              <Star size={13} fill="#600b45" stroke="#600b45" />
-            </div>
-            <span className="pdp-ratings-divider">|</span>
-            <span className="pdp-ratings-count">{product.reviewsCount} Verified Customer Reviews</span>
-          </div>
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_after_rating" variant="pdp" />
-
-          {/* Pricing Box */}
-          <div className="pdp-pricing-box">
-            <div className="pdp-price-tag-row">
-              <span className="pdp-price-current">₹{product.price}</span>
-              <span className="pdp-price-original">MRP ₹{product.originalPrice}</span>
-            </div>
-            <span className="pdp-discount-percentage">
-              ({product.discount || "50% OFF"})
-            </span>
-          </div>
-          <p className="pdp-inclusive-taxes">inclusive of all taxes</p>
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_after_price" variant="pdp" />
-
-          <StoreCouponsPromo coupons={coupons} />
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_after_offers" variant="pdp" />
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_before_size" variant="pdp" />
-
-          {/* Sizing Selector Section */}
-          <div className="pdp-size-selector-section">
-            <div className="pdp-size-header-row">
-              <span className="pdp-section-label">SELECT SIZE:</span>
-              <button type="button" className="pdp-size-chart-btn" onClick={() => setShowSizeChart(true)}>
-                SIZE CHART
-              </button>
-            </div>
-            <div className="pdp-sizes-row">
-              {product.sizes.map((sz) => (
-                <button
-                  key={sz}
-                  className={`pdp-size-opt-btn ${selectedSize === sz ? 'selected' : ''}`}
-                  onClick={() => setSelectedSize(sz)}
-                >
-                  {sz}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_after_size" variant="pdp" />
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_above_cart" variant="pdp" />
-
-          {/* Quantity Selector Section */}
-          <div className="pdp-qty-section">
-            <span className="pdp-section-label">QUANTITY:</span>
-            <div className="pdp-qty-counter">
-              <button className="pdp-qty-btn" onClick={decrementQty}>
-                <Minus size={13} />
-              </button>
-              <span className="pdp-qty-display">{quantity}</span>
-              <button className="pdp-qty-btn" onClick={incrementQty}>
-                <Plus size={13} />
-              </button>
-            </div>
-          </div>
-
-          {/* Primary Action Buttons */}
-          <div className="pdp-actions-row">
-            <button className="btn btn-primary pdp-add-to-bag-btn" onClick={handleAddToBag}>
-              <ShoppingBag size={16} className="pdp-btn-icon" />
-              ADD TO BAG
-            </button>
-            <button 
-              type="button"
-              className={`btn btn-outline-plum pdp-wishlist-btn ${isInWishlist ? 'saved' : ''}`}
-              onClick={() => onAddToWishlist?.(product, selectedSize)}
-            >
-              <Heart size={16} className="pdp-btn-icon" fill={isInWishlist ? 'currentColor' : 'none'} />
-              {isInWishlist ? 'SAVED' : 'WISHLIST'}
-            </button>
-          </div>
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_below_cart" variant="pdp" />
-          </div>
-
-          <div className="pdp-details-scroll">
-          <PlacedAdSlot adCodes={adCodes} placement="product_before_details" variant="pdp" />
-
-          <ProductDetailsAmazon product={product} />
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_after_details" variant="pdp" />
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_before_trust" variant="pdp" />
-
-                    {/* Trust strip details */}
-          <div className="pdp-trust-strip">
-            <div className="pdp-trust-item">
-              <Truck size={16} className="pdp-trust-icon" />
-              <div className="pdp-trust-text-box">
-                <span className="pdp-trust-title-bold">Express Shipping</span>
-                <span className="pdp-trust-subtitle-small">Fast dispatch in 24 hrs</span>
-              </div>
-            </div>
-            <div className="pdp-trust-item">
-              <RefreshCw size={16} className="pdp-trust-icon" />
-              <div className="pdp-trust-text-box">
-                <span className="pdp-trust-title-bold">Easy Returns</span>
-                <span className="pdp-trust-subtitle-small">7 Days Policy</span>
-              </div>
-            </div>
-            <div className="pdp-trust-item">
-              <ShieldCheck size={16} className="pdp-trust-icon" />
-              <div className="pdp-trust-text-box">
-                <span className="pdp-trust-title-bold">100% Original</span>
-                <span className="pdp-trust-subtitle-small">Direct from Brand</span>
-              </div>
-            </div>
-          </div>
-
-          <PlacedAdSlot adCodes={adCodes} placement="product_after_trust" variant="pdp" />
-
+        <section className="pdp-below-fold" aria-label="Recommended products">
+          <header className="pdp-below-fold__head">
+            <p className="pdp-below-fold__eyebrow">Complete the look</p>
+            <h2 className="pdp-below-fold__title">More from the {breadcrumbCategory} edit</h2>
+            <p className="pdp-below-fold__sub">
+              Similar co-ords, styling guides, and trending picks — keep exploring after{' '}
+              {product.title.split(' ').slice(0, 3).join(' ')}…
+            </p>
+          </header>
           <ProductDiscoveryRails
             product={product}
             allProducts={allProducts}
@@ -289,15 +311,14 @@ export default function ProductDetailPage({
             onOpenKnowledgePage={onOpenKnowledgePage}
             onStartQuiz={onStartQuiz}
             adCodes={adCodes}
+            productsPerRail={6}
           />
+        </section>
 
-          </div>
-
-        </div>
-
+        <PdpAdZone adCodes={adCodes} placements={['product_page_bottom']} variant="section" />
       </div>
 
-      {showSizeChart && (
+      {showSizeChart ? (
         <div className="pdp-size-chart-modal" role="dialog" aria-modal="true">
           <div className="pdp-size-chart-backdrop" onClick={() => setShowSizeChart(false)} />
           <div className="pdp-size-chart-panel">
@@ -313,19 +334,9 @@ export default function ProductDetailPage({
                   <tr>
                     <th>Size</th>
                     <th>Chest</th>
-                    {detailContent?.sizeChartType === 'mens' ? (
-                      <>
-                        <th>Shoulder</th>
-                        <th>Length</th>
-                        <th>Sleeve</th>
-                      </>
-                    ) : (
-                      <>
-                        <th>Shoulder</th>
-                        <th>Length</th>
-                        <th>Sleeve</th>
-                      </>
-                    )}
+                    <th>Shoulder</th>
+                    <th>Length</th>
+                    <th>Sleeve</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -341,22 +352,12 @@ export default function ProductDetailPage({
                 </tbody>
               </table>
             </div>
-            <p className="pdp-size-chart-note">Measurements are approximate. For the best fit, compare with a similar garment you own.</p>
+            <p className="pdp-size-chart-note">
+              Measurements are approximate. For the best fit, compare with a similar garment you own.
+            </p>
           </div>
         </div>
-      )}
-
-      <DiscoveryLoopSection
-        sourceContext="product_detail"
-        {...getDiscoveryContext(product.category || product.subcategory)}
-        title="Explore more"
-        subtitle="Trends, celebrity looks, quizzes, and guides matched to this product"
-        onNavigate={onNavigate}
-        onStartQuiz={onStartQuiz}
-        onOpenKnowledgePage={onOpenKnowledgePage}
-      />
-
-      <PlacedAdSlot adCodes={adCodes} placement="product_page_bottom" variant="section" />
+      ) : null}
     </div>
   );
 }

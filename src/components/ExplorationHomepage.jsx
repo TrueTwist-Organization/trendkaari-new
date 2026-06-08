@@ -60,6 +60,8 @@ export default function ExplorationHomepage({
     <div className="exploration-home exploration-home--discovery">
       <DiscoveryHero onOpenDiscover={onOpenDiscover} productCount={productCount} />
 
+      <HomeAdSlot adCodes={adCodes} placement="home_after_hero" />
+
       <section className="home-trust" aria-label="Why Trendkaari">
         <div className="home-trust__inner container">
           {TRUST_ITEMS.map(({ icon: Icon, label, sub }) => (
@@ -73,6 +75,10 @@ export default function ExplorationHomepage({
           ))}
         </div>
       </section>
+
+      <HomeAdSlot adCodes={adCodes} placement="home_main" />
+
+      <HomeAdSlot adCodes={adCodes} placement="home_before_categories" />
 
       <section className="home-categories" aria-label="Shop by category">
         <div className="home-categories__inner container">
@@ -111,6 +117,8 @@ export default function ExplorationHomepage({
         </div>
       </section>
 
+      <HomeAdSlot adCodes={adCodes} placement="home_between_categories_gift" />
+
       <main className="exploration-home__main" id="home-chapters">
         <div className="exploration-home__intro container">
           <p className="home-section-eyebrow">The discovery feed</p>
@@ -118,7 +126,7 @@ export default function ExplorationHomepage({
             Nine chapters.<br />One scroll journey.
           </h2>
           <p className="exploration-home__intro-text">
-            Tap a chapter below to jump in — style quizzes, Bollywood edits, wedding picks, and what India is searching right now.
+            Tap a chapter below to open its page — style quizzes, Bollywood edits, wedding picks, and what India is searching right now.
           </p>
         </div>
 
@@ -133,8 +141,12 @@ export default function ExplorationHomepage({
         />
       </main>
 
+      <HomeAdSlot adCodes={adCodes} placement="home_after_gift" />
+
       {featuredPicks.length > 0 && (
-        <section className="home-spotlight" aria-label="Editor spotlight">
+        <>
+          <HomeAdSlot adCodes={adCodes} placement="home_after_promo" />
+          <section className="home-spotlight" aria-label="Editor spotlight">
           <div className="home-spotlight__inner container">
             <header className="home-spotlight__head">
               <p className="home-section-eyebrow">Fresh on the rack</p>
@@ -203,7 +215,11 @@ export default function ExplorationHomepage({
             </div>
           </div>
         </section>
+          <HomeAdSlot adCodes={adCodes} placement="home_before_reviews" />
+        </>
       )}
+
+      <HomeAdSlot adCodes={adCodes} placement="home_after_reviews" />
 
       <section className="exploration-home__finale">
         <div className="exploration-home__finale-bg" aria-hidden="true" />

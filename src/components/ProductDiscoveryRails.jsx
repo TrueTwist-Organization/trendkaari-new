@@ -6,9 +6,9 @@ export default function ProductDiscoveryRails(props) {
     <EndlessDiscovery
       {...props}
       variant="product"
-      title="Keep exploring"
-      subtitle="Similar products, related collections, articles, quizzes, and trending — at least 10 next clicks."
-      showIntro
+      title=""
+      subtitle=""
+      showIntro={false}
       showAds
       compact
     />

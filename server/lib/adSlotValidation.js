@@ -1,7 +1,11 @@
 import { normalizeAdPlaintext } from './adSlotCode.js';
 
 function looksLikeAdHtml(text = '') {
-  return /<(script|div|ins|iframe)/i.test(String(text || '')) || /div-gpt-ad|adsbygoogle/i.test(text);
+  const raw = String(text || '');
+  return (
+    /<(script|div|ins|iframe|img|a)[\s>]/i.test(raw) ||
+    /div-gpt-ad|adsbygoogle/i.test(raw)
+  );
 }
 
 /** True when saved slot decodes to real ad markup (not corrupt/garbage saves). */

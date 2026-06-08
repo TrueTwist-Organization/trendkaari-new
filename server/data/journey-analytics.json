@@ -115,7 +115,7 @@
         "75": 2,
         "100": 0
       },
-      "totalDurationMs": 109254011,
+      "totalDurationMs": 110413808,
       "clicks": 1,
       "heatmap": {
         "7,8": 1
@@ -152,6 +152,6 @@
     "/ → /": 36,
     "/celebrity-match/alia-reception → /celebrity-match/alia-reception": 1
   },
-  "totalEvents": 195,
-  "updatedAt": "2026-06-08T09:51:20.406Z"
+  "totalEvents": 197,
+  "updatedAt": "2026-06-08T09:57:08.856Z"
 }

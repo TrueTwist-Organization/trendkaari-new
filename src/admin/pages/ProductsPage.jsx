@@ -703,7 +703,11 @@ export default function ProductsPage({ onToast }) {
                 <tr key={p.id}>
                   <td>
                     <div className="admin-cyber-table-product">
-                      <img src={getProductPrimaryImage(p)} alt="" />
+                      <img
+                        src={getProductPrimaryImage(p)}
+                        alt=""
+                        onError={(e) => { e.target.style.opacity = '0.3'; e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="64" viewBox="0 0 48 64"><rect width="48" height="64" fill="%23222"/><text x="50%25" y="50%25" fill="%23666" font-size="10" text-anchor="middle" dy=".3em">No img</text></svg>'; }}
+                      />
                       <div>
                         <strong>{p.title}</strong>
                         <span>SKU LIB-{p.id}</span>

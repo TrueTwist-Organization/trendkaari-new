@@ -1,0 +1,10 @@
+Initial commit: Trendkaari fashion discovery platform
+
+- Full-bleed hero with image proxy fix
+- Discovery ecosystem: Celebrity Looks, Trend Pages, Knowledge Guides, Quizzes
+- DiscoveryLoopSection with 8+ next-click opportunities on every page
+- GA4 custom event tracking (Quiz, Celebrity, Trend, Guide, Recommendation)
+- Admin: Content Editor with full CRUD and drag-drop image upload
+- Admin: Image Manager (browse all categories, upload, copy URL)
+- Vite proxy for all product image folders to Express on port 3001
+- Editorial content stored in server store with static-data seed fallback

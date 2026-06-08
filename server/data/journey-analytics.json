@@ -1,0 +1,150 @@
+{
+  "sessions": [
+    {
+      "id": "21367663-9331-464d-963a-f62c1887ff55",
+      "startedAt": 1780904817275,
+      "pageCount": 1,
+      "lastPage": "/celebrity-match/alia-reception",
+      "updatedAt": 1780904817275
+    },
+    {
+      "id": "e85f59b3-8d53-4050-af33-17283aefacbd",
+      "startedAt": 1780904675623,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780904675623
+    },
+    {
+      "id": "d2d4c6f2-8409-4d34-9495-06bb515506a8",
+      "startedAt": 1780905274686,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780905274686
+    },
+    {
+      "id": "33685e4a-20b9-439f-98e9-9376cb2c06e3",
+      "startedAt": 1780901141369,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780901141369
+    },
+    {
+      "id": "e85e461f-9224-4024-aefc-25d862eb939e",
+      "startedAt": 1780900579093,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780900579093
+    },
+    {
+      "id": "0c8c72ee-f59e-4885-8a66-b92cabacd386",
+      "startedAt": 1780901127992,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780901127992
+    },
+    {
+      "id": "df8ce5b7-ee10-4333-8250-bc08f753612b",
+      "startedAt": 1780898942204,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780898942204
+    },
+    {
+      "id": "0cc2c433-bbc3-4c9b-bf55-df737fa928c2",
+      "startedAt": 1780898002623,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780898002623
+    },
+    {
+      "id": "611abac9-0967-4453-b14f-d13c8b22ccc9",
+      "startedAt": 1780898001563,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780898001563
+    },
+    {
+      "id": "bdf8b8d1-0844-4747-b695-5d49e14d2e13",
+      "startedAt": 1780898001664,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780898001664
+    },
+    {
+      "id": "b719cc3a-6f84-4ff9-aa99-859858d11287",
+      "startedAt": 1780901128619,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780901128619
+    },
+    {
+      "id": "00fa7fda-3062-4776-929b-e9e26293be3e",
+      "startedAt": 1780895760950,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780895760950
+    },
+    {
+      "id": "29449245-c9b0-4e5d-a20d-88f61f0ead90",
+      "startedAt": 1780895742621,
+      "pageCount": 3,
+      "lastPage": "/product/1036",
+      "updatedAt": 1780895742621
+    },
+    {
+      "id": "f490a664-65d1-4895-8373-e98e5056449d",
+      "startedAt": 1780895753676,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780895753676
+    }
+  ],
+  "pageStats": {
+    "/": {
+      "views": 47,
+      "scroll": {
+        "25": 4,
+        "50": 2,
+        "75": 2,
+        "100": 0
+      },
+      "totalDurationMs": 77857753,
+      "clicks": 1,
+      "heatmap": {
+        "7,8": 1
+      }
+    },
+    "/product/1036": {
+      "views": 8,
+      "scroll": {
+        "25": 1,
+        "50": 1,
+        "75": 1,
+        "100": 1
+      },
+      "totalDurationMs": 5548606,
+      "clicks": 0,
+      "heatmap": {}
+    },
+    "/celebrity-match/alia-reception": {
+      "views": 2,
+      "scroll": {
+        "25": 0,
+        "50": 0,
+        "75": 0,
+        "100": 0
+      },
+      "totalDurationMs": 19236,
+      "clicks": 0,
+      "heatmap": {}
+    }
+  },
+  "pathEdges": {
+    "/product/1036 → /product/1036": 6,
+    "/product/1036 → /": 1,
+    "/ → /": 35,
+    "/celebrity-match/alia-reception → /celebrity-match/alia-reception": 1
+  },
+  "totalEvents": 183,
+  "updatedAt": "2026-06-08T08:35:58.583Z"
+}

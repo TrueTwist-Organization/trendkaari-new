@@ -1,0 +1,458 @@
+.fashion-magazine {
+  --mag-accent: #600b45;
+  padding-bottom: 4rem;
+  background: linear-gradient(180deg, #fdf8fa 0%, #fffefb 100%);
+  min-height: calc(100vh - 120px);
+}
+
+.fashion-magazine__hero {
+  background: linear-gradient(145deg, #1a0a14 0%, var(--mag-accent, #600b45) 55%, #3d1530 100%);
+  color: #fff;
+  padding: 1.25rem 0 2.5rem;
+}
+
+.fashion-magazine__category-hero {
+  background: linear-gradient(145deg, #120810 0%, var(--mag-accent) 100%);
+  color: #fff;
+  padding: 1.25rem 0 2rem;
+}
+
+.fashion-magazine__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  opacity: 0.9;
+  padding: 0.35rem 0;
+  margin-bottom: 0.75rem;
+}
+
+.fashion-magazine__back:hover {
+  opacity: 1;
+}
+
+.fashion-magazine__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.fashion-magazine__title {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.15;
+}
+
+.fashion-magazine__subtitle {
+  margin: 0.75rem 0 0;
+  max-width: 40rem;
+  opacity: 0.92;
+  line-height: 1.55;
+}
+
+.fashion-magazine__count {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.fashion-magazine__body {
+  padding-top: 2rem;
+}
+
+.fashion-magazine__breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  font-size: 0.78rem;
+  opacity: 0.9;
+}
+
+.fashion-magazine__breadcrumb button {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.fashion-magazine__section-head {
+  margin-bottom: 1.25rem;
+}
+
+.fashion-magazine__section-head h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #1a1a1a;
+}
+
+.fashion-magazine__section-head p {
+  margin: 0.35rem 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.fashion-magazine__section {
+  margin-bottom: 2.5rem;
+}
+
+.fashion-magazine__categories {
+  margin-bottom: 2.5rem;
+}
+
+.fashion-magazine__category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.fashion-magazine__category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  text-align: left;
+  padding: 1.15rem;
+  border: 1px solid rgba(96, 11, 69, 0.08);
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(26, 10, 20, 0.05);
+}
+
+.fashion-magazine__category-card:hover {
+  box-shadow: 0 12px 32px rgba(26, 10, 20, 0.1);
+}
+
+.fashion-magazine__category-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--mag-accent) 12%, white);
+  color: var(--mag-accent);
+}
+
+.fashion-magazine__category-card h3 {
+  margin: 0.35rem 0 0;
+  font-size: 1rem;
+}
+
+.fashion-magazine__category-card p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #666;
+  flex: 1;
+}
+
+.fashion-magazine__category-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mag-accent);
+}
+
+.fashion-magazine__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.magazine-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 0;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+}
+
+.magazine-card:hover {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.magazine-card__media {
+  position: relative;
+}
+
+.magazine-card__img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.magazine-card__category,
+.magazine-card__badge {
+  position: absolute;
+  top: 0.65rem;
+  left: 0.65rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(26, 10, 20, 0.72);
+  color: #fff;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.magazine-card__badge {
+  background: var(--mag-accent, #600b45);
+}
+
+.magazine-card__body {
+  padding: 1rem 1.1rem 1.15rem;
+}
+
+.magazine-card__meta {
+  font-size: 0.72rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.magazine-card__title {
+  margin: 0.4rem 0;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.magazine-card__excerpt {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.magazine-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mag-accent, #600b45);
+}
+
+/* Article page */
+.fashion-magazine__article-wrap {
+  max-width: 1080px;
+  padding-top: 1.5rem;
+}
+
+.fashion-magazine__article-top {
+  margin-bottom: 0.75rem;
+}
+
+.magazine-article__hero {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(212, 180, 131, 0.35);
+}
+
+.magazine-article__title {
+  margin: 0;
+  font-size: clamp(1.65rem, 4vw, 2.35rem);
+  line-height: 1.2;
+  color: #600b45;
+}
+
+.magazine-article__dek {
+  margin: 0.65rem 0 0;
+  font-size: 1.05rem;
+  color: #5c4f4a;
+  line-height: 1.5;
+  max-width: 640px;
+}
+
+.magazine-article__byline {
+  margin: 0.75rem 0 0;
+  font-size: 0.82rem;
+  color: #888;
+}
+
+.magazine-article__figure {
+  margin: 0 0 1.75rem;
+}
+
+.magazine-article__hero-img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.magazine-article__layout {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.magazine-article__paragraph {
+  margin: 0 0 1rem;
+  line-height: 1.65;
+  color: #333;
+}
+
+.magazine-article__heading {
+  margin: 1.5rem 0 0.65rem;
+  font-size: 1.15rem;
+  color: #1a1a1a;
+}
+
+.magazine-article__list {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.magazine-article__tip {
+  margin: 1.25rem 0;
+  padding: 1rem 1.1rem;
+  border-left: 4px solid var(--mag-accent, #600b45);
+  background: color-mix(in srgb, var(--mag-accent) 6%, white);
+  border-radius: 0 10px 10px 0;
+}
+
+.magazine-article__tip strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.magazine-article__tip p {
+  margin: 0;
+  line-height: 1.55;
+  color: #444;
+}
+
+.magazine-article__shop-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1.15rem;
+  border-radius: 14px;
+  background: #faf7f9;
+  border: 1px solid rgba(96, 11, 69, 0.1);
+}
+
+.magazine-article__shop-cta strong {
+  display: block;
+}
+
+.magazine-article__shop-cta p {
+  margin: 0.2rem 0 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.magazine-article__sidebar-card {
+  padding: 1rem;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  background: #fff;
+  margin-bottom: 1rem;
+}
+
+.magazine-article__sidebar-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+
+.magazine-article__related {
+  display: flex;
+  gap: 0.65rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0;
+  border: 0;
+  border-bottom: 1px solid #f0f0f0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.magazine-article__related:last-child {
+  border-bottom: 0;
+}
+
+.magazine-article__related-img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.magazine-article__related-cat {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+}
+
+.magazine-article__related-title {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #333;
+}
+
+.magazine-article__cat-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.magazine-article__cat-links button {
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0.25rem 0;
+  font-size: 0.82rem;
+  color: var(--mag-accent, #600b45);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .magazine-article__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .magazine-article__sidebar {
+    order: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .magazine-article__shop-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

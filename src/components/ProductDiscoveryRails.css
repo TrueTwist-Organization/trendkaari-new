@@ -1,0 +1,27 @@
+.pdp-discovery-rails {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.pdp-discovery-rails__intro {
+  padding: 0 16px 8px;
+  max-width: 1450px;
+  margin: 0 auto;
+}
+
+.pdp-discovery-rails__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+}
+
+.pdp-discovery-rails__sub {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 48ch;
+}
+
+.pdp-discovery-rails .discovery-rail {
+  padding-top: 20px;
+}

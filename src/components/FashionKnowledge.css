@@ -1,0 +1,741 @@
+.fashion-knowledge {
+  --know-accent: #600b45;
+  padding-bottom: 4rem;
+  background: linear-gradient(180deg, #f8f6f2 0%, #fffefb 100%);
+  min-height: calc(100vh - 120px);
+}
+
+.fashion-knowledge__hero {
+  background: linear-gradient(145deg, #1a1814 0%, #4a3728 50%, #600b45 100%);
+  color: #fff;
+  padding: 1.25rem 0 2.5rem;
+}
+
+.fashion-knowledge__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  opacity: 0.9;
+  padding: 0.35rem 0;
+}
+
+.fashion-knowledge__back:hover {
+  opacity: 1;
+}
+
+.fashion-knowledge__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fashion-knowledge__title {
+  margin: 0.85rem 0 0.35rem;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  line-height: 1.15;
+}
+
+.fashion-knowledge__subtitle {
+  margin: 0;
+  max-width: 40rem;
+  opacity: 0.92;
+  line-height: 1.55;
+}
+
+.fashion-knowledge__body {
+  padding-top: 2rem;
+}
+
+.fashion-knowledge__section {
+  margin-bottom: 2.5rem;
+}
+
+.fashion-knowledge__section-head {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  color: var(--know-accent);
+}
+
+.fashion-knowledge__section-head h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+}
+
+.fashion-knowledge__section-head p {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.fashion-knowledge__topic-head {
+  margin-bottom: 1rem;
+  padding-left: 0.85rem;
+  border-left: 4px solid var(--know-accent);
+}
+
+.fashion-knowledge__topic-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.fashion-knowledge__topic-head p {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.fashion-knowledge__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.fashion-knowledge__grid--compact {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.fashion-knowledge__count {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #888;
+}
+
+.knowledge-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 0;
+  border: 1px solid #e8e4df;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+}
+
+.knowledge-card:hover {
+  box-shadow: 0 10px 28px rgba(74, 55, 40, 0.1);
+}
+
+.knowledge-card__media {
+  position: relative;
+}
+
+.knowledge-card__img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.knowledge-card__topic {
+  position: absolute;
+  top: 0.65rem;
+  left: 0.65rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(26, 24, 20, 0.75);
+  color: #fff;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.knowledge-card__body {
+  padding: 1rem 1.1rem 1.15rem;
+}
+
+.knowledge-card__meta {
+  font-size: 0.72rem;
+  color: #888;
+}
+
+.knowledge-card__title {
+  margin: 0.4rem 0;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.knowledge-card__excerpt {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.knowledge-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--know-accent, #600b45);
+}
+
+/* Page detail */
+.fashion-knowledge__page-wrap {
+  max-width: 1080px;
+  padding-top: 1.5rem;
+}
+
+.fashion-knowledge__page-top {
+  margin-bottom: 0.75rem;
+}
+
+.fashion-knowledge__breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  font-size: 0.78rem;
+  color: #8a7b72;
+}
+
+.fashion-knowledge__breadcrumb button {
+  background: none;
+  border: 0;
+  color: #600b45;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.fashion-knowledge__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--know-accent);
+  font-weight: 600;
+}
+
+.knowledge-page__title {
+  margin: 0;
+  font-size: clamp(1.65rem, 4vw, 2.25rem);
+  line-height: 1.2;
+  color: #600b45;
+}
+
+.knowledge-page__dek {
+  margin: 0.65rem 0 0;
+  font-size: 1.05rem;
+  color: #5c4f4a;
+  line-height: 1.5;
+  max-width: 640px;
+}
+
+.knowledge-page__meta {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  color: #888;
+}
+
+.knowledge-page__figure {
+  margin: 1.5rem 0;
+}
+
+.knowledge-page__hero-img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.knowledge-page__layout {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.knowledge-page__paragraph {
+  margin: 0 0 1rem;
+  line-height: 1.65;
+  color: #333;
+}
+
+.knowledge-page__heading {
+  margin: 1.5rem 0 0.65rem;
+  font-size: 1.12rem;
+  color: #1a1a1a;
+}
+
+.knowledge-page__list {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.knowledge-page__tip {
+  margin: 1.25rem 0;
+  padding: 1rem 1.1rem;
+  border-left: 4px solid var(--know-accent);
+  background: color-mix(in srgb, var(--know-accent) 6%, white);
+  border-radius: 0 10px 10px 0;
+}
+
+.knowledge-page__tip strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.knowledge-page__tip p {
+  margin: 0;
+  line-height: 1.55;
+  color: #444;
+}
+
+.knowledge-page__collections {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ece8e3;
+}
+
+.knowledge-page__collections-head {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  color: var(--know-accent);
+}
+
+.knowledge-page__collections-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #1a1a1a;
+}
+
+.knowledge-page__collections-head p {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  color: #666;
+}
+
+.knowledge-page__collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.knowledge-page__collection-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 1rem;
+  border: 1px solid #ece8e3;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+
+.knowledge-page__collection-card:hover {
+  border-color: var(--know-accent);
+  box-shadow: 0 6px 20px rgba(96, 11, 69, 0.08);
+}
+
+.knowledge-page__collection-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.knowledge-page__collection-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--know-accent);
+  font-weight: 600;
+}
+
+.knowledge-page__shop-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1.15rem;
+  border-radius: 14px;
+  background: #faf7f5;
+  border: 1px solid #ece8e3;
+}
+
+.knowledge-page__shop-cta strong {
+  display: block;
+}
+
+.knowledge-page__shop-cta p {
+  margin: 0.2rem 0 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.knowledge-page__sidebar-card {
+  padding: 1rem;
+  border: 1px solid #ece8e3;
+  border-radius: 14px;
+  background: #fff;
+  margin-bottom: 1rem;
+}
+
+.knowledge-page__sidebar-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+
+.knowledge-page__related {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0;
+  border: 0;
+  border-bottom: 1px solid #f0f0f0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.knowledge-page__related:last-of-type {
+  border-bottom: 0;
+}
+
+.knowledge-page__related-img {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.knowledge-page__related-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #333;
+}
+
+.knowledge-page__topic-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.knowledge-page__topic-tag {
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: #f5f2ef;
+  font-size: 0.72rem;
+  color: #666;
+}
+
+@media (max-width: 900px) {
+  .knowledge-page__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .knowledge-page__shop-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ── Discovery sections (trends / celebs / quizzes) ─────────────────── */
+
+.knowledge-discover-section {
+  padding: 2rem 0 0;
+}
+
+.knowledge-discover-section__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+  color: var(--know-accent, #600b45);
+}
+
+.knowledge-discover-section__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.knowledge-discover-section__sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.84rem;
+  color: #777;
+}
+
+/* Trend cards */
+
+.knowledge-trends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .knowledge-trends-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+.knowledge-trend-card {
+  all: unset;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #faf7f5;
+  border: 1px solid #f0ebe7;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .knowledge-trend-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.knowledge-trend-card__img-wrap {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #f0ebe7;
+}
+
+.knowledge-trend-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.knowledge-trend-card__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.knowledge-trend-card__body {
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.knowledge-trend-card__title {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.knowledge-trend-card__sub {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #777;
+  line-height: 1.4;
+}
+
+.knowledge-trend-card__cta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--know-accent, #600b45);
+}
+
+/* Celebrity cards */
+
+.knowledge-celeb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .knowledge-celeb-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+.knowledge-celeb-card {
+  all: unset;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #faf7f5;
+  border: 1px solid #f0ebe7;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .knowledge-celeb-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.knowledge-celeb-card__img-wrap {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #ede8e5;
+}
+
+.knowledge-celeb-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.knowledge-celeb-card__body {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.knowledge-celeb-card__name {
+  margin: 0;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.knowledge-celeb-card__title {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+.knowledge-celeb-card__ctx {
+  margin: 0;
+  font-size: 0.72rem;
+  color: #999;
+}
+
+.knowledge-celeb-card__cta {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--know-accent, #600b45);
+}
+
+/* Quiz cards */
+
+.knowledge-quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .knowledge-quiz-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+.knowledge-quiz-card {
+  all: unset;
+  cursor: pointer;
+  border-radius: 14px;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #fdf6f0 0%, #fff4fb 100%);
+  border: 1.5px solid #f0dce8;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+  min-height: 52px;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .knowledge-quiz-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(96, 11, 69, 0.12);
+  }
+}
+
+.knowledge-quiz-card__icon {
+  color: var(--know-accent, #600b45);
+  margin-bottom: 0.2rem;
+}
+
+.knowledge-quiz-card__title {
+  margin: 0;
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.knowledge-quiz-card__sub {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.knowledge-quiz-card__cta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--know-accent, #600b45);
+}

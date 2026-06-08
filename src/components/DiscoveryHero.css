@@ -1,0 +1,165 @@
+/*
+ * Discovery Hero — full-bleed, text overlaid on image.
+ * Mobile  : 90vh, text bottom-left, gradient overlay
+ * Desktop : 92vh, text vertically centred-left
+ */
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+
+.discovery-hero {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  min-height: 520px;
+  max-height: 860px;
+  overflow: hidden;
+  background: #1a0a14;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Full-bleed image */
+.discovery-hero__visual {
+  position: absolute;
+  inset: 0;
+}
+
+.discovery-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Dark gradient so text is readable */
+.discovery-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 4, 8, 0.08) 0%,
+    rgba(10, 4, 8, 0.30) 40%,
+    rgba(10, 4, 8, 0.72) 100%
+  );
+  pointer-events: none;
+}
+
+/* Copy sits above the image via z-index */
+.discovery-hero__copy {
+  position: relative;
+  z-index: 2;
+  padding: 0 22px 44px;
+  width: 100%;
+  background: none;
+}
+
+.discovery-hero__eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.discovery-hero__title {
+  margin: 0;
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: clamp(2.2rem, 8vw, 4rem);
+  font-weight: 400;
+  line-height: 1.08;
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.35);
+}
+
+.discovery-hero__sub {
+  margin: 12px 0 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.55;
+  max-width: 38ch;
+}
+
+/* CTA */
+.discovery-hero__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 22px;
+  padding: 0 28px;
+  min-height: 52px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 999px;
+  border: none;
+  background: var(--brand-plum, #600b45);
+  color: #fff;
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.discovery-hero__cta:hover {
+  background: #4a0834;
+}
+
+.discovery-hero__cta:active {
+  transform: scale(0.97);
+}
+
+/* ─── Tablet (min 600px) ─────────────────────────────────────────────────── */
+
+@media (min-width: 600px) {
+  .discovery-hero__copy {
+    padding: 0 36px 52px;
+  }
+
+  .discovery-hero__cta {
+    width: auto;
+  }
+}
+
+/* ─── Desktop (min 900px) ────────────────────────────────────────────────── */
+
+@media (min-width: 900px) {
+  .discovery-hero {
+    height: 94vh;
+    max-height: 980px;
+    align-items: center;
+  }
+
+  .discovery-hero__img {
+    object-position: top center;
+  }
+
+  .discovery-hero__overlay {
+    background: linear-gradient(
+      100deg,
+      rgba(10, 4, 8, 0.72) 0%,
+      rgba(10, 4, 8, 0.42) 50%,
+      rgba(10, 4, 8, 0.10) 100%
+    );
+  }
+
+  .discovery-hero__copy {
+    padding: 0 60px 0 72px;
+    max-width: 600px;
+  }
+
+  .discovery-hero__title {
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+  }
+}
+
+/* ─── Wide desktop (min 1200px) ─────────────────────────────────────────── */
+
+@media (min-width: 1200px) {
+  .discovery-hero__copy {
+    padding: 0 80px 0 96px;
+  }
+}

@@ -1,0 +1,543 @@
+.viral-hub {
+  background: linear-gradient(180deg, #fff5f3 0%, #fff 12rem);
+  min-height: 100vh;
+  padding-bottom: 3rem;
+}
+
+.viral-hub__hero {
+  padding: 1.25rem 0 2.5rem;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(255, 77, 106, 0.18), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 90% 0%, rgba(255, 159, 67, 0.14), transparent 50%);
+}
+
+.viral-hub__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: none;
+  background: transparent;
+  color: #6b4b57;
+  font-size: 0.875rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.viral-hub__hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.viral-hub__live,
+.viral-hub__refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+}
+
+.viral-hub__live {
+  background: rgba(255, 59, 92, 0.1);
+  color: #d91e45;
+}
+
+.viral-hub__live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff3b5c;
+  animation: viral-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes viral-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.85);
+  }
+}
+
+.viral-hub__refresh {
+  background: rgba(255, 255, 255, 0.85);
+  color: #7a5563;
+  border: 1px solid rgba(217, 30, 69, 0.12);
+}
+
+.viral-hub__title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+  color: #2a1520;
+}
+
+.viral-hub__title-icon {
+  color: #ff3b5c;
+  flex-shrink: 0;
+}
+
+.viral-hub__subtitle {
+  max-width: 42rem;
+  color: #6f4f5c;
+  line-height: 1.55;
+  margin: 0 0 1.5rem;
+}
+
+.viral-hub__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.viral-hub__stat {
+  min-width: 7rem;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(217, 30, 69, 0.1);
+  box-shadow: 0 8px 24px rgba(217, 30, 69, 0.06);
+}
+
+.viral-hub__stat strong {
+  display: block;
+  font-size: 1.15rem;
+  color: #2a1520;
+}
+
+.viral-hub__stat span {
+  font-size: 0.78rem;
+  color: #8a6673;
+}
+
+.viral-hub__stat--hot strong {
+  color: #ff3b5c;
+}
+
+.viral-hub__section {
+  padding: 1.75rem 0;
+}
+
+.viral-hub__section:nth-child(even) {
+  background: linear-gradient(180deg, rgba(255, 245, 243, 0.65), transparent);
+}
+
+.viral-hub__section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.viral-hub__section-titles {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.viral-hub__section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.viral-hub__section-icon--viral-hot {
+  background: rgba(255, 59, 92, 0.12);
+  color: #ff3b5c;
+}
+
+.viral-hub__section-icon--instagram {
+  background: linear-gradient(135deg, #fdf497, #fd5949, #d6249f);
+  color: #fff;
+}
+
+.viral-hub__section-icon--celebrity {
+  background: rgba(124, 58, 237, 0.12);
+  color: #7c3aed;
+}
+
+.viral-hub__section-icon--bestseller {
+  background: rgba(245, 158, 11, 0.15);
+  color: #d97706;
+}
+
+.viral-hub__section-icon--rated {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+}
+
+.viral-hub__section-icon--budget-499,
+.viral-hub__section-icon--budget-999 {
+  background: rgba(14, 165, 233, 0.12);
+  color: #0284c7;
+}
+
+.viral-hub__section-title {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  color: #2a1520;
+}
+
+.viral-hub__section-hook {
+  margin: 0;
+  color: #7a5563;
+  line-height: 1.45;
+  max-width: 36rem;
+  font-size: 0.92rem;
+}
+
+.viral-hub__section-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: none;
+  background: #2a1520;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.viral-hub__rail-wrap {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.viral-hub__nav {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid rgba(42, 21, 32, 0.12);
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.viral-hub__track {
+  display: flex;
+  gap: 0.85rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 0.25rem 0 0.75rem;
+}
+
+.viral-hub__track::-webkit-scrollbar {
+  display: none;
+}
+
+.viral-hub__card {
+  flex: 0 0 min(220px, 72vw);
+  scroll-snap-align: start;
+  border: none;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(42, 21, 32, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.viral-hub__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(217, 30, 69, 0.12);
+}
+
+.viral-hub__card--ranked {
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.viral-hub__card-media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #f8eef0;
+}
+
+.viral-hub__card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.viral-hub__rank {
+  position: absolute;
+  top: 0.55rem;
+  left: 0.55rem;
+  z-index: 2;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: #f59e0b;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+}
+
+.viral-hub__badge {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  z-index: 2;
+  max-width: calc(100% - 1rem);
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 59, 92, 0.92);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.viral-hub__section--instagram .viral-hub__badge {
+  background: linear-gradient(135deg, #fd5949, #d6249f);
+}
+
+.viral-hub__section--rated .viral-hub__badge {
+  background: rgba(5, 150, 105, 0.92);
+}
+
+.viral-hub__section--budget-499 .viral-hub__badge,
+.viral-hub__section--budget-999 .viral-hub__badge {
+  background: rgba(2, 132, 199, 0.92);
+}
+
+.viral-hub__tap {
+  position: absolute;
+  left: 0.55rem;
+  bottom: 0.55rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #2a1520;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.viral-hub__card:hover .viral-hub__tap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.viral-hub__card-body {
+  padding: 0.75rem 0.85rem 0.9rem;
+}
+
+.viral-hub__card-cat {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #a07b88;
+  margin-bottom: 0.25rem;
+}
+
+.viral-hub__card-title {
+  margin: 0 0 0.45rem;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: #2a1520;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.viral-hub__card-price-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.viral-hub__card-price {
+  font-weight: 700;
+  color: #2a1520;
+}
+
+.viral-hub__card-meta {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  color: #8a6673;
+}
+
+.viral-hub__card-meta--hot {
+  color: #ff3b5c;
+  font-weight: 600;
+}
+
+.viral-hub__deep-link {
+  margin-top: 0.35rem;
+  border: none;
+  background: transparent;
+  color: #d91e45;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+
+.viral-hub__celebrity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.viral-hub__celebrity-block {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(42, 21, 32, 0.08);
+}
+
+.viral-hub__celebrity-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.viral-hub__celebrity-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.viral-hub__celebrity-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(20, 8, 14, 0.82) 100%);
+}
+
+.viral-hub__celebrity-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+  color: #fff;
+}
+
+.viral-hub__celebrity-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+  margin-bottom: 0.25rem;
+}
+
+.viral-hub__celebrity-copy h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+.viral-hub__celebrity-hook {
+  font-size: 0.78rem;
+  opacity: 0.92;
+}
+
+.viral-hub__celebrity-picks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.35rem;
+  padding: 0.55rem;
+}
+
+.viral-hub__celebrity-pick {
+  border: none;
+  background: #faf5f6;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+}
+
+.viral-hub__celebrity-pick-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.viral-hub__celebrity-pick-price {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.35rem 0.25rem;
+  color: #2a1520;
+}
+
+.viral-hub__finale {
+  margin-top: 1rem;
+  padding: 2rem 0 1rem;
+  text-align: center;
+}
+
+.viral-hub__finale p {
+  color: #8a6673;
+  margin: 0 0 1rem;
+}
+
+.viral-hub__finale-btn {
+  border: none;
+  background: #2a1520;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.75rem 1.35rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .viral-hub__section-head {
+    flex-direction: column;
+  }
+
+  .viral-hub__nav {
+    display: none;
+  }
+
+  .viral-hub__rail-wrap {
+    grid-template-columns: 1fr;
+  }
+}

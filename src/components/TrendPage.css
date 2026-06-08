@@ -1,0 +1,762 @@
+/*
+ * TrendPage — Mobile First
+ * Covers both the hub (/trends) and individual pages (/trends/:slug).
+ * --trend-accent and --trend-accent-light are set inline per trend.
+ */
+
+/* ─── Shared utilities ───────────────────────────────────────────────────── */
+
+.trend-page__eyebrow {
+  margin: 0 0 0.4rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--trend-accent, var(--brand-plum, #600b45));
+}
+
+.trend-page__section-title {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #1c1c1c;
+}
+
+.trend-page__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 0;
+  border: none;
+  background: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 44px;
+  color: rgba(255, 255, 255, 0.85);
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 900px) {
+  .trend-page__back-btn {
+    position: static;
+    color: var(--trend-accent, #600b45);
+  }
+}
+
+/* ─── Hub (index at /trends) ────────────────────────────────────────────── */
+
+.trend-hub {
+  background: #fff;
+  min-height: 100vh;
+}
+
+.trend-hub__hero {
+  position: relative;
+  padding-top: 3.5rem;
+  padding-bottom: 2rem;
+}
+
+.trend-hub__title {
+  margin: 0.5rem 0 0.75rem;
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: clamp(1.85rem, 7vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #1c1c1c;
+}
+
+.trend-hub__sub {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted, #575757);
+  line-height: 1.6;
+  max-width: 48ch;
+}
+
+/* Hub grid — 1-col mobile, 2-col tablet, top card full-width */
+.trend-hub__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 480px) {
+  .trend-hub__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trend-hub__grid > :first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 900px) {
+  .trend-hub__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .trend-hub__grid > :first-child {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+  }
+}
+
+.trend-hub__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.trend-hub__card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.trend-hub__grid > :first-child .trend-hub__card-media {
+  aspect-ratio: 16 / 9;
+}
+
+@media (min-width: 900px) {
+  .trend-hub__grid > :first-child .trend-hub__card-media {
+    aspect-ratio: unset;
+    height: 100%;
+  }
+}
+
+.trend-hub__card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.trend-hub__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+}
+
+.trend-hub__card-copy {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: #fff;
+}
+
+.trend-hub__card-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.trend-hub__card-title {
+  margin: 0;
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: clamp(1.05rem, 3vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.trend-hub__card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0.35rem;
+}
+
+/* ─── Individual Trend Page ──────────────────────────────────────────────── */
+
+.trend-page {
+  background: #fff;
+  min-height: 100vh;
+}
+
+.trend-page__body {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.trend-page--404 {
+  padding-top: 3rem;
+}
+
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+
+.trend-page__hero {
+  position: relative;
+  background: #1a0a14;
+}
+
+.trend-page__hero-media {
+  position: relative;
+  height: 65vh;
+  min-height: 340px;
+  max-height: 580px;
+  overflow: hidden;
+}
+
+.trend-page__hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.trend-page__hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.22) 40%,
+    rgba(0, 0, 0, 0.74) 100%
+  );
+  pointer-events: none;
+}
+
+.trend-page__hero-copy {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1.25rem 2rem;
+  color: #fff;
+}
+
+.trend-page__hero-eyebrow {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.trend-page__hero-title {
+  margin: 0;
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: clamp(1.85rem, 7.5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.trend-page__hero-tagline {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-style: italic;
+}
+
+/* Desktop hero layout */
+@media (min-width: 900px) {
+  .trend-page__hero {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    min-height: 580px;
+    background: linear-gradient(135deg, #fdf8fa 0%, #fff 100%);
+  }
+
+  .trend-page__back-btn {
+    grid-column: 1 / -1;
+    padding: 1.5rem 2rem 0;
+    color: var(--trend-accent, #600b45);
+  }
+
+  .trend-page__hero-media {
+    order: 2;
+    grid-row: 1 / 3;
+    height: 100%;
+    max-height: none;
+    min-height: 580px;
+  }
+
+  .trend-page__hero-overlay {
+    background: linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, 0.08) 100%);
+  }
+
+  .trend-page__hero-copy {
+    position: static;
+    order: 3;
+    padding: 2rem 2.5rem 2.5rem;
+    color: #1c1c1c;
+  }
+
+  .trend-page__hero-eyebrow {
+    color: var(--trend-accent, #600b45);
+  }
+
+  .trend-page__hero-title {
+    color: #1c1c1c;
+  }
+
+  .trend-page__hero-tagline {
+    color: var(--text-muted, #575757);
+  }
+}
+
+/* ─── Editorial ─────────────────────────────────────────────────────────── */
+
+.trend-page__editorial {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  margin-bottom: 2.5rem;
+}
+
+.trend-page__editorial-para {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: #3d3d3d;
+  line-height: 1.7;
+  max-width: 68ch;
+}
+
+.trend-page__editorial-para:last-of-type {
+  margin-bottom: 1.25rem;
+}
+
+.trend-page__read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--trend-accent, #600b45);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── Celebrity Looks ────────────────────────────────────────────────────── */
+
+.trend-page__celebs {
+  margin-bottom: 2.5rem;
+}
+
+/* 1-col mobile, 2-col at 480, 3-col at 720 */
+.trend-page__celeb-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 480px) {
+  .trend-page__celeb-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 720px) {
+  .trend-page__celeb-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.trend-page__celeb-card {
+  padding: 0;
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.trend-page__celeb-media {
+  position: relative;
+  aspect-ratio: 2 / 3;
+}
+
+.trend-page__celeb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.trend-page__celeb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+.trend-page__celeb-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  color: #fff;
+}
+
+.trend-page__celeb-context {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.2rem;
+}
+
+.trend-page__celeb-name {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.trend-page__celeb-title {
+  margin: 0.15rem 0 0;
+  font-size: 0.72rem;
+  opacity: 0.8;
+  line-height: 1.3;
+}
+
+.trend-page__all-celebs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--trend-accent, #600b45);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── Product Rail ───────────────────────────────────────────────────────── */
+
+.trend-page__shop {
+  margin-bottom: 2.5rem;
+}
+
+.trend-page__shop-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.trend-page__see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--trend-accent, #600b45);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 44px;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Horizontal scroll on mobile */
+.trend-page__product-rail {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 0.5rem;
+}
+
+.trend-page__product-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.trend-page__product-card {
+  flex: 0 0 148px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 640px) {
+  .trend-page__product-card {
+    flex: 0 0 178px;
+  }
+}
+
+.trend-page__product-img-wrap {
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5f0eb;
+}
+
+.trend-page__product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.trend-page__product-name {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #1c1c1c;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.trend-page__product-price {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--trend-accent, #600b45);
+}
+
+/* ─── Go Deeper (quiz + knowledge cards) ────────────────────────────────── */
+
+.trend-page__deeper {
+  padding: 2rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  margin-bottom: 2.5rem;
+}
+
+.trend-page__deeper-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .trend-page__deeper-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.trend-page__deeper-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  min-height: 80px;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .trend-page__deeper-card:hover {
+    border-color: var(--trend-accent, #600b45);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.trend-page__deeper-card--quiz {
+  background: var(--trend-accent-light, rgba(96, 11, 69, 0.04));
+}
+
+.trend-page__deeper-card--guide {
+  background: #f8f4ff;
+}
+
+.trend-page__deeper-icon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: var(--trend-accent, #600b45);
+}
+
+.trend-page__deeper-text {
+  flex: 1;
+}
+
+.trend-page__deeper-label {
+  margin: 0 0 0.2rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--trend-accent, #600b45);
+}
+
+.trend-page__deeper-title {
+  margin: 0 0 0.2rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1c1c1c;
+  line-height: 1.3;
+}
+
+.trend-page__deeper-desc {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-muted, #575757);
+  line-height: 1.45;
+}
+
+.trend-page__deeper-arrow {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--text-muted, #575757);
+}
+
+/* ─── More Trends ────────────────────────────────────────────────────────── */
+
+.trend-page__more {
+  margin-bottom: 2.5rem;
+}
+
+/* 1-col mobile, 3-col tablet+ */
+.trend-page__more-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 480px) {
+  .trend-page__more-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 720px) {
+  .trend-page__more-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.trend-page__more-card {
+  padding: 0;
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.trend-page__more-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.trend-page__more-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.trend-page__more-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.62) 100%
+  );
+}
+
+.trend-page__more-copy {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.85rem;
+  color: #fff;
+}
+
+.trend-page__more-label {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.2rem;
+}
+
+.trend-page__more-title {
+  margin: 0;
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.trend-page__all-trends {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--trend-accent, #600b45);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+}

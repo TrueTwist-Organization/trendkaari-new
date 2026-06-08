@@ -1,0 +1,443 @@
+.fashion-quiz {
+  --quiz-accent: #600b45;
+  padding-bottom: 4rem;
+}
+
+.fashion-quiz__hero {
+  background: linear-gradient(145deg, #1a0a14 0%, var(--quiz-accent) 55%, #3d1530 100%);
+  color: #fff;
+  padding: 1.25rem 0 2.5rem;
+}
+
+.fashion-quiz__back,
+.fashion-quiz__exit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  opacity: 0.9;
+  padding: 0.35rem 0;
+}
+
+.fashion-quiz__back:hover,
+.fashion-quiz__exit:hover {
+  opacity: 1;
+}
+
+.fashion-quiz__eyebrow {
+  margin: 1rem 0 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.fashion-quiz__title {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.15;
+}
+
+.fashion-quiz__subtitle {
+  margin: 0.75rem 0 0;
+  max-width: 38rem;
+  opacity: 0.92;
+  line-height: 1.55;
+}
+
+.fashion-quiz__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: -1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.fashion-quiz-card {
+  background: #fff;
+  border: 1px solid rgba(96, 11, 69, 0.08);
+  border-radius: 16px;
+  padding: 1.35rem;
+  box-shadow: 0 12px 32px rgba(26, 10, 20, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fashion-quiz-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--quiz-accent) 12%, white);
+  color: var(--quiz-accent);
+}
+
+.fashion-quiz-card__title {
+  margin: 0.25rem 0 0;
+  font-size: 1.15rem;
+}
+
+.fashion-quiz-card__sub {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--quiz-accent);
+  font-weight: 600;
+}
+
+.fashion-quiz-card__desc {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #555;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.fashion-quiz-card__meta {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.fashion-quiz-card__cta {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--quiz-accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.fashion-quiz-card__cta:hover {
+  filter: brightness(1.05);
+}
+
+/* Flow */
+.fashion-quiz--flow {
+  min-height: 70vh;
+}
+
+.fashion-quiz__topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.fashion-quiz-flow {
+  max-width: 720px;
+  padding-top: 1.5rem;
+}
+
+.fashion-quiz-flow__head {
+  margin-bottom: 1.75rem;
+}
+
+.fashion-quiz-flow__quiz-name {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--quiz-accent);
+  font-weight: 700;
+}
+
+.fashion-quiz-flow__step-label {
+  margin: 0.35rem 0 0.75rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.fashion-quiz-flow__progress {
+  height: 6px;
+  background: #eee;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.fashion-quiz-flow__progress span {
+  display: block;
+  height: 100%;
+  background: var(--quiz-accent);
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+.fashion-quiz-flow__question {
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  line-height: 1.25;
+}
+
+.fashion-quiz-flow__helper {
+  margin: 0.65rem 0 1.25rem;
+  color: #666;
+}
+
+.fashion-quiz-flow__options {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.fashion-quiz-flow__option {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  text-align: left;
+  padding: 1rem 1.1rem;
+  border: 2px solid #ececec;
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.fashion-quiz-flow__option:hover {
+  border-color: color-mix(in srgb, var(--quiz-accent) 35%, #ccc);
+}
+
+.fashion-quiz-flow__option.is-active {
+  border-color: var(--quiz-accent);
+  box-shadow: 0 0 0 1px var(--quiz-accent);
+  background: color-mix(in srgb, var(--quiz-accent) 6%, white);
+}
+
+.fashion-quiz-flow__option-emoji {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.fashion-quiz-flow__option-label {
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.fashion-quiz-flow__actions {
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.fashion-quiz-flow__next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.fashion-quiz-flow__next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Result */
+.fashion-quiz-result__hero {
+  background: linear-gradient(160deg, #120810 0%, var(--quiz-accent) 100%);
+  color: #fff;
+  padding: 1.25rem 0 2.5rem;
+}
+
+.fashion-quiz-result__eyebrow {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.fashion-quiz-result__emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.fashion-quiz-result__title {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+}
+
+.fashion-quiz-result__tagline {
+  margin: 0.5rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.fashion-quiz-result__desc {
+  margin: 0.75rem 0 0;
+  max-width: 40rem;
+  line-height: 1.55;
+  opacity: 0.92;
+}
+
+.fashion-quiz-result__hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.fashion-quiz-result__ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.fashion-quiz-result__ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.fashion-quiz-result__body {
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.fashion-quiz-result__content-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fashion-quiz-result__block-head {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  color: var(--quiz-accent);
+}
+
+.fashion-quiz-result__block-head h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #1a1a1a;
+}
+
+.fashion-quiz-result__block-head p {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.fashion-quiz-result__guides,
+.fashion-quiz-result__looks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.fashion-quiz-result__guide-card,
+.fashion-quiz-result__look-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  padding: 0;
+}
+
+.fashion-quiz-result__guide-card:hover,
+.fashion-quiz-result__look-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.fashion-quiz-result__guide-img,
+.fashion-quiz-result__look-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.fashion-quiz-result__guide-body,
+.fashion-quiz-result__look-body {
+  padding: 0.85rem 1rem 1rem;
+}
+
+.fashion-quiz-result__guide-time,
+.fashion-quiz-result__look-celeb {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+}
+
+.fashion-quiz-result__guide-body h3,
+.fashion-quiz-result__look-body h3 {
+  margin: 0.35rem 0;
+  font-size: 1rem;
+}
+
+.fashion-quiz-result__guide-body p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.fashion-quiz-result__guide-cta,
+.fashion-quiz-result__look-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--quiz-accent);
+}
+
+.fashion-quiz-result__finale {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #faf7f9 0%, #fff 100%);
+  border: 1px solid rgba(96, 11, 69, 0.08);
+}
+
+.fashion-quiz-result__finale h2 {
+  margin: 0.5rem 0 0.35rem;
+}
+
+.fashion-quiz-result__finale p {
+  margin: 0 auto 1.25rem;
+  max-width: 28rem;
+  color: #555;
+}
+
+.fashion-quiz-result__finale-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .fashion-quiz__grid {
+    margin-top: 1rem;
+  }
+
+  .fashion-quiz-result__hero-actions,
+  .fashion-quiz-result__finale-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

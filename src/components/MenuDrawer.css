@@ -39,13 +39,17 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  width: 100%;
   padding: 16px 0;
+  border: none;
   border-bottom: 1px solid var(--border-color);
+  background: none;
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: 1px;
+  text-align: left;
   cursor: pointer;
   transition: var(--transition-fast);
 }
@@ -196,6 +200,17 @@
 .menu-contact-row:hover,
 .menu-contact-row--link:hover {
   color: var(--brand-plum);
+}
+
+.menu-contact-row--btn {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  width: 100%;
 }
 
 .menu-contact-row--link {

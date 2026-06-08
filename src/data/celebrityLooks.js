@@ -74,7 +74,7 @@ export const CELEBRITY_LOOKS = [
     context: 'Festive · Celebration',
     title: 'Embroidered Suit Set',
     hook: 'Open suit sets →',
-    image: '/co-ords/co-ord_set/1/1.webp',
+    image: '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp',
     category: 'suit sets',
     theme: 'Festive',
     styleNotes: [

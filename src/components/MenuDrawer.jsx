@@ -32,30 +32,22 @@ function MenuWearGroup({ group, onSelectCategory }) {
       </div>
       {expanded && (
         <div className="menu-wear-sublist">
-          <div
+          <button
+            type="button"
             className="nav-item-link nav-item-link--nested nav-item-link--view-all"
             onClick={() => onSelectCategory(group.id)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') onSelectCategory(group.id);
-            }}
           >
             <span>View all {group.label}</span>
-          </div>
+          </button>
           {group.categories.map((cat) => (
-            <div
+            <button
               key={cat.tag}
+              type="button"
               className="nav-item-link nav-item-link--nested"
               onClick={() => onSelectCategory(cat.tag)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') onSelectCategory(cat.tag);
-              }}
             >
               <span>{cat.label.toUpperCase()}</span>
-            </div>
+            </button>
           ))}
         </div>
       )}
@@ -74,15 +66,50 @@ function MenuGenderSection({ label, groups, onSelectCategory }) {
   );
 }
 
-export default function MenuDrawer({ isOpen, onClose, onSelectCategory, onOpenDiscover, onOpenQuizHub, onOpenStyleFinder, onOpenMagazine, onOpenKnowledge, onOpenViralHub, onOpenGamesHub, onOpenCelebrityMatch, onOpenTrends }) {
+function MenuNavItem({ icon: Icon, label, onClick }) {
+  return (
+    <button type="button" className="nav-item-link highlight" onClick={onClick}>
+      <Icon size={16} className="nav-icon-plum" aria-hidden />
+      <span>{label}</span>
+    </button>
+  );
+}
+
+export default function MenuDrawer({
+  isOpen,
+  onClose,
+  onSelectCategory,
+  onOpenDiscover,
+  onOpenQuizHub,
+  onOpenStyleFinder,
+  onOpenMagazine,
+  onOpenKnowledge,
+  onOpenViralHub,
+  onOpenGamesHub,
+  onOpenCelebrityMatch,
+  onOpenTrends,
+  onNavigateInfoPage,
+  onScrollToSection,
+}) {
   const menuKey = isOpen ? 'open' : 'closed';
 
-  const handleNavClick = (category) => {
-    onSelectCategory(category);
+  const handleCategorySelect = (category) => {
+    onSelectCategory?.(category);
     onClose();
-    setTimeout(() => {
-      document.getElementById('catalog-products-list')?.scrollIntoView({ behavior: 'smooth' });
-    }, 200);
+  };
+
+  const handleRouteAction = (action) => {
+    action?.();
+    onClose();
+  };
+
+  const handleStores = () => {
+    handleRouteAction(() => onNavigateInfoPage?.('locator'));
+  };
+
+  const handleGiftCards = () => {
+    onClose();
+    onScrollToSection?.('gift-unbox-title');
   };
 
   return (
@@ -97,235 +124,111 @@ export default function MenuDrawer({ isOpen, onClose, onSelectCategory, onOpenDi
         </div>
 
         <div className="drawer-content">
-          <nav className="menu-nav-links">
-            <div
-              className="nav-item-link highlight"
-              onClick={() => handleNavClick('all')}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') handleNavClick('all');
-              }}
-            >
-              <Sparkles size={16} className="nav-icon-plum" />
-              <span>ALL COLLECTIONS</span>
-            </div>
+          <nav className="menu-nav-links" aria-label="Site categories and discovery">
+            <MenuNavItem
+              icon={Sparkles}
+              label="ALL COLLECTIONS"
+              onClick={() => handleCategorySelect('all')}
+            />
 
             {onOpenDiscover ? (
-              <div
-                className="nav-item-link highlight"
-                onClick={() => {
-                  onOpenDiscover();
-                  onClose();
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onOpenDiscover();
-                    onClose();
-                  }
-                }}
-              >
-                <Compass size={16} className="nav-icon-plum" />
-                <span>EXPLORE FEED</span>
-              </div>
+              <MenuNavItem
+                icon={Compass}
+                label="EXPLORE FEED"
+                onClick={() => handleRouteAction(onOpenDiscover)}
+              />
             ) : null}
 
             {onOpenStyleFinder ? (
-              <div
-                className="nav-item-link highlight"
-                onClick={() => {
-                  onOpenStyleFinder();
-                  onClose();
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onOpenStyleFinder();
-                    onClose();
-                  }
-                }}
-              >
-                <Wand2 size={16} className="nav-icon-plum" />
-                <span>AI STYLE FINDER</span>
-              </div>
+              <MenuNavItem
+                icon={Wand2}
+                label="AI STYLE FINDER"
+                onClick={() => handleRouteAction(onOpenStyleFinder)}
+              />
             ) : null}
 
             {onOpenViralHub ? (
-              <div
-                className="nav-item-link highlight"
-                onClick={() => {
-                  onOpenViralHub();
-                  onClose();
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onOpenViralHub();
-                    onClose();
-                  }
-                }}
-              >
-                <Flame size={16} className="nav-icon-plum" />
-                <span>VIRAL FASHION HUB</span>
-              </div>
+              <MenuNavItem
+                icon={Flame}
+                label="VIRAL FASHION HUB"
+                onClick={() => handleRouteAction(onOpenViralHub)}
+              />
             ) : null}
 
             {onOpenTrends ? (
-              <div
-                className="nav-item-link highlight"
-                onClick={() => {
-                  onOpenTrends();
-                  onClose();
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onOpenTrends();
-                    onClose();
-                  }
-                }}
-              >
-                <TrendingUp size={16} className="nav-icon-plum" />
-                <span>TREND REPORTS</span>
-              </div>
+              <MenuNavItem
+                icon={TrendingUp}
+                label="TREND REPORTS"
+                onClick={() => handleRouteAction(onOpenTrends)}
+              />
             ) : null}
 
             {onOpenCelebrityMatch ? (
-              <div
-                className="nav-item-link highlight"
-                onClick={() => {
-                  onOpenCelebrityMatch();
-                  onClose();
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onOpenCelebrityMatch();
-                    onClose();
-                  }
-                }}
-              >
-                <Star size={16} className="nav-icon-plum" />
-                <span>BOLLYWOOD STYLE MATCH</span>
-              </div>
+              <MenuNavItem
+                icon={Star}
+                label="BOLLYWOOD STYLE MATCH"
+                onClick={() => handleRouteAction(onOpenCelebrityMatch)}
+              />
             ) : null}
 
             {onOpenGamesHub ? (
-              <div
-                className="nav-item-link highlight"
-                onClick={() => {
-                  onOpenGamesHub();
-                  onClose();
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onOpenGamesHub();
-                    onClose();
-                  }
-                }}
-              >
-                <Gamepad2 size={16} className="nav-icon-plum" />
-                <span>MINI FASHION GAMES</span>
-              </div>
+              <MenuNavItem
+                icon={Gamepad2}
+                label="MINI FASHION GAMES"
+                onClick={() => handleRouteAction(onOpenGamesHub)}
+              />
             ) : null}
 
             {onOpenKnowledge ? (
-              <div
-                className="nav-item-link highlight"
-                onClick={() => {
-                  onOpenKnowledge();
-                  onClose();
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onOpenKnowledge();
-                    onClose();
-                  }
-                }}
-              >
-                <GraduationCap size={16} className="nav-icon-plum" />
-                <span>FASHION KNOWLEDGE</span>
-              </div>
+              <MenuNavItem
+                icon={GraduationCap}
+                label="FASHION KNOWLEDGE"
+                onClick={() => handleRouteAction(onOpenKnowledge)}
+              />
             ) : null}
 
             {onOpenMagazine ? (
-              <div
-                className="nav-item-link highlight"
-                onClick={() => {
-                  onOpenMagazine();
-                  onClose();
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onOpenMagazine();
-                    onClose();
-                  }
-                }}
-              >
-                <BookOpen size={16} className="nav-icon-plum" />
-                <span>FASHION MAGAZINE</span>
-              </div>
+              <MenuNavItem
+                icon={BookOpen}
+                label="FASHION MAGAZINE"
+                onClick={() => handleRouteAction(onOpenMagazine)}
+              />
             ) : null}
 
             {onOpenQuizHub ? (
-              <div
-                className="nav-item-link highlight"
-                onClick={() => {
-                  onOpenQuizHub();
-                  onClose();
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onOpenQuizHub();
-                    onClose();
-                  }
-                }}
-              >
-                <HelpCircle size={16} className="nav-icon-plum" />
-                <span>FASHION QUIZ HUB</span>
-              </div>
+              <MenuNavItem
+                icon={HelpCircle}
+                label="FASHION QUIZ HUB"
+                onClick={() => handleRouteAction(onOpenQuizHub)}
+              />
             ) : null}
 
             <MenuGenderSection
               key={`women-${menuKey}`}
               label="Women"
               groups={MENU_WOMEN_GROUPS}
-              onSelectCategory={handleNavClick}
+              onSelectCategory={handleCategorySelect}
             />
 
             <MenuGenderSection
               key={`men-${menuKey}`}
               label="Men"
               groups={MENU_MEN_GROUPS}
-              onSelectCategory={handleNavClick}
+              onSelectCategory={handleCategorySelect}
             />
           </nav>
 
           <div className="menu-drawer-contact">
-            <div className="menu-contact-row">
-              <MapPin size={14} />
+            <button type="button" className="menu-contact-row menu-contact-row--btn" onClick={handleStores}>
+              <MapPin size={14} aria-hidden />
               <span>Find Stores Near Me</span>
-            </div>
-            <div className="menu-contact-row">
-              <Gift size={14} />
+            </button>
+            <button type="button" className="menu-contact-row menu-contact-row--btn" onClick={handleGiftCards}>
+              <Gift size={14} aria-hidden />
               <span>Check Gift Cards</span>
-            </div>
+            </button>
             <a className="menu-contact-row menu-contact-row--link" href={`tel:${SUPPORT_PHONE_TEL}`}>
-              <Phone size={14} />
+              <Phone size={14} aria-hidden />
               <span>Customer Care: {SUPPORT_PHONE_DISPLAY}</span>
             </a>
           </div>

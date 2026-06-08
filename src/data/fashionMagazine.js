@@ -107,7 +107,7 @@ export const MAGAZINE_ARTICLES = [
     readTime: '4 min read',
     author: 'Trendkaari Editorial',
     publishedAt: '2026-05-15',
-    image: '/kurtas/Kurtas/9/LBL101KS620_1_700x.webp',
+    image: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
     shopCategory: 'kurtas',
     tags: ['minimal', 'silk', 'kurtas'],
     featured: false,
@@ -229,7 +229,7 @@ export const MAGAZINE_ARTICLES = [
     readTime: '4 min read',
     author: 'Trendkaari Celebrity Edit',
     publishedAt: '2026-05-10',
-    image: '/co-ords/co-ord_set/1/1.webp',
+    image: '/mens/blazers/Blezermen/b10/1.webp',
     shopCategory: 'gents co-ords',
     tags: ['celebrity', 'menswear', 'fusion'],
     featured: false,
@@ -305,7 +305,7 @@ export const MAGAZINE_ARTICLES = [
     readTime: '5 min read',
     author: 'Trendkaari Festive',
     publishedAt: '2026-10-15',
-    image: '/kurtas/Kurtas/9/LBL101KS620_1_700x.webp',
+    image: '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp',
     shopCategory: 'suit sets',
     tags: ['diwali', 'festive', 'gold'],
     featured: true,
@@ -361,7 +361,7 @@ export const MAGAZINE_ARTICLES = [
     readTime: '7 min read',
     author: 'Trendkaari Buying Desk',
     publishedAt: '2026-05-05',
-    image: '/lehengas/Lehengas/9/040A1719_700x.webp',
+    image: '/lehengas/Lehengas/1/040A3523_700x.webp',
     shopCategory: 'lehengas',
     tags: ['size guide', 'lehenga', 'how to buy'],
     featured: true,
@@ -391,7 +391,7 @@ export const MAGAZINE_ARTICLES = [
     readTime: '6 min read',
     author: 'Trendkaari Buying Desk',
     publishedAt: '2026-04-30',
-    image: '/kurtas/Kurtas/9/LBL101KS620_1_700x.webp',
+    image: '/suit-sets/Suit Sets/9/L12.01.25_1930_700x.webp',
     shopCategory: 'suit sets',
     tags: ['fabric', 'quality', 'buying'],
     featured: false,
@@ -449,10 +449,29 @@ export function getFeaturedArticles(limit = 6) {
   return [...featured, ...rest].slice(0, limit);
 }
 
-export function getLatestArticles(limit = 8) {
+export function getLatestArticles(limit = 8, excludeIds = []) {
+  const exclude = new Set(excludeIds);
   return [...MAGAZINE_ARTICLES]
+    .filter((a) => !exclude.has(a.id))
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
     .slice(0, limit);
+}
+
+/** Pick articles with unique ids and unique hero images. */
+export function pickUniqueMagazineArticles(articles, limit, usedIds = new Set(), usedImages = new Set()) {
+  const picked = [];
+
+  for (const article of articles) {
+    if (picked.length >= limit) break;
+    if (!article?.id || usedIds.has(article.id)) continue;
+    const image = String(article.image || '').trim();
+    if (!image || usedImages.has(image)) continue;
+    picked.push(article);
+    usedIds.add(article.id);
+    usedImages.add(image);
+  }
+
+  return picked;
 }
 
 export function getRelatedArticles(article, limit = 3) {
@@ -469,7 +488,7 @@ export function getRelatedArticles(article, limit = 3) {
     if (merged.length >= limit) break;
     if (!merged.find((x) => x.id === a.id)) merged.push(a);
   }
-  return merged.slice(0, limit);
+  return pickUniqueMagazineArticles(merged, limit);
 }
 
 export function getMagazineCategoryPath(categorySlug) {

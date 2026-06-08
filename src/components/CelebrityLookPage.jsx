@@ -12,15 +12,40 @@
  *
  * Mobile first. No JS animations. Zero heavy dependencies.
  */
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { ChevronLeft, BookOpen, Sparkles, ArrowRight } from 'lucide-react';
-import { CELEBRITY_LOOKS, CATEGORY_LABELS } from '../data/celebrityLooks';
+import { CATEGORY_LABELS } from '../data/celebrityLooks';
+import {
+  CELEBRITY_LOOKS,
+  fetchCelebrityLooks,
+  getCelebrityLookById,
+} from '../utils/celebrityLooksData';
+import { filterProductsByCategory } from '../utils/categoryFilter';
 import ProductImage from './ProductImage';
 import EndlessDiscovery from './EndlessDiscovery';
 import DiscoveryLoopSection from './DiscoveryLoopSection';
 import { getDiscoveryContext } from '../utils/discoveryContext';
 import { trackCelebrityPageViewed } from '../utils/ga4';
 import './CelebrityLookPage.css';
+
+function ContextChips({ context }) {
+  const parts = String(context || '')
+    .split('·')
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (!parts.length) return null;
+
+  return (
+    <div className="celeb-look__context-row">
+      {parts.map((part) => (
+        <span key={part} className="celeb-look__context">
+          {part}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 function StyleNote({ note, index }) {
   return (
@@ -63,16 +88,15 @@ function MoreLookCard({ look, onNavigate }) {
     <button
       type="button"
       className="celeb-look__more-card"
-      onClick={() => onNavigate(`/celebrity-match/${look.id}`)}
+      onClick={() => onNavigate(`/celebrity-match/${encodeURIComponent(look.id)}`)}
       data-journey-label={`More look: ${look.celebrity}`}
     >
       <div className="celeb-look__more-img-wrap">
-        <img
+        <ProductImage
           src={look.image}
           alt=""
           className="celeb-look__more-img"
           loading="lazy"
-          decoding="async"
         />
         <div className="celeb-look__more-overlay" aria-hidden="true" />
         <div className="celeb-look__more-info">
@@ -96,14 +120,34 @@ export default function CelebrityLookPage({
   onStartQuiz,
   onOpenKnowledgePage,
 }) {
+  const [looksCatalog, setLooksCatalog] = useState(CELEBRITY_LOOKS);
+  const [looksReady, setLooksReady] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    fetchCelebrityLooks()
+      .then((items) => {
+        if (active) setLooksCatalog(items);
+      })
+      .catch(() => {
+        if (active) setLooksCatalog(CELEBRITY_LOOKS);
+      })
+      .finally(() => {
+        if (active) setLooksReady(true);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const look = useMemo(
-    () => CELEBRITY_LOOKS.find((l) => l.id === lookId),
-    [lookId],
+    () => getCelebrityLookById(looksCatalog, lookId),
+    [looksCatalog, lookId],
   );
 
   const otherLooks = useMemo(
-    () => CELEBRITY_LOOKS.filter((l) => l.id !== lookId),
-    [lookId],
+    () => looksCatalog.filter((l) => l.id !== look?.id),
+    [looksCatalog, look],
   );
   const discoveryCtx = useMemo(
     () => getDiscoveryContext(look?.category),
@@ -117,15 +161,19 @@ export default function CelebrityLookPage({
   }, [lookId, look]);
 
   const relatedProducts = useMemo(() => {
-    if (!look) return [];
-    const cat = look.category.toLowerCase();
-    return products
-      .filter((p) => {
-        const pc = (p.category || p.subcategory || '').toLowerCase();
-        return pc.includes(cat) || cat.includes(pc.split(' ')[0]);
-      })
-      .slice(0, 8);
+    if (!look || !products.length) return [];
+    const matched = filterProductsByCategory(products, look.category);
+    if (matched.length) return matched.slice(0, 8);
+    return products.slice(0, 8);
   }, [look, products]);
+
+  if (!looksReady) {
+    return (
+      <div className="celeb-look celeb-look--loading container">
+        <p className="celeb-look__404-msg">Loading this Bollywood look…</p>
+      </div>
+    );
+  }
 
   if (!look) {
     return (
@@ -134,6 +182,9 @@ export default function CelebrityLookPage({
           <ChevronLeft size={16} aria-hidden="true" /> All celebrity looks
         </button>
         <p className="celeb-look__404-msg">This look is no longer available.</p>
+        <button type="button" className="celeb-look__all-celebs-cta" onClick={onBack}>
+          Browse all celebrity looks
+        </button>
       </div>
     );
   }
@@ -143,35 +194,57 @@ export default function CelebrityLookPage({
   return (
     <div className="celeb-look">
 
-      {/* ─── Hero ───────────────────────────────────────────────────── */}
-      <div className="celeb-look__hero">
-        <button
-          type="button"
-          className="celeb-look__back-btn"
-          onClick={onBack}
-          aria-label="Back to all celebrity looks"
-        >
-          <ChevronLeft size={16} aria-hidden="true" />
-          All celebrity looks
-        </button>
-
-        <div className="celeb-look__hero-media">
-          <img
+      <header className="celeb-look__hero">
+        <div className="celeb-look__hero-visual" aria-hidden="true">
+          <ProductImage
             src={look.image}
             alt=""
             className="celeb-look__hero-img"
             loading="eager"
-            fetchPriority="high"
             decoding="async"
           />
-          <div className="celeb-look__hero-overlay" aria-hidden="true" />
-          <div className="celeb-look__hero-copy">
-            <span className="celeb-look__context">{look.context}</span>
+          <div className="celeb-look__hero-overlay" />
+        </div>
+
+        <div className="celeb-look__hero-inner container">
+          <div className="celeb-look__hero-content">
+            <button
+              type="button"
+              className="celeb-look__back-btn"
+              onClick={onBack}
+              aria-label="Back to all celebrity looks"
+            >
+              <ChevronLeft size={16} aria-hidden="true" />
+              All celebrity looks
+            </button>
+
+            <ContextChips context={look.context} />
             <h1 className="celeb-look__headline">{look.title}</h1>
             <p className="celeb-look__byline">as seen on {look.celebrity}</p>
+            {look.hook ? <p className="celeb-look__hook">{look.hook}</p> : null}
+            <div className="celeb-look__hero-actions">
+              <button
+                type="button"
+                className="celeb-look__hero-cta celeb-look__hero-cta--primary"
+                onClick={() => onSelectCategory?.(look.category)}
+              >
+                Shop {categoryLabel}
+                <ArrowRight size={14} aria-hidden="true" />
+              </button>
+              {look.quizSlug ? (
+                <button
+                  type="button"
+                  className="celeb-look__hero-cta celeb-look__hero-cta--ghost"
+                  onClick={() => onStartQuiz?.(look.quizSlug)}
+                >
+                  <Sparkles size={14} aria-hidden="true" />
+                  Take style quiz
+                </button>
+              ) : null}
+            </div>
           </div>
         </div>
-      </div>
+      </header>
 
       <div className="container celeb-look__body">
 

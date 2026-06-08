@@ -12,8 +12,6 @@ import {
 import { findMenuGroupForTag, MENU_MEN_GROUPS, MENU_WOMEN_GROUPS } from '../data/navCategories';
 import PageBackButton from './PageBackButton';
 import PlacedAdSlot from './PlacedAdSlot';
-import CollectionHubSections from './CollectionHubSections';
-import EndlessDiscovery from './EndlessDiscovery';
 import { scrollToPageTop } from '../utils/scrollToTop';
 import ProductImage from './ProductImage';
 import { getProductHoverImage, getProductPrimaryImage, getProductGalleryImages } from '../utils/productImages';
@@ -41,11 +39,9 @@ export default function CollectionListingPage({
   onAddToCart,
   onOpenQuickView,
   onBack,
+  onBackToHome,
   products = [],
   adCodes = {},
-  onOpenKnowledgePage,
-  onOpenArticle,
-  onStartQuiz,
 }) {
   const hasGridAd = Boolean(
     getAdCode(adCodes, 'ads_every_2_products'),
@@ -260,6 +256,12 @@ export default function CollectionListingPage({
           tagline: "Shirts, tees, pants, denim & athleisure",
           description: "Everyday essentials and smart casuals — shirts, t-shirts, trousers, jeans, hoodies, and track pants designed for comfort, fit, and modern Indian lifestyles."
         };
+      case 'all':
+        return {
+          title: 'ALL COLLECTIONS',
+          tagline: 'Browse the complete Trendkaari catalog',
+          description: "Discover every handcrafted piece in one place — women's and men's ethnic wear, western essentials, festive sets, and everyday staples curated for modern Indian wardrobes."
+        };
       default:
         return {
           title: "EXQUISITE INDIAN ETHNIC WEAR",
@@ -416,10 +418,14 @@ export default function CollectionListingPage({
             <PageBackButton onClick={onBack || (() => onSelectCategory('all'))} />
 
             <div className="collection-breadcrumbs">
-              <span className="bread-crumb-link" onClick={() => onSelectCategory('all')}>Home</span>
+              <span className="bread-crumb-link" onClick={() => onBackToHome?.()}>Home</span>
               <span className="bread-crumb-sep">/</span>
-              <span className="bread-crumb-link" onClick={() => onSelectCategory('all')}>Collections</span>
-              <span className="bread-crumb-sep">/</span>
+              {activeCategory !== 'all' ? (
+                <>
+                  <span className="bread-crumb-link" onClick={() => onSelectCategory('all')}>Collections</span>
+                  <span className="bread-crumb-sep">/</span>
+                </>
+              ) : null}
               <span className="bread-crumb-current">{breadcrumbLabel}</span>
             </div>
           </div>
@@ -433,17 +439,6 @@ export default function CollectionListingPage({
       </div>
 
       <PlacedAdSlot adCodes={adCodes} placement="category_after_banner" variant="section" />
-
-      {activeCategory && activeCategory !== 'all' ? (
-        <CollectionHubSections
-          activeCategory={activeCategory}
-          allProducts={products}
-          onSelectProduct={onOpenQuickView}
-          onSelectCategory={onSelectCategory}
-          onOpenKnowledgePage={onOpenKnowledgePage}
-          placement="top"
-        />
-      ) : null}
 
       <PlacedAdSlot adCodes={adCodes} placement="category_before_quick_tabs" variant="section" />
 
@@ -471,17 +466,7 @@ export default function CollectionListingPage({
 
       <PlacedAdSlot adCodes={adCodes} placement="category_after_quick_tabs" variant="section" />
 
-      {activeCategory && activeCategory !== 'all' ? (
-        <CollectionHubSections
-          activeCategory={activeCategory}
-          allProducts={products}
-          onSelectProduct={onOpenQuickView}
-          onSelectCategory={onSelectCategory}
-          placement="mid"
-        />
-      ) : null}
-
-      {/* 3. Main Workspace: left sidebar filters & right product listing */}
+      {/* Main workspace: left sidebar filters & right product listing */}
       <div className="container collection-main-workspace-grid">
 
         <button
@@ -881,16 +866,6 @@ export default function CollectionListingPage({
             <p className="collection-infinite-end">You&apos;ve seen this edit — try another category or open Explore.</p>
           ) : null}
 
-          {sortedItems.length > 0 && activeCategory && activeCategory !== 'all' ? (
-            <CollectionHubSections
-              activeCategory={activeCategory}
-              allProducts={products}
-              onSelectProduct={onOpenQuickView}
-              onSelectCategory={onSelectCategory}
-              placement="bottom"
-            />
-          ) : null}
-
           {sortedItems.length > 0 && (
             <PlacedAdSlot
               adCodes={adCodes}
@@ -917,26 +892,6 @@ export default function CollectionListingPage({
         </main>
 
       </div>
-
-      {products.length > 0 ? (
-        <div className="container">
-          <EndlessDiscovery
-            allProducts={products}
-            category={activeCategory === 'all' ? null : activeCategory}
-            onSelectProduct={onOpenQuickView}
-            onSelectCategory={onSelectCategory}
-            onOpenArticle={onOpenArticle}
-            onOpenKnowledgePage={onOpenKnowledgePage}
-            onStartQuiz={onStartQuiz}
-            adCodes={adCodes}
-            variant="category"
-            title="Endless discovery"
-            subtitle="Similar products, related collections, articles, quizzes, and trending — keep clicking."
-            compact
-            showAds={false}
-          />
-        </div>
-      ) : null}
 
       <PlacedAdSlot adCodes={adCodes} placement="category_page_bottom" variant="section" />
     </div>

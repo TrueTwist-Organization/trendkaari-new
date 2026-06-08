@@ -25390,7 +25390,7 @@
       "updatedAt": "2026-05-21T05:37:10.557Z"
     }
   ],
-  "_storeUpdatedAt": "2026-06-08T11:46:40.575Z",
+  "_storeUpdatedAt": "2026-06-08T12:01:40.575Z",
   "homepage_blocks": [
     {
       "id": "style-quizSAdxcvb",
@@ -25450,32 +25450,38 @@
       "route": "/quiz/outfit-finder",
       "accent": "#1565c0",
       "kind": "occasion",
-      "poster": "/co-ords/co-ord_set/1/1.webp",
+      "poster": "/sarees/Sarees/1/0T3A5495_700x.webp",
       "ctaText": "Find your occasion look",
       "occasionChips": [
         {
           "label": "Wedding Guest",
-          "category": "lehengas"
+          "category": "lehengas",
+          "image": "/lehengas/Lehengas/1/040A3523_700x.webp"
         },
         {
           "label": "Sangeet",
-          "category": "lehengas"
+          "category": "lehengas",
+          "image": "/lehengas/Lehengas/9/040A1707_700x.webp"
         },
         {
           "label": "Office",
-          "category": "kurtas"
+          "category": "kurtas",
+          "image": "/kurtas/Kurtas/1/LBL101KS612_1_700x.webp"
         },
         {
           "label": "Puja",
-          "category": "kurtas"
+          "category": "kurtas",
+          "image": "/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp"
         },
         {
           "label": "Brunch",
-          "category": "co-ords"
+          "category": "co-ords",
+          "image": "/co-ords/co-ord_set/1/2.webp"
         },
         {
           "label": "First Job",
-          "category": "suit sets"
+          "category": "suit sets",
+          "image": "/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp"
         }
       ]
     },
@@ -25490,12 +25496,12 @@
       "poster": "/lehengas/Lehengas/1/040A3523_700x.webp",
       "ctaText": "Open the wedding edit",
       "festiveChips": [
-        "Sangeet",
-        "Reception",
-        "Mehendi",
-        "Engagement",
-        "Haldi",
-        "Diwali"
+        { "label": "Sangeet", "category": "lehengas", "image": "/lehengas/Lehengas/9/040A1707_700x.webp" },
+        { "label": "Reception", "category": "sarees", "image": "/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp" },
+        { "label": "Mehendi", "category": "kurtas", "image": "/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp" },
+        { "label": "Engagement", "category": "lehengas", "image": "/lehengas/Lehengas/9/040A1719_700x.webp" },
+        { "label": "Haldi", "category": "suit sets", "image": "/suit-sets/Suit Sets/9/L12.01.25_1841_dbebe693-a859-4d15-a687-495f04734aba_700x.webp" },
+        { "label": "Diwali", "category": "lehengas", "image": "/lehengas/Lehengas/9/040A1698_700x.webp" }
       ]
     },
     {

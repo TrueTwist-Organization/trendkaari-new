@@ -7,6 +7,8 @@ import {
   STYLE_CHALLENGES,
   TRENDING_SEARCHES,
   DEFAULT_DISCOVERY_CONFIG,
+  resolveOccasionChipImage,
+  normalizeFestiveChips,
 } from '../data/discoveryExperience';
 import { castPollVote, getPollResults } from '../utils/pollVotesStorage';
 import { buildDiscoveryExperienceFeed } from '../utils/discoveryExperienceEngine';
@@ -209,7 +211,11 @@ function OccasionGateBlock({ block, onNavigate, onSelectCategory }) {
               }}
               data-journey-label={`Occasion: ${chip.label}`}
             >
-              <ProductImage src={chip.image || block.poster} alt="" loading="lazy" />
+              <ProductImage
+                src={resolveOccasionChipImage(chip, block.poster)}
+                alt=""
+                loading="lazy"
+              />
               <div className="discovery-xp__occasion-tile-overlay" aria-hidden="true" />
               <span className="discovery-xp__occasion-label">{chip.label}</span>
               <ArrowRight size={14} className="discovery-xp__occasion-arrow" aria-hidden />
@@ -224,25 +230,60 @@ function OccasionGateBlock({ block, onNavigate, onSelectCategory }) {
 /* ─── 5. Wedding & Festive Edit ─────────────────────────────────────────── */
 
 function WeddingFestiveBlock({ block, payload, onNavigate, onSelectProduct, onSelectCategory }) {
+  const chips = useMemo(
+    () => normalizeFestiveChips(block.festiveChips, block.poster),
+    [block.festiveChips, block.poster],
+  );
+  const [activeIdx, setActiveIdx] = useState(0);
+  const activeChip = chips[activeIdx] || chips[0];
+  const heroImage = activeChip?.image || block.poster;
+
   return (
     <BlockShell block={block} onNavigate={onNavigate}>
       <div className="discovery-xp__festive-showcase">
         <div className="discovery-xp__festive-hero">
-          <ProductImage src={block.poster} alt="" loading="lazy" />
+          <ProductImage src={heroImage} alt={activeChip?.label || ''} loading="lazy" />
           <div className="discovery-xp__festive-hero-overlay" aria-hidden="true" />
+          <div className="discovery-xp__festive-hero-label">
+            <span className="discovery-xp__festive-hero-kicker">Now showing</span>
+            <p>{activeChip?.label || 'Festive edit'}</p>
+          </div>
           <div className="discovery-xp__festive-chips">
-            {block.festiveChips?.map((chip) => (
+            {chips.map((chip, index) => (
               <button
-                key={chip}
+                key={chip.label}
                 type="button"
-                className="discovery-xp__festive-chip"
-                onClick={() => onSelectCategory?.('lehengas')}
-                data-journey-label={`Festive: ${chip}`}
+                className={`discovery-xp__festive-chip${index === activeIdx ? ' is-active' : ''}`}
+                onClick={() => {
+                  setActiveIdx(index);
+                  onSelectCategory?.(chip.category);
+                }}
+                data-journey-label={`Festive: ${chip.label}`}
+                aria-pressed={index === activeIdx}
               >
-                {chip}
+                {chip.label}
               </button>
             ))}
           </div>
+        </div>
+
+        <div className="discovery-xp__festive-thumb-grid">
+          {chips.map((chip, index) => (
+            <button
+              key={`thumb-${chip.label}`}
+              type="button"
+              className={`discovery-xp__festive-thumb${index === activeIdx ? ' is-active' : ''}`}
+              onClick={() => {
+                setActiveIdx(index);
+                onSelectCategory?.(chip.category);
+              }}
+              aria-label={`View ${chip.label} edit`}
+              aria-pressed={index === activeIdx}
+            >
+              <ProductImage src={chip.image} alt="" loading="lazy" />
+              <span className="discovery-xp__festive-thumb-label">{chip.label}</span>
+            </button>
+          ))}
         </div>
 
         {payload.products?.length > 0 ? (

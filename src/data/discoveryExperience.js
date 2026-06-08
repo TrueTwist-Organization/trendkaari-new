@@ -56,15 +56,15 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     route: '/quiz/outfit-finder',
     accent: '#1565c0',
     kind: 'occasion',
-    poster: '/co-ords/co-ord_set/1/1.webp',
+    poster: '/sarees/Sarees/1/0T3A5495_700x.webp',
     ctaText: 'Find your occasion look',
     occasionChips: [
       { label: 'Wedding Guest', category: 'lehengas', image: '/lehengas/Lehengas/1/040A3523_700x.webp' },
       { label: 'Sangeet', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1707_700x.webp' },
       { label: 'Office', category: 'kurtas', image: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp' },
       { label: 'Puja', category: 'kurtas', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
-      { label: 'Brunch', category: 'co-ords', image: '/co-ords/co-ord_set/1/1.webp' },
-      { label: 'First Job', category: 'suit sets', image: '/suit-sets/Suit Sets/9/L12.01.25_1930_700x.webp' },
+      { label: 'Brunch', category: 'co-ords', image: '/co-ords/co-ord_set/1/2.webp' },
+      { label: 'First Job', category: 'suit sets', image: '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp' },
     ],
   },
   {
@@ -77,7 +77,14 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     kind: 'festive',
     poster: '/lehengas/Lehengas/1/040A3523_700x.webp',
     ctaText: 'Open the wedding edit',
-    festiveChips: ['Sangeet', 'Reception', 'Mehendi', 'Engagement', 'Haldi', 'Diwali'],
+    festiveChips: [
+      { label: 'Sangeet', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1707_700x.webp' },
+      { label: 'Reception', category: 'sarees', image: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp' },
+      { label: 'Mehendi', category: 'kurtas', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
+      { label: 'Engagement', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1719_700x.webp' },
+      { label: 'Haldi', category: 'suit sets', image: '/suit-sets/Suit Sets/9/L12.01.25_1841_dbebe693-a859-4d15-a687-495f04734aba_700x.webp' },
+      { label: 'Diwali', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1698_700x.webp' },
+    ],
   },
   {
     id: 'edit-desk',
@@ -123,6 +130,82 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     poster: '/mens/kurtas/kurta/1/l-pkt410-vebnor-original-imahnybzsfggj62r.webp',
   },
 ];
+
+/** Default poster image per occasion label when admin data has no chip.image */
+export const OCCASION_CHIP_IMAGE_BY_LABEL = {
+  'Wedding Guest': '/lehengas/Lehengas/1/040A3523_700x.webp',
+  Sangeet: '/lehengas/Lehengas/9/040A1707_700x.webp',
+  Office: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
+  Puja: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
+  Brunch: '/co-ords/co-ord_set/1/2.webp',
+  'First Job': '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp',
+};
+
+const OCCASION_CHIP_IMAGE_BY_CATEGORY = {
+  lehengas: '/lehengas/Lehengas/1/040A3523_700x.webp',
+  kurtas: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
+  'co-ords': '/co-ords/co-ord_set/1/1.webp',
+  'suit sets': '/suit-sets/Suit Sets/9/L12.01.25_1930_700x.webp',
+};
+
+export function resolveOccasionChipImage(chip, blockPoster = '') {
+  if (chip?.image) return chip.image;
+  if (chip?.label && OCCASION_CHIP_IMAGE_BY_LABEL[chip.label]) {
+    return OCCASION_CHIP_IMAGE_BY_LABEL[chip.label];
+  }
+  const cat = String(chip?.category || '').toLowerCase();
+  if (cat && OCCASION_CHIP_IMAGE_BY_CATEGORY[cat]) {
+    return OCCASION_CHIP_IMAGE_BY_CATEGORY[cat];
+  }
+  return blockPoster;
+}
+
+/** Default poster image per festive occasion label */
+export const FESTIVE_CHIP_IMAGE_BY_LABEL = {
+  Sangeet: '/lehengas/Lehengas/9/040A1707_700x.webp',
+  Reception: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp',
+  Mehendi: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
+  Engagement: '/lehengas/Lehengas/9/040A1719_700x.webp',
+  Haldi: '/suit-sets/Suit Sets/9/L12.01.25_1841_dbebe693-a859-4d15-a687-495f04734aba_700x.webp',
+  Diwali: '/lehengas/Lehengas/9/040A1698_700x.webp',
+};
+
+const FESTIVE_CHIP_CATEGORY_BY_LABEL = {
+  Sangeet: 'lehengas',
+  Reception: 'sarees',
+  Mehendi: 'kurtas',
+  Engagement: 'lehengas',
+  Haldi: 'suit sets',
+  Diwali: 'lehengas',
+};
+
+export function resolveFestiveChipImage(chip, blockPoster = '') {
+  if (chip?.image) return chip.image;
+  if (chip?.label && FESTIVE_CHIP_IMAGE_BY_LABEL[chip.label]) {
+    return FESTIVE_CHIP_IMAGE_BY_LABEL[chip.label];
+  }
+  return blockPoster;
+}
+
+/** Supports admin string[] or { label, category, image }[] */
+export function normalizeFestiveChips(chips, blockPoster = '') {
+  if (!Array.isArray(chips)) return [];
+  return chips.map((chip) => {
+    if (typeof chip === 'string') {
+      const label = chip.trim();
+      return {
+        label,
+        category: FESTIVE_CHIP_CATEGORY_BY_LABEL[label] || 'lehengas',
+        image: FESTIVE_CHIP_IMAGE_BY_LABEL[label] || blockPoster,
+      };
+    }
+    return {
+      label: chip.label,
+      category: chip.category || FESTIVE_CHIP_CATEGORY_BY_LABEL[chip.label] || 'lehengas',
+      image: resolveFestiveChipImage(chip, blockPoster),
+    };
+  });
+}
 
 export const STYLE_CHALLENGES = [
   {

@@ -14,7 +14,7 @@ import './DiscoveryExperienceFeed.css';
 
 /* ─── Shared shell ──────────────────────────────────────────────────────── */
 
-function BlockShell({ block, onNavigate, children, ctaLabel }) {
+function BlockShell({ block, onNavigate, children, ctaLabel, hideHeaderCta = false }) {
   const label = ctaLabel ?? block.ctaText ?? 'Explore';
   return (
     <section
@@ -23,12 +23,10 @@ function BlockShell({ block, onNavigate, children, ctaLabel }) {
       style={{ '--block-accent': block.accent }}
     >
       <div className="discovery-xp__block-head">
-        <div>
-          <p className="discovery-xp__eyebrow">{block.tagline}</p>
-          <h2 className="discovery-xp__title">{block.title}</h2>
-          {block.hook ? <p className="discovery-xp__hook">{block.hook}</p> : null}
-        </div>
-        {block.route && label ? (
+        <p className="discovery-xp__eyebrow">{block.tagline}</p>
+        <h2 className="discovery-xp__title">{block.title}</h2>
+        {block.hook ? <p className="discovery-xp__hook">{block.hook}</p> : null}
+        {!hideHeaderCta && block.route && label ? (
           <button
             type="button"
             className="discovery-xp__cta"
@@ -49,10 +47,9 @@ function BlockShell({ block, onNavigate, children, ctaLabel }) {
 
 function StyleQuizBlock({ block, onNavigate }) {
   return (
-    <BlockShell block={block} onNavigate={onNavigate}>
+    <BlockShell block={block} onNavigate={onNavigate} hideHeaderCta>
       <div className="discovery-xp__quiz-split">
         <div className="discovery-xp__quiz-poster">
-          {/* First content section — load poster eagerly for perceived performance */}
           <ProductImage src={block.poster} alt="" loading="eager" />
         </div>
         <div className="discovery-xp__quiz-body">
@@ -73,11 +70,12 @@ function StyleQuizBlock({ block, onNavigate }) {
           </div>
           <button
             type="button"
-            className="discovery-xp__quiz-start"
+            className="discovery-xp__quiz-primary"
             onClick={() => onNavigate?.(block.route)}
             data-journey-label="Start style quiz"
           >
-            {block.ctaText} →
+            {block.ctaText}
+            <ArrowRight size={14} aria-hidden />
           </button>
         </div>
       </div>
@@ -88,29 +86,38 @@ function StyleQuizBlock({ block, onNavigate }) {
 /* ─── 2. Bollywood Looks ────────────────────────────────────────────────── */
 
 function BollywoodLooksBlock({ block, payload, onNavigate }) {
+  const looks = payload.looks?.slice(0, 4) ?? [];
+
   return (
     <BlockShell block={block} onNavigate={onNavigate}>
-      <div className="discovery-xp__bollywood-grid">
-        {payload.looks?.map((look, i) => (
-          <button
-            key={look.id}
-            type="button"
-            className={`discovery-xp__bollywood-card${i === 0 ? ' discovery-xp__bollywood-card--lead' : ''}`}
-            onClick={() => onNavigate?.(`/celebrity-match/${look.id}`)}
-            data-journey-label={`Bollywood look: ${look.celebrity}`}
-            aria-label={`${look.celebrity} — ${look.title}`}
-          >
-            <div className="discovery-xp__bollywood-media">
-              <img src={look.image} alt="" loading={i > 1 ? 'lazy' : 'eager'} decoding="async" />
-              <div className="discovery-xp__bollywood-overlay" />
-              <div className="discovery-xp__bollywood-info">
-                <span className="discovery-xp__bollywood-context">{look.context}</span>
-                <strong className="discovery-xp__bollywood-name">{look.celebrity}</strong>
-                <p className="discovery-xp__bollywood-title">{look.title}</p>
+      <div className="discovery-xp__bollywood-wrap">
+        <div className="discovery-xp__bollywood-grid">
+          {looks.map((look, i) => (
+            <button
+              key={look.id}
+              type="button"
+              className="discovery-xp__bollywood-card"
+              onClick={() => onNavigate?.(`/celebrity-match/${look.id}`)}
+              data-journey-label={`Bollywood look: ${look.celebrity}`}
+              aria-label={`${look.celebrity} — ${look.title}`}
+            >
+              <div className="discovery-xp__bollywood-media">
+                <ProductImage
+                  src={look.image}
+                  alt=""
+                  loading={i < 2 ? 'eager' : 'lazy'}
+                  className="discovery-xp__bollywood-img"
+                />
+                <div className="discovery-xp__bollywood-overlay" aria-hidden="true" />
+                <div className="discovery-xp__bollywood-info">
+                  <span className="discovery-xp__bollywood-context">{look.context}</span>
+                  <strong className="discovery-xp__bollywood-name">{look.celebrity}</strong>
+                  <p className="discovery-xp__bollywood-title">{look.title}</p>
+                </div>
               </div>
-            </div>
-          </button>
-        ))}
+            </button>
+          ))}
+        </div>
       </div>
     </BlockShell>
   );
@@ -120,48 +127,56 @@ function BollywoodLooksBlock({ block, payload, onNavigate }) {
 
 function ThisWeekBlock({ block, payload, onNavigate, onSelectProduct }) {
   const [lead, ...rest] = payload.picks || [];
+
   return (
     <BlockShell block={block} onNavigate={onNavigate}>
-      {block.savesCount && (
-        <p className="discovery-xp__social-proof">
-          <span className="discovery-xp__social-count">{block.savesCount}</span>
-          &nbsp;saves this week
-        </p>
-      )}
-      <div className="discovery-xp__viral-layout">
-        {lead && (
-          <button
-            type="button"
-            className="discovery-xp__viral-hero"
-            onClick={() => onSelectProduct?.(lead)}
-            data-journey-label="Viral hero pick"
-          >
-            <div className="discovery-xp__viral-hero-media">
-              <ProductImage src={lead.image} alt={lead.title} />
-              <div className="discovery-xp__viral-overlay" />
-              <div className="discovery-xp__viral-hero-label">
-                <span className="discovery-xp__viral-tag">This week</span>
-                <p className="discovery-xp__viral-name">{lead.title}</p>
+      <div className="discovery-xp__viral-wrap">
+        {block.savesCount ? (
+          <p className="discovery-xp__viral-saves">
+            <span className="discovery-xp__viral-saves-count">{block.savesCount}</span>
+            saves this week
+          </p>
+        ) : null}
+
+        <div className="discovery-xp__viral-layout">
+          {lead ? (
+            <button
+              type="button"
+              className="discovery-xp__viral-hero"
+              onClick={() => onSelectProduct?.(lead)}
+              data-journey-label="Viral hero pick"
+            >
+              <div className="discovery-xp__viral-hero-media">
+                <ProductImage src={lead.image} alt={lead.title} />
+                <div className="discovery-xp__viral-overlay" aria-hidden="true" />
+                <div className="discovery-xp__viral-hero-label">
+                  <span className="discovery-xp__viral-tag">Editor pick</span>
+                  <p className="discovery-xp__viral-name">{lead.title}</p>
+                </div>
               </div>
+            </button>
+          ) : null}
+
+          {rest.length > 0 ? (
+            <div className="discovery-xp__viral-secondary">
+              {rest.map((product) => (
+                <button
+                  key={product.id}
+                  type="button"
+                  className="discovery-xp__viral-secondary-card"
+                  onClick={() => onSelectProduct?.(product)}
+                  data-journey-label="Viral secondary pick"
+                >
+                  <div className="discovery-xp__viral-secondary-media">
+                    <ProductImage src={product.image} alt={product.title} />
+                    <div className="discovery-xp__viral-overlay" aria-hidden="true" />
+                    <p className="discovery-xp__viral-secondary-name">{product.title}</p>
+                  </div>
+                </button>
+              ))}
             </div>
-          </button>
-        )}
-        {rest.length > 0 && (
-          <div className="discovery-xp__viral-secondary">
-            {rest.map((product) => (
-              <button
-                key={product.id}
-                type="button"
-                className="discovery-xp__viral-secondary-card"
-                onClick={() => onSelectProduct?.(product)}
-                data-journey-label="Viral secondary pick"
-              >
-                <ProductImage src={product.image} alt={product.title} />
-                <p className="discovery-xp__viral-secondary-name">{product.title}</p>
-              </button>
-            ))}
-          </div>
-        )}
+          ) : null}
+        </div>
       </div>
     </BlockShell>
   );
@@ -172,22 +187,35 @@ function ThisWeekBlock({ block, payload, onNavigate, onSelectProduct }) {
 function OccasionGateBlock({ block, onNavigate, onSelectCategory }) {
   return (
     <BlockShell block={block} onNavigate={onNavigate}>
-      <div className="discovery-xp__occasion-grid">
-        {block.occasionChips?.map((chip) => (
-          <button
-            key={chip.label}
-            type="button"
-            className="discovery-xp__occasion-tile"
-            onClick={() => {
-              if (chip.route) onNavigate?.(chip.route);
-              else onSelectCategory?.(chip.category);
-            }}
-            data-journey-label={`Occasion: ${chip.label}`}
-          >
-            <span className="discovery-xp__occasion-label">{chip.label}</span>
-            <ArrowRight size={12} className="discovery-xp__occasion-arrow" aria-hidden />
-          </button>
-        ))}
+      <div className="discovery-xp__occasion-showcase">
+        <div className="discovery-xp__occasion-hero" aria-hidden="true">
+          <ProductImage src={block.poster} alt="" loading="lazy" />
+          <div className="discovery-xp__occasion-hero-overlay" />
+          <div className="discovery-xp__occasion-hero-copy">
+            <span className="discovery-xp__occasion-hero-kicker">6 life moments</span>
+            <p>One quiz builds the full look — not just a product grid.</p>
+          </div>
+        </div>
+
+        <div className="discovery-xp__occasion-grid">
+          {block.occasionChips?.map((chip) => (
+            <button
+              key={chip.label}
+              type="button"
+              className="discovery-xp__occasion-tile"
+              onClick={() => {
+                if (chip.route) onNavigate?.(chip.route);
+                else onSelectCategory?.(chip.category);
+              }}
+              data-journey-label={`Occasion: ${chip.label}`}
+            >
+              <ProductImage src={chip.image || block.poster} alt="" loading="lazy" />
+              <div className="discovery-xp__occasion-tile-overlay" aria-hidden="true" />
+              <span className="discovery-xp__occasion-label">{chip.label}</span>
+              <ArrowRight size={14} className="discovery-xp__occasion-arrow" aria-hidden />
+            </button>
+          ))}
+        </div>
       </div>
     </BlockShell>
   );
@@ -195,38 +223,51 @@ function OccasionGateBlock({ block, onNavigate, onSelectCategory }) {
 
 /* ─── 5. Wedding & Festive Edit ─────────────────────────────────────────── */
 
-function WeddingFestiveBlock({ block, payload, onNavigate, onSelectCategory }) {
+function WeddingFestiveBlock({ block, payload, onNavigate, onSelectProduct, onSelectCategory }) {
   return (
     <BlockShell block={block} onNavigate={onNavigate}>
-      <div className="discovery-xp__festive-chips">
-        {block.festiveChips?.map((chip) => (
-          <button
-            key={chip}
-            type="button"
-            className="discovery-xp__festive-chip"
-            onClick={() => onSelectCategory?.('lehengas')}
-            data-journey-label={`Festive: ${chip}`}
-          >
-            {chip}
-          </button>
-        ))}
-      </div>
-      {payload.products?.length > 0 && (
-        <div className="discovery-xp__festive-grid">
-          {payload.products.map((product) => (
-            <button
-              key={product.id}
-              type="button"
-              className="discovery-xp__festive-card"
-              onClick={() => onNavigate?.(block.route)}
-              data-journey-label="Festive pick"
-            >
-              <ProductImage src={product.image} alt={product.title} />
-              <p className="discovery-xp__festive-card-name">{product.title}</p>
-            </button>
-          ))}
+      <div className="discovery-xp__festive-showcase">
+        <div className="discovery-xp__festive-hero">
+          <ProductImage src={block.poster} alt="" loading="lazy" />
+          <div className="discovery-xp__festive-hero-overlay" aria-hidden="true" />
+          <div className="discovery-xp__festive-chips">
+            {block.festiveChips?.map((chip) => (
+              <button
+                key={chip}
+                type="button"
+                className="discovery-xp__festive-chip"
+                onClick={() => onSelectCategory?.('lehengas')}
+                data-journey-label={`Festive: ${chip}`}
+              >
+                {chip}
+              </button>
+            ))}
+          </div>
         </div>
-      )}
+
+        {payload.products?.length > 0 ? (
+          <div className="discovery-xp__festive-grid">
+            {payload.products.map((product) => (
+              <button
+                key={product.id}
+                type="button"
+                className="discovery-xp__festive-card"
+                onClick={() => onSelectProduct?.(product)}
+                data-journey-label="Festive pick"
+              >
+                <div className="discovery-xp__festive-card-media">
+                  <ProductImage src={product.image} alt={product.title} loading="lazy" />
+                  <div className="discovery-xp__festive-card-overlay" aria-hidden="true" />
+                  <p className="discovery-xp__festive-card-name">{product.title}</p>
+                  <span className="discovery-xp__festive-card-price">
+                    ₹{Number(product.price || 0).toLocaleString('en-IN')}
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+        ) : null}
+      </div>
     </BlockShell>
   );
 }
@@ -475,38 +516,79 @@ function TrendingIndiaBlock({ block, onNavigate, onSelectCategory, trendingSearc
 
 /* ─── Poster strip ("This Edit" chapter rail) ───────────────────────────── */
 
-function PosterStrip({ posters, onNavigate, stripLabel = 'THIS EDIT', stripSub = 'Tap any chapter to open it' }) {
+function PosterCard({ block, index, onClick, loading = 'lazy' }) {
   return (
-    <div className="discovery-xp__strip-wrap">
-      <div className="discovery-xp__strip-head">
-        <p className="discovery-xp__strip-label">{stripLabel}</p>
-        <p className="discovery-xp__strip-sub">{stripSub}</p>
+    <button
+      type="button"
+      role="listitem"
+      className={`discovery-xp__poster${block.dark ? ' discovery-xp__poster--dark' : ''}`}
+      onClick={onClick}
+      data-journey-label={`Chapter: ${block.title}`}
+      aria-label={block.title}
+    >
+      <span className="discovery-xp__poster-index">{String(index + 1).padStart(2, '0')}</span>
+      <div className="discovery-xp__poster-media">
+        <ProductImage
+          src={block.poster}
+          alt=""
+          className="discovery-xp__poster-img"
+          loading={loading}
+        />
+        <div className="discovery-xp__poster-glow" aria-hidden="true" />
+        <span className="discovery-xp__poster-tag">{block.tagline.split('·')[0].trim()}</span>
       </div>
-      <div className="discovery-xp__strip" role="list">
-        {posters.map((block, i) => (
-          <button
-            key={block.id}
-            type="button"
-            role="listitem"
-            className={`discovery-xp__poster${block.dark ? ' discovery-xp__poster--dark' : ''}`}
-            onClick={() => onNavigate?.(block.route)}
-            data-journey-label={`Chapter: ${block.title}`}
-            aria-label={block.title}
-          >
-            <div className="discovery-xp__poster-media">
-              {/* First 3 posters are near fold — load eagerly; rest lazy */}
-              <ProductImage
-                src={block.poster}
-                alt=""
-                className="discovery-xp__poster-img"
-                loading={i < 3 ? 'eager' : 'lazy'}
-              />
-              <div className="discovery-xp__poster-glow" aria-hidden="true" />
-              <span className="discovery-xp__poster-tag">{block.tagline.split('·')[0].trim()}</span>
-            </div>
-            <span className="discovery-xp__poster-title">{block.title}</span>
-          </button>
-        ))}
+      <span className="discovery-xp__poster-title">{block.title}</span>
+    </button>
+  );
+}
+
+function PosterStrip({ posters, onNavigate, stripLabel = 'THIS EDIT', stripSub = 'Tap any chapter to open it' }) {
+  const scrollToChapter = (block) => {
+    const el = document.getElementById(block.id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    onNavigate?.(block.route);
+  };
+
+  const renderGroup = (keyPrefix, hidden = false) => (
+    <div
+      className="discovery-xp__strip-group"
+      role="list"
+      aria-hidden={hidden || undefined}
+    >
+      {posters.map((block, i) => (
+        <PosterCard
+          key={`${keyPrefix}-${block.id}`}
+          block={block}
+          index={i}
+          loading={!hidden && i < 3 ? 'eager' : 'lazy'}
+          onClick={() => scrollToChapter(block)}
+        />
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="discovery-xp__strip-wrap" id="home-chapter-rail">
+      <div className="discovery-xp__strip-head container">
+        <div className="discovery-xp__strip-titles">
+          <p className="discovery-xp__strip-label">{stripLabel}</p>
+          <p className="discovery-xp__strip-sub">{stripSub}</p>
+        </div>
+        <span className="discovery-xp__strip-count">{posters.length} chapters</span>
+      </div>
+
+      <div className="discovery-xp__strip-marquee">
+        <div className="discovery-xp__strip-fade discovery-xp__strip-fade--left" aria-hidden="true" />
+        <div className="discovery-xp__strip-fade discovery-xp__strip-fade--right" aria-hidden="true" />
+        <div className="discovery-xp__strip-viewport">
+          <div className="discovery-xp__strip-track">
+            {renderGroup('a')}
+            {renderGroup('b', true)}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -607,8 +689,20 @@ export default function DiscoveryExperienceFeed({
         stripLabel={activeConfig.stripLabel}
         stripSub={activeConfig.stripSub}
       />
-      {feed.map((item) => (
-        <ExperienceBlock key={item.id} item={item} handlers={handlers} discoveryConfig={activeConfig} />
+      {feed.map((item, index) => (
+        <div
+          key={item.id}
+          className={`discovery-xp__section discovery-xp__section--${index % 2 === 0 ? 'light' : 'cream'}`}
+        >
+          <div className="discovery-xp__chapter-marker" aria-hidden="true">
+            <span className="discovery-xp__chapter-num">{String(index + 1).padStart(2, '0')}</span>
+          </div>
+          <ExperienceBlock
+            item={item}
+            handlers={handlers}
+            discoveryConfig={activeConfig}
+          />
+        </div>
       ))}
     </div>
   );

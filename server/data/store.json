@@ -1,6 +1,125 @@
 {
   "products": [
     {
+      "id": 900000,
+      "source": "admin",
+      "adminCreated": true,
+      "adminCreatedAt": "2026-06-08T11:13:40.583Z",
+      "title": "ADFA",
+      "description": "ADFA—a trendkaari women's kurta in Cotton, designed for effortless Indian dressing.",
+      "descriptionLong": "ADFA—a trendkaari women's kurta in Cotton, designed for effortless Indian dressing.",
+      "price": 99,
+      "originalPrice": 199,
+      "discount": "50% OFF",
+      "category": "women",
+      "gender": "ladies",
+      "subCategory": "kurtas",
+      "wearType": "traditional",
+      "fabricTags": [
+        "Cotton"
+      ],
+      "image": "/product-media/94a48ac5d277e77a8544773d38301534.webp",
+      "images": [
+        "/product-media/94a48ac5d277e77a8544773d38301534.webp"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "3XL"
+      ],
+      "variants": [
+        {
+          "id": "be94e64d-da16-4636-aff1-cfceb1c2b60a",
+          "color": "Default",
+          "colorHex": "#f0f0f0",
+          "stockBySize": {
+            "XS": 5,
+            "S": 5,
+            "M": 5,
+            "L": 5,
+            "XL": 5,
+            "XXL": 5,
+            "3XL": 5
+          }
+        }
+      ],
+      "stock": 35,
+      "rating": 4.6,
+      "reviewsCount": 24,
+      "highlights": {
+        "Material composition": "Cotton",
+        "Fit type": "Regular / Straight Fit",
+        "Sleeve type": "Short Sleeves",
+        "Neck style": "Mandarin Collar",
+        "Length": "Standard / Midi Length",
+        "Country of Origin": "India"
+      },
+      "aboutItems": [
+        "PREMIUM FABRIC: ADFA is made in Cotton for breathable comfort through day-long wear.",
+        "CRAFT: Clean finishing, reinforced seams and colour-fast dyeing—trendkaari quality checks on every piece.",
+        "VERSATILE: Style with palazzos, churidar, denims or Nehru jacket depending on the occasion.",
+        "COMFORT: Room through chest and hip for movement; soft hand-feel against skin.",
+        "CARE: Gentle machine wash or hand wash in cold water; iron on reverse."
+      ],
+      "additionalInfo": {
+        "Manufacturer": "trendkaari, India",
+        "Country of Origin": "India",
+        "Net Quantity": "1 Count",
+        "Generic Name": "Kurta",
+        "Ideal For": "Festive, casual ethnic, workwear",
+        "Product Care": "Gentle wash, dry in shade"
+      },
+      "sizeChart": [
+        {
+          "size": "XS",
+          "chest": "32 – 34",
+          "shoulder": "14",
+          "length": "38",
+          "sleeve": "16"
+        },
+        {
+          "size": "S",
+          "chest": "34 – 36",
+          "shoulder": "14.5",
+          "length": "40",
+          "sleeve": "17"
+        },
+        {
+          "size": "M",
+          "chest": "36 – 38",
+          "shoulder": "15",
+          "length": "42",
+          "sleeve": "17.5"
+        },
+        {
+          "size": "L",
+          "chest": "38 – 40",
+          "shoulder": "15.5",
+          "length": "44",
+          "sleeve": "18"
+        },
+        {
+          "size": "XL",
+          "chest": "40 – 42",
+          "shoulder": "16",
+          "length": "46",
+          "sleeve": "18.5"
+        },
+        {
+          "size": "XXL",
+          "chest": "42 – 44",
+          "shoulder": "16.5",
+          "length": "48",
+          "sleeve": "19"
+        }
+      ],
+      "sizeChartType": "ethnic"
+    },
+    {
       "id": 241,
       "title": "Deep Teal Cotton Printed Dupatta Set",
       "price": 199,
@@ -2124,7 +2243,7 @@
       ],
       "rating": "5.0",
       "reviewsCount": 193,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -2135,7 +2254,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -22256,6 +22375,144 @@
   ],
   "orders": [
     {
+      "id": "ORD-663782",
+      "userId": null,
+      "customerName": "Guest",
+      "email": "jinal22@gmail.com",
+      "phone": "11968574147",
+      "address": "dfxgfz, zdfv x, xcbv x, xcb x, 963852, xcdv x",
+      "items": [
+        {
+          "id": 1009,
+          "title": "Ruby Red Mirror Work Sleeveless Kurta",
+          "price": 249,
+          "originalPrice": 498,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "kurtas",
+          "wearType": "traditional",
+          "image": "/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp",
+          "images": [
+            "/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp",
+            "/kurtas/Kurtas/9/LBL101KS620_1_700x.webp",
+            "/kurtas/Kurtas/9/LBL101KS620_2_b895b9ce-7a53-4fc6-82a9-6e3229898905_700x.webp",
+            "/kurtas/Kurtas/9/LBL101KS620_3_b53376b1-2627-47d0-a440-82eda8c946c6_700x.webp",
+            "/kurtas/Kurtas/9/LBL101KS620_4_19f53fe7-4419-44ef-90c2-a760982eada6_700x.webp",
+            "/kurtas/Kurtas/9/LBL101KS620_5_8f2b8053-8a31-4316-a973-d76bde829ad3_700x.webp",
+            "/kurtas/Kurtas/9/LBL101KS620_6_780984f2-6cf6-4d10-80a5-85cd5cc0c7b6_700x.webp",
+            "/kurtas/Kurtas/9/LBL101KS620_7_b5ac921c-005e-453e-869a-f00ae3cf20c9_700x.webp"
+          ],
+          "description": "Discover Ruby Red Mirror Work Sleeveless Kurta from FlexFit Studio—where tradition meets contemporary design. This kurtas is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "5.0",
+          "reviewsCount": 193,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Ruby Red Mirror Work Sleeveless Kurta from FlexFit Studio—where tradition meets contemporary design. This kurtas is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Ruby Red Mirror Work Sleeveless Kurta features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        }
+      ],
+      "subtotal": 249,
+      "discount": 0,
+      "grandTotal": 249,
+      "status": "Pending",
+      "paymentStatus": "Paid",
+      "date": "8/6/2026, 4:48:23 pm",
+      "createdAt": "2026-06-08T11:18:23.407Z"
+    },
+    {
       "id": "ORD-252283",
       "userId": "USR-1779344334203",
       "customerName": "Jinal",
@@ -25133,17 +25390,17 @@
       "updatedAt": "2026-05-21T05:37:10.557Z"
     }
   ],
-  "_storeUpdatedAt": "2026-06-08T10:47:43.602Z",
+  "_storeUpdatedAt": "2026-06-08T11:46:40.575Z",
   "homepage_blocks": [
     {
-      "id": "style-quiz",
+      "id": "style-quizSAdxcvb",
       "title": "Find Your Style DNA",
       "tagline": "Who are you, stylistically?",
       "hook": "Five questions. Your complete fashion personality — plus a curated edit built just for you.",
       "route": "/quiz/personality",
       "accent": "#600b45",
       "kind": "quiz",
-      "poster": "/kurtas/Kurtas/1/040A2925_700x.webp",
+      "poster": "/product-media/69fd19c1bf522a00b6df8118acac13d8.webp",
       "ctaText": "Discover your style type",
       "quizQuestion": "Which vibe feels most like you?",
       "previewOptions": [
@@ -25283,6 +25540,2854 @@
       "accent": "#37474f",
       "kind": "search",
       "poster": "/mens/kurtas/kurta/1/l-pkt410-vebnor-original-imahnybzsfggj62r.webp"
+    }
+  ],
+  "discovery_config": {
+    "stripLabel": "THIS EDIT",
+    "stripSub": "Tap any chapter to open it",
+    "editorNotes": [
+      "The desk pick for effortless festive dressing — structure without stiffness.",
+      "A scroll-stopper that still feels wearable off the feed.",
+      "Investment-tier fabric, everyday-friendly silhouette."
+    ],
+    "fashionPolls": [
+      {
+        "id": "saree-vs-lehenga",
+        "question": "Wedding guest power move?",
+        "subtext": "4,847 people have voted",
+        "options": [
+          {
+            "id": "saree",
+            "label": "Silk saree — timeless",
+            "emoji": "🥻"
+          },
+          {
+            "id": "lehenga",
+            "label": "Lehenga — celebration",
+            "emoji": "✨"
+          }
+        ]
+      },
+      {
+        "id": "minimal-vs-maximal",
+        "question": "Your festive personality?",
+        "subtext": "2,311 people have voted",
+        "options": [
+          {
+            "id": "minimal",
+            "label": "Quiet elegance",
+            "emoji": "🤍"
+          },
+          {
+            "id": "maximal",
+            "label": "Full festive glam",
+            "emoji": "💎"
+          }
+        ]
+      },
+      {
+        "id": "airport-vs-event",
+        "question": "Bollywood style icon?",
+        "subtext": "1,892 people have voted",
+        "options": [
+          {
+            "id": "airport",
+            "label": "Deepika — airport minimal",
+            "emoji": "✈️"
+          },
+          {
+            "id": "event",
+            "label": "Alia — event maximalist",
+            "emoji": "🎬"
+          }
+        ]
+      }
+    ],
+    "styleChallenges": [
+      {
+        "id": "rate-outfit",
+        "title": "Rate This Outfit",
+        "hook": "5 looks · 1–5 stars",
+        "route": "/games/rate-outfit",
+        "accent": "#e65100"
+      },
+      {
+        "id": "choose-style",
+        "title": "Pick Your Style Lane",
+        "hook": "Minimal vs bold vs festive",
+        "route": "/games/choose-style",
+        "accent": "#4527a0"
+      },
+      {
+        "id": "look-battle",
+        "title": "Which Look Wins?",
+        "hook": "5 head-to-head battles",
+        "route": "/games/look-battle",
+        "accent": "#c62828"
+      }
+    ],
+    "trendingSearches": [
+      {
+        "label": "Wedding guest fashion",
+        "route": "/trends/wedding-fashion"
+      },
+      {
+        "label": "Celebrity airport looks",
+        "route": "/trends/airport-looks"
+      },
+      {
+        "label": "Viral Instagram outfits",
+        "route": "/trends/viral-instagram-fashion"
+      },
+      {
+        "label": "Festival season edit",
+        "route": "/trends/festival-fashion"
+      },
+      {
+        "label": "Sangeet guest outfit",
+        "category": "lehengas"
+      },
+      {
+        "label": "Summer fashion 2026",
+        "route": "/trends/summer-fashion"
+      },
+      {
+        "label": "Bollywood inspired looks",
+        "route": "/celebrity-match"
+      },
+      {
+        "label": "Handloom sarees",
+        "category": "sarees"
+      },
+      {
+        "label": "Anarkali with pants",
+        "category": "kurtas"
+      },
+      {
+        "label": "Under ₹999 picks",
+        "route": "/viral"
+      }
+    ]
+  },
+  "celebrity_looks": [
+    {
+      "id": "deepika-airport",
+      "celebrity": "Deepika Padukone",
+      "context": "Airport · Mumbai",
+      "title": "Quiet Luxury Kurta Set",
+      "hook": "Find your version →",
+      "image": "/product-media/7ea6d142188e21d0403f5d151d811a9a.webp",
+      "category": "kurtas",
+      "theme": "Effortless",
+      "styleNotes": [
+        "Choose breathable cotton or linen for travel — comfort is the actual flex here.",
+        "Minimal jewellery only — one small earring per ear, nothing on the wrist.",
+        "Block heels or pointed Kolhapuri flats balance the relaxed silhouette perfectly."
+      ],
+      "knowledgeSlug": "kurti-style-guide",
+      "quizSlug": "outfit-finder",
+      "articleCategory": "celebrity-looks"
+    },
+    {
+      "id": "alia-reception",
+      "celebrity": "Alia Bhatt",
+      "context": "Reception · Delhi",
+      "title": "Silk Saree Moment",
+      "hook": "Explore sarees →",
+      "image": "/sarees/Sarees/1/040A3523_700x.webp",
+      "category": "sarees",
+      "theme": "Bridal",
+      "styleNotes": [
+        "Pre-draped sarees are the modern choice — elegant with absolutely no fuss.",
+        "Keep the blouse minimal so the silk fabric and drape do all the talking.",
+        "A single statement necklace over a silk saree reads editorial, not overdressed."
+      ],
+      "knowledgeSlug": "saree-types-explained",
+      "quizSlug": "wedding-style",
+      "articleCategory": "celebrity-looks"
+    },
+    {
+      "id": "janhvi-sangeet",
+      "celebrity": "Janhvi Kapoor",
+      "context": "Sangeet · Mumbai",
+      "title": "Embellished Lehenga Edit",
+      "hook": "Shop the look →",
+      "image": "/lehengas/Lehengas/1/040A3523_700x.webp",
+      "category": "lehengas",
+      "theme": "Festive",
+      "styleNotes": [
+        "A flared lehenga with mirror work photographs like a dream — every step becomes a shot.",
+        "Let the skirt be the hero — pair with a blouse that has minimal back detailing only.",
+        "Pull your hair back or up to keep the neckline visible and the silhouette clean."
+      ],
+      "knowledgeSlug": "kurti-style-guide",
+      "quizSlug": "festival-look",
+      "articleCategory": "festival-fashion"
+    },
+    {
+      "id": "kiara-festive",
+      "celebrity": "Kiara Advani",
+      "context": "Festive · Celebration",
+      "title": "Embroidered Suit Set",
+      "hook": "Open suit sets →",
+      "image": "/co-ords/co-ord_set/1/1.webp",
+      "category": "suit sets",
+      "theme": "Festive",
+      "styleNotes": [
+        "An embroidered suit set moves effortlessly from afternoon pooja to evening party.",
+        "Match your dupatta colour to the embroidery thread for a polished, intentional look.",
+        "Gold juttis are always the right choice for festive — simple, sharp, never wrong."
+      ],
+      "knowledgeSlug": "kurti-style-guide",
+      "quizSlug": "outfit-finder",
+      "articleCategory": "festival-fashion"
+    },
+    {
+      "id": "kartik-airport",
+      "celebrity": "Kartik Aaryan",
+      "context": "Airport · Street style",
+      "title": "Clean Kurta Silhouette",
+      "hook": "Browse mens kurtas →",
+      "image": "/mens/kurtas/kurta/1/l-pkt410-vebnor-original-imahnybzsfggj62r.webp",
+      "category": "gents kurtas",
+      "theme": "Casual",
+      "styleNotes": [
+        "Straight-cut kurtas in off-white or beige neutrals are the most versatile menswear choice.",
+        "Roll up the sleeves one fold — instantly looks relaxed and intentional, not forgettable.",
+        "White sneakers OR brown leather loafers — both work, pick based on where you are going."
+      ],
+      "knowledgeSlug": "kurti-style-guide",
+      "quizSlug": "outfit-finder",
+      "articleCategory": "styling-tips"
+    },
+    {
+      "id": "ranveer-event",
+      "celebrity": "Ranveer Singh",
+      "context": "Event · Bold edit",
+      "title": "Statement Co-ord Energy",
+      "hook": "See the full look →",
+      "image": "/mens/blazers/Blezermen/b10/1.webp",
+      "category": "blazers",
+      "theme": "Bold",
+      "styleNotes": [
+        "Bold prints work when the silhouette is extremely clean — never mix two patterns.",
+        "Let the co-ord be the centrepiece — one ring at most, zero necklaces, no watch.",
+        "This look lives or dies on confidence. If you are second-guessing it, simplify."
+      ],
+      "knowledgeSlug": "fashion-color-guide",
+      "quizSlug": "personality",
+      "articleCategory": "styling-tips"
+    }
+  ],
+  "trend_pages": [
+    {
+      "id": "wedding-fashion",
+      "slug": "wedding-fashion",
+      "title": "Wedding Fashion 2026",
+      "label": "Wedding",
+      "tagline": "Be the guest everyone remembers.",
+      "eyebrow": "TREND REPORT · WEDDINGS",
+      "editorial": [
+        "The Indian wedding circuit never slows down. Whether you're attending a destination mehendi in Rajasthan or an intimate reception in South Delhi, 2026's wedding fashion playbook is clear: rich fabrics, intentional colour, and silhouettes that photograph from every angle.",
+        "This season's standout move is mixing traditional embroidery with cleaner silhouettes — heavy dupatta, minimal blouse, statement skirt. The lehenga is not going anywhere, but how you style it has changed completely."
+      ],
+      "heroImage": "/lehengas/Lehengas/1/040A3523_700x.webp",
+      "accent": "#880e4f",
+      "accentLight": "rgba(136,14,79,0.07)",
+      "categories": [
+        "lehengas",
+        "sarees",
+        "suit sets"
+      ],
+      "celebrityIds": [
+        "alia-reception",
+        "janhvi-sangeet",
+        "kiara-festive"
+      ],
+      "quizzes": [
+        {
+          "slug": "wedding-style",
+          "label": "What's your wedding guest style?",
+          "desc": "Four questions. Your complete wedding wardrobe — from mehendi to reception."
+        },
+        {
+          "slug": "outfit-finder",
+          "label": "Build the perfect occasion look",
+          "desc": "Tell us the moment, we'll find the outfit that belongs there."
+        }
+      ],
+      "knowledgePages": [
+        {
+          "slug": "wedding-dress-guide",
+          "label": "Complete wedding dress guide",
+          "desc": "Which outfits, fabrics, and colours suit every function — from mehendi to reception."
+        },
+        {
+          "slug": "saree-types-explained",
+          "label": "Saree types for every wedding role",
+          "desc": "Banarasi silk to georgette — which drape to wear and when."
+        },
+        {
+          "slug": "lehenga-vs-saree",
+          "label": "Lehenga or saree?",
+          "desc": "The eternal wedding dilemma, finally resolved with clear rules."
+        }
+      ],
+      "magazineCategory": "festival-fashion",
+      "relatedTrends": [
+        "festival-fashion",
+        "airport-looks",
+        "viral-instagram-fashion"
+      ]
+    },
+    {
+      "id": "summer-fashion",
+      "slug": "summer-fashion",
+      "title": "Summer Fashion 2026",
+      "label": "Summer",
+      "tagline": "Light fabrics, bold colours, zero compromise.",
+      "eyebrow": "TREND REPORT · SUMMER",
+      "editorial": [
+        "Indian summers demand a different kind of dressing. Not minimal — purposeful. Cotton sets that breathe, co-ords that photograph well, and kurtas that make you look considered when you feel anything but. The 2026 summer edit is about mastering one thing: intentional comfort.",
+        "The palette this season skews warm — terracotta, saffron, off-white — with occasional punches of cobalt. Fabrics are pure cotton or cotton-linen blends. Embroidery is minimal, mostly at the neckline or hem only."
+      ],
+      "heroImage": "/kurtas/Kurtas/1/040A2925_700x.webp",
+      "accent": "#e65100",
+      "accentLight": "rgba(230,81,0,0.06)",
+      "categories": [
+        "kurtas",
+        "tops",
+        "co-ords"
+      ],
+      "celebrityIds": [
+        "deepika-airport",
+        "kartik-airport"
+      ],
+      "quizzes": [
+        {
+          "slug": "outfit-finder",
+          "label": "Find your summer look",
+          "desc": "Match the vibe to the weather, occasion, and your wardrobe."
+        },
+        {
+          "slug": "personality",
+          "label": "Discover your fashion personality",
+          "desc": "What does your summer style say about how you see the world?"
+        }
+      ],
+      "knowledgePages": [
+        {
+          "slug": "best-fabrics-summer",
+          "label": "Best fabrics for the Indian summer",
+          "desc": "Cotton, linen, rayon, chiffon — ranked by breathability for 40°C days."
+        },
+        {
+          "slug": "kurti-style-guide",
+          "label": "The complete kurta guide for summer",
+          "desc": "Which fabrics, cuts, and lengths actually work in the Indian heat."
+        },
+        {
+          "slug": "fashion-color-guide",
+          "label": "Best colours for summer 2026",
+          "desc": "The exact palette dominating Indian wardrobes this season."
+        }
+      ],
+      "magazineCategory": "seasonal-fashion",
+      "relatedTrends": [
+        "airport-looks",
+        "viral-instagram-fashion",
+        "festival-fashion"
+      ]
+    },
+    {
+      "id": "festival-fashion",
+      "slug": "festival-fashion",
+      "title": "Festival Fashion 2026",
+      "label": "Festival",
+      "tagline": "Navratri, Diwali, Eid — your full seasonal edit.",
+      "eyebrow": "TREND REPORT · FESTIVALS",
+      "editorial": [
+        "India runs on festivals, and festivals run on fashion. The 2026 festive season has a clear direction: move away from generic ethnic and towards intentional traditional. That means knowing your fabric, your embroidery, and exactly which silhouette photographs best under string lights.",
+        "This year, the safest choice is also the most stylish one — a well-fitted anarkali in a jewel tone will outlast any trend. But if you want to take a risk, mirror-work lehengas with minimal blouses are having their defining moment."
+      ],
+      "heroImage": "/co-ords/co-ord_set/1/1.webp",
+      "accent": "#c9a84c",
+      "accentLight": "rgba(201,168,76,0.08)",
+      "categories": [
+        "lehengas",
+        "kurtas",
+        "suit sets"
+      ],
+      "celebrityIds": [
+        "janhvi-sangeet",
+        "kiara-festive",
+        "deepika-airport"
+      ],
+      "quizzes": [
+        {
+          "slug": "festival-look",
+          "label": "Find your festival look",
+          "desc": "Which festive aesthetic matches your personality and the occasion?"
+        },
+        {
+          "slug": "outfit-finder",
+          "label": "Pick the perfect festive outfit",
+          "desc": "Navratri to New Year's Eve — we'll build the complete look."
+        }
+      ],
+      "knowledgePages": [
+        {
+          "slug": "what-is-anarkali",
+          "label": "What is an Anarkali?",
+          "desc": "The silhouette built for festivals — how to choose yours."
+        },
+        {
+          "slug": "kurti-style-guide",
+          "label": "Festive kurta guide",
+          "desc": "The silhouettes and fabrics that make the biggest impact at any celebration."
+        },
+        {
+          "slug": "fashion-color-guide",
+          "label": "Festive colour playbook",
+          "desc": "From classic reds to the unexpected pastel-festive looks of 2026."
+        }
+      ],
+      "magazineCategory": "festival-fashion",
+      "relatedTrends": [
+        "wedding-fashion",
+        "viral-instagram-fashion",
+        "airport-looks"
+      ]
+    },
+    {
+      "id": "viral-instagram-fashion",
+      "slug": "viral-instagram-fashion",
+      "title": "Viral Instagram Fashion",
+      "label": "Viral",
+      "tagline": "The looks blowing up on Indian Instagram right now.",
+      "eyebrow": "TREND REPORT · VIRAL",
+      "editorial": [
+        "Indian fashion on Instagram in 2026 is not what you expect. It's not just influencers in co-ord sets. It's the unexpected resurgence of traditional silhouettes styled with modern confidence — the kurta-with-sneakers moment, the pre-draped saree on a flight, the dupatta worn as a skirt.",
+        "What makes a look viral in 2026 is not the garment — it's the styling contradiction. Something traditional worn in an unexpected context. Something expensive-looking that isn't. The algorithm rewards personality, and personality requires a point of view."
+      ],
+      "heroImage": "/tops/4/1.webp",
+      "accent": "#600b45",
+      "accentLight": "rgba(96,11,69,0.06)",
+      "categories": [
+        "co-ords",
+        "tops",
+        "kurtas"
+      ],
+      "celebrityIds": [
+        "deepika-airport",
+        "ranveer-event",
+        "kartik-airport"
+      ],
+      "quizzes": [
+        {
+          "slug": "personality",
+          "label": "What's your Instagram fashion personality?",
+          "desc": "Five questions reveal your authentic style language — no filters needed."
+        },
+        {
+          "slug": "outfit-finder",
+          "label": "Find your viral-worthy outfit",
+          "desc": "Build the look before someone else does."
+        }
+      ],
+      "knowledgePages": [
+        {
+          "slug": "what-is-coord-fashion",
+          "label": "What is co-ord fashion?",
+          "desc": "India's most viral silhouette — and how to wear it beyond the obvious."
+        },
+        {
+          "slug": "fashion-color-guide",
+          "label": "The colours dominating Indian Instagram",
+          "desc": "Which palettes photograph best and why they're trending right now."
+        },
+        {
+          "slug": "palazzo-pairing-guide",
+          "label": "How to style palazzos in 2026",
+          "desc": "The silhouette that keeps going viral — here's how to wear it right."
+        }
+      ],
+      "magazineCategory": "fashion-trends",
+      "relatedTrends": [
+        "airport-looks",
+        "summer-fashion",
+        "festival-fashion"
+      ]
+    },
+    {
+      "id": "airport-looks",
+      "slug": "airport-looks",
+      "title": "Airport Looks 2026",
+      "label": "Airport",
+      "tagline": "Travel like the camera is always on.",
+      "eyebrow": "TREND REPORT · TRAVEL",
+      "editorial": [
+        "The Indian airport has become fashion's most unexpected runway. Stars getting papped at 5am. The pressure to look effortlessly put together while hauling a 23kg suitcase through Terminal 2 is entirely real — and the best airport looks solve exactly one problem: intentional comfort.",
+        "The 2026 airport formula: breathable natural fabric, neutral base, one statement piece only. The kurta-and-trouser combination is winning because it's ethnically rooted but reads modern in every city. Add quality footwear and you have a look that works from check-in to Insta."
+      ],
+      "heroImage": "/mens/kurtas/kurta/1/l-pkt410-vebnor-original-imahnybzsfggj62r.webp",
+      "accent": "#1565c0",
+      "accentLight": "rgba(21,101,192,0.06)",
+      "categories": [
+        "kurtas",
+        "suit sets",
+        "blazers"
+      ],
+      "celebrityIds": [
+        "deepika-airport",
+        "kartik-airport",
+        "ranveer-event"
+      ],
+      "quizzes": [
+        {
+          "slug": "outfit-finder",
+          "label": "Find your airport look",
+          "desc": "Comfort-first dressing that never looks like you gave up."
+        },
+        {
+          "slug": "personality",
+          "label": "What's your travel style personality?",
+          "desc": "From the minimalist traveller to the maximalist jet-setter."
+        }
+      ],
+      "knowledgePages": [
+        {
+          "slug": "best-fabrics-summer",
+          "label": "Best fabrics for travel in Indian heat",
+          "desc": "Never pack the wrong fabric again — a quick guide to breathable travel dressing."
+        },
+        {
+          "slug": "kurti-style-guide",
+          "label": "Kurtas for travel — the full guide",
+          "desc": "The most versatile travel garment in Indian fashion, styled right."
+        },
+        {
+          "slug": "fashion-color-guide",
+          "label": "Neutral colour guide for travel dressing",
+          "desc": "Build a capsule that works across three different destinations."
+        }
+      ],
+      "magazineCategory": "celebrity-looks",
+      "relatedTrends": [
+        "viral-instagram-fashion",
+        "summer-fashion",
+        "wedding-fashion"
+      ]
+    }
+  ],
+  "knowledge_pages": [
+    {
+      "id": "what-is-anarkali",
+      "slug": "what-is-anarkali",
+      "topicSlug": "silhouettes",
+      "title": "What is Anarkali?",
+      "dek": "The flared kurta silhouette named after a Mughal court dancer — and why it flatters almost everyone.",
+      "excerpt": "Fitted bodice, flowing skirt panel, celebration-ready drama. Here is everything you need to know about the Anarkali.",
+      "readTime": "5 min read",
+      "image": "/kurtas/Kurtas/1/040A2925_700x.webp",
+      "shopCategory": "kurtas",
+      "shopCategories": [
+        "kurtas",
+        "suit sets"
+      ],
+      "collectionLabels": [
+        {
+          "category": "kurtas",
+          "label": "Anarkali Kurtas"
+        },
+        {
+          "category": "suit sets",
+          "label": "Anarkali Suit Sets"
+        }
+      ],
+      "tags": [
+        "anarkali",
+        "flare",
+        "kurta",
+        "festive"
+      ],
+      "featured": true,
+      "relatedTrends": [
+        "festival-fashion",
+        "wedding-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "kiara-festive",
+        "janhvi-sangeet"
+      ],
+      "relatedQuizSlugs": [
+        "outfit-finder",
+        "festival-look"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "An Anarkali is a long, frock-style kurta with a fitted yoke and a flared skirt panel from the waist down. It takes its name from Anarkali of Mughal legend and remains one of the most universally flattering ethnic silhouettes."
+        },
+        {
+          "type": "heading",
+          "text": "How to spot an Anarkali"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Fitted bodice through bust and waist",
+            "Flared panels or pleats from waist to hem",
+            "Length usually below knee or floor-grazing",
+            "Often worn with churidar, leggings, or palazzo"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "When to wear it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Anarkalis work for festive lunches, mehendi functions, and family gatherings where you want movement without sacrificing structure. Petite frames can choose knee-length versions; taller wearers can go full flare."
+        },
+        {
+          "type": "tip",
+          "title": "Styling tip",
+          "text": "Keep jewellery minimal when the Anarkali has heavy embroidery — let the silhouette be the hero."
+        }
+      ],
+      "relatedPageIds": [
+        "kurti-style-guide",
+        "saree-types-explained"
+      ]
+    },
+    {
+      "id": "what-is-rayon-fabric",
+      "slug": "what-is-rayon-fabric",
+      "topicSlug": "fabrics",
+      "title": "What is Rayon Fabric?",
+      "dek": "Soft drape, breathable feel, budget-friendly — the fabric behind everyday ethnic comfort.",
+      "excerpt": "Rayon is a semi-synthetic cellulose fabric loved for its silk-like fall at a friendlier price point.",
+      "readTime": "4 min read",
+      "image": "/tops/4/1.webp",
+      "shopCategory": "kurtas",
+      "shopCategories": [
+        "kurtas",
+        "tops",
+        "sarees"
+      ],
+      "collectionLabels": [
+        {
+          "category": "kurtas",
+          "label": "Rayon Kurtas"
+        },
+        {
+          "category": "sarees",
+          "label": "Flowy Sarees"
+        }
+      ],
+      "tags": [
+        "rayon",
+        "fabric",
+        "breathable",
+        "drape"
+      ],
+      "featured": true,
+      "relatedTrends": [
+        "summer-fashion",
+        "viral-instagram-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "deepika-airport",
+        "kartik-airport"
+      ],
+      "relatedQuizSlugs": [
+        "outfit-finder"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "Rayon is made from regenerated cellulose — usually wood pulp — and spun into fibres that mimic natural silk drape. In Indian wear it appears in daily kurtas, sarees, and tops where breathability matters."
+        },
+        {
+          "type": "heading",
+          "text": "Pros & cons"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Pros: soft hand-feel, good drape, affordable, breathable in heat",
+            "Cons: can shrink if washed hot; delicate when wet; may wrinkle"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Care basics"
+        },
+        {
+          "type": "paragraph",
+          "text": "Cold hand wash or gentle machine cycle. Avoid wringing. Steam or low-iron on reverse. Store folded, not hung, for long periods to prevent shoulder stretch."
+        },
+        {
+          "type": "tip",
+          "title": "Shop smart",
+          "text": "Look for \"viscose rayon\" or blend percentages on the label — higher cotton content adds durability for daily wear."
+        }
+      ],
+      "relatedPageIds": [
+        "kurti-style-guide",
+        "fashion-color-guide"
+      ]
+    },
+    {
+      "id": "kurti-style-guide",
+      "slug": "kurti-style-guide",
+      "topicSlug": "garments",
+      "title": "Kurti Style Guide",
+      "dek": "Straight, A-line, Anarkali, asymmetric — find your kurti lane.",
+      "excerpt": "The kurti is the most versatile piece in Indian wardrobes. This guide maps silhouettes to body type and occasion.",
+      "readTime": "7 min read",
+      "image": "/kurtas/Kurtas/1/040A2925_700x.webp",
+      "shopCategory": "kurtas",
+      "shopCategories": [
+        "kurtas",
+        "tops",
+        "co-ords"
+      ],
+      "collectionLabels": [
+        {
+          "category": "kurtas",
+          "label": "All Kurtas"
+        },
+        {
+          "category": "tops",
+          "label": "Fusion Tops"
+        },
+        {
+          "category": "co-ords",
+          "label": "Kurti Co-ords"
+        }
+      ],
+      "tags": [
+        "kurta",
+        "kurti",
+        "straight",
+        "a-line"
+      ],
+      "featured": true,
+      "relatedTrends": [
+        "airport-looks",
+        "summer-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "deepika-airport",
+        "kartik-airport",
+        "kiara-festive"
+      ],
+      "relatedQuizSlugs": [
+        "outfit-finder",
+        "personality"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "A kurti (or kurta) is a tunic-length top worn with leggings, palazzo, jeans, or dupatta. Style comes down to three choices: silhouette, length, and neckline."
+        },
+        {
+          "type": "heading",
+          "text": "Silhouette map"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Straight kurti — clean lines; best for office and daily wear",
+            "A-line kurti — gentle flare; balances hips and thighs",
+            "Anarkali — dramatic flare; festive and wedding-friendly",
+            "Asymmetric / high-low — modern fusion; great with jeans"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Length guide"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Short (hip-length) — pairs with palazzo or wide pants",
+            "Medium (knee) — most versatile for all heights",
+            "Long (calf to ankle) — elegant; works with churidar"
+          ]
+        },
+        {
+          "type": "tip",
+          "title": "Quick pick",
+          "text": "Daily rotation? Straight cotton kurtas. One festive piece? Anarkali or embroidered A-line."
+        }
+      ],
+      "relatedPageIds": [
+        "what-is-anarkali",
+        "what-is-rayon-fabric",
+        "fashion-color-guide"
+      ]
+    },
+    {
+      "id": "saree-types-explained",
+      "slug": "saree-types-explained",
+      "topicSlug": "garments",
+      "title": "Saree Types Explained",
+      "dek": "Silk, georgette, cotton, chiffon, pre-draped — know your weave before you buy.",
+      "excerpt": "Every saree type drapes differently. Match fabric to occasion, climate, and comfort.",
+      "readTime": "8 min read",
+      "image": "/sarees/Sarees/1/040A3523_700x.webp",
+      "shopCategory": "sarees",
+      "shopCategories": [
+        "sarees"
+      ],
+      "collectionLabels": [
+        {
+          "category": "sarees",
+          "label": "All Sarees"
+        },
+        {
+          "category": "sarees",
+          "label": "Silk & Festive Sarees"
+        }
+      ],
+      "tags": [
+        "saree",
+        "silk",
+        "georgette",
+        "cotton",
+        "drape"
+      ],
+      "featured": true,
+      "relatedTrends": [
+        "wedding-fashion",
+        "festival-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "alia-reception",
+        "janhvi-sangeet"
+      ],
+      "relatedQuizSlugs": [
+        "wedding-style",
+        "festival-look"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "A saree is a continuous length of fabric draped around the body with pleats at the waist and a pallu over the shoulder. The fabric type determines weight, fall, and formality."
+        },
+        {
+          "type": "heading",
+          "text": "Common saree types"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Silk saree — rich, formal; weddings, pujas, receptions",
+            "Georgette saree — light drape; parties and daytime events",
+            "Cotton saree — breathable; daily wear and summer functions",
+            "Chiffon saree — fluid, sheer layers; evening and cocktail",
+            "Pre-draped / ready saree — stitched pleats; fastest to wear"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Choosing by occasion"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Office / daily: cotton, linen blend, subtle prints",
+            "Festive lunch: georgette or light silk with minimal zari",
+            "Wedding guest: kanjivaram-style silk, organza, or embellished georgette"
+          ]
+        },
+        {
+          "type": "tip",
+          "title": "First saree?",
+          "text": "Start with georgette or pre-draped — forgiving fall and easier pleats while you learn."
+        }
+      ],
+      "relatedPageIds": [
+        "what-is-anarkali",
+        "fashion-color-guide"
+      ]
+    },
+    {
+      "id": "fashion-color-guide",
+      "slug": "fashion-color-guide",
+      "topicSlug": "colour",
+      "title": "Fashion Color Guide",
+      "dek": "Maroon, sage, mustard, ivory — how to build a palette that works together.",
+      "excerpt": "Colour sets mood before silhouette does. Use this guide to mix festive, daily, and office palettes.",
+      "readTime": "6 min read",
+      "image": "/tops/7/1.webp",
+      "shopCategory": "suit sets",
+      "shopCategories": [
+        "suit sets",
+        "kurtas",
+        "sarees",
+        "lehengas"
+      ],
+      "collectionLabels": [
+        {
+          "category": "suit sets",
+          "label": "Festive Colour Sets"
+        },
+        {
+          "category": "kurtas",
+          "label": "Everyday Neutrals"
+        },
+        {
+          "category": "sarees",
+          "label": "Jewel Tone Sarees"
+        }
+      ],
+      "tags": [
+        "colour",
+        "maroon",
+        "sage",
+        "pastel",
+        "festive"
+      ],
+      "featured": true,
+      "relatedTrends": [
+        "viral-instagram-fashion",
+        "summer-fashion",
+        "festival-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "ranveer-event",
+        "deepika-airport"
+      ],
+      "relatedQuizSlugs": [
+        "personality",
+        "outfit-finder"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "Indian fashion runs on colour stories — wedding maroons, summer pastels, office sage and navy. The trick is picking a base palette and adding one accent."
+        },
+        {
+          "type": "heading",
+          "text": "Palette lanes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Festive rich: maroon, emerald, gold, wine",
+            "Summer soft: peach, lavender, butter yellow, mint",
+            "Office calm: sage, beige, navy, white",
+            "Evening bold: black, ivory, single jewel accent"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mixing rules"
+        },
+        {
+          "type": "list",
+          "items": [
+            "One hero colour + one neutral per outfit",
+            "Match metal jewellery to undertone (gold/warm, silver/cool)",
+            "Prints: pull dupatta or accessory from secondary print colour"
+          ]
+        },
+        {
+          "type": "tip",
+          "title": "Safe starter trio",
+          "text": "Maroon + gold (festive), sage + white (daily), navy + ivory (office) — three combos that rarely miss."
+        }
+      ],
+      "relatedPageIds": [
+        "kurti-style-guide",
+        "saree-types-explained",
+        "what-is-rayon-fabric"
+      ]
+    },
+    {
+      "id": "what-is-georgette",
+      "slug": "what-is-georgette",
+      "topicSlug": "fabrics",
+      "title": "What is Georgette Fabric?",
+      "dek": "Crisp, sheer, and dance-floor friendly — the party fabric explained.",
+      "excerpt": "Georgette adds movement without weight. Learn when to choose it over silk or chiffon.",
+      "readTime": "4 min read",
+      "image": "/sarees/Sarees/1/040A3523_700x.webp",
+      "shopCategory": "sarees",
+      "shopCategories": [
+        "sarees",
+        "suit sets"
+      ],
+      "collectionLabels": [
+        {
+          "category": "sarees",
+          "label": "Georgette Sarees"
+        },
+        {
+          "category": "suit sets",
+          "label": "Georgette Suit Sets"
+        }
+      ],
+      "tags": [
+        "georgette",
+        "fabric",
+        "saree",
+        "drape"
+      ],
+      "featured": false,
+      "relatedTrends": [
+        "wedding-fashion",
+        "festival-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "alia-reception",
+        "janhvi-sangeet"
+      ],
+      "relatedQuizSlugs": [
+        "wedding-style"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "Georgette is a lightweight, slightly crinkled woven fabric — plain or silk blend. It holds pleats well in sarees and adds graceful movement to suit sets without clinging."
+        },
+        {
+          "type": "tip",
+          "title": "Best for",
+          "text": "Sangeet nights, daytime weddings, and anyone who wants drape without heavy silk weight."
+        }
+      ],
+      "relatedPageIds": [
+        "saree-types-explained",
+        "what-is-rayon-fabric"
+      ]
+    },
+    {
+      "id": "palazzo-pairing-guide",
+      "slug": "palazzo-pairing-guide",
+      "topicSlug": "silhouettes",
+      "title": "Palazzo Pairing Guide",
+      "dek": "Which kurti lengths and fabrics work best with wide-leg bottoms.",
+      "excerpt": "Palazzos are comfort royalty — but proportion matters. Match top length and fabric weight correctly.",
+      "readTime": "4 min read",
+      "image": "/co-ords/co-ord_set/1/1.webp",
+      "shopCategory": "co-ords",
+      "shopCategories": [
+        "co-ords",
+        "kurtas"
+      ],
+      "collectionLabels": [
+        {
+          "category": "co-ords",
+          "label": "Kurti Palazzo Sets"
+        },
+        {
+          "category": "kurtas",
+          "label": "Short Kurtas"
+        }
+      ],
+      "tags": [
+        "palazzo",
+        "kurta",
+        "co-ord",
+        "pairing"
+      ],
+      "featured": false,
+      "relatedTrends": [
+        "viral-instagram-fashion",
+        "summer-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "deepika-airport",
+        "kiara-festive"
+      ],
+      "relatedQuizSlugs": [
+        "outfit-finder"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "Palazzo pants add volume at the hem — balance with a medium to short kurti or a straight long kurta with side slits. Avoid boxy long kurtas without slits; they shorten the leg line."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Short kurti + high-waist palazzo — lengthens legs",
+            "Long slit kurta + flowy palazzo — elegant evening look",
+            "Co-ord set — proportion pre-balanced"
+          ]
+        }
+      ],
+      "relatedPageIds": [
+        "kurti-style-guide",
+        "what-is-anarkali"
+      ]
+    },
+    {
+      "id": "lehenga-vs-saree",
+      "slug": "lehenga-vs-saree",
+      "topicSlug": "garments",
+      "title": "Lehenga vs Saree: Which to Choose?",
+      "dek": "Two celebration heroes — compare comfort, styling time, and occasion fit.",
+      "excerpt": "Both are wedding-guest favourites. Your choice depends on movement, styling confidence, and function type.",
+      "readTime": "5 min read",
+      "image": "/lehengas/Lehengas/1/040A3523_700x.webp",
+      "shopCategory": "lehengas",
+      "shopCategories": [
+        "lehengas",
+        "sarees"
+      ],
+      "collectionLabels": [
+        {
+          "category": "lehengas",
+          "label": "Lehenga Sets"
+        },
+        {
+          "category": "sarees",
+          "label": "Ceremony Sarees"
+        }
+      ],
+      "tags": [
+        "lehenga",
+        "saree",
+        "wedding",
+        "comparison"
+      ],
+      "featured": false,
+      "relatedTrends": [
+        "wedding-fashion",
+        "festival-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "alia-reception",
+        "janhvi-sangeet",
+        "kiara-festive"
+      ],
+      "relatedQuizSlugs": [
+        "wedding-style",
+        "festival-look"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "Lehengas are three-piece sets (skirt, blouse, dupatta) — ready to wear with minimal draping. Sarees offer timeless elegance but need pleating and pallu management."
+        },
+        {
+          "type": "heading",
+          "text": "Pick lehenga when…"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You want to dance freely (sangeet, garba)",
+            "You prefer structured, pre-fitted looks",
+            "You are short on styling time"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Pick saree when…"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Ceremony calls for traditional drape",
+            "You love jewellery + pallu styling",
+            "You want one saree across multiple functions with different blouses"
+          ]
+        }
+      ],
+      "relatedPageIds": [
+        "saree-types-explained",
+        "what-is-anarkali"
+      ]
+    },
+    {
+      "id": "what-is-coord-fashion",
+      "slug": "what-is-coord-fashion",
+      "topicSlug": "silhouettes",
+      "title": "What is Co-ord Fashion?",
+      "dek": "Matching sets that do all the thinking for you — how to wear the trend India is obsessed with.",
+      "excerpt": "Co-ord sets are the easiest way to look put-together. One decision, two pieces, zero effort.",
+      "readTime": "5 min read",
+      "image": "/co-ords/co-ord_set/1/1.webp",
+      "shopCategory": "co-ords",
+      "shopCategories": [
+        "co-ords",
+        "suit sets",
+        "tops"
+      ],
+      "collectionLabels": [
+        {
+          "category": "co-ords",
+          "label": "All Co-ord Sets"
+        },
+        {
+          "category": "suit sets",
+          "label": "Festive Co-ord Sets"
+        },
+        {
+          "category": "tops",
+          "label": "Fusion Tops"
+        }
+      ],
+      "tags": [
+        "co-ord",
+        "matching set",
+        "fusion",
+        "streetwear"
+      ],
+      "featured": true,
+      "relatedTrends": [
+        "viral-instagram-fashion",
+        "airport-looks",
+        "summer-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "deepika-airport",
+        "kartik-airport",
+        "ranveer-event"
+      ],
+      "relatedQuizSlugs": [
+        "personality",
+        "outfit-finder"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "A co-ord set is two or more matching pieces — top and bottom, or top, bottom and dupatta — designed to be worn together. The fabric, print, and palette are pre-matched so you never have to second-guess the combination."
+        },
+        {
+          "type": "heading",
+          "text": "Types of co-ord sets"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Kurti + palazzo — the most common ethnic co-ord; comfort and occasion-ready",
+            "Crop top + skirt — fusion co-ord; festivals and evening outings",
+            "Shirt + trouser — office-friendly; modern Indian wear",
+            "Suit set (kurta + dupatta + bottom) — traditional three-piece co-ord",
+            "Printed matching sets — bold pattern across both pieces; party and travel"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Why co-ords work"
+        },
+        {
+          "type": "paragraph",
+          "text": "Co-ords remove outfit decision fatigue. Proportion is already solved — lengths, volumes, and prints are designed to balance each other. That is why Bollywood celebrities reach for co-ord sets at airports and events: they photograph well, travel easily, and require no accessories to look complete."
+        },
+        {
+          "type": "heading",
+          "text": "How to style a co-ord"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Wear as a set first — let the matching do the work",
+            "Break the set: wear the top with jeans, or the bottom with a plain top",
+            "Add only one accessory — the matching set already creates visual impact",
+            "Solid co-ords: bold earrings work; printed co-ords: skip the jewellery"
+          ]
+        },
+        {
+          "type": "tip",
+          "title": "Travel tip",
+          "text": "Pack co-ords for trips — they compress well, look polished on arrival, and each piece works solo with other separates."
+        }
+      ],
+      "relatedPageIds": [
+        "kurti-style-guide",
+        "palazzo-pairing-guide",
+        "fashion-color-guide"
+      ]
+    },
+    {
+      "id": "best-fabrics-summer",
+      "slug": "best-fabrics-summer",
+      "topicSlug": "fabrics",
+      "title": "Best Fabrics for Summer",
+      "dek": "Cotton, linen, rayon, chiffon — which fabrics keep you cool and stylish when temperatures rise.",
+      "excerpt": "Summer dressing is 80% fabric choice. The right weave keeps you breathable, sweat-free, and fresh.",
+      "readTime": "6 min read",
+      "image": "/tops/4/1.webp",
+      "shopCategory": "tops",
+      "shopCategories": [
+        "tops",
+        "kurtas",
+        "co-ords",
+        "sarees"
+      ],
+      "collectionLabels": [
+        {
+          "category": "tops",
+          "label": "Summer Tops"
+        },
+        {
+          "category": "kurtas",
+          "label": "Cotton Kurtas"
+        },
+        {
+          "category": "co-ords",
+          "label": "Linen Co-ords"
+        },
+        {
+          "category": "sarees",
+          "label": "Cotton Sarees"
+        }
+      ],
+      "tags": [
+        "summer",
+        "cotton",
+        "linen",
+        "breathable",
+        "fabric"
+      ],
+      "featured": true,
+      "relatedTrends": [
+        "summer-fashion",
+        "airport-looks",
+        "viral-instagram-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "deepika-airport",
+        "kartik-airport"
+      ],
+      "relatedQuizSlugs": [
+        "outfit-finder",
+        "personality"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "Heat and humidity demand fabric choices that breathe, wick moisture, and maintain structure through a long day. Indian summers — especially April through June — call for natural or semi-natural fibres that do not trap heat against the skin."
+        },
+        {
+          "type": "heading",
+          "text": "Best summer fabrics — ranked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Cotton (pure) — the gold standard; absorbs sweat, washes easily, stays cool",
+            "Linen — slightly textured; breathes exceptionally well; wrinkles are part of the charm",
+            "Rayon / viscose — semi-synthetic; silk-like drape; cooler than polyester but warmer than cotton",
+            "Chiffon — light and airy; best for evenings when cotton feels too casual",
+            "Mul cotton — extremely fine cotton weave; airy even in peak heat"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "What to avoid in summer"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Polyester — traps heat, holds sweat odour",
+            "Heavy silk — elegant but warm; saves for cooler evening occasions",
+            "Velvet and brocade — festive but unbearable in 38°C+",
+            "Dark blacks in direct sun — absorbs more heat regardless of fabric"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Summer palette tip"
+        },
+        {
+          "type": "paragraph",
+          "text": "Pair breathable fabrics with light palettes — white, cream, peach, sky blue, mint. Dark jewel tones look rich but absorb heat. For summer functions, choose pastel georgette or printed cotton."
+        },
+        {
+          "type": "tip",
+          "title": "Quick test",
+          "text": "Hold the fabric up to light — if light passes through, it breathes. The more see-through, the cooler it will feel."
+        }
+      ],
+      "relatedPageIds": [
+        "what-is-rayon-fabric",
+        "what-is-georgette",
+        "fashion-color-guide"
+      ]
+    },
+    {
+      "id": "wedding-dress-guide",
+      "slug": "wedding-dress-guide",
+      "topicSlug": "garments",
+      "title": "Wedding Dress Guide",
+      "dek": "From bride to wedding guest — what to wear, what to avoid, and how to dress for every function.",
+      "excerpt": "Indian wedding dressing has rules — mostly unspoken. This guide breaks down every function, every role, and every fabric decision.",
+      "readTime": "9 min read",
+      "image": "/lehengas/Lehengas/1/040A3523_700x.webp",
+      "shopCategory": "lehengas",
+      "shopCategories": [
+        "lehengas",
+        "sarees",
+        "suit sets",
+        "kurtas"
+      ],
+      "collectionLabels": [
+        {
+          "category": "lehengas",
+          "label": "Bridal Lehenga Sets"
+        },
+        {
+          "category": "sarees",
+          "label": "Wedding Sarees"
+        },
+        {
+          "category": "suit sets",
+          "label": "Guest Suit Sets"
+        },
+        {
+          "category": "kurtas",
+          "label": "Sangeet Kurtas"
+        }
+      ],
+      "tags": [
+        "wedding",
+        "lehenga",
+        "saree",
+        "bride",
+        "guest"
+      ],
+      "featured": true,
+      "relatedTrends": [
+        "wedding-fashion",
+        "festival-fashion"
+      ],
+      "relatedCelebrityIds": [
+        "alia-reception",
+        "janhvi-sangeet",
+        "kiara-festive"
+      ],
+      "relatedQuizSlugs": [
+        "wedding-style",
+        "festival-look"
+      ],
+      "sections": [
+        {
+          "type": "paragraph",
+          "text": "Indian weddings span two to seven days across mehendi, haldi, sangeet, nikah or pheras, and reception. Each function has its own dress code — and each role (bride, bridesmaid, mother, guest) has different expectations."
+        },
+        {
+          "type": "heading",
+          "text": "Function-by-function breakdown"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Mehendi — relaxed; printed cotton or georgette suit set; nothing too heavy",
+            "Haldi — white or yellow kurta you do not mind getting stained; comfortable and washable",
+            "Sangeet — showstopper lehenga or sharara; bold colour, dance-friendly silhouette",
+            "Wedding ceremony — traditional bridal lehenga or kanjivaram saree; heavily embellished",
+            "Reception — reception lehenga or embroidered gown; slightly more Western is fine"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Wedding guest dress code"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Do not wear white, red, or black as a guest (reserved for bride or considered inauspicious)",
+            "Georgette or silk sarees are always appropriate for any function",
+            "Suit sets and co-ords work for day functions; lehengas for evening sangeet or reception",
+            "Heavy embroidery is fine; outshining the bride is not — calibrate accordingly"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Fabric guide by function"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Mehendi/Haldi: cotton or printed rayon",
+            "Sangeet: heavy georgette, raw silk, or tissue fabric",
+            "Ceremony: kanjivaram, banarasi, or embroidered net",
+            "Reception: velvet, sequined net, or heavy georgette"
+          ]
+        },
+        {
+          "type": "tip",
+          "title": "Budget tip",
+          "text": "Invest in one strong festive lehenga and one good georgette saree — between them you can cover most wedding functions with accessories and blouse changes."
+        }
+      ],
+      "relatedPageIds": [
+        "lehenga-vs-saree",
+        "saree-types-explained",
+        "what-is-anarkali"
+      ]
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "personality",
+      "slug": "personality",
+      "title": "Fashion Personality Quiz",
+      "subtitle": "Discover your style DNA in 5 quick taps",
+      "description": "Answer a few mood questions and we’ll match you to a fashion personality — plus products picked for your vibe.",
+      "accent": "#600b45",
+      "steps": [
+        {
+          "id": "vibe",
+          "question": "Which vibe feels most like you?",
+          "helper": "Pick the energy you naturally lean toward.",
+          "options": [
+            {
+              "id": "minimal",
+              "label": "Clean & understated",
+              "emoji": "🤍",
+              "votes": {
+                "modern-minimalist": 3,
+                "soft-romantic": 1
+              }
+            },
+            {
+              "id": "bold",
+              "label": "Bold & statement-making",
+              "emoji": "🔥",
+              "votes": {
+                "festive-maximalist": 3,
+                "trend-forward": 2
+              }
+            },
+            {
+              "id": "romantic",
+              "label": "Soft, romantic, feminine",
+              "emoji": "🌸",
+              "votes": {
+                "soft-romantic": 3,
+                "modern-minimalist": 1
+              }
+            },
+            {
+              "id": "classic",
+              "label": "Classic & polished",
+              "emoji": "👑",
+              "votes": {
+                "classic-elegant": 3,
+                "modern-professional": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "weekend",
+          "question": "Your ideal weekend look?",
+          "helper": "Where would you wear it first?",
+          "options": [
+            {
+              "id": "brunch",
+              "label": "Brunch with friends",
+              "emoji": "☕",
+              "votes": {
+                "soft-romantic": 2,
+                "modern-minimalist": 2,
+                "trend-forward": 1
+              }
+            },
+            {
+              "id": "wedding",
+              "label": "Wedding or celebration",
+              "emoji": "✨",
+              "votes": {
+                "festive-maximalist": 3,
+                "classic-elegant": 2
+              }
+            },
+            {
+              "id": "office",
+              "label": "Smart casual outing",
+              "emoji": "💼",
+              "votes": {
+                "modern-professional": 3,
+                "modern-minimalist": 2
+              }
+            },
+            {
+              "id": "travel",
+              "label": "Travel & explore",
+              "emoji": "🧳",
+              "votes": {
+                "trend-forward": 2,
+                "modern-minimalist": 2,
+                "soft-romantic": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "colour",
+          "question": "Your colour mood today?",
+          "helper": "Colours you reach for again and again.",
+          "options": [
+            {
+              "id": "neutral",
+              "label": "Neutrals & earth tones",
+              "emoji": "🏜️",
+              "votes": {
+                "modern-minimalist": 3,
+                "modern-professional": 2
+              }
+            },
+            {
+              "id": "pastel",
+              "label": "Pastels & soft hues",
+              "emoji": "🎀",
+              "votes": {
+                "soft-romantic": 3,
+                "modern-minimalist": 1
+              }
+            },
+            {
+              "id": "jewel",
+              "label": "Jewel tones & rich colour",
+              "emoji": "💎",
+              "votes": {
+                "festive-maximalist": 2,
+                "classic-elegant": 2
+              }
+            },
+            {
+              "id": "mono",
+              "label": "Monochrome black & white",
+              "emoji": "⬛",
+              "votes": {
+                "modern-professional": 2,
+                "trend-forward": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "fabric",
+          "question": "Fabric you live in?",
+          "helper": "Comfort meets style — what wins?",
+          "options": [
+            {
+              "id": "cotton",
+              "label": "Breathable cotton",
+              "emoji": "🌿",
+              "votes": {
+                "modern-minimalist": 2,
+                "modern-professional": 2,
+                "soft-romantic": 1
+              }
+            },
+            {
+              "id": "silk",
+              "label": "Silk & luxe weaves",
+              "emoji": "✨",
+              "votes": {
+                "classic-elegant": 3,
+                "festive-maximalist": 2
+              }
+            },
+            {
+              "id": "blend",
+              "label": "Easy-care blends",
+              "emoji": "🌀",
+              "votes": {
+                "trend-forward": 2,
+                "modern-professional": 2
+              }
+            },
+            {
+              "id": "any",
+              "label": "I mix it all",
+              "emoji": "🎨",
+              "votes": {
+                "trend-forward": 2,
+                "festive-maximalist": 1,
+                "soft-romantic": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "shopping",
+          "question": "When you shop, you hunt for…",
+          "helper": "What makes you click “add to bag”?",
+          "options": [
+            {
+              "id": "staples",
+              "label": "Versatile staples",
+              "emoji": "📌",
+              "votes": {
+                "modern-minimalist": 3,
+                "modern-professional": 2
+              }
+            },
+            {
+              "id": "occasion",
+              "label": "Occasion show-stoppers",
+              "emoji": "🎭",
+              "votes": {
+                "festive-maximalist": 3,
+                "classic-elegant": 2
+              }
+            },
+            {
+              "id": "trends",
+              "label": "Trending drops",
+              "emoji": "📈",
+              "votes": {
+                "trend-forward": 3,
+                "festive-maximalist": 1
+              }
+            },
+            {
+              "id": "comfort",
+              "label": "Comfort-first pieces",
+              "emoji": "🛋️",
+              "votes": {
+                "soft-romantic": 2,
+                "modern-minimalist": 2
+              }
+            }
+          ]
+        }
+      ],
+      "results": {
+        "modern-minimalist": {
+          "key": "modern-minimalist",
+          "title": "The Modern Minimalist",
+          "tagline": "Less noise, more intention.",
+          "description": "You curate a calm wardrobe — clean lines, breathable fabrics, and pieces that work on repeat. Explore kurtas, co-ords, and neutral edits made for effortless dressing.",
+          "categories": [
+            "kurtas",
+            "co-ords",
+            "tops"
+          ],
+          "keywords": [
+            "sage",
+            "white",
+            "beige",
+            "grey",
+            "cotton"
+          ],
+          "guideIds": [
+            "capsule-wardrobe",
+            "kurta-fit-guide"
+          ],
+          "discoverCategory": "kurtas",
+          "emoji": "🤍"
+        },
+        "soft-romantic": {
+          "key": "soft-romantic",
+          "title": "The Soft Romantic",
+          "tagline": "Feminine, fluid, feeling-first.",
+          "description": "Pastels, gentle drapes, and graceful silhouettes define your closet. Sarees, suit sets, and flowing kurtas are your natural playground.",
+          "categories": [
+            "sarees",
+            "suit sets",
+            "kurtas"
+          ],
+          "keywords": [
+            "pink",
+            "peach",
+            "lavender",
+            "floral",
+            "georgette"
+          ],
+          "guideIds": [
+            "saree-drape-101",
+            "festive-colour-palette"
+          ],
+          "discoverCategory": "sarees",
+          "emoji": "🌸"
+        },
+        "festive-maximalist": {
+          "key": "festive-maximalist",
+          "title": "The Festive Maximalist",
+          "tagline": "More is more — and you wear it well.",
+          "description": "Celebration dressing is your superpower. Lehengas, embroidered suit sets, and rich festive colour stories are waiting in your edit.",
+          "categories": [
+            "lehengas",
+            "suit sets",
+            "sarees"
+          ],
+          "keywords": [
+            "emerald",
+            "maroon",
+            "gold",
+            "red",
+            "festive"
+          ],
+          "guideIds": [
+            "wedding-guest-dress-code",
+            "festive-colour-palette"
+          ],
+          "discoverCategory": "lehengas",
+          "emoji": "✨"
+        },
+        "classic-elegant": {
+          "key": "classic-elegant",
+          "title": "The Classic Elegant",
+          "tagline": "Timeless with a refined twist.",
+          "description": "Silk, structure, and heirloom hues — you invest in pieces that photograph beautifully and age gracefully.",
+          "categories": [
+            "sarees",
+            "suit sets",
+            "lehengas"
+          ],
+          "keywords": [
+            "silk",
+            "wine",
+            "navy",
+            "emerald",
+            "elegant"
+          ],
+          "guideIds": [
+            "saree-drape-101",
+            "wedding-guest-dress-code"
+          ],
+          "discoverCategory": "suit sets",
+          "emoji": "👑"
+        },
+        "modern-professional": {
+          "key": "modern-professional",
+          "title": "The Modern Professional",
+          "tagline": "Office to evening, seamlessly.",
+          "description": "Polished kurtas, co-ords, and western tops that transition from desk to dinner — smart, sharp, and never overdone.",
+          "categories": [
+            "kurtas",
+            "tops",
+            "co-ords"
+          ],
+          "keywords": [
+            "office",
+            "straight",
+            "cotton",
+            "navy",
+            "formal"
+          ],
+          "guideIds": [
+            "kurta-fit-guide",
+            "coord-set-styling"
+          ],
+          "discoverCategory": "tops",
+          "emoji": "💼"
+        },
+        "trend-forward": {
+          "key": "trend-forward",
+          "title": "The Trend Forward",
+          "tagline": "First to scroll, first to slay.",
+          "description": "You chase fresh drops and viral silhouettes — co-ords, statement tops, and menswear edits that feel current.",
+          "categories": [
+            "co-ords",
+            "tops",
+            "shirts"
+          ],
+          "keywords": [
+            "coord",
+            "trend",
+            "modern",
+            "street",
+            "jacket"
+          ],
+          "guideIds": [
+            "coord-set-styling",
+            "mens-ethnic-modern"
+          ],
+          "discoverCategory": "co-ords",
+          "emoji": "🔥"
+        }
+      }
+    },
+    {
+      "id": "outfit-finder",
+      "slug": "outfit-finder",
+      "title": "Outfit Finder",
+      "subtitle": "Tell us the moment — we’ll build the look",
+      "description": "Occasion, fit, and weather in four steps. Get a curated outfit lane with products ready to explore.",
+      "accent": "#1565c0",
+      "steps": [
+        {
+          "id": "occasion",
+          "question": "What’s the occasion?",
+          "helper": "We’ll tune the edit to your moment.",
+          "options": [
+            {
+              "id": "daily",
+              "label": "Everyday / casual",
+              "emoji": "☀️",
+              "votes": {
+                "casual-day": 3,
+                "smart-casual": 1
+              }
+            },
+            {
+              "id": "office",
+              "label": "Work or meetings",
+              "emoji": "💼",
+              "votes": {
+                "office-chic": 3,
+                "smart-casual": 2
+              }
+            },
+            {
+              "id": "party",
+              "label": "Party or night out",
+              "emoji": "🌙",
+              "votes": {
+                "party-ready": 3,
+                "date-night": 1
+              }
+            },
+            {
+              "id": "date",
+              "label": "Date or special dinner",
+              "emoji": "🥂",
+              "votes": {
+                "date-night": 3,
+                "party-ready": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "wear",
+          "question": "What are you shopping for?",
+          "helper": "Pick your lane.",
+          "options": [
+            {
+              "id": "women-trad",
+              "label": "Women — ethnic / traditional",
+              "emoji": "🪷",
+              "votes": {
+                "ethnic-edit": 3,
+                "casual-day": 1
+              }
+            },
+            {
+              "id": "women-west",
+              "label": "Women — western / fusion",
+              "emoji": "👗",
+              "votes": {
+                "western-edit": 3,
+                "casual-day": 1
+              }
+            },
+            {
+              "id": "men-trad",
+              "label": "Men — ethnic / kurta",
+              "emoji": "🕌",
+              "votes": {
+                "mens-ethnic": 5
+              }
+            },
+            {
+              "id": "men-west",
+              "label": "Men — shirts & casual",
+              "emoji": "👔",
+              "votes": {
+                "mens-casual": 5
+              }
+            }
+          ]
+        },
+        {
+          "id": "weather",
+          "question": "Weather where you’ll wear it?",
+          "helper": "Fabric and layer suggestions follow.",
+          "options": [
+            {
+              "id": "hot",
+              "label": "Hot & humid",
+              "emoji": "🌡️",
+              "votes": {
+                "lightweight": 2
+              }
+            },
+            {
+              "id": "mild",
+              "label": "Pleasant / mild",
+              "emoji": "🌤️",
+              "votes": {
+                "layer-friendly": 1
+              }
+            },
+            {
+              "id": "cool",
+              "label": "Cool or AC-heavy",
+              "emoji": "🧥",
+              "votes": {
+                "layered": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "fit",
+          "question": "Preferred fit & feel?",
+          "helper": "Silhouette matters.",
+          "options": [
+            {
+              "id": "relaxed",
+              "label": "Relaxed & easy",
+              "emoji": "🛋️",
+              "votes": {
+                "relaxed-fit": 2
+              }
+            },
+            {
+              "id": "tailored",
+              "label": "Tailored & structured",
+              "emoji": "📐",
+              "votes": {
+                "structured": 2
+              }
+            },
+            {
+              "id": "flowy",
+              "label": "Flowy & draped",
+              "emoji": "🌊",
+              "votes": {
+                "flowy-fit": 2
+              }
+            }
+          ]
+        }
+      ],
+      "results": {
+        "casual-day": {
+          "key": "casual-day",
+          "title": "Your Casual Day Edit",
+          "tagline": "Easy pieces for everyday confidence.",
+          "description": "Breathable kurtas, co-ords, and relaxed tops built for daily rotation.",
+          "categories": [
+            "kurtas",
+            "co-ords",
+            "t-shirts"
+          ],
+          "keywords": [
+            "cotton",
+            "casual",
+            "everyday"
+          ],
+          "guideIds": [
+            "capsule-wardrobe",
+            "coord-set-styling"
+          ],
+          "discoverCategory": "kurtas",
+          "emoji": "☀️",
+          "mergeTags": [
+            "ethnic-edit",
+            "western-edit",
+            "lightweight",
+            "relaxed-fit"
+          ]
+        },
+        "office-chic": {
+          "key": "office-chic",
+          "title": "Your Office Chic Edit",
+          "tagline": "Desk-to-dinner polish.",
+          "description": "Straight kurtas, co-ord sets, and western tops that look intentional without trying too hard.",
+          "categories": [
+            "kurtas",
+            "tops",
+            "co-ords"
+          ],
+          "keywords": [
+            "straight",
+            "office",
+            "formal"
+          ],
+          "guideIds": [
+            "kurta-fit-guide"
+          ],
+          "discoverCategory": "tops",
+          "emoji": "💼",
+          "mergeTags": [
+            "office-chic",
+            "structured",
+            "ethnic-edit",
+            "western-edit"
+          ]
+        },
+        "party-ready": {
+          "key": "party-ready",
+          "title": "Your Party Ready Edit",
+          "tagline": "Turn heads, stay comfortable.",
+          "description": "Statement suit sets, embellished kurtas, and fusion co-ords for nights that matter.",
+          "categories": [
+            "suit sets",
+            "lehengas",
+            "co-ords"
+          ],
+          "keywords": [
+            "party",
+            "embellished",
+            "sequin"
+          ],
+          "guideIds": [
+            "festive-colour-palette"
+          ],
+          "discoverCategory": "suit sets",
+          "emoji": "🌙",
+          "mergeTags": [
+            "party-ready",
+            "flowy-fit"
+          ]
+        },
+        "date-night": {
+          "key": "date-night",
+          "title": "Your Date Night Edit",
+          "tagline": "Elevated, not overdressed.",
+          "description": "Romantic sarees, sleek co-ords, and refined kurtas with just enough drama.",
+          "categories": [
+            "sarees",
+            "co-ords",
+            "dresses"
+          ],
+          "keywords": [
+            "satin",
+            "elegant",
+            "evening"
+          ],
+          "guideIds": [
+            "coord-set-styling"
+          ],
+          "discoverCategory": "co-ords",
+          "emoji": "🥂",
+          "mergeTags": [
+            "date-night",
+            "western-edit"
+          ]
+        },
+        "mens-ethnic": {
+          "key": "mens-ethnic",
+          "title": "Your Mens Ethnic Edit",
+          "tagline": "Kurtas, jackets, celebration-ready.",
+          "description": "From daily kurtas to wedding-ready layers — explore the full mens ethnic lane.",
+          "categories": [
+            "gents kurtas",
+            "jackets",
+            "blazers"
+          ],
+          "keywords": [
+            "kurta",
+            "ethnic",
+            "men"
+          ],
+          "guideIds": [
+            "mens-ethnic-modern"
+          ],
+          "discoverCategory": "gents kurtas",
+          "emoji": "🕌",
+          "mergeTags": [
+            "mens-ethnic",
+            "mens-casual"
+          ]
+        },
+        "mens-casual": {
+          "key": "mens-casual",
+          "title": "Your Mens Casual Edit",
+          "tagline": "Shirts, co-ords, off-duty cool.",
+          "description": "Sharp shirts, relaxed co-ords, and layer-friendly jackets for modern menswear.",
+          "categories": [
+            "shirts",
+            "gents co-ords",
+            "jackets"
+          ],
+          "keywords": [
+            "shirt",
+            "casual",
+            "men"
+          ],
+          "guideIds": [
+            "mens-ethnic-modern"
+          ],
+          "discoverCategory": "shirts",
+          "emoji": "👔",
+          "mergeTags": [
+            "mens-casual",
+            "layered"
+          ]
+        }
+      }
+    },
+    {
+      "id": "festival-look",
+      "slug": "festival-look",
+      "title": "Festival Look Finder",
+      "subtitle": "Match your celebration to the perfect edit",
+      "description": "Diwali, Navratri, Eid or wedding season — find your festival lane in four steps.",
+      "accent": "#e65100",
+      "steps": [
+        {
+          "id": "festival",
+          "question": "Which celebration is coming up?",
+          "helper": "We’ll tune colour and silhouette.",
+          "options": [
+            {
+              "id": "diwali",
+              "label": "Diwali / Puja",
+              "emoji": "🪔",
+              "votes": {
+                "diwali-glow": 3
+              }
+            },
+            {
+              "id": "navratri",
+              "label": "Navratri / Garba",
+              "emoji": "💃",
+              "votes": {
+                "navratri-energy": 3
+              }
+            },
+            {
+              "id": "eid",
+              "label": "Eid / festive gathering",
+              "emoji": "🌙",
+              "votes": {
+                "eid-elegance": 3
+              }
+            },
+            {
+              "id": "season",
+              "label": "Wedding season guest",
+              "emoji": "💍",
+              "votes": {
+                "wedding-guest-festive": 3
+              }
+            }
+          ]
+        },
+        {
+          "id": "intensity",
+          "question": "How bold do you want to go?",
+          "helper": "From subtle shine to full glam.",
+          "options": [
+            {
+              "id": "subtle",
+              "label": "Subtle & refined",
+              "emoji": "✨",
+              "votes": {
+                "subtle-festive": 2
+              }
+            },
+            {
+              "id": "statement",
+              "label": "Statement but wearable",
+              "emoji": "⭐",
+              "votes": {
+                "statement-festive": 2
+              }
+            },
+            {
+              "id": "glam",
+              "label": "Full glam — go big",
+              "emoji": "👑",
+              "votes": {
+                "full-glam": 3
+              }
+            }
+          ]
+        },
+        {
+          "id": "silhouette",
+          "question": "Pick your hero silhouette",
+          "helper": "What do you picture yourself in?",
+          "options": [
+            {
+              "id": "kurta",
+              "label": "Kurta / suit set",
+              "emoji": "🪷",
+              "votes": {
+                "kurta-festive": 3
+              }
+            },
+            {
+              "id": "saree",
+              "label": "Saree drape",
+              "emoji": "🥻",
+              "votes": {
+                "saree-festive": 3
+              }
+            },
+            {
+              "id": "lehenga",
+              "label": "Lehenga set",
+              "emoji": "👗",
+              "votes": {
+                "lehenga-festive": 3
+              }
+            },
+            {
+              "id": "coord",
+              "label": "Co-ord / fusion",
+              "emoji": "🔗",
+              "votes": {
+                "fusion-festive": 3
+              }
+            }
+          ]
+        },
+        {
+          "id": "colour",
+          "question": "Festive colour energy?",
+          "helper": "The palette that feels right.",
+          "options": [
+            {
+              "id": "bright",
+              "label": "Bright & joyful",
+              "emoji": "🌈",
+              "votes": {
+                "bright-palette": 2
+              }
+            },
+            {
+              "id": "earthy",
+              "label": "Earthy & rich",
+              "emoji": "🍂",
+              "votes": {
+                "earthy-palette": 2
+              }
+            },
+            {
+              "id": "pastel",
+              "label": "Soft festive pastels",
+              "emoji": "🎀",
+              "votes": {
+                "pastel-palette": 2
+              }
+            }
+          ]
+        }
+      ],
+      "results": {
+        "diwali-glow": {
+          "key": "diwali-glow",
+          "title": "Your Diwali Glow Edit",
+          "tagline": "Light, luminosity, celebration.",
+          "description": "Gold accents, silk kurtas, and rich suit sets made for diyas and family gatherings.",
+          "categories": [
+            "suit sets",
+            "kurtas",
+            "sarees"
+          ],
+          "keywords": [
+            "gold",
+            "maroon",
+            "festive",
+            "silk"
+          ],
+          "guideIds": [
+            "festive-colour-palette",
+            "wedding-guest-dress-code"
+          ],
+          "discoverCategory": "suit sets",
+          "emoji": "🪔"
+        },
+        "navratri-energy": {
+          "key": "navratri-energy",
+          "title": "Your Navratri Energy Edit",
+          "tagline": "Move, spin, shine.",
+          "description": "Light lehengas, mirror work, and twirl-friendly silhouettes for nine nights of colour.",
+          "categories": [
+            "lehengas",
+            "suit sets",
+            "co-ords"
+          ],
+          "keywords": [
+            "mirror",
+            "bright",
+            "flare",
+            "chaniya"
+          ],
+          "guideIds": [
+            "festive-colour-palette"
+          ],
+          "discoverCategory": "lehengas",
+          "emoji": "💃"
+        },
+        "eid-elegance": {
+          "key": "eid-elegance",
+          "title": "Your Eid Elegance Edit",
+          "tagline": "Refined festive dressing.",
+          "description": "Embroidered kurtas, graceful suit sets, and polished mens ethnic for elegant gatherings.",
+          "categories": [
+            "suit sets",
+            "gents kurtas",
+            "sarees"
+          ],
+          "keywords": [
+            "embroidered",
+            "elegant",
+            "ivory",
+            "pastel"
+          ],
+          "guideIds": [
+            "kurta-fit-guide",
+            "mens-ethnic-modern"
+          ],
+          "discoverCategory": "gents kurtas",
+          "emoji": "🌙"
+        },
+        "wedding-guest-festive": {
+          "key": "wedding-guest-festive",
+          "title": "Your Wedding Guest Festive Edit",
+          "tagline": "Guest-list ready, camera-ready.",
+          "description": "Lehengas, sarees, and celebration suit sets that balance tradition with personal style.",
+          "categories": [
+            "lehengas",
+            "sarees",
+            "suit sets"
+          ],
+          "keywords": [
+            "wedding",
+            "lehenga",
+            "saree",
+            "celebration"
+          ],
+          "guideIds": [
+            "wedding-guest-dress-code"
+          ],
+          "discoverCategory": "lehengas",
+          "emoji": "💍"
+        },
+        "kurta-festive": {
+          "key": "kurta-festive",
+          "title": "Festive Kurta Lane",
+          "tagline": "Classic festive, endlessly wearable.",
+          "description": "Embroidered kurtas and suit sets for pujas, dinners, and family functions.",
+          "categories": [
+            "kurtas",
+            "suit sets"
+          ],
+          "keywords": [
+            "kurta",
+            "embroidered",
+            "festive"
+          ],
+          "guideIds": [
+            "kurta-fit-guide",
+            "festive-colour-palette"
+          ],
+          "discoverCategory": "kurtas",
+          "emoji": "🪷",
+          "mergeTags": [
+            "diwali-glow",
+            "subtle-festive",
+            "statement-festive"
+          ]
+        },
+        "saree-festive": {
+          "key": "saree-festive",
+          "title": "Festive Saree Lane",
+          "tagline": "Drape into the celebration.",
+          "description": "Silk, georgette, and pre-draped sarees for every festive calendar mark.",
+          "categories": [
+            "sarees"
+          ],
+          "keywords": [
+            "saree",
+            "silk",
+            "drape",
+            "festive"
+          ],
+          "guideIds": [
+            "saree-drape-101"
+          ],
+          "discoverCategory": "sarees",
+          "emoji": "🥻",
+          "mergeTags": [
+            "eid-elegance",
+            "pastel-palette"
+          ]
+        },
+        "lehenga-festive": {
+          "key": "lehenga-festive",
+          "title": "Festive Lehenga Lane",
+          "tagline": "Spin-worthy, photo-worthy.",
+          "description": "Lehenga sets from subtle elegance to full glam — your festival hero piece.",
+          "categories": [
+            "lehengas"
+          ],
+          "keywords": [
+            "lehenga",
+            "flare",
+            "festive"
+          ],
+          "guideIds": [
+            "wedding-guest-dress-code"
+          ],
+          "discoverCategory": "lehengas",
+          "emoji": "👗",
+          "mergeTags": [
+            "navratri-energy",
+            "full-glam"
+          ]
+        },
+        "fusion-festive": {
+          "key": "fusion-festive",
+          "title": "Festive Fusion Lane",
+          "tagline": "Tradition meets today.",
+          "description": "Co-ord sets and fusion pieces for festive moments with a modern edge.",
+          "categories": [
+            "co-ords",
+            "tops",
+            "suit sets"
+          ],
+          "keywords": [
+            "co-ord",
+            "fusion",
+            "modern"
+          ],
+          "guideIds": [
+            "coord-set-styling"
+          ],
+          "discoverCategory": "co-ords",
+          "emoji": "🔗",
+          "mergeTags": [
+            "fusion-festive",
+            "bright-palette"
+          ]
+        }
+      }
+    },
+    {
+      "id": "wedding-style",
+      "slug": "wedding-style",
+      "title": "Wedding Style Finder",
+      "subtitle": "From mehendi to reception — find your lane",
+      "description": "Tell us your role and event. We’ll recommend wedding-ready products and styling guides.",
+      "accent": "#880e4f",
+      "steps": [
+        {
+          "id": "role",
+          "question": "What’s your role at the wedding?",
+          "helper": "Guest, family, or celebration squad.",
+          "options": [
+            {
+              "id": "guest",
+              "label": "Guest / friend",
+              "emoji": "🎊",
+              "votes": {
+                "wedding-guest": 3
+              }
+            },
+            {
+              "id": "family",
+              "label": "Family / close relative",
+              "emoji": "👨‍👩‍👧",
+              "votes": {
+                "family-wedding": 3
+              }
+            },
+            {
+              "id": "squad",
+              "label": "Bridal squad / bridesmaid",
+              "emoji": "💐",
+              "votes": {
+                "bridal-squad": 3
+              }
+            },
+            {
+              "id": "groom",
+              "label": "Groom / groomsmen",
+              "emoji": "🤵",
+              "votes": {
+                "groom-edit": 3
+              }
+            }
+          ]
+        },
+        {
+          "id": "event",
+          "question": "Which event are you dressing for?",
+          "helper": "Each function has its own dress code.",
+          "options": [
+            {
+              "id": "mehendi",
+              "label": "Mehendi / haldi",
+              "emoji": "🌻",
+              "votes": {
+                "mehendi-look": 3
+              }
+            },
+            {
+              "id": "sangeet",
+              "label": "Sangeet / cocktail",
+              "emoji": "🎵",
+              "votes": {
+                "sangeet-look": 3
+              }
+            },
+            {
+              "id": "ceremony",
+              "label": "Ceremony / pheras",
+              "emoji": "🪔",
+              "votes": {
+                "ceremony-look": 3
+              }
+            },
+            {
+              "id": "reception",
+              "label": "Reception / gala",
+              "emoji": "🥂",
+              "votes": {
+                "reception-look": 3
+              }
+            }
+          ]
+        },
+        {
+          "id": "dresscode",
+          "question": "Dress code preference?",
+          "helper": "How traditional vs contemporary?",
+          "options": [
+            {
+              "id": "traditional",
+              "label": "Fully traditional",
+              "emoji": "🪷",
+              "votes": {
+                "traditional-wedding": 2
+              }
+            },
+            {
+              "id": "fusion",
+              "label": "Indo-western fusion",
+              "emoji": "🔗",
+              "votes": {
+                "fusion-wedding": 2
+              }
+            },
+            {
+              "id": "contemporary",
+              "label": "Contemporary minimal",
+              "emoji": "✨",
+              "votes": {
+                "contemporary-wedding": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "budget",
+          "question": "Budget lane for this look?",
+          "helper": "We’ll surface the right price band.",
+          "options": [
+            {
+              "id": "value",
+              "label": "Under ₹1,499",
+              "emoji": "💫",
+              "votes": {
+                "value-wedding": 1
+              }
+            },
+            {
+              "id": "mid",
+              "label": "₹1,500 – ₹2,499",
+              "emoji": "⭐",
+              "votes": {
+                "mid-wedding": 1
+              }
+            },
+            {
+              "id": "premium",
+              "label": "₹2,500+",
+              "emoji": "👑",
+              "votes": {
+                "premium-wedding": 1
+              }
+            }
+          ]
+        }
+      ],
+      "results": {
+        "mehendi-look": {
+          "key": "mehendi-look",
+          "title": "Your Mehendi Look",
+          "tagline": "Yellow-ready, dance-ready, camera-ready.",
+          "description": "Light lehengas, yellow suit sets, and playful co-ords for daytime celebrations.",
+          "categories": [
+            "lehengas",
+            "suit sets",
+            "co-ords"
+          ],
+          "keywords": [
+            "yellow",
+            "mustard",
+            "floral",
+            "light"
+          ],
+          "guideIds": [
+            "wedding-guest-dress-code",
+            "festive-colour-palette"
+          ],
+          "discoverCategory": "lehengas",
+          "emoji": "🌻",
+          "priceMax": 2499
+        },
+        "sangeet-look": {
+          "key": "sangeet-look",
+          "title": "Your Sangeet Look",
+          "tagline": "Sparkle on the dance floor.",
+          "description": "Sequin lehengas, statement suit sets, and bold co-ords built for sangeet night energy.",
+          "categories": [
+            "lehengas",
+            "suit sets"
+          ],
+          "keywords": [
+            "sequin",
+            "sangeet",
+            "party",
+            "embellished"
+          ],
+          "guideIds": [
+            "wedding-guest-dress-code"
+          ],
+          "discoverCategory": "lehengas",
+          "emoji": "🎵"
+        },
+        "ceremony-look": {
+          "key": "ceremony-look",
+          "title": "Your Ceremony Look",
+          "tagline": "Sacred, serene, stunning.",
+          "description": "Classic sarees, heirloom lehengas, and refined suit sets for the main event.",
+          "categories": [
+            "sarees",
+            "lehengas",
+            "suit sets"
+          ],
+          "keywords": [
+            "silk",
+            "red",
+            "maroon",
+            "traditional"
+          ],
+          "guideIds": [
+            "saree-drape-101",
+            "wedding-guest-dress-code"
+          ],
+          "discoverCategory": "sarees",
+          "emoji": "🪔"
+        },
+        "reception-look": {
+          "key": "reception-look",
+          "title": "Your Reception Look",
+          "tagline": "Red carpet without the stress.",
+          "description": "Gown-like lehengas, contemporary sarees, and sharp mens blazers for the grand finish.",
+          "categories": [
+            "lehengas",
+            "sarees",
+            "blazers"
+          ],
+          "keywords": [
+            "reception",
+            "glam",
+            "evening",
+            "silk"
+          ],
+          "guideIds": [
+            "wedding-guest-dress-code"
+          ],
+          "discoverCategory": "lehengas",
+          "emoji": "🥂",
+          "priceMin": 1800
+        },
+        "groom-edit": {
+          "key": "groom-edit",
+          "title": "Your Groom & Groomsmen Edit",
+          "tagline": "Kurtas, blazers, coordinated cool.",
+          "description": "Ethnic kurtas, wedding blazers, and co-ords for groom squads that photograph perfectly.",
+          "categories": [
+            "gents kurtas",
+            "blazers",
+            "gents co-ords"
+          ],
+          "keywords": [
+            "groom",
+            "kurta",
+            "blazer",
+            "men"
+          ],
+          "guideIds": [
+            "mens-ethnic-modern"
+          ],
+          "discoverCategory": "gents kurtas",
+          "emoji": "🤵"
+        },
+        "wedding-guest": {
+          "key": "wedding-guest",
+          "title": "Your Wedding Guest Edit",
+          "tagline": "RSVP yes — outfit sorted.",
+          "description": "Versatile lehengas, sarees, and suit sets that work across multiple wedding functions.",
+          "categories": [
+            "lehengas",
+            "sarees",
+            "suit sets"
+          ],
+          "keywords": [
+            "wedding",
+            "guest",
+            "festive"
+          ],
+          "guideIds": [
+            "wedding-guest-dress-code"
+          ],
+          "discoverCategory": "lehengas",
+          "emoji": "🎊"
+        },
+        "bridal-squad": {
+          "key": "bridal-squad",
+          "title": "Your Bridal Squad Edit",
+          "tagline": "Coordinate without matching exactly.",
+          "description": "Mix-and-match lehengas and suit sets in complementary palettes for the full squad.",
+          "categories": [
+            "lehengas",
+            "suit sets",
+            "co-ords"
+          ],
+          "keywords": [
+            "pastel",
+            "squad",
+            "coordinated"
+          ],
+          "guideIds": [
+            "wedding-guest-dress-code",
+            "coord-set-styling"
+          ],
+          "discoverCategory": "suit sets",
+          "emoji": "💐"
+        },
+        "family-wedding": {
+          "key": "family-wedding",
+          "title": "Your Family Wedding Edit",
+          "tagline": "Elevated, respectful, memorable.",
+          "description": "Rich sarees, regal lehengas, and premium suit sets for close-family celebrations.",
+          "categories": [
+            "sarees",
+            "lehengas",
+            "suit sets"
+          ],
+          "keywords": [
+            "silk",
+            "premium",
+            "family",
+            "traditional"
+          ],
+          "guideIds": [
+            "saree-drape-101",
+            "wedding-guest-dress-code"
+          ],
+          "discoverCategory": "sarees",
+          "emoji": "👨‍👩‍👧",
+          "priceMin": 1800
+        }
+      }
     }
   ]
 }

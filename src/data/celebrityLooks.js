@@ -20,7 +20,7 @@ export const CELEBRITY_LOOKS = [
     context: 'Airport · Mumbai',
     title: 'Quiet Luxury Kurta Set',
     hook: 'Find your version →',
-    image: '/kurtas/Kurtas/1/040A2925_700x.webp',
+    image: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
     category: 'kurtas',
     theme: 'Effortless',
     styleNotes: [
@@ -38,7 +38,7 @@ export const CELEBRITY_LOOKS = [
     context: 'Reception · Delhi',
     title: 'Silk Saree Moment',
     hook: 'Explore sarees →',
-    image: '/sarees/Sarees/1/040A3523_700x.webp',
+    image: '/sarees/Sarees/1/0T3A5495_700x.webp',
     category: 'sarees',
     theme: 'Bridal',
     styleNotes: [

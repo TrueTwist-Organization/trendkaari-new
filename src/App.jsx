@@ -790,6 +790,7 @@ export default function App() {
   }, [viewMode, isCategoryPage, activeCategory, infoSlug, checkoutSlug, quizSlug, quizResultKey, styleFinderResultKey, magazineCategorySlug, magazineArticleSlug, knowledgePageSlug, gameSlug, celebrityLookSlug, trendSlug, selectedProduct?.id]);
 
   useEffect(() => {
+    document.body.classList.toggle('home-page', viewMode === 'home' && !isCategoryPage);
     document.body.classList.toggle('category-page', isCategoryPage);
     document.body.classList.toggle('discover-page', viewMode === 'discover');
     document.body.classList.toggle('info-page', viewMode === 'info');
@@ -820,6 +821,7 @@ export default function App() {
       viewMode === 'games' || viewMode === 'game-play',
     );
     return () => {
+      document.body.classList.remove('home-page');
       document.body.classList.remove('category-page');
       document.body.classList.remove('discover-page');
       document.body.classList.remove('info-page');
@@ -1210,7 +1212,7 @@ export default function App() {
         cartCount={cartItems.reduce((acc, item) => acc + item.quantity, 0)}
         wishlistCount={wishlistItems.length}
         user={user}
-        solidHeader={viewMode === 'product-detail' || isCategoryPage || viewMode === 'info' || viewMode === 'discover' || viewMode === 'viral' || viewMode === 'celebrity-match' || viewMode === 'celebrity-look' || viewMode === 'trends' || viewMode === 'trend-page' || viewMode === 'games' || viewMode === 'game-play' || viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result' || viewMode === 'style-finder' || viewMode === 'style-finder-result' || viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article' || viewMode === 'knowledge' || viewMode === 'knowledge-page'}
+        solidHeader={viewMode === 'home' || viewMode === 'product-detail' || isCategoryPage || viewMode === 'info' || viewMode === 'discover' || viewMode === 'viral' || viewMode === 'celebrity-match' || viewMode === 'celebrity-look' || viewMode === 'trends' || viewMode === 'trend-page' || viewMode === 'games' || viewMode === 'game-play' || viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result' || viewMode === 'style-finder' || viewMode === 'style-finder-result' || viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article' || viewMode === 'knowledge' || viewMode === 'knowledge-page'}
         onOpenMenu={() => setIsMenuOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenCart={() => setIsCartOpen(true)}

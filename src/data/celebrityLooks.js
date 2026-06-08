@@ -21,6 +21,7 @@ export const CELEBRITY_LOOKS = [
     title: 'Quiet Luxury Kurta Set',
     hook: 'Find your version →',
     image: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
+    heroImage: '/hero/celebrity/deepika-airport-hero.png',
     category: 'kurtas',
     theme: 'Effortless',
     styleNotes: [

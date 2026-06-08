@@ -75,6 +75,49 @@
   pointer-events: none;
 }
 
+/* Full banner hero — no crop, no white overlay */
+.celeb-look__hero--banner {
+  min-height: auto;
+  max-height: none;
+  background: #f3ebe3;
+}
+
+.celeb-look__hero--banner .celeb-look__hero-visual {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  line-height: 0;
+}
+
+.celeb-look__hero--banner .celeb-look__hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: unset;
+  object-position: unset;
+}
+
+.celeb-look__back-btn--banner {
+  position: absolute;
+  top: calc(var(--celeb-hero-header) + 10px);
+  left: clamp(12px, 3vw, 24px);
+  z-index: 3;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(96, 11, 69, 0.1);
+  text-shadow: none;
+}
+
+.celeb-look__banner-intro {
+  padding: 1.25rem 16px 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .celeb-look__banner-intro {
+    padding: 1.5rem 32px 0.75rem;
+  }
+}
+
 .celeb-look__hero-inner {
   position: relative;
   z-index: 2;

@@ -17,20 +17,20 @@ export default function DiscoveryHero({ onOpenDiscover, productCount = 0 }) {
     <section className="discovery-hero">
       <div className="discovery-hero__visual" aria-hidden="true">
         <img
-          src="/sarees/Sarees/1/0T3A5495_700x.webp"
+          src="/hero/home-hero-banner.png"
           alt=""
           className="discovery-hero__img"
           loading="eager"
           fetchPriority="high"
           decoding="async"
-          width="700"
-          height="933"
+          width="1024"
+          height="576"
         />
         <div className="discovery-hero__overlay" aria-hidden="true" />
         <div className="discovery-hero__grain" aria-hidden="true" />
       </div>
 
-      <div className="discovery-hero__inner container">
+      <div className="discovery-hero__inner">
         <div className="discovery-hero__copy">
           <div className="discovery-hero__badge">
             <Sparkles size={12} aria-hidden />
@@ -79,17 +79,17 @@ export default function DiscoveryHero({ onOpenDiscover, productCount = 0 }) {
               Shop all styles
             </button>
           </div>
-        </div>
 
-        <button
-          type="button"
-          className="discovery-hero__scroll"
-          onClick={scrollToChapters}
-          aria-label="Scroll to chapters"
-        >
-          <span>Scroll</span>
-          <ArrowDown size={16} aria-hidden />
-        </button>
+          <button
+            type="button"
+            className="discovery-hero__scroll"
+            onClick={scrollToChapters}
+            aria-label="Scroll to chapters"
+          >
+            <span>Scroll</span>
+            <ArrowDown size={16} aria-hidden />
+          </button>
+        </div>
       </div>
     </section>
   );

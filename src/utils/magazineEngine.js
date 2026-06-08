@@ -10,6 +10,7 @@ import {
   getFeaturedArticles,
   getLatestArticles,
   getRelatedArticles,
+  pickUniqueMagazineArticles,
 } from '../data/fashionMagazine';
 
 const ARTICLE_PRODUCTS = 10;
@@ -55,10 +56,24 @@ export function getArticleRecommendationRails(allProducts, article) {
 }
 
 export function buildMagazineHubSections() {
-  return {
-    featured: getFeaturedArticles(6),
-    latest: getLatestArticles(8),
-  };
+  const usedIds = new Set();
+  const usedImages = new Set();
+
+  const featured = pickUniqueMagazineArticles(
+    getFeaturedArticles(20),
+    6,
+    usedIds,
+    usedImages,
+  );
+
+  const latest = pickUniqueMagazineArticles(
+    getLatestArticles(20, [...usedIds]),
+    8,
+    usedIds,
+    usedImages,
+  );
+
+  return { featured, latest };
 }
 
 export function buildCategoryPageData(categorySlug) {

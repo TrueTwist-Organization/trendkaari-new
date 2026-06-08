@@ -617,6 +617,16 @@
   line-height: 1.35;
 }
 
+.discovery-xp__bollywood-hook {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
 /* ─── 3. This Week ───────────────────────────────────────────────────────── */
 .discovery-xp__viral-wrap {
   width: 100%;

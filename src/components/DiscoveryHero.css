@@ -1,13 +1,11 @@
 .discovery-hero {
-  --discovery-hero-header: 114px; /* announcement 34px + main header ~80px */
+  --discovery-hero-header: 114px;
   position: relative;
   width: 100%;
-  min-height: 92vh;
-  max-height: 920px;
+  min-height: min(92vh, 880px);
+  max-height: 900px;
   overflow: hidden;
-  background: #120810;
-  display: flex;
-  align-items: stretch;
+  background: #fdf6f8;
 }
 
 .discovery-hero__visual {
@@ -19,7 +17,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: 78% center;
   display: block;
 }
 
@@ -27,15 +25,23 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 3, 6, 0.42) 0%, rgba(8, 3, 6, 0.28) 28%, rgba(8, 3, 6, 0.55) 55%, rgba(8, 3, 6, 0.88) 100%),
-    linear-gradient(100deg, rgba(96, 11, 69, 0.35) 0%, transparent 55%);
+    linear-gradient(
+      90deg,
+      rgba(255, 252, 253, 0.99) 0%,
+      rgba(255, 248, 250, 0.97) 18%,
+      rgba(255, 248, 250, 0.9) 34%,
+      rgba(255, 248, 250, 0.55) 48%,
+      rgba(255, 248, 250, 0.12) 62%,
+      transparent 74%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, transparent 38%, rgba(18, 8, 16, 0.1) 100%);
   pointer-events: none;
 }
 
 .discovery-hero__grain {
   position: absolute;
   inset: 0;
-  opacity: 0.04;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   pointer-events: none;
 }
@@ -44,24 +50,24 @@
   position: relative;
   z-index: 2;
   width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
-  text-align: center;
-  padding:
-    calc(var(--discovery-hero-header) + 20px)
-    20px
-    36px;
   min-height: inherit;
+  padding:
+    calc(var(--discovery-hero-header) + 32px)
+    clamp(20px, 4vw, 56px)
+    64px;
 }
 
 .discovery-hero__copy {
   width: 100%;
-  max-width: 720px;
+  max-width: min(460px, 44vw);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .discovery-hero__badge {
@@ -70,25 +76,26 @@
   gap: 8px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(96, 11, 69, 0.1);
+  color: var(--brand-plum, #600b45);
   font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
+  white-space: nowrap;
 }
 
 .discovery-hero__title {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 8vw, 4.25rem);
+  font-size: clamp(2.15rem, 4.8vw, 3.65rem);
   font-weight: 400;
-  line-height: 1.08;
-  color: #fff;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  line-height: 1.06;
+  color: #1c1218;
+  text-wrap: balance;
 }
 
 .discovery-hero__title-line {
@@ -97,31 +104,32 @@
 
 .discovery-hero__title-accent {
   display: block;
-  margin-top: 0.08em;
+  margin-top: 0.06em;
   font-style: italic;
-  color: var(--brand-gold-light, #e8c99a);
+  color: var(--brand-plum, #600b45);
 }
 
 .discovery-hero__sub {
-  margin: 20px 0 0;
-  font-size: clamp(0.92rem, 2.2vw, 1.08rem);
-  color: rgba(255, 255, 255, 0.86);
-  line-height: 1.65;
-  max-width: 52ch;
+  margin: 18px 0 0;
+  font-size: clamp(0.88rem, 1.6vw, 1.02rem);
+  color: rgba(28, 18, 24, 0.68);
+  line-height: 1.62;
+  max-width: 38ch;
+  text-wrap: pretty;
 }
 
 .discovery-hero__stats {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 28px;
-  padding: 14px 20px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.08);
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(96, 11, 69, 0.08);
   width: fit-content;
   max-width: 100%;
 }
@@ -129,39 +137,40 @@
 .discovery-hero__stat {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   text-align: center;
-  min-width: 72px;
+  min-width: 68px;
 }
 
 .discovery-hero__stat strong {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-size: 1.28rem;
   font-weight: 400;
-  color: #fff;
+  color: var(--brand-plum, #600b45);
   line-height: 1;
 }
 
 .discovery-hero__stat span {
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(28, 18, 24, 0.52);
 }
 
 .discovery-hero__stat-divider {
   width: 1px;
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
+  height: 28px;
+  background: rgba(96, 11, 69, 0.12);
+  flex-shrink: 0;
 }
 
 .discovery-hero__actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 30px;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 26px;
   width: 100%;
 }
 
@@ -169,15 +178,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
-  padding: 0 26px;
+  min-height: 48px;
+  padding: 0 22px;
   border-radius: 999px;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   cursor: pointer;
   transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
   -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
 }
 
 .discovery-hero__cta:active {
@@ -188,7 +198,7 @@
   border: none;
   background: var(--brand-plum);
   color: #fff;
-  box-shadow: 0 8px 28px rgba(96, 11, 69, 0.45);
+  box-shadow: 0 8px 28px rgba(96, 11, 69, 0.28);
 }
 
 .discovery-hero__cta--primary:hover {
@@ -196,29 +206,31 @@
 }
 
 .discovery-hero__cta--ghost {
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  border: 1px solid rgba(96, 11, 69, 0.2);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--brand-plum, #600b45);
   backdrop-filter: blur(8px);
 }
 
 .discovery-hero__cta--ghost:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(96, 11, 69, 0.32);
 }
 
 .discovery-hero__scroll {
   display: none;
   align-items: center;
   gap: 8px;
-  margin-top: 28px;
-  padding: 10px 0 0;
-  align-self: center;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.68rem;
+  margin-top: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: rgba(28, 18, 24, 0.5);
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  cursor: pointer;
   animation: hero-bounce 2s ease-in-out infinite;
 }
 
@@ -230,16 +242,60 @@
 @media (max-width: 767px) {
   .discovery-hero {
     --discovery-hero-header: 92px;
-    min-height: min(88vh, 760px);
+    min-height: min(90vh, 780px);
+    max-height: none;
+  }
+
+  .discovery-hero__img {
+    object-position: 72% 20%;
+  }
+
+  .discovery-hero__overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 248, 250, 0.05) 0%,
+        rgba(255, 248, 250, 0.5) 44%,
+        rgba(255, 248, 250, 0.96) 72%,
+        #fff 100%
+      );
   }
 
   .discovery-hero__inner {
-    justify-content: flex-end;
-    padding-bottom: 32px;
+    align-items: flex-end;
+    padding:
+      calc(var(--discovery-hero-header) + 16px)
+      16px
+      28px;
+  }
+
+  .discovery-hero__copy {
+    max-width: none;
+  }
+
+  .discovery-hero__badge {
+    white-space: normal;
+  }
+
+  .discovery-hero__title {
+    font-size: clamp(2rem, 9vw, 2.6rem);
   }
 
   .discovery-hero__sub {
-    max-width: 38ch;
+    max-width: none;
+    font-size: 0.9rem;
+  }
+
+  .discovery-hero__stats {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px 14px;
+  }
+
+  .discovery-hero__stat {
+    min-width: 0;
+    flex: 1;
   }
 
   .discovery-hero__actions {
@@ -254,35 +310,21 @@
 
 @media (min-width: 768px) {
   .discovery-hero__inner {
-    justify-content: center;
-    padding:
-      calc(var(--discovery-hero-header) + 32px)
-      48px
-      56px;
-  }
-
-  .discovery-hero__copy {
-    max-width: 780px;
-  }
-
-  .discovery-hero__sub {
-    max-width: 58ch;
+    padding-left: max(40px, calc((100vw - 1280px) / 2 + 40px));
+    padding-right: clamp(24px, 4vw, 48px);
   }
 
   .discovery-hero__scroll {
     display: inline-flex;
   }
-
-  .discovery-hero__overlay {
-    background:
-      linear-gradient(180deg, rgba(8, 3, 6, 0.55) 0%, rgba(8, 3, 6, 0.2) 32%, rgba(8, 3, 6, 0.45) 100%),
-      linear-gradient(100deg, rgba(96, 11, 69, 0.35) 0%, transparent 55%);
-  }
 }
 
 @media (min-width: 1200px) {
+  .discovery-hero__copy {
+    max-width: 480px;
+  }
+
   .discovery-hero__inner {
-    padding-left: max(48px, calc((100vw - 1280px) / 2 + 48px));
-    padding-right: max(48px, calc((100vw - 1280px) / 2 + 48px));
+    padding-left: max(56px, calc((100vw - 1280px) / 2 + 56px));
   }
 }

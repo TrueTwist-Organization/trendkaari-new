@@ -13,6 +13,7 @@ import {
 } from '../data/discoveryExperience';
 import { castPollVote, getPollResults } from '../utils/pollVotesStorage';
 import { buildDiscoveryExperienceFeed } from '../utils/discoveryExperienceEngine';
+import { CELEBRITY_LOOKS, fetchCelebrityLooks } from '../utils/celebrityLooksData';
 import './DiscoveryExperienceFeed.css';
 
 /* ─── Shared shell ──────────────────────────────────────────────────────── */
@@ -89,7 +90,12 @@ function StyleQuizBlock({ block, onNavigate }) {
 /* ─── 2. Bollywood Looks ────────────────────────────────────────────────── */
 
 function BollywoodLooksBlock({ block, payload, onNavigate }) {
-  const looks = payload.looks?.slice(0, 4) ?? [];
+  const looks = (payload.looks?.length ? payload.looks : CELEBRITY_LOOKS).slice(0, 4);
+
+  const openLook = (look) => {
+    if (!look?.id) return;
+    onNavigate?.(`/celebrity-match/${encodeURIComponent(look.id)}`);
+  };
 
   return (
     <BlockShell block={block} onNavigate={onNavigate}>
@@ -100,7 +106,7 @@ function BollywoodLooksBlock({ block, payload, onNavigate }) {
               key={look.id}
               type="button"
               className="discovery-xp__bollywood-card"
-              onClick={() => onNavigate?.(`/celebrity-match/${look.id}`)}
+              onClick={() => openLook(look)}
               data-journey-label={`Bollywood look: ${look.celebrity}`}
               aria-label={`${look.celebrity} — ${look.title}`}
             >
@@ -116,6 +122,9 @@ function BollywoodLooksBlock({ block, payload, onNavigate }) {
                   <span className="discovery-xp__bollywood-context">{look.context}</span>
                   <strong className="discovery-xp__bollywood-name">{look.celebrity}</strong>
                   <p className="discovery-xp__bollywood-title">{look.title}</p>
+                  {look.hook ? (
+                    <span className="discovery-xp__bollywood-hook">{look.hook}</span>
+                  ) : null}
                 </div>
               </div>
             </button>
@@ -809,6 +818,13 @@ export default function DiscoveryExperienceFeed({
 }) {
   const [dynamicBlocks, setDynamicBlocks] = useState(null);
   const [discoveryConfig, setDiscoveryConfig] = useState(null);
+  const [celebrityLooks, setCelebrityLooks] = useState(null);
+
+  useEffect(() => {
+    fetchCelebrityLooks()
+      .then((items) => setCelebrityLooks(items))
+      .catch(() => setCelebrityLooks(CELEBRITY_LOOKS));
+  }, []);
 
   useEffect(() => {
     fetch('/api/store/content?type=homepage-blocks')
@@ -833,8 +849,8 @@ export default function DiscoveryExperienceFeed({
   const activeConfig = discoveryConfig || DEFAULT_DISCOVERY_CONFIG;
 
   const { posterRow, feed } = useMemo(
-    () => buildDiscoveryExperienceFeed(products, dynamicBlocks, activeConfig),
-    [products, dynamicBlocks, activeConfig],
+    () => buildDiscoveryExperienceFeed(products, dynamicBlocks, activeConfig, celebrityLooks),
+    [products, dynamicBlocks, activeConfig, celebrityLooks],
   );
 
   const handlers = { onNavigate, onSelectProduct, onSelectCategory, onOpenArticle };

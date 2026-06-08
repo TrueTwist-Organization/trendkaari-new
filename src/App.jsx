@@ -44,6 +44,7 @@ import {
   resolveProductPage,
 } from './utils/resolveProductPage';
 import { categoryPath, normalizeCategoryPathname, slugToCategory } from './utils/categorySlug';
+import { isValidCelebrityLookId } from './utils/celebrityLooksData';
 import { recordCategoryBrowse, recordProductView } from './utils/viewHistory';
 import JourneyTracker from './components/JourneyTracker';
 import { isValidQuizResult, isValidQuizSlug } from './data/fashionQuizzes';
@@ -163,6 +164,13 @@ function resolveAppRoute(pathname, productsList, giftCombos = []) {
       ...route,
       viewMode: 'games',
       gameSlug: null,
+    };
+  }
+  if (route.viewMode === 'celebrity-look' && !isValidCelebrityLookId(route.celebrityLookSlug)) {
+    return {
+      ...route,
+      viewMode: 'celebrity-match',
+      celebrityLookSlug: null,
     };
   }
   if (route.viewMode === 'checkout') {
@@ -532,9 +540,12 @@ export default function App() {
       setKnowledgePageSlug(null);
       setGameSlug(null);
       if (segments[1]) {
-        // Individual celebrity look page
-        setCelebrityLookSlug(segments[1]);
-        setViewMode('celebrity-look');
+        const slug = decodeURIComponent(segments[1]);
+        setCelebrityLookSlug(slug);
+        setViewMode(isValidCelebrityLookId(slug) ? 'celebrity-look' : 'celebrity-match');
+        if (!isValidCelebrityLookId(slug)) {
+          window.history.replaceState({}, '', '/celebrity-match');
+        }
       } else {
         setCelebrityLookSlug(null);
         setViewMode('celebrity-match');
@@ -744,6 +755,8 @@ export default function App() {
     setMagazineArticleSlug(route.magazineArticleSlug ?? null);
     setKnowledgePageSlug(route.knowledgePageSlug ?? null);
     setGameSlug(route.gameSlug ?? null);
+    setCelebrityLookSlug(route.celebrityLookSlug ?? null);
+    setTrendSlug(route.trendSlug ?? null);
   }, [productsList, giftCombos]);
 
   // Listen to popstate event (browser back/forward button clicks)
@@ -763,6 +776,8 @@ export default function App() {
       setMagazineArticleSlug(route.magazineArticleSlug ?? null);
       setKnowledgePageSlug(route.knowledgePageSlug ?? null);
       setGameSlug(route.gameSlug ?? null);
+      setCelebrityLookSlug(route.celebrityLookSlug ?? null);
+      setTrendSlug(route.trendSlug ?? null);
       scrollToPageTop();
     };
 
@@ -772,7 +787,7 @@ export default function App() {
 
   useEffect(() => {
     scrollToPageTop();
-  }, [viewMode, isCategoryPage, activeCategory, infoSlug, checkoutSlug, quizSlug, quizResultKey, styleFinderResultKey, magazineCategorySlug, magazineArticleSlug, knowledgePageSlug, gameSlug, selectedProduct?.id]);
+  }, [viewMode, isCategoryPage, activeCategory, infoSlug, checkoutSlug, quizSlug, quizResultKey, styleFinderResultKey, magazineCategorySlug, magazineArticleSlug, knowledgePageSlug, gameSlug, celebrityLookSlug, trendSlug, selectedProduct?.id]);
 
   useEffect(() => {
     document.body.classList.toggle('category-page', isCategoryPage);
@@ -972,12 +987,17 @@ export default function App() {
   };
 
   const handleSelectCategory = (category) => {
-    if (category === 'all') {
+    if (category === 'home') {
       navigateToRoute('/');
-    } else {
-      recordCategoryBrowse(category);
-      navigateToRoute(categoryPath(category));
+      return;
     }
+    if (category === 'all') {
+      recordCategoryBrowse('all');
+      navigateToRoute(categoryPath('all'));
+      return;
+    }
+    recordCategoryBrowse(category);
+    navigateToRoute(categoryPath(category));
   };
 
   const handleSelectMood = (moodId) => {
@@ -1456,6 +1476,7 @@ export default function App() {
                 onAddToCart={handleAddToCart}
                 onOpenQuickView={handleOpenQuickView}
                 onBack={handleGoBack}
+                onBackToHome={() => navigateToRoute('/')}
                 products={productsList}
                 onOpenKnowledgePage={handleOpenKnowledgePage}
                 onOpenArticle={handleOpenMagazineArticle}
@@ -1556,6 +1577,8 @@ export default function App() {
         onOpenGamesHub={handleOpenGamesHub}
         onOpenCelebrityMatch={() => navigateToRoute('/celebrity-match')}
         onOpenTrends={() => navigateToRoute('/trends')}
+        onNavigateInfoPage={handleNavigateInfoPage}
+        onScrollToSection={handleScrollToSection}
       />
 
       <SearchDrawer

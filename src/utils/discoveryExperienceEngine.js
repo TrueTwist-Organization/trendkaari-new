@@ -25,7 +25,12 @@ function getEditDeskArticles() {
  * @param {Array|null} dynamicBlocks - blocks from API (null = use static fallback)
  * @param {Object|null} discoveryConfig - extras from admin (editor notes, etc.)
  */
-export function buildDiscoveryExperienceFeed(products = [], dynamicBlocks = null, discoveryConfig = null) {
+export function buildDiscoveryExperienceFeed(
+  products = [],
+  dynamicBlocks = null,
+  discoveryConfig = null,
+  celebrityLooks = null,
+) {
   if (!products?.length) return { posterRow: [], feed: [] };
 
   const activeBlocks = (Array.isArray(dynamicBlocks) && dynamicBlocks.length)
@@ -39,7 +44,7 @@ export function buildDiscoveryExperienceFeed(products = [], dynamicBlocks = null
   const editors = getEditorsVoicePicks(products, 3);
   const viral = getViralFashion(products, 4);
   const articles = getEditDeskArticles();
-  const celebrities = CELEBRITY_LOOKS.slice(0, 6);
+  const celebrities = celebrityLooks?.length ? celebrityLooks : CELEBRITY_LOOKS.slice(0, 6);
 
   const festiveProducts = products
     .filter((p) =>
@@ -75,7 +80,7 @@ function buildBlockPayload(blockId, blockKind, ctx) {
   switch (key) {
     case 'celebrity':
     case 'bollywood-looks':
-      return { looks: ctx.celebrities };
+      return { looks: (ctx.celebrities?.length ? ctx.celebrities : CELEBRITY_LOOKS).slice(0, 4) };
     case 'viral':
     case 'this-week':
       return { picks: ctx.viral.slice(0, 3) };

@@ -59,6 +59,7 @@ export function filterProductsByCategory(products, activeCategory) {
 
 export function getCategoryDisplayName(activeCategory) {
   const cat = (activeCategory || '').toLowerCase();
+  if (cat === 'all') return 'All Collections';
 
   for (const group of [...MENU_WOMEN_GROUPS, ...MENU_MEN_GROUPS]) {
     if (group.id === cat) {

@@ -45,7 +45,7 @@ export function slugToCategory(slug) {
 
 /** Canonical path for a category: /category/dupatta-sets */
 export function categoryPath(category) {
-  if (!category || category === 'all') return '/';
+  if (!category || category === 'all') return '/category/all';
   return `/category/${categoryToSlug(category)}`;
 }
 

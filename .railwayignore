@@ -1,0 +1,8 @@
+# Product images (served by Vercel CDN from dist/)
+public/
+dist/
+node_modules/
+
+# Dev tools
+.vercel/
+*.local

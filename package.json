@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "node scripts/free-port.js 3001 && concurrently -n web,api -c blue,magenta \"vite\" \"node server/index.js\"",
     "dev:vite": "vite",

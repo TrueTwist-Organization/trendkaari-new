@@ -11,8 +11,13 @@
 }
 
 .celeb-look__body {
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   padding-bottom: 3rem;
+}
+
+.celeb-look__hero--banner + .celeb-look__banner-meta + .celeb-look__body,
+.celeb-look__banner-meta + .celeb-look__body {
+  padding-top: 1.75rem;
 }
 
 .celeb-look--404,
@@ -79,42 +84,56 @@
 .celeb-look__hero--banner {
   min-height: auto;
   max-height: none;
+  overflow: visible;
   background: #f3ebe3;
 }
 
-.celeb-look__hero--banner .celeb-look__hero-visual {
-  position: relative;
-  inset: auto;
+.celeb-look__banner-nav {
+  padding: 0.65rem 16px 0.35rem;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.celeb-look__banner-hit {
+  display: block;
   width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
   line-height: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .celeb-look__hero--banner .celeb-look__hero-img {
   width: 100%;
   height: auto;
-  object-fit: unset;
-  object-position: unset;
+  display: block;
+  vertical-align: top;
 }
 
-.celeb-look__back-btn--banner {
-  position: absolute;
-  top: calc(var(--celeb-hero-header) + 10px);
-  left: clamp(12px, 3vw, 24px);
-  z-index: 3;
-  padding: 0.4rem 0.85rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(96, 11, 69, 0.1);
-  text-shadow: none;
+.celeb-look__banner-hit:focus-visible {
+  outline: 2px solid var(--brand-plum, #600b45);
+  outline-offset: -2px;
 }
 
-.celeb-look__banner-intro {
-  padding: 1.25rem 16px 0.5rem;
+.celeb-look__banner-meta {
+  padding: 1.15rem 16px 0.25rem;
+  border-bottom: 1px solid rgba(96, 11, 69, 0.08);
+}
+
+.celeb-look__banner-meta .celeb-look__context-row {
+  margin-top: 0;
 }
 
 @media (min-width: 768px) {
-  .celeb-look__banner-intro {
-    padding: 1.5rem 32px 0.75rem;
+  .celeb-look__banner-nav {
+    padding: 0.75rem 32px 0.5rem;
+  }
+
+  .celeb-look__banner-meta {
+    padding: 1.25rem 32px 0.5rem;
   }
 }
 

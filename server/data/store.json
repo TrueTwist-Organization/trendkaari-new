@@ -25133,5 +25133,156 @@
       "updatedAt": "2026-05-21T05:37:10.557Z"
     }
   ],
-  "_storeUpdatedAt": "2026-06-08T09:54:12.202Z"
+  "_storeUpdatedAt": "2026-06-08T10:47:43.602Z",
+  "homepage_blocks": [
+    {
+      "id": "style-quiz",
+      "title": "Find Your Style DNA",
+      "tagline": "Who are you, stylistically?",
+      "hook": "Five questions. Your complete fashion personality — plus a curated edit built just for you.",
+      "route": "/quiz/personality",
+      "accent": "#600b45",
+      "kind": "quiz",
+      "poster": "/kurtas/Kurtas/1/040A2925_700x.webp",
+      "ctaText": "Discover your style type",
+      "quizQuestion": "Which vibe feels most like you?",
+      "previewOptions": [
+        {
+          "label": "Clean & understated"
+        },
+        {
+          "label": "Bold & statement"
+        },
+        {
+          "label": "Soft & romantic"
+        },
+        {
+          "label": "Maximalist festive"
+        }
+      ]
+    },
+    {
+      "id": "bollywood-looks",
+      "title": "Bollywood Style",
+      "tagline": "Airport edits · Red carpet · Street style",
+      "hook": "The look that got 10,000 saves — find your version at a fraction of the price.",
+      "route": "/celebrity-match",
+      "accent": "#c9a84c",
+      "kind": "celebrity",
+      "poster": "/sarees/Sarees/1/040A3523_700x.webp",
+      "ctaText": "Match a Bollywood look",
+      "dark": true
+    },
+    {
+      "id": "this-week",
+      "title": "This Week in Indian Fashion",
+      "tagline": "Updated every Monday",
+      "hook": "The pieces blowing up across Instagram, Pinterest, and WhatsApp groups right now.",
+      "route": "/viral",
+      "accent": "#b71c1c",
+      "kind": "viral",
+      "poster": "/lehengas/Lehengas/1/040A3523_700x.webp",
+      "ctaText": "See all this week's picks",
+      "savesCount": "3,200+"
+    },
+    {
+      "id": "occasion-gate",
+      "title": "Dress for Every Moment",
+      "tagline": "From office to sangeet",
+      "hook": "Pick your life moment — we build the complete look, not just a product grid.",
+      "route": "/quiz/outfit-finder",
+      "accent": "#1565c0",
+      "kind": "occasion",
+      "poster": "/co-ords/co-ord_set/1/1.webp",
+      "ctaText": "Find your occasion look",
+      "occasionChips": [
+        {
+          "label": "Wedding Guest",
+          "category": "lehengas"
+        },
+        {
+          "label": "Sangeet",
+          "category": "lehengas"
+        },
+        {
+          "label": "Office",
+          "category": "kurtas"
+        },
+        {
+          "label": "Puja",
+          "category": "kurtas"
+        },
+        {
+          "label": "Brunch",
+          "category": "co-ords"
+        },
+        {
+          "label": "First Job",
+          "category": "suit sets"
+        }
+      ]
+    },
+    {
+      "id": "wedding-festive",
+      "title": "Wedding & Festive Edit",
+      "tagline": "The season never ends",
+      "hook": "Someone you know is always getting married. Be the guest everyone remembers.",
+      "route": "/magazine/festival-fashion",
+      "accent": "#880e4f",
+      "kind": "festive",
+      "poster": "/lehengas/Lehengas/1/040A3523_700x.webp",
+      "ctaText": "Open the wedding edit",
+      "festiveChips": [
+        "Sangeet",
+        "Reception",
+        "Mehendi",
+        "Engagement",
+        "Haldi",
+        "Diwali"
+      ]
+    },
+    {
+      "id": "edit-desk",
+      "title": "The Edit Desk",
+      "tagline": "Fashion journalism",
+      "hook": "Trend breakdowns, styling secrets, and the stories behind Indian fashion — read one, open five.",
+      "route": "/magazine",
+      "accent": "#4a0834",
+      "kind": "articles",
+      "poster": "/kurtas/Kurtas/1/040A2925_700x.webp",
+      "ctaText": "Read the full edit"
+    },
+    {
+      "id": "editors-voice",
+      "title": "Editor's Voice",
+      "tagline": "Curated by a human, not an algorithm",
+      "hook": "Three pieces. One story behind each. Not because they're popular — because they're right.",
+      "route": "/magazine",
+      "accent": "#4527a0",
+      "kind": "editorial",
+      "poster": "/co-ords/co-ord_set/1/1.webp",
+      "ctaText": "See all editor picks",
+      "editorQuote": "Three pieces I'd wear right now"
+    },
+    {
+      "id": "style-debate",
+      "title": "Style Debate",
+      "tagline": "India is voting",
+      "hook": "One question. Two sides. See exactly where India stands today.",
+      "route": "/games",
+      "accent": "#600b45",
+      "kind": "debate",
+      "poster": "/tops/4/1.webp",
+      "ctaText": "See all style debates"
+    },
+    {
+      "id": "trending-india",
+      "title": "Trending in India",
+      "tagline": "What India is searching right now",
+      "hook": "",
+      "accent": "#37474f",
+      "kind": "search",
+      "poster": "/mens/kurtas/kurta/1/l-pkt410-vebnor-original-imahnybzsfggj62r.webp"
+    }
+  ]
 }

@@ -6,6 +6,7 @@ import {
   FASHION_POLLS,
   STYLE_CHALLENGES,
   TRENDING_SEARCHES,
+  DEFAULT_DISCOVERY_CONFIG,
 } from '../data/discoveryExperience';
 import { castPollVote, getPollResults } from '../utils/pollVotesStorage';
 import { buildDiscoveryExperienceFeed } from '../utils/discoveryExperienceEngine';
@@ -55,7 +56,7 @@ function StyleQuizBlock({ block, onNavigate }) {
           <ProductImage src={block.poster} alt="" loading="eager" />
         </div>
         <div className="discovery-xp__quiz-body">
-          <p className="discovery-xp__quiz-question">Which vibe feels most like you?</p>
+          <p className="discovery-xp__quiz-question">{block.quizQuestion || 'Which vibe feels most like you?'}</p>
           <div className="discovery-xp__quiz-options">
             {block.previewOptions?.map((opt) => (
               <button
@@ -345,9 +346,9 @@ function EditorsVoiceBlock({ block, payload, onSelectProduct, onNavigate }) {
 
 /* ─── 8. Style Debate ───────────────────────────────────────────────────── */
 
-function StyleDebateBlock({ block, onNavigate }) {
+function StyleDebateBlock({ block, onNavigate, fashionPolls = FASHION_POLLS, styleChallenges = STYLE_CHALLENGES }) {
   const [pollState, setPollState] = useState(() =>
-    FASHION_POLLS.map((poll) => ({
+    fashionPolls.map((poll) => ({
       ...poll,
       results: getPollResults(
         poll.id,
@@ -425,7 +426,7 @@ function StyleDebateBlock({ block, onNavigate }) {
 
         {/* Challenges */}
         <div className="discovery-xp__challenge-links">
-          {STYLE_CHALLENGES.map((ch) => (
+          {styleChallenges.map((ch) => (
             <button
               key={ch.id}
               type="button"
@@ -447,11 +448,11 @@ function StyleDebateBlock({ block, onNavigate }) {
 
 /* ─── 9. Trending in India ──────────────────────────────────────────────── */
 
-function TrendingIndiaBlock({ block, onNavigate, onSelectCategory }) {
+function TrendingIndiaBlock({ block, onNavigate, onSelectCategory, trendingSearches = TRENDING_SEARCHES }) {
   return (
     <BlockShell block={block} ctaLabel={null}>
       <div className="discovery-xp__trending-index">
-        {TRENDING_SEARCHES.map((item, i) => (
+        {trendingSearches.map((item, i) => (
           <button
             key={item.label}
             type="button"
@@ -474,12 +475,12 @@ function TrendingIndiaBlock({ block, onNavigate, onSelectCategory }) {
 
 /* ─── Poster strip ("This Edit" chapter rail) ───────────────────────────── */
 
-function PosterStrip({ posters, onNavigate }) {
+function PosterStrip({ posters, onNavigate, stripLabel = 'THIS EDIT', stripSub = 'Tap any chapter to open it' }) {
   return (
     <div className="discovery-xp__strip-wrap">
       <div className="discovery-xp__strip-head">
-        <p className="discovery-xp__strip-label">THIS EDIT</p>
-        <p className="discovery-xp__strip-sub">Tap any chapter to open it</p>
+        <p className="discovery-xp__strip-label">{stripLabel}</p>
+        <p className="discovery-xp__strip-sub">{stripSub}</p>
       </div>
       <div className="discovery-xp__strip" role="list">
         {posters.map((block, i) => (
@@ -513,27 +514,43 @@ function PosterStrip({ posters, onNavigate }) {
 
 /* ─── Block router ──────────────────────────────────────────────────────── */
 
-function ExperienceBlock({ item, handlers }) {
+function ExperienceBlock({ item, handlers, discoveryConfig }) {
   const { block, payload } = item;
-  const props = { block, payload, ...handlers };
+  const props = {
+    block,
+    payload,
+    ...handlers,
+    fashionPolls: discoveryConfig?.fashionPolls,
+    styleChallenges: discoveryConfig?.styleChallenges,
+    trendingSearches: discoveryConfig?.trendingSearches,
+  };
 
-  switch (block.id) {
+  switch (block.kind || block.id) {
+    case 'quiz':
     case 'style-quiz':
       return <StyleQuizBlock {...props} />;
+    case 'celebrity':
     case 'bollywood-looks':
       return <BollywoodLooksBlock {...props} />;
+    case 'viral':
     case 'this-week':
       return <ThisWeekBlock {...props} />;
+    case 'occasion':
     case 'occasion-gate':
       return <OccasionGateBlock {...props} />;
+    case 'festive':
     case 'wedding-festive':
       return <WeddingFestiveBlock {...props} />;
+    case 'articles':
     case 'edit-desk':
       return <EditDeskBlock {...props} />;
+    case 'editorial':
     case 'editors-voice':
       return <EditorsVoiceBlock {...props} />;
+    case 'debate':
     case 'style-debate':
       return <StyleDebateBlock {...props} />;
+    case 'search':
     case 'trending-india':
       return <TrendingIndiaBlock {...props} />;
     default:
@@ -551,6 +568,7 @@ export default function DiscoveryExperienceFeed({
   onOpenArticle,
 }) {
   const [dynamicBlocks, setDynamicBlocks] = useState(null);
+  const [discoveryConfig, setDiscoveryConfig] = useState(null);
 
   useEffect(() => {
     fetch('/api/store/content?type=homepage-blocks')
@@ -563,18 +581,34 @@ export default function DiscoveryExperienceFeed({
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    fetch('/api/store/discovery-config')
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (data?.config) setDiscoveryConfig(data.config);
+      })
+      .catch(() => {});
+  }, []);
+
+  const activeConfig = discoveryConfig || DEFAULT_DISCOVERY_CONFIG;
+
   const { posterRow, feed } = useMemo(
-    () => buildDiscoveryExperienceFeed(products, dynamicBlocks),
-    [products, dynamicBlocks],
+    () => buildDiscoveryExperienceFeed(products, dynamicBlocks, activeConfig),
+    [products, dynamicBlocks, activeConfig],
   );
 
   const handlers = { onNavigate, onSelectProduct, onSelectCategory, onOpenArticle };
 
   return (
     <div className="discovery-xp">
-      <PosterStrip posters={posterRow} onNavigate={onNavigate} />
+      <PosterStrip
+        posters={posterRow}
+        onNavigate={onNavigate}
+        stripLabel={activeConfig.stripLabel}
+        stripSub={activeConfig.stripSub}
+      />
       {feed.map((item) => (
-        <ExperienceBlock key={item.id} item={item} handlers={handlers} />
+        <ExperienceBlock key={item.id} item={item} handlers={handlers} discoveryConfig={activeConfig} />
       ))}
     </div>
   );

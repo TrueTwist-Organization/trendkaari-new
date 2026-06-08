@@ -14,17 +14,18 @@ import {
   Plus, Edit2, Trash2, Save, X, RefreshCw,
   Star, TrendingUp, BookOpen, Sparkles,
   Upload, Image as ImageIcon,
-  AlertTriangle, Check, Layout,
+  AlertTriangle, Check, Layout, ChevronUp, ChevronDown, Settings2,
 } from 'lucide-react';
+import { getAdminToken } from '../../api/client';
 import { CELEBRITY_LOOKS } from '../../data/celebrityLooks';
 import { TREND_PAGES } from '../../data/trendPages';
-import { DISCOVERY_EXPERIENCE_BLOCKS } from '../../data/discoveryExperience';
+import { DISCOVERY_EXPERIENCE_BLOCKS, DEFAULT_DISCOVERY_CONFIG } from '../../data/discoveryExperience';
 import { KNOWLEDGE_PAGES } from '../../data/fashionKnowledge';
 import { FASHION_QUIZZES } from '../../data/fashionQuizzes';
 
 /* ── Helpers ─────────────────────────────────────────────────────────────── */
 
-function getToken() { return localStorage.getItem('admin_token') || ''; }
+function getToken() { return getAdminToken() || ''; }
 
 async function apiFetch(url, opts = {}) {
   const res = await fetch(url, {
@@ -577,25 +578,144 @@ function ContentTab({ type, apiType, staticData, FormComponent, getCardProps, ta
 
 /* ── Homepage Blocks Tab ─────────────────────────────────────────────────── */
 
-function HomepageBlockForm({ item, onChange }) {
+const BLOCK_KINDS = [
+  { value: 'quiz', label: 'Style Quiz' },
+  { value: 'celebrity', label: 'Bollywood / Celebrity' },
+  { value: 'viral', label: 'This Week / Viral' },
+  { value: 'occasion', label: 'Occasion Picker' },
+  { value: 'festive', label: 'Wedding & Festive' },
+  { value: 'articles', label: 'Edit Desk / Articles' },
+  { value: 'editorial', label: "Editor's Voice" },
+  { value: 'debate', label: 'Style Debate' },
+  { value: 'search', label: 'Trending Searches' },
+];
+
+function slugify(text) {
+  return String(text || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 40);
+}
+
+function parseOccasionChips(text) {
+  return String(text || '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [label, category, route] = line.split('|').map((s) => s.trim());
+      const chip = { label };
+      if (category) chip.category = category;
+      if (route) chip.route = route;
+      return chip;
+    });
+}
+
+function formatOccasionChips(chips) {
+  if (!Array.isArray(chips)) return '';
+  return chips
+    .map((c) => [c.label, c.category || '', c.route || ''].filter((_, i, arr) => i === 0 || arr[i]).join(' | '))
+    .join('\n');
+}
+
+function HomepageBlockForm({ item, onChange, isNew }) {
   const set = (key) => (val) => onChange({ ...item, [key]: val });
+  const kind = item.kind || 'quiz';
+
   return (
     <div>
-      <Field label="Title"><Input value={item.title} onChange={set('title')} placeholder="e.g. Bollywood Style" /></Field>
-      <Field label="Tagline (eyebrow text)"><Input value={item.tagline} onChange={set('tagline')} placeholder="e.g. Airport edits · Red carpet" /></Field>
-      <Field label="Hook (description)" hint="2–3 lines shown below the title">
+      {!isNew && (
+        <Field label="Block ID" hint="Internal identifier — don’t change unless you know what you’re doing">
+          <Input value={item.id} onChange={set('id')} />
+        </Field>
+      )}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        <Field label="Title *">
+          <Input value={item.title} onChange={set('title')} placeholder="e.g. Find Your Style DNA" />
+        </Field>
+        <Field label="Block Type">
+          <Select value={kind} onChange={set('kind')} options={BLOCK_KINDS} />
+        </Field>
+      </div>
+      <Field label="Tagline (eyebrow on poster)">
+        <Input value={item.tagline} onChange={set('tagline')} placeholder="e.g. Who are you, stylistically?" />
+      </Field>
+      <Field label="Hook (description below title)" hint="2–3 lines shown in the section">
         <Textarea value={item.hook} onChange={set('hook')} placeholder="Describe this section…" rows={3} />
       </Field>
-      <ImageField label="Poster Image (drag & drop, paste, or click to upload)" value={item.poster} onChange={set('poster')} />
-      <Field label="Accent Color" hint="Hex color used for buttons and highlights">
-        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-          <input type="color" value={item.accent || '#600b45'} onChange={(e) => set('accent')(e.target.value)}
-            style={{ width: 44, height: 34, borderRadius: 6, border: 'none', cursor: 'pointer', background: 'transparent' }} />
-          <Input value={item.accent} onChange={set('accent')} placeholder="#600b45" />
-        </div>
+      <ImageField label="Poster Image" value={item.poster} onChange={set('poster')} />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        <Field label="Accent Color">
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+            <input type="color" value={item.accent || '#600b45'} onChange={(e) => set('accent')(e.target.value)}
+              style={{ width: 44, height: 34, borderRadius: 6, border: 'none', cursor: 'pointer', background: 'transparent' }} />
+            <Input value={item.accent} onChange={set('accent')} placeholder="#600b45" />
+          </div>
+        </Field>
+        <Field label="Dark Poster Style">
+          <Select
+            value={String(item.dark || false)}
+            onChange={(v) => set('dark')(v === 'true')}
+            options={[{ value: 'false', label: 'Light overlay' }, { value: 'true', label: 'Dark overlay' }]}
+          />
+        </Field>
+      </div>
+      <Field label="CTA Button Text">
+        <Input value={item.ctaText} onChange={set('ctaText')} placeholder="e.g. Discover your style type" />
       </Field>
-      <Field label="CTA Button Text"><Input value={item.ctaText} onChange={set('ctaText')} placeholder="e.g. Match a Bollywood look" /></Field>
-      <Field label="Route / Link"><Input value={item.route} onChange={set('route')} placeholder="e.g. /celebrity-match" /></Field>
+      <Field label="Route / Link">
+        <Input value={item.route} onChange={set('route')} placeholder="e.g. /quiz/personality" />
+      </Field>
+
+      {kind === 'quiz' && (
+        <>
+          <Field label="Quiz Question (homepage preview)">
+            <Input value={item.quizQuestion} onChange={set('quizQuestion')} placeholder="Which vibe feels most like you?" />
+          </Field>
+          <Field label="Quiz Options (one per line)" hint="Shown as clickable preview buttons on homepage">
+            <Textarea
+              value={Array.isArray(item.previewOptions) ? item.previewOptions.map((o) => o.label).join('\n') : ''}
+              onChange={(v) => set('previewOptions')(v.split('\n').filter(Boolean).map((label) => ({ label })))}
+              rows={4}
+              placeholder={'Clean & understated\nBold & statement\nSoft & romantic'}
+            />
+          </Field>
+        </>
+      )}
+
+      {kind === 'occasion' && (
+        <Field label="Occasion Chips (one per line: Label | category | route)" hint="Route is optional">
+          <Textarea
+            value={formatOccasionChips(item.occasionChips)}
+            onChange={(v) => set('occasionChips')(parseOccasionChips(v))}
+            rows={6}
+            placeholder={'Wedding Guest | lehengas\nOffice | kurtas\nBrunch | co-ords | /shop/co-ords'}
+          />
+        </Field>
+      )}
+
+      {kind === 'festive' && (
+        <Field label="Festive Chips (comma separated)">
+          <Input
+            value={Array.isArray(item.festiveChips) ? item.festiveChips.join(', ') : ''}
+            onChange={(v) => set('festiveChips')(v.split(',').map((s) => s.trim()).filter(Boolean))}
+            placeholder="Sangeet, Reception, Mehendi, Diwali"
+          />
+        </Field>
+      )}
+
+      {kind === 'viral' && (
+        <Field label="Social Proof Count">
+          <Input value={item.savesCount} onChange={set('savesCount')} placeholder="e.g. 3,200+" />
+        </Field>
+      )}
+
+      {kind === 'editorial' && (
+        <Field label="Editor Quote">
+          <Input value={item.editorQuote} onChange={set('editorQuote')} placeholder="Three pieces I'd wear right now" />
+        </Field>
+      )}
     </div>
   );
 }
@@ -603,22 +723,21 @@ function HomepageBlockForm({ item, onChange }) {
 function HomepageBlocksTab() {
   const [blocks, setBlocks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [modal, setModal] = useState(null);
+  const [modal, setModal] = useState(null); // { mode: 'add'|'edit', item }
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      // Seed from static data on first load
       await apiFetch('/api/admin/content/homepage-blocks/seed', {
         method: 'POST',
         body: JSON.stringify({ items: DISCOVERY_EXPERIENCE_BLOCKS }),
       });
       const data = await apiFetch('/api/admin/content/homepage-blocks');
       setBlocks(data.items || []);
+      setError('');
     } catch (err) {
-      // If seed fails (no write), just read
       try {
         const data = await apiFetch('/api/admin/content/homepage-blocks');
         setBlocks(data.items?.length ? data.items : DISCOVERY_EXPERIENCE_BLOCKS);
@@ -633,12 +752,38 @@ function HomepageBlocksTab() {
 
   useEffect(() => { load(); }, [load]);
 
+  const saveOrder = async (nextBlocks) => {
+    setBlocks(nextBlocks);
+    try {
+      await apiFetch('/api/admin/content/homepage-blocks', {
+        method: 'PUT',
+        body: JSON.stringify({ items: nextBlocks }),
+      });
+      showToast('Order saved', 'success');
+    } catch (err) {
+      showToast(err.message, 'error');
+      load();
+    }
+  };
+
+  const moveBlock = (index, direction) => {
+    const next = [...blocks];
+    const target = index + direction;
+    if (target < 0 || target >= next.length) return;
+    [next[index], next[target]] = [next[target], next[index]];
+    saveOrder(next);
+  };
+
   const handleSave = async () => {
     setSaving(true);
     try {
+      const item = { ...modal.item };
+      if (modal.mode === 'add') {
+        item.id = item.id || `${slugify(item.title) || 'chapter'}-${Date.now()}`;
+      }
       await apiFetch('/api/admin/content/homepage-blocks', {
         method: 'POST',
-        body: JSON.stringify(modal.item),
+        body: JSON.stringify(item),
       });
       showToast('Block saved!', 'success');
       setModal(null);
@@ -650,6 +795,22 @@ function HomepageBlocksTab() {
     }
   };
 
+  const handleDelete = async (block) => {
+    if (!window.confirm(`Delete chapter "${block.title}"?`)) return;
+    try {
+      await apiFetch(`/api/admin/content/homepage-blocks/${block.id}`, { method: 'DELETE' });
+      showToast('Deleted', 'success');
+      setBlocks((prev) => prev.filter((b) => b.id !== block.id));
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  };
+
+  const openAdd = () => setModal({
+    mode: 'add',
+    item: { kind: 'quiz', accent: '#600b45', route: '/', tagline: '', hook: '', ctaText: 'Explore' },
+  });
+
   if (loading) return <div style={{ padding: 40, textAlign: 'center', color: 'var(--admin-text-soft)' }}>Loading blocks…</div>;
 
   return (
@@ -660,10 +821,23 @@ function HomepageBlocksTab() {
         </div>
       )}
 
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+        <p style={{ margin: 0, fontSize: 13, color: 'var(--admin-text-soft, #888)' }}>
+          {blocks.length} chapters · drag order with arrows · changes go live instantly
+        </p>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button type="button" onClick={load} className="admin-cyber-btn admin-cyber-btn--ghost" style={{ fontSize: 12, padding: '5px 12px' }}>
+            <RefreshCw size={13} />
+          </button>
+          <button type="button" onClick={openAdd} className="admin-cyber-btn admin-cyber-btn--primary" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12 }}>
+            <Plus size={14} /> Add Chapter
+          </button>
+        </div>
+      </div>
+
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
-        {blocks.map((block) => (
+        {blocks.map((block, index) => (
           <div key={block.id} className="glass-panel" style={{ borderRadius: 12, overflow: 'hidden', padding: 0, border: `2px solid ${block.accent || '#2a2a3e'}22` }}>
-            {/* Poster preview */}
             <div style={{ height: 130, background: '#111', position: 'relative', overflow: 'hidden' }}>
               {block.poster ? (
                 <img
@@ -678,22 +852,40 @@ function HomepageBlocksTab() {
                   <span style={{ fontSize: 11 }}>No image</span>
                 </div>
               )}
-              {/* Accent dot */}
               <div style={{ position: 'absolute', top: 8, left: 8, width: 10, height: 10, borderRadius: '50%', background: block.accent || '#600b45', boxShadow: '0 0 6px rgba(0,0,0,0.5)' }} />
+              <div style={{ position: 'absolute', top: 8, right: 8, display: 'flex', gap: 4 }}>
+                <button type="button" onClick={() => moveBlock(index, -1)} disabled={index === 0} title="Move left"
+                  style={{ background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 4, color: '#fff', cursor: index === 0 ? 'default' : 'pointer', opacity: index === 0 ? 0.4 : 1, padding: '2px 4px' }}>
+                  <ChevronUp size={12} style={{ transform: 'rotate(-90deg)' }} />
+                </button>
+                <button type="button" onClick={() => moveBlock(index, 1)} disabled={index === blocks.length - 1} title="Move right"
+                  style={{ background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 4, color: '#fff', cursor: index === blocks.length - 1 ? 'default' : 'pointer', opacity: index === blocks.length - 1 ? 0.4 : 1, padding: '2px 4px' }}>
+                  <ChevronDown size={12} style={{ transform: 'rotate(-90deg)' }} />
+                </button>
+              </div>
             </div>
 
             <div style={{ padding: '12px 14px' }}>
               <p style={{ margin: '0 0 2px', fontWeight: 700, fontSize: 13, color: 'var(--admin-text, #e0e0e0)' }}>{block.title}</p>
               <p style={{ margin: '0 0 4px', fontSize: 11, color: 'var(--admin-text-soft, #888)' }}>{block.tagline}</p>
-              <p style={{ margin: '0 0 10px', fontSize: 10, color: '#555', fontFamily: 'monospace' }}>{block.route || '—'}</p>
-              <button
-                type="button"
-                onClick={() => setModal({ item: { ...block } })}
-                className="admin-cyber-btn admin-cyber-btn--ghost"
-                style={{ fontSize: 11, padding: '5px 12px', display: 'flex', alignItems: 'center', gap: 5, width: '100%', justifyContent: 'center' }}
-              >
-                <Edit2 size={11} /> Edit Block
-              </button>
+              <p style={{ margin: '0 0 10px', fontSize: 10, color: '#555', fontFamily: 'monospace' }}>{block.kind || block.id}</p>
+              <div style={{ display: 'flex', gap: 6 }}>
+                <button
+                  type="button"
+                  onClick={() => setModal({ mode: 'edit', item: { ...block } })}
+                  className="admin-cyber-btn admin-cyber-btn--ghost"
+                  style={{ fontSize: 11, padding: '5px 10px', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}
+                >
+                  <Edit2 size={11} /> Edit
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(block)}
+                  style={{ padding: '5px 8px', borderRadius: 6, border: 'none', cursor: 'pointer', background: 'rgba(183,28,28,0.15)', color: '#ef9a9a' }}
+                >
+                  <Trash2 size={11} />
+                </button>
+              </div>
             </div>
           </div>
         ))}
@@ -701,13 +893,14 @@ function HomepageBlocksTab() {
 
       {modal && (
         <Modal
-          title={`Edit: ${modal.item.title}`}
+          title={modal.mode === 'add' ? 'Add New Chapter' : `Edit: ${modal.item.title}`}
           onClose={() => setModal(null)}
           onSave={handleSave}
           saving={saving}
         >
           <HomepageBlockForm
             item={modal.item}
+            isNew={modal.mode === 'add'}
             onChange={(updated) => setModal((m) => ({ ...m, item: updated }))}
           />
         </Modal>
@@ -718,10 +911,208 @@ function HomepageBlocksTab() {
   );
 }
 
+/* ── Discovery Extras Tab (polls, trending, rail labels) ───────────────── */
+
+function formatPollOptions(options) {
+  if (!Array.isArray(options)) return '';
+  return options.map((o) => `${o.id} | ${o.label} | ${o.emoji || ''}`).join('\n');
+}
+
+function parsePollOptions(text) {
+  return String(text || '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [id, label, emoji] = line.split('|').map((s) => s.trim());
+      return { id: id || slugify(label), label, emoji: emoji || '✨' };
+    });
+}
+
+function formatTrendingItems(items) {
+  if (!Array.isArray(items)) return '';
+  return items.map((t) => {
+    if (t.route) return `${t.label} | route:${t.route}`;
+    if (t.category) return `${t.label} | category:${t.category}`;
+    return t.label;
+  }).join('\n');
+}
+
+function parseTrendingItems(text) {
+  return String(text || '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [label, target] = line.split('|').map((s) => s.trim());
+      const item = { label };
+      if (target?.startsWith('route:')) item.route = target.replace('route:', '').trim();
+      else if (target?.startsWith('category:')) item.category = target.replace('category:', '').trim();
+      return item;
+    });
+}
+
+function formatChallenges(items) {
+  if (!Array.isArray(items)) return '';
+  return items.map((c) => `${c.id} | ${c.title} | ${c.hook} | ${c.route} | ${c.accent || '#600b45'}`).join('\n');
+}
+
+function parseChallenges(text) {
+  return String(text || '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [id, title, hook, route, accent] = line.split('|').map((s) => s.trim());
+      return { id, title, hook, route, accent: accent || '#600b45' };
+    });
+}
+
+function DiscoveryExtrasTab() {
+  const [config, setConfig] = useState(DEFAULT_DISCOVERY_CONFIG);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [pollsText, setPollsText] = useState('');
+  const [trendingText, setTrendingText] = useState('');
+  const [challengesText, setChallengesText] = useState('');
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    try {
+      await apiFetch('/api/admin/discovery-config/seed', {
+        method: 'POST',
+        body: JSON.stringify(DEFAULT_DISCOVERY_CONFIG),
+      });
+      const data = await apiFetch('/api/admin/discovery-config');
+      const cfg = data.config || DEFAULT_DISCOVERY_CONFIG;
+      setConfig(cfg);
+      setPollsText(
+        (cfg.fashionPolls || [])
+          .map((p) => `${p.id}\nQ: ${p.question}\nSub: ${p.subtext || ''}\n${formatPollOptions(p.options)}`)
+          .join('\n---\n'),
+      );
+      setTrendingText(formatTrendingItems(cfg.trendingSearches));
+      setChallengesText(formatChallenges(cfg.styleChallenges));
+    } catch (err) {
+      showToast(err.message, 'error');
+      setConfig(DEFAULT_DISCOVERY_CONFIG);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
+
+  const parsePollsFromText = (text) => {
+    return String(text || '')
+      .split('\n---\n')
+      .map((block) => block.trim())
+      .filter(Boolean)
+      .map((block) => {
+        const lines = block.split('\n');
+        const id = lines[0]?.trim() || `poll-${Date.now()}`;
+        const question = lines.find((l) => l.startsWith('Q:'))?.replace('Q:', '').trim() || '';
+        const subtext = lines.find((l) => l.startsWith('Sub:'))?.replace('Sub:', '').trim() || '';
+        const optLines = lines.filter((l) => !l.startsWith('Q:') && !l.startsWith('Sub:') && l !== id);
+        return {
+          id,
+          question,
+          subtext,
+          options: parsePollOptions(optLines.join('\n')),
+        };
+      });
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const payload = {
+        ...config,
+        fashionPolls: parsePollsFromText(pollsText),
+        trendingSearches: parseTrendingItems(trendingText),
+        styleChallenges: parseChallenges(challengesText),
+        editorNotes: Array.isArray(config.editorNotes)
+          ? config.editorNotes
+          : String(config.editorNotes || '').split('\n').filter(Boolean),
+      };
+      await apiFetch('/api/admin/discovery-config', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
+      setConfig(payload);
+      showToast('Discovery extras saved!', 'success');
+    } catch (err) {
+      showToast(err.message, 'error');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) return <div style={{ padding: 40, textAlign: 'center', color: 'var(--admin-text-soft)' }}>Loading…</div>;
+
+  return (
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 16 }}>
+        <button type="button" onClick={handleSave} disabled={saving} className="admin-cyber-btn admin-cyber-btn--primary" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          {saving ? <RefreshCw size={14} style={{ animation: 'spin 1s linear infinite' }} /> : <Save size={14} />}
+          {saving ? 'Saving…' : 'Save All Extras'}
+        </button>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Chapter Rail Header</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <Field label="Rail Label (e.g. THIS EDIT)">
+            <Input value={config.stripLabel} onChange={(v) => setConfig({ ...config, stripLabel: v })} />
+          </Field>
+          <Field label="Rail Subtitle">
+            <Input value={config.stripSub} onChange={(v) => setConfig({ ...config, stripSub: v })} />
+          </Field>
+        </div>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Editor&apos;s Voice Notes</h3>
+        <Field label="Product notes (one per line, max 3 shown)" hint="Shown under each editor pick on homepage">
+          <Textarea
+            value={Array.isArray(config.editorNotes) ? config.editorNotes.join('\n') : ''}
+            onChange={(v) => setConfig({ ...config, editorNotes: v.split('\n').filter(Boolean) })}
+            rows={4}
+          />
+        </Field>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Style Debate Polls</h3>
+        <Field label="Poll blocks (separate with ---)" hint="Format per poll: id on line 1, Q: question, Sub: subtext, then options as id | label | emoji">
+          <Textarea value={pollsText} onChange={setPollsText} rows={14} />
+        </Field>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Style Challenge Links</h3>
+        <Field label="One per line: id | title | hook | route | accent">
+          <Textarea value={challengesText} onChange={setChallengesText} rows={6} />
+        </Field>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Trending in India</h3>
+        <Field label="One per line: Label | route:/path OR Label | category:slug">
+          <Textarea value={trendingText} onChange={setTrendingText} rows={10} />
+        </Field>
+      </div>
+
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    </div>
+  );
+}
+
 /* ── Root export ──────────────────────────────────────────────────────────── */
 
 const TABS = [
-  { id: 'homepage-blocks', label: 'Homepage Blocks', icon: Layout, custom: true },
+  { id: 'homepage-blocks', label: 'Homepage Chapters', icon: Layout, custom: 'homepage-blocks' },
+  { id: 'discovery-extras', label: 'Polls & Trending', icon: Settings2, custom: 'discovery-extras' },
   {
     id: 'celebrity-looks', label: 'Celebrity Looks', icon: Star,
     apiType: 'celebrity-looks',
@@ -763,7 +1154,7 @@ export default function ContentEditorPage() {
           Content Editor
         </h1>
         <p style={{ margin: 0, fontSize: 13, color: 'var(--admin-text-soft, #888)' }}>
-          Edit homepage blocks, celebrity looks, trends, guides, and quizzes. Drag & drop images directly in any form field.
+          Edit homepage chapters, polls, trending terms, and all editorial content. Drag & drop images directly in any form field.
         </p>
       </div>
 
@@ -804,8 +1195,12 @@ export default function ContentEditorPage() {
         ))}
       </div>
 
-      {tab?.custom && tab.id === 'homepage-blocks' && (
+      {tab?.custom === 'homepage-blocks' && (
         <HomepageBlocksTab key="homepage-blocks" />
+      )}
+
+      {tab?.custom === 'discovery-extras' && (
+        <DiscoveryExtrasTab key="discovery-extras" />
       )}
 
       {tab && !tab.custom && (

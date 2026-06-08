@@ -16,6 +16,7 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     kind: 'quiz',
     poster: '/kurtas/Kurtas/1/040A2925_700x.webp',
     ctaText: 'Discover your style type',
+    quizQuestion: 'Which vibe feels most like you?',
     previewOptions: [
       { label: 'Clean & understated' },
       { label: 'Bold & statement' },
@@ -189,6 +190,20 @@ export const TRENDING_SEARCHES = [
   { label: 'Anarkali with pants', category: 'kurtas' },
   { label: 'Under ₹999 picks', route: '/viral' },
 ];
+
+/** Default discovery extras — seeded into admin store on first load */
+export const DEFAULT_DISCOVERY_CONFIG = {
+  stripLabel: 'THIS EDIT',
+  stripSub: 'Tap any chapter to open it',
+  editorNotes: [
+    'The desk pick for effortless festive dressing — structure without stiffness.',
+    'A scroll-stopper that still feels wearable off the feed.',
+    'Investment-tier fabric, everyday-friendly silhouette.',
+  ],
+  fashionPolls: FASHION_POLLS,
+  styleChallenges: STYLE_CHALLENGES,
+  trendingSearches: TRENDING_SEARCHES,
+};
 
 /** Legacy export — kept for backward-compatible imports */
 export const DISCOVERY_HUB_BLOCKS = DISCOVERY_EXPERIENCE_BLOCKS.map((b) => ({

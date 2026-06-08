@@ -15,7 +15,7 @@ import {
   AlertCircle,
   X,
 } from 'lucide-react';
-import { apiFetch } from '../../api/client';
+import { apiFetch, getAdminToken } from '../../api/client';
 
 const BASE_URL = 'http://localhost:5173';
 
@@ -226,7 +226,7 @@ export default function ImageManagerPage() {
     const formData = new FormData();
     files.forEach((f) => formData.append('images', f));
     try {
-      const token = localStorage.getItem('admin_token');
+      const token = getAdminToken();
       const res = await fetch('/api/admin/images/upload', {
         method: 'POST',
         headers: token ? { Authorization: `Bearer ${token}` } : {},

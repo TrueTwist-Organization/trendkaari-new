@@ -16,6 +16,7 @@ import {
 import OrderSummary from './OrderSummary';
 import OrderSuccess from './OrderSuccess';
 import CheckoutStepPageShell from './CheckoutStepPageShell';
+import PlacedAdSlot from '../components/PlacedAdSlot';
 import { CheckoutFreeShipBar } from './CheckoutStepExtras';
 import { SUCCESS_STEP_INDEX } from './checkoutSteps';
 import { formatCouponDiscountShort } from '../utils/couponDiscount';
@@ -126,6 +127,12 @@ export default function CheckoutStepPages({ step, ctx }) {
         0,
         (
           <div className={cardClass}>
+            <PlacedAdSlot
+              adCodes={adCodes}
+              placement="checkout_empty_cart"
+              variant="checkout"
+              allowDuplicateSource
+            />
             <h2 className="co-step-heading">Your bag is empty</h2>
             <p className="co-step-sub">Add items to start checkout.</p>
             <button type="button" className="co-btn-primary" onClick={onClose}>

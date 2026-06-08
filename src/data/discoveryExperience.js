@@ -32,7 +32,7 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     route: '/celebrity-match',
     accent: '#c9a84c',
     kind: 'celebrity',
-    poster: '/sarees/Sarees/1/0T3A5495_700x.webp',
+    poster: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp',
     ctaText: 'Match a Bollywood look',
     dark: true,
   },
@@ -75,8 +75,7 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     route: '/magazine/festival-fashion',
     accent: '#880e4f',
     kind: 'festive',
-    poster: '/lehengas/Lehengas/1/040A3523_700x.webp',
-    ctaText: 'Open the wedding edit',
+    poster: '/lehengas/Lehengas/9/040A1707_700x.webp',
     festiveChips: [
       { label: 'Sangeet', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1707_700x.webp' },
       { label: 'Reception', category: 'sarees', image: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp' },
@@ -94,7 +93,7 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     route: '/magazine',
     accent: '#4a0834',
     kind: 'articles',
-    poster: '/kurtas/Kurtas/1/040A2925_700x.webp',
+    poster: '/kurtas/Kurtas/9/LBL101KS620_1_700x.webp',
     ctaText: 'Read the full edit',
   },
   {

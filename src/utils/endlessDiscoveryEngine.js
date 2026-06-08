@@ -91,6 +91,16 @@ function normalizeReadingItem(item, type) {
   };
 }
 
+const BROKEN_READING_IMAGES = new Set([
+  '/kurtas/Kurtas/1/040A2925_700x.webp',
+  '/sarees/Sarees/1/040A3523_700x.webp',
+]);
+
+function hasReadableImage(entry) {
+  const image = String(entry?.image || '').trim();
+  return image.length > 0 && !BROKEN_READING_IMAGES.has(image);
+}
+
 function getRelatedReading(ctx, limit = MIN_READING) {
   const { article, knowledgePage } = ctx;
   const anchor = resolveAnchorCategory(ctx);
@@ -98,7 +108,7 @@ function getRelatedReading(ctx, limit = MIN_READING) {
   const seen = new Set();
 
   const push = (entry) => {
-    if (!entry || seen.has(entry.id)) return;
+    if (!entry || seen.has(entry.id) || !hasReadableImage(entry)) return;
     seen.add(entry.id);
     items.push(entry);
   };

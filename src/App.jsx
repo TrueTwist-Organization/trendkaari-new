@@ -622,8 +622,9 @@ export default function App() {
     const refreshAds = () => {
       fetchStoreAdSlots().then((list) => {
         const codes = adSlotsToCodeMap(list || []);
-        if (codes.site_common_ad) {
-          injectTrackingScriptsFromHtml(codes.site_common_ad, 'site_common_ad');
+        const trackingHtml = codes.site_common_ad || codes.global_banner;
+        if (trackingHtml) {
+          injectTrackingScriptsFromHtml(trackingHtml, 'site_common_ad');
         }
         void preloadAdLibraries(codes);
         setAdCodes(codes);
@@ -1202,7 +1203,10 @@ export default function App() {
 
       {viewMode !== 'checkout' && (
         <>
-          <SiteTopAdStrip code={adCodes.site_common_ad} slotKey="site_common_ad" />
+          <SiteTopAdStrip
+            code={adCodes.site_common_ad || adCodes.global_banner}
+            slotKey="site_common_ad"
+          />
           {viewMode === 'home' && !isCategoryPage ? (
             <SiteTopAdStrip code={adCodes.home_below_header} slotKey="home_below_header" />
           ) : null}

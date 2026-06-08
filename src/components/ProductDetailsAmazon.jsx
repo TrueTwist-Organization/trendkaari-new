@@ -23,20 +23,23 @@ export default function ProductDetailsAmazon({ product }) {
   const additionalRows = content.additionalInfo ? Object.entries(content.additionalInfo) : [];
 
   return (
-    <section className="pdp-product-details" aria-label="Product details">
-      <h2 className="pdp-amazon-main-title">Product details</h2>
+    <div className="pdp-product-details" aria-label="Product details">
+      <header className="pdp-details-amazon-head">
+        <h2 className="pdp-amazon-main-title">Product details</h2>
+        <p className="pdp-details-amazon-dek">Fabric, fit, care, and everything else before you add to bag.</p>
+      </header>
 
       {highlightRows.length > 0 && (
-        <div className="pdp-amazon-section">
-          <h3 className="pdp-amazon-subtitle">Top highlights</h3>
+        <article className="pdp-detail-card pdp-detail-card--highlights">
+          <h3 className="pdp-detail-card__title">Top highlights</h3>
           <KeyValueTable rows={highlightRows} />
-        </div>
+        </article>
       )}
 
       {content.aboutItems?.length > 0 && (
-        <div className="pdp-amazon-section">
-          <h3 className="pdp-amazon-subtitle">About this item</h3>
-          <ul className="pdp-amazon-bullets">
+        <article className="pdp-detail-card pdp-detail-card--about">
+          <h3 className="pdp-detail-card__title">About this item</h3>
+          <ol className="pdp-amazon-bullets pdp-amazon-bullets--numbered">
             {content.aboutItems.map((item, i) => {
               const { label, body } = parseAboutBullet(item);
               return (
@@ -51,24 +54,24 @@ export default function ProductDetailsAmazon({ product }) {
                 </li>
               );
             })}
-          </ul>
-        </div>
+          </ol>
+        </article>
       )}
 
-      <div className="pdp-amazon-section">
-        <h3 className="pdp-amazon-subtitle">Product description</h3>
+      <article className="pdp-detail-card pdp-detail-card--description">
+        <h3 className="pdp-detail-card__title">Product description</h3>
         <div className="pdp-amazon-desc-box">
           <p>{content.descriptionLong || product.description}</p>
         </div>
         <p className="pdp-amazon-model-note">The model (height 170 cm) is wearing a size S.</p>
-      </div>
+      </article>
 
       {additionalRows.length > 0 && (
-        <div className="pdp-amazon-section">
-          <h3 className="pdp-amazon-subtitle">Additional Information</h3>
+        <article className="pdp-detail-card pdp-detail-card--extra">
+          <h3 className="pdp-detail-card__title">Additional information</h3>
           <KeyValueTable rows={additionalRows} />
-        </div>
+        </article>
       )}
-    </section>
+    </div>
   );
 }

@@ -14,8 +14,9 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     route: '/quiz/personality',
     accent: '#600b45',
     kind: 'quiz',
-    poster: '/kurtas/Kurtas/1/040A2925_700x.webp',
+    poster: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
     ctaText: 'Discover your style type',
+    quizQuestion: 'Which vibe feels most like you?',
     previewOptions: [
       { label: 'Clean & understated' },
       { label: 'Bold & statement' },
@@ -31,7 +32,7 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     route: '/celebrity-match',
     accent: '#c9a84c',
     kind: 'celebrity',
-    poster: '/sarees/Sarees/1/040A3523_700x.webp',
+    poster: '/sarees/Sarees/1/0T3A5495_700x.webp',
     ctaText: 'Match a Bollywood look',
     dark: true,
   },
@@ -55,15 +56,15 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     route: '/quiz/outfit-finder',
     accent: '#1565c0',
     kind: 'occasion',
-    poster: '/co-ords/co-ord_set/1/1.webp',
+    poster: '/sarees/Sarees/1/0T3A5495_700x.webp',
     ctaText: 'Find your occasion look',
     occasionChips: [
-      { label: 'Wedding Guest', category: 'lehengas' },
-      { label: 'Sangeet', category: 'lehengas' },
-      { label: 'Office', category: 'kurtas' },
-      { label: 'Puja', category: 'kurtas' },
-      { label: 'Brunch', category: 'co-ords' },
-      { label: 'First Job', category: 'suit sets' },
+      { label: 'Wedding Guest', category: 'lehengas', image: '/lehengas/Lehengas/1/040A3523_700x.webp' },
+      { label: 'Sangeet', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1707_700x.webp' },
+      { label: 'Office', category: 'kurtas', image: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp' },
+      { label: 'Puja', category: 'kurtas', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
+      { label: 'Brunch', category: 'co-ords', image: '/co-ords/co-ord_set/1/2.webp' },
+      { label: 'First Job', category: 'suit sets', image: '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp' },
     ],
   },
   {
@@ -76,7 +77,14 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     kind: 'festive',
     poster: '/lehengas/Lehengas/1/040A3523_700x.webp',
     ctaText: 'Open the wedding edit',
-    festiveChips: ['Sangeet', 'Reception', 'Mehendi', 'Engagement', 'Haldi', 'Diwali'],
+    festiveChips: [
+      { label: 'Sangeet', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1707_700x.webp' },
+      { label: 'Reception', category: 'sarees', image: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp' },
+      { label: 'Mehendi', category: 'kurtas', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
+      { label: 'Engagement', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1719_700x.webp' },
+      { label: 'Haldi', category: 'suit sets', image: '/suit-sets/Suit Sets/9/L12.01.25_1841_dbebe693-a859-4d15-a687-495f04734aba_700x.webp' },
+      { label: 'Diwali', category: 'sarees', image: '/sarees/Sarees/9/L12.01.25_3547_33128c31-b45d-4240-b2c3-634c0659e06c_700x.webp' },
+    ],
   },
   {
     id: 'edit-desk',
@@ -122,6 +130,82 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     poster: '/mens/kurtas/kurta/1/l-pkt410-vebnor-original-imahnybzsfggj62r.webp',
   },
 ];
+
+/** Default poster image per occasion label when admin data has no chip.image */
+export const OCCASION_CHIP_IMAGE_BY_LABEL = {
+  'Wedding Guest': '/lehengas/Lehengas/1/040A3523_700x.webp',
+  Sangeet: '/lehengas/Lehengas/9/040A1707_700x.webp',
+  Office: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
+  Puja: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
+  Brunch: '/co-ords/co-ord_set/1/2.webp',
+  'First Job': '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp',
+};
+
+const OCCASION_CHIP_IMAGE_BY_CATEGORY = {
+  lehengas: '/lehengas/Lehengas/1/040A3523_700x.webp',
+  kurtas: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
+  'co-ords': '/co-ords/co-ord_set/1/1.webp',
+  'suit sets': '/suit-sets/Suit Sets/9/L12.01.25_1930_700x.webp',
+};
+
+export function resolveOccasionChipImage(chip, blockPoster = '') {
+  if (chip?.image) return chip.image;
+  if (chip?.label && OCCASION_CHIP_IMAGE_BY_LABEL[chip.label]) {
+    return OCCASION_CHIP_IMAGE_BY_LABEL[chip.label];
+  }
+  const cat = String(chip?.category || '').toLowerCase();
+  if (cat && OCCASION_CHIP_IMAGE_BY_CATEGORY[cat]) {
+    return OCCASION_CHIP_IMAGE_BY_CATEGORY[cat];
+  }
+  return blockPoster;
+}
+
+/** Default poster image per festive occasion label */
+export const FESTIVE_CHIP_IMAGE_BY_LABEL = {
+  Sangeet: '/lehengas/Lehengas/9/040A1707_700x.webp',
+  Reception: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp',
+  Mehendi: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
+  Engagement: '/lehengas/Lehengas/9/040A1719_700x.webp',
+  Haldi: '/suit-sets/Suit Sets/9/L12.01.25_1841_dbebe693-a859-4d15-a687-495f04734aba_700x.webp',
+  Diwali: '/sarees/Sarees/9/L12.01.25_3547_33128c31-b45d-4240-b2c3-634c0659e06c_700x.webp',
+};
+
+const FESTIVE_CHIP_CATEGORY_BY_LABEL = {
+  Sangeet: 'lehengas',
+  Reception: 'sarees',
+  Mehendi: 'kurtas',
+  Engagement: 'lehengas',
+  Haldi: 'suit sets',
+  Diwali: 'sarees',
+};
+
+export function resolveFestiveChipImage(chip, blockPoster = '') {
+  if (chip?.image) return chip.image;
+  if (chip?.label && FESTIVE_CHIP_IMAGE_BY_LABEL[chip.label]) {
+    return FESTIVE_CHIP_IMAGE_BY_LABEL[chip.label];
+  }
+  return blockPoster;
+}
+
+/** Supports admin string[] or { label, category, image }[] */
+export function normalizeFestiveChips(chips, blockPoster = '') {
+  if (!Array.isArray(chips)) return [];
+  return chips.map((chip) => {
+    if (typeof chip === 'string') {
+      const label = chip.trim();
+      return {
+        label,
+        category: FESTIVE_CHIP_CATEGORY_BY_LABEL[label] || 'lehengas',
+        image: FESTIVE_CHIP_IMAGE_BY_LABEL[label] || blockPoster,
+      };
+    }
+    return {
+      label: chip.label,
+      category: chip.category || FESTIVE_CHIP_CATEGORY_BY_LABEL[chip.label] || 'lehengas',
+      image: resolveFestiveChipImage(chip, blockPoster),
+    };
+  });
+}
 
 export const STYLE_CHALLENGES = [
   {
@@ -178,17 +262,51 @@ export const FASHION_POLLS = [
 ];
 
 export const TRENDING_SEARCHES = [
-  { label: 'Wedding guest fashion', route: '/trends/wedding-fashion' },
-  { label: 'Celebrity airport looks', route: '/trends/airport-looks' },
-  { label: 'Viral Instagram outfits', route: '/trends/viral-instagram-fashion' },
-  { label: 'Festival season edit', route: '/trends/festival-fashion' },
-  { label: 'Sangeet guest outfit', category: 'lehengas' },
-  { label: 'Summer fashion 2026', route: '/trends/summer-fashion' },
-  { label: 'Bollywood inspired looks', route: '/celebrity-match' },
-  { label: 'Handloom sarees', category: 'sarees' },
-  { label: 'Anarkali with pants', category: 'kurtas' },
-  { label: 'Under ₹999 picks', route: '/viral' },
+  { label: 'Wedding guest fashion', route: '/trends/wedding-fashion', image: '/lehengas/Lehengas/1/040A3523_700x.webp' },
+  { label: 'Celebrity airport looks', route: '/trends/airport-looks', image: '/kurtas/Kurtas/9/LBL101KS620_1_700x.webp' },
+  { label: 'Viral Instagram outfits', route: '/trends/viral-instagram-fashion', image: '/co-ords/co-ord_set/1/1.webp' },
+  { label: 'Festival season edit', route: '/trends/festival-fashion', image: '/lehengas/Lehengas/9/040A1707_700x.webp' },
+  { label: 'Sangeet guest outfit', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1719_700x.webp' },
+  { label: 'Summer fashion 2026', route: '/trends/summer-fashion', image: '/sarees/Sarees/9/L12.01.25_3415_700x.webp' },
+  { label: 'Bollywood inspired looks', route: '/celebrity-match', image: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp' },
+  { label: 'Handloom sarees', category: 'sarees', image: '/sarees/Sarees/9/L12.01.25_3547_33128c31-b45d-4240-b2c3-634c0659e06c_700x.webp' },
+  { label: 'Anarkali with pants', category: 'kurtas', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
+  { label: 'Under ₹999 picks', route: '/viral', image: '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp' },
 ];
+
+export const TRENDING_SEARCH_IMAGE_BY_LABEL = Object.fromEntries(
+  TRENDING_SEARCHES.map((item) => [item.label, item.image]),
+);
+
+const TRENDING_HEAT_BY_RANK = [98, 94, 89, 84, 79, 74, 70, 66, 62, 58];
+
+/** Supports admin { label, route?, category? }[] without images */
+export function normalizeTrendingSearches(searches) {
+  if (!Array.isArray(searches)) return [];
+  return searches.map((item, index) => {
+    const label = typeof item === 'string' ? item.trim() : item.label;
+    const base = typeof item === 'string' ? { label } : { ...item, label };
+    return {
+      ...base,
+      image: base.image || TRENDING_SEARCH_IMAGE_BY_LABEL[label] || '',
+      heat: base.heat ?? TRENDING_HEAT_BY_RANK[index] ?? Math.max(55, 90 - index * 4),
+    };
+  });
+}
+
+/** Default discovery extras — seeded into admin store on first load */
+export const DEFAULT_DISCOVERY_CONFIG = {
+  stripLabel: 'THIS EDIT',
+  stripSub: 'Tap any chapter to open it',
+  editorNotes: [
+    'The desk pick for effortless festive dressing — structure without stiffness.',
+    'An heirloom-worthy weave that still moves with you at a mehendi.',
+    'A silk-forward silhouette for when the invite says celebration.',
+  ],
+  fashionPolls: FASHION_POLLS,
+  styleChallenges: STYLE_CHALLENGES,
+  trendingSearches: TRENDING_SEARCHES,
+};
 
 /** Legacy export — kept for backward-compatible imports */
 export const DISCOVERY_HUB_BLOCKS = DISCOVERY_EXPERIENCE_BLOCKS.map((b) => ({

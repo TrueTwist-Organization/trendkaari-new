@@ -12,13 +12,6 @@ export function getContent(type) {
   return store[type] || [];
 }
 
-export async function setContent(type, items) {
-  return updateStore((store) => {
-    store[type] = items;
-    return store;
-  });
-}
-
 export async function upsertContentItem(type, item) {
   return updateStore((store) => {
     const list = store[type] || [];
@@ -44,6 +37,37 @@ export async function seedContentIfEmpty(type, staticItems) {
   if (!store[type] || store[type].length === 0) {
     await updateStore((s) => {
       s[type] = staticItems;
+      return s;
+    });
+  }
+}
+
+/** Replace an entire content list (e.g. reorder homepage blocks). */
+export async function setContent(type, items) {
+  return updateStore((store) => {
+    store[type] = items;
+    return store;
+  });
+}
+
+/** Discovery extras: chapter rail labels, polls, challenges, trending, editor notes. */
+export function getDiscoveryConfig() {
+  const store = readStore();
+  return store.discovery_config || null;
+}
+
+export async function setDiscoveryConfig(config) {
+  return updateStore((store) => {
+    store.discovery_config = config;
+    return store;
+  });
+}
+
+export async function seedDiscoveryConfigIfEmpty(defaults) {
+  const store = readStore();
+  if (!store.discovery_config) {
+    await updateStore((s) => {
+      s.discovery_config = defaults;
       return s;
     });
   }

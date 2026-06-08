@@ -52,10 +52,10 @@ export default function DiscoveryRail({
           <button
             key={product.id}
             type="button"
-            className="discovery-rail__card hover-zoom-container"
+            className="discovery-rail__card"
             onClick={() => onSelectProduct?.(product)}
           >
-            <div className="discovery-rail__img-wrap">
+            <div className="discovery-rail__img-wrap hover-zoom-container">
               <ProductImage
                 src={product.image}
                 alt={product.title}

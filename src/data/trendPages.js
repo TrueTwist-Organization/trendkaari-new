@@ -124,7 +124,7 @@ export const TREND_PAGES = [
       'India runs on festivals, and festivals run on fashion. The 2026 festive season has a clear direction: move away from generic ethnic and towards intentional traditional. That means knowing your fabric, your embroidery, and exactly which silhouette photographs best under string lights.',
       'This year, the safest choice is also the most stylish one — a well-fitted anarkali in a jewel tone will outlast any trend. But if you want to take a risk, mirror-work lehengas with minimal blouses are having their defining moment.',
     ],
-    heroImage: '/co-ords/co-ord_set/1/1.webp',
+    heroImage: '/lehengas/Lehengas/9/040A1707_700x.webp',
     accent: '#c9a84c',
     accentLight: 'rgba(201,168,76,0.08)',
     categories: ['lehengas', 'kurtas', 'suit sets'],

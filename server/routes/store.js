@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { readStore, readFreshStore, updateStore, resolveStoreAdSlots } from '../lib/store.js';
-import { getContent } from '../lib/editorialContent.js';
+import { getContent, getDiscoveryConfig } from '../lib/editorialContent.js';
 import { sendOrderConfirmationEmail } from '../lib/orderEmail.js';
 import { optionalUser } from '../middleware/userAuth.js';
 import { getStoreSettings, getActiveAdSlots } from '../lib/siteConfig.js';
@@ -188,6 +188,15 @@ router.get('/content', (req, res) => {
     res.json({ items, hasAdminContent: items.length > 0 });
   } catch {
     res.json({ items: [], hasAdminContent: false });
+  }
+});
+
+/** GET /api/store/discovery-config — chapter rail labels, polls, trending, etc. */
+router.get('/discovery-config', (req, res) => {
+  try {
+    res.json({ config: getDiscoveryConfig() });
+  } catch {
+    res.json({ config: null });
   }
 });
 

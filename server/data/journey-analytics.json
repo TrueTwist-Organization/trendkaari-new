@@ -1,6 +1,34 @@
 {
   "sessions": [
     {
+      "id": "c2d6e02d-0e3a-486e-9c66-537ce570e74f",
+      "startedAt": 1780915642908,
+      "pageCount": 1,
+      "lastPage": "/dmin",
+      "updatedAt": 1780915642908
+    },
+    {
+      "id": "2be2602a-5591-4aaf-89db-da3b9ac53be0",
+      "startedAt": 1780915571712,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780915571712
+    },
+    {
+      "id": "b84bf108-79af-4abe-8c59-bfb32750ac76",
+      "startedAt": 1780915571793,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780915571793
+    },
+    {
+      "id": "a25d8d81-e219-4e08-b65d-bba7050f12c2",
+      "startedAt": 1780915571638,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780915571638
+    },
+    {
       "id": "bb72eaa1-7ea0-4ee4-be2a-1505d77ef5c5",
       "startedAt": 1780912063321,
       "pageCount": 1,
@@ -108,14 +136,14 @@
   ],
   "pageStats": {
     "/": {
-      "views": 49,
+      "views": 95,
       "scroll": {
-        "25": 4,
-        "50": 2,
-        "75": 2,
-        "100": 0
+        "25": 10,
+        "50": 6,
+        "75": 6,
+        "100": 4
       },
-      "totalDurationMs": 110413808,
+      "totalDurationMs": 113282248,
       "clicks": 1,
       "heatmap": {
         "7,8": 1
@@ -144,14 +172,28 @@
       "totalDurationMs": 19236,
       "clicks": 0,
       "heatmap": {}
+    },
+    "/dmin": {
+      "views": 2,
+      "scroll": {
+        "25": 0,
+        "50": 0,
+        "75": 0,
+        "100": 0
+      },
+      "totalDurationMs": 21780,
+      "clicks": 0,
+      "heatmap": {}
     }
   },
   "pathEdges": {
     "/product/1036 → /product/1036": 6,
     "/product/1036 → /": 1,
-    "/ → /": 36,
-    "/celebrity-match/alia-reception → /celebrity-match/alia-reception": 1
+    "/ → /": 78,
+    "/celebrity-match/alia-reception → /celebrity-match/alia-reception": 1,
+    "/ → /dmin": 1,
+    "/dmin → /dmin": 1
   },
-  "totalEvents": 197,
-  "updatedAt": "2026-06-08T09:57:08.856Z"
+  "totalEvents": 312,
+  "updatedAt": "2026-06-08T10:47:22.914Z"
 }

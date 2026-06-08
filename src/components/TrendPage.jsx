@@ -14,10 +14,11 @@
  * Mobile first. No JS animations. No heavy dependencies.
  */
 import React, { useMemo, useEffect } from 'react';
-import { ChevronLeft, ArrowRight, Sparkles, BookOpen, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, BookOpen, TrendingUp } from 'lucide-react';
 import { TREND_PAGES, getTrendPage } from '../data/trendPages';
 import { CELEBRITY_LOOKS } from '../data/celebrityLooks';
 import ProductImage from './ProductImage';
+import PageBackButton from './PageBackButton';
 import { trackTrendPageViewed } from '../utils/ga4';
 import EndlessDiscovery from './EndlessDiscovery';
 import './TrendPage.css';
@@ -191,10 +192,7 @@ function TrendHub({ onNavigate, onBack }) {
   return (
     <div className="trend-hub">
       <div className="trend-hub__hero container">
-        <button type="button" className="trend-page__back-btn" onClick={onBack}>
-          <ChevronLeft size={16} aria-hidden="true" />
-          Home
-        </button>
+        <PageBackButton onClick={onBack} label="Home" className="trend-hub__back" />
         <p className="trend-page__eyebrow">TRENDKAARI · TREND REPORTS</p>
         <h1 className="trend-hub__title">What India is wearing right now.</h1>
         <p className="trend-hub__sub">
@@ -243,52 +241,114 @@ function TrendPageFull({
     <div className="trend-page" style={{ '--trend-accent': trend.accent, '--trend-accent-light': trend.accentLight }}>
 
       {/* ─── Hero ────────────────────────────────────────────────────── */}
-      <div className="trend-page__hero">
-        <button
-          type="button"
-          className="trend-page__back-btn"
-          onClick={onBack}
-          aria-label="Back to all trends"
-        >
-          <ChevronLeft size={16} aria-hidden="true" />
-          All trends
-        </button>
-
-        <div className="trend-page__hero-media">
-          <img
-            src={trend.heroImage}
-            alt=""
-            className="trend-page__hero-img"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
+      <header className="trend-page__hero">
+        <div className="trend-page__hero-nav container">
+          <PageBackButton
+            onClick={onBack}
+            label="All trends"
+            className="page-back-btn--minimal trend-page__back"
           />
-          <div className="trend-page__hero-overlay" aria-hidden="true" />
-          <div className="trend-page__hero-copy">
-            <span className="trend-page__hero-eyebrow">{trend.eyebrow}</span>
-            <h1 className="trend-page__hero-title">{trend.title}</h1>
-            <p className="trend-page__hero-tagline">{trend.tagline}</p>
+        </div>
+
+        <div className="trend-page__hero-split">
+          <div className="trend-page__hero-visual" aria-hidden="true">
+            <img
+              src={trend.heroImage}
+              alt=""
+              className="trend-page__hero-img"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </div>
+
+          <div className="trend-page__hero-panel">
+            <div className="trend-page__hero-panel-inner">
+              <span className="trend-page__hero-eyebrow">{trend.eyebrow}</span>
+              <h1 className="trend-page__hero-title">{trend.title}</h1>
+              <p className="trend-page__hero-tagline">{trend.tagline}</p>
+
+              {trend.categories?.length > 0 && (
+                <ul className="trend-page__hero-chips" aria-label="Shop categories">
+                  {trend.categories.map((cat) => (
+                    <li key={cat}>
+                      <button
+                        type="button"
+                        className="trend-page__hero-chip"
+                        onClick={() => onSelectCategory?.(cat)}
+                      >
+                        {cat}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <div className="trend-page__hero-meta">
+                <span>{featuredCelebs.length} celebrity looks</span>
+                <span aria-hidden="true">·</span>
+                <span>{trend.quizzes.length} style quizzes</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </header>
 
       <div className="container trend-page__body">
 
         {/* ─── Editorial ──────────────────────────────────────────────── */}
         <section className="trend-page__editorial">
-          <p className="trend-page__eyebrow">THE STORY</p>
-          {trend.editorial.map((para, i) => (
-            <p key={i} className="trend-page__editorial-para">{para}</p>
-          ))}
-          <button
-            type="button"
-            className="trend-page__read-more"
-            onClick={() => onOpenArticle?.(trend.magazineCategory)}
-            aria-label={`Read more in ${trend.magazineCategory} magazine`}
-          >
-            <TrendingUp size={15} aria-hidden="true" />
-            Read the full editorial in our magazine
-          </button>
+          <div className="trend-page__editorial-main">
+            <p className="trend-page__eyebrow">THE STORY</p>
+            <h2 className="trend-page__editorial-headline">What&apos;s driving this trend</h2>
+            {trend.editorial.map((para, i) => (
+              <p
+                key={i}
+                className={`trend-page__editorial-para${i === 0 ? ' trend-page__editorial-para--lead' : ''}`}
+              >
+                {para}
+              </p>
+            ))}
+            <button
+              type="button"
+              className="trend-page__read-more"
+              onClick={() => onOpenArticle?.(trend.magazineCategory)}
+              aria-label={`Read more in ${trend.magazineCategory} magazine`}
+            >
+              <TrendingUp size={15} aria-hidden="true" />
+              Read the full editorial in our magazine
+            </button>
+          </div>
+
+          <aside className="trend-page__editorial-aside" aria-label="Trend quick links">
+            <p className="trend-page__aside-label">In this report</p>
+            <ul className="trend-page__aside-list">
+              {featuredCelebs.length > 0 && (
+                <li>
+                  <button type="button" onClick={() => onNavigate('/celebrity-match')}>
+                    Celebrity looks
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </button>
+                </li>
+              )}
+              {relatedProducts.length > 0 && (
+                <li>
+                  <button type="button" onClick={() => onSelectCategory?.(trend.categories[0])}>
+                    Shop the edit
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </button>
+                </li>
+              )}
+              {trend.quizzes[0] && (
+                <li>
+                  <button type="button" onClick={() => onStartQuiz?.(trend.quizzes[0].slug)}>
+                    {trend.quizzes[0].label}
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </button>
+                </li>
+              )}
+            </ul>
+          </aside>
         </section>
 
         {/* ─── Celebrity Looks ────────────────────────────────────────── */}
@@ -403,9 +463,7 @@ export default function TrendPage({
   if (!trend) {
     return (
       <div className="trend-page trend-page--404 container">
-        <button type="button" className="trend-page__back-btn" onClick={onBack}>
-          <ChevronLeft size={16} aria-hidden="true" /> All trends
-        </button>
+        <PageBackButton onClick={onBack} label="All trends" className="trend-page__back" />
         <p style={{ marginTop: '2rem', color: 'var(--text-muted)' }}>
           This trend page is not available.
         </p>

@@ -1,15 +1,20 @@
-import { getEditorsPicks, getViralFashion } from './discoveryEngine';
-import { getFeaturedArticles } from '../data/fashionMagazine';
+import { getEditorsVoicePicks, getViralFashion } from './discoveryEngine';
+import { getFeaturedArticles, getArticleBySlug } from '../data/fashionMagazine';
 import { CELEBRITY_LOOKS } from '../data/celebrityLooks';
-import { DISCOVERY_EXPERIENCE_BLOCKS } from '../data/discoveryExperience';
+import { DISCOVERY_EXPERIENCE_BLOCKS, DEFAULT_DISCOVERY_CONFIG } from '../data/discoveryExperience';
 
-const EDITOR_NOTES = [
-  'The desk pick for effortless festive dressing — structure without stiffness.',
-  'A scroll-stopper that still feels wearable off the feed.',
-  'Investment-tier fabric, everyday-friendly silhouette.',
-];
+const DEFAULT_EDITOR_NOTES = DEFAULT_DISCOVERY_CONFIG.editorNotes;
 
 const FESTIVE_CATEGORIES = ['lehengas', 'sarees', 'suit sets', 'suits'];
+
+function getEditDeskArticles() {
+  const curated = [
+    getArticleBySlug('fashion-trends', 'co-ord-sets-dominating-2026'),
+    getArticleBySlug('styling-tips', 'kurta-length-decoded'),
+    getArticleBySlug('celebrity-looks', 'deepika-red-carpet-recreate'),
+  ].filter(Boolean);
+  return curated.length >= 3 ? curated : getFeaturedArticles(3);
+}
 
 /**
  * Build homepage feed: 9 India-market discovery blocks.
@@ -18,17 +23,22 @@ const FESTIVE_CATEGORIES = ['lehengas', 'sarees', 'suit sets', 'suits'];
  *
  * @param {Array} products - product catalog
  * @param {Array|null} dynamicBlocks - blocks from API (null = use static fallback)
+ * @param {Object|null} discoveryConfig - extras from admin (editor notes, etc.)
  */
-export function buildDiscoveryExperienceFeed(products = [], dynamicBlocks = null) {
+export function buildDiscoveryExperienceFeed(products = [], dynamicBlocks = null, discoveryConfig = null) {
   if (!products?.length) return { posterRow: [], feed: [] };
 
   const activeBlocks = (Array.isArray(dynamicBlocks) && dynamicBlocks.length)
     ? dynamicBlocks
     : DISCOVERY_EXPERIENCE_BLOCKS;
 
-  const editors = getEditorsPicks(products, 3);
+  const editorNotes = discoveryConfig?.editorNotes?.length
+    ? discoveryConfig.editorNotes
+    : DEFAULT_EDITOR_NOTES;
+
+  const editors = getEditorsVoicePicks(products, 3);
   const viral = getViralFashion(products, 4);
-  const articles = getFeaturedArticles(4);
+  const articles = getEditDeskArticles();
   const celebrities = CELEBRITY_LOOKS.slice(0, 6);
 
   const festiveProducts = products
@@ -43,13 +53,14 @@ export function buildDiscoveryExperienceFeed(products = [], dynamicBlocks = null
     type: 'experience',
     id: block.id,
     block,
-    payload: buildBlockPayload(block.id, {
+    payload: buildBlockPayload(block.id, block.kind, {
       products,
       editors,
       viral,
       articles,
       celebrities,
       festiveProducts,
+      editorNotes,
     }),
   }));
 
@@ -59,21 +70,27 @@ export function buildDiscoveryExperienceFeed(products = [], dynamicBlocks = null
   };
 }
 
-function buildBlockPayload(blockId, ctx) {
-  switch (blockId) {
+function buildBlockPayload(blockId, blockKind, ctx) {
+  const key = blockKind || blockId;
+  switch (key) {
+    case 'celebrity':
     case 'bollywood-looks':
       return { looks: ctx.celebrities };
+    case 'viral':
     case 'this-week':
       return { picks: ctx.viral.slice(0, 3) };
+    case 'articles':
     case 'edit-desk':
       return { articles: ctx.articles.slice(0, 3) };
+    case 'editorial':
     case 'editors-voice':
       return {
         picks: ctx.editors.map((product, i) => ({
           product,
-          note: EDITOR_NOTES[i] || EDITOR_NOTES[0],
+          note: ctx.editorNotes[i] || ctx.editorNotes[0],
         })),
       };
+    case 'festive':
     case 'wedding-festive':
       return { products: ctx.festiveProducts };
     default:

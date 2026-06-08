@@ -46,6 +46,10 @@ import {
   upsertContentItem,
   deleteContentItem,
   seedContentIfEmpty,
+  setContent,
+  getDiscoveryConfig,
+  setDiscoveryConfig,
+  seedDiscoveryConfigIfEmpty,
 } from '../lib/editorialContent.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -858,6 +862,20 @@ router.post('/content/:type', requireAdmin, requireWritableStore, async (req, re
   }
 });
 
+/** PUT /api/admin/content/:type — replace entire list (reorder) */
+router.put('/content/:type', requireAdmin, requireWritableStore, async (req, res) => {
+  const storeKey = CONTENT_TYPES[req.params.type];
+  if (!storeKey) return res.status(400).json({ error: 'Unknown content type' });
+  try {
+    const { items } = req.body;
+    if (!Array.isArray(items)) return res.status(400).json({ error: 'items must be array' });
+    await setContent(storeKey, items);
+    res.json({ ok: true, count: items.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 /** DELETE /api/admin/content/:type/:id */
 router.delete('/content/:type/:id', requireAdmin, requireWritableStore, async (req, res) => {
   const storeKey = CONTENT_TYPES[req.params.type];
@@ -880,6 +898,35 @@ router.post('/content/:type/seed', requireAdmin, requireWritableStore, async (re
     await seedContentIfEmpty(storeKey, items);
     const saved = getContent(storeKey);
     res.json({ ok: true, count: saved.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/** GET /api/admin/discovery-config */
+router.get('/discovery-config', requireAdmin, (req, res) => {
+  try {
+    res.json({ config: getDiscoveryConfig() });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/** POST /api/admin/discovery-config */
+router.post('/discovery-config', requireAdmin, requireWritableStore, async (req, res) => {
+  try {
+    await setDiscoveryConfig(req.body);
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/** POST /api/admin/discovery-config/seed */
+router.post('/discovery-config/seed', requireAdmin, requireWritableStore, async (req, res) => {
+  try {
+    await seedDiscoveryConfigIfEmpty(req.body);
+    res.json({ ok: true, config: getDiscoveryConfig() });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

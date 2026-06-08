@@ -136,6 +136,35 @@ export function getEditorsPicks(products, limit = 12, exclude = new Set()) {
   );
 }
 
+const EDITOR_VOICE_TOKENS = [
+  'lehenga', 'saree', 'kurta', 'suit set', 'co-ord', 'dupatta', 'anarkali', 'sharara', 'palazzo',
+];
+
+const EDITOR_VOICE_EXCLUDE = /jean|denim|hoodie|parka|cargo|t-shirt|tee\b|sweatshirt|jogger/i;
+
+/** Homepage Editor's Voice — ethnic / Indian-wear first, editorial-quality picks */
+export function getEditorsVoicePicks(products, limit = 3, exclude = new Set()) {
+  const ethnic = products.filter((p) => {
+    const blob = `${p.category || ''} ${p.subCategory || ''} ${p.title || ''}`.toLowerCase();
+    if (EDITOR_VOICE_EXCLUDE.test(blob)) return false;
+    return EDITOR_VOICE_TOKENS.some((token) => blob.includes(token));
+  });
+
+  const fallback = products.filter((p) => !EDITOR_VOICE_EXCLUDE.test(`${p.title || ''} ${p.category || ''}`));
+  const pool = ethnic.length >= limit ? ethnic : (fallback.length >= limit ? fallback : products);
+  const ranked = [...pool].sort((a, b) => {
+    const scoreA = (a.rating || 0) * 10 + (a.price || 0) * 0.001;
+    const scoreB = (b.rating || 0) * 10 + (b.price || 0) * 0.001;
+    return scoreB - scoreA;
+  });
+
+  return takeUnique(
+    seededShuffle(ranked.length ? ranked : pool, 'editors-voice'),
+    limit,
+    exclude,
+  );
+}
+
 export function getMoodCollection(products, mood, limit = 12, exclude = new Set()) {
   const filters = {
     wedding: (p) =>

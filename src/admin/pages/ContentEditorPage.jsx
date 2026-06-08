@@ -14,10 +14,11 @@ import {
   Plus, Edit2, Trash2, Save, X, RefreshCw,
   Star, TrendingUp, BookOpen, Sparkles,
   Upload, Image as ImageIcon,
-  AlertTriangle, Check,
+  AlertTriangle, Check, Layout,
 } from 'lucide-react';
 import { CELEBRITY_LOOKS } from '../../data/celebrityLooks';
 import { TREND_PAGES } from '../../data/trendPages';
+import { DISCOVERY_EXPERIENCE_BLOCKS } from '../../data/discoveryExperience';
 import { KNOWLEDGE_PAGES } from '../../data/fashionKnowledge';
 import { FASHION_QUIZZES } from '../../data/fashionQuizzes';
 
@@ -574,9 +575,153 @@ function ContentTab({ type, apiType, staticData, FormComponent, getCardProps, ta
   );
 }
 
+/* ── Homepage Blocks Tab ─────────────────────────────────────────────────── */
+
+function HomepageBlockForm({ item, onChange }) {
+  const set = (key) => (val) => onChange({ ...item, [key]: val });
+  return (
+    <div>
+      <Field label="Title"><Input value={item.title} onChange={set('title')} placeholder="e.g. Bollywood Style" /></Field>
+      <Field label="Tagline (eyebrow text)"><Input value={item.tagline} onChange={set('tagline')} placeholder="e.g. Airport edits · Red carpet" /></Field>
+      <Field label="Hook (description)" hint="2–3 lines shown below the title">
+        <Textarea value={item.hook} onChange={set('hook')} placeholder="Describe this section…" rows={3} />
+      </Field>
+      <ImageField label="Poster Image (drag & drop, paste, or click to upload)" value={item.poster} onChange={set('poster')} />
+      <Field label="Accent Color" hint="Hex color used for buttons and highlights">
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          <input type="color" value={item.accent || '#600b45'} onChange={(e) => set('accent')(e.target.value)}
+            style={{ width: 44, height: 34, borderRadius: 6, border: 'none', cursor: 'pointer', background: 'transparent' }} />
+          <Input value={item.accent} onChange={set('accent')} placeholder="#600b45" />
+        </div>
+      </Field>
+      <Field label="CTA Button Text"><Input value={item.ctaText} onChange={set('ctaText')} placeholder="e.g. Match a Bollywood look" /></Field>
+      <Field label="Route / Link"><Input value={item.route} onChange={set('route')} placeholder="e.g. /celebrity-match" /></Field>
+    </div>
+  );
+}
+
+function HomepageBlocksTab() {
+  const [blocks, setBlocks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [modal, setModal] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    try {
+      // Seed from static data on first load
+      await apiFetch('/api/admin/content/homepage-blocks/seed', {
+        method: 'POST',
+        body: JSON.stringify({ items: DISCOVERY_EXPERIENCE_BLOCKS }),
+      });
+      const data = await apiFetch('/api/admin/content/homepage-blocks');
+      setBlocks(data.items || []);
+    } catch (err) {
+      // If seed fails (no write), just read
+      try {
+        const data = await apiFetch('/api/admin/content/homepage-blocks');
+        setBlocks(data.items?.length ? data.items : DISCOVERY_EXPERIENCE_BLOCKS);
+      } catch {
+        setBlocks(DISCOVERY_EXPERIENCE_BLOCKS);
+      }
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      await apiFetch('/api/admin/content/homepage-blocks', {
+        method: 'POST',
+        body: JSON.stringify(modal.item),
+      });
+      showToast('Block saved!', 'success');
+      setModal(null);
+      load();
+    } catch (err) {
+      showToast(err.message, 'error');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) return <div style={{ padding: 40, textAlign: 'center', color: 'var(--admin-text-soft)' }}>Loading blocks…</div>;
+
+  return (
+    <div>
+      {error && (
+        <div style={{ padding: '10px 14px', borderRadius: 8, background: 'rgba(183,28,28,0.12)', border: '1px solid #b71c1c', color: '#ef9a9a', fontSize: 12, marginBottom: 16, display: 'flex', gap: 8, alignItems: 'center' }}>
+          <AlertTriangle size={13} /> {error} — showing static fallback
+        </div>
+      )}
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
+        {blocks.map((block) => (
+          <div key={block.id} className="glass-panel" style={{ borderRadius: 12, overflow: 'hidden', padding: 0, border: `2px solid ${block.accent || '#2a2a3e'}22` }}>
+            {/* Poster preview */}
+            <div style={{ height: 130, background: '#111', position: 'relative', overflow: 'hidden' }}>
+              {block.poster ? (
+                <img
+                  src={block.poster}
+                  alt={block.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }}
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+              ) : (
+                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 6, color: '#444' }}>
+                  <ImageIcon size={28} />
+                  <span style={{ fontSize: 11 }}>No image</span>
+                </div>
+              )}
+              {/* Accent dot */}
+              <div style={{ position: 'absolute', top: 8, left: 8, width: 10, height: 10, borderRadius: '50%', background: block.accent || '#600b45', boxShadow: '0 0 6px rgba(0,0,0,0.5)' }} />
+            </div>
+
+            <div style={{ padding: '12px 14px' }}>
+              <p style={{ margin: '0 0 2px', fontWeight: 700, fontSize: 13, color: 'var(--admin-text, #e0e0e0)' }}>{block.title}</p>
+              <p style={{ margin: '0 0 4px', fontSize: 11, color: 'var(--admin-text-soft, #888)' }}>{block.tagline}</p>
+              <p style={{ margin: '0 0 10px', fontSize: 10, color: '#555', fontFamily: 'monospace' }}>{block.route || '—'}</p>
+              <button
+                type="button"
+                onClick={() => setModal({ item: { ...block } })}
+                className="admin-cyber-btn admin-cyber-btn--ghost"
+                style={{ fontSize: 11, padding: '5px 12px', display: 'flex', alignItems: 'center', gap: 5, width: '100%', justifyContent: 'center' }}
+              >
+                <Edit2 size={11} /> Edit Block
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {modal && (
+        <Modal
+          title={`Edit: ${modal.item.title}`}
+          onClose={() => setModal(null)}
+          onSave={handleSave}
+          saving={saving}
+        >
+          <HomepageBlockForm
+            item={modal.item}
+            onChange={(updated) => setModal((m) => ({ ...m, item: updated }))}
+          />
+        </Modal>
+      )}
+
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    </div>
+  );
+}
+
 /* ── Root export ──────────────────────────────────────────────────────────── */
 
 const TABS = [
+  { id: 'homepage-blocks', label: 'Homepage Blocks', icon: Layout, custom: true },
   {
     id: 'celebrity-looks', label: 'Celebrity Looks', icon: Star,
     apiType: 'celebrity-looks',
@@ -608,7 +753,7 @@ const TABS = [
 ];
 
 export default function ContentEditorPage() {
-  const [activeTab, setActiveTab] = useState('celebrity-looks');
+  const [activeTab, setActiveTab] = useState('homepage-blocks');
   const tab = TABS.find((t) => t.id === activeTab);
 
   return (
@@ -618,7 +763,7 @@ export default function ContentEditorPage() {
           Content Editor
         </h1>
         <p style={{ margin: 0, fontSize: 13, color: 'var(--admin-text-soft, #888)' }}>
-          Add, edit, or delete Celebrity Looks, Trend Pages, Knowledge Guides, and Quizzes. Changes are saved to the database and appear on the live site instantly.
+          Edit homepage blocks, celebrity looks, trends, guides, and quizzes. Drag & drop images directly in any form field.
         </p>
       </div>
 
@@ -631,7 +776,8 @@ export default function ContentEditorPage() {
       }}>
         <Check size={14} style={{ color: '#c9a84c', flexShrink: 0, marginTop: 1 }} />
         <div>
-          <strong style={{ color: '#c9a84c' }}>How it works:</strong> Content is seeded from your data files on first load, then stored in the database. Use <strong>Image Manager</strong> to upload photos → copy the URL → paste it in the image field below. Changes go live immediately.
+          <strong style={{ color: '#c9a84c' }}>How it works:</strong> Content is seeded from your data files on first load, then stored in the database.{' '}
+          Use <strong>Image Manager</strong> to upload photos → copy the URL → paste it in any image field, or drag & drop directly. Changes go live immediately.
         </div>
       </div>
 
@@ -658,7 +804,11 @@ export default function ContentEditorPage() {
         ))}
       </div>
 
-      {tab && (
+      {tab?.custom && tab.id === 'homepage-blocks' && (
+        <HomepageBlocksTab key="homepage-blocks" />
+      )}
+
+      {tab && !tab.custom && (
         <ContentTab
           key={tab.id}
           type={tab.label}

@@ -15,9 +15,16 @@ const FESTIVE_CATEGORIES = ['lehengas', 'sarees', 'suit sets', 'suits'];
  * Build homepage feed: 9 India-market discovery blocks.
  * No product spotlights. Every block navigates to a dedicated page.
  * Business model: curiosity → exploration → page depth → ad revenue.
+ *
+ * @param {Array} products - product catalog
+ * @param {Array|null} dynamicBlocks - blocks from API (null = use static fallback)
  */
-export function buildDiscoveryExperienceFeed(products = []) {
+export function buildDiscoveryExperienceFeed(products = [], dynamicBlocks = null) {
   if (!products?.length) return { posterRow: [], feed: [] };
+
+  const activeBlocks = (Array.isArray(dynamicBlocks) && dynamicBlocks.length)
+    ? dynamicBlocks
+    : DISCOVERY_EXPERIENCE_BLOCKS;
 
   const editors = getEditorsPicks(products, 3);
   const viral = getViralFashion(products, 4);
@@ -32,7 +39,7 @@ export function buildDiscoveryExperienceFeed(products = []) {
     )
     .slice(0, 4);
 
-  const feed = DISCOVERY_EXPERIENCE_BLOCKS.map((block) => ({
+  const feed = activeBlocks.map((block) => ({
     type: 'experience',
     id: block.id,
     block,
@@ -47,7 +54,7 @@ export function buildDiscoveryExperienceFeed(products = []) {
   }));
 
   return {
-    posterRow: DISCOVERY_EXPERIENCE_BLOCKS,
+    posterRow: activeBlocks,
     feed,
   };
 }

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { ArrowRight, Trophy, Vote } from 'lucide-react';
 import ProductImage from './ProductImage';
 import { getCategoryBySlug } from '../data/fashionMagazine';
@@ -550,9 +550,22 @@ export default function DiscoveryExperienceFeed({
   onSelectCategory,
   onOpenArticle,
 }) {
+  const [dynamicBlocks, setDynamicBlocks] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/store/content?type=homepage-blocks')
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (Array.isArray(data?.items) && data.items.length) {
+          setDynamicBlocks(data.items);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const { posterRow, feed } = useMemo(
-    () => buildDiscoveryExperienceFeed(products),
-    [products],
+    () => buildDiscoveryExperienceFeed(products, dynamicBlocks),
+    [products, dynamicBlocks],
   );
 
   const handlers = { onNavigate, onSelectProduct, onSelectCategory, onOpenArticle };

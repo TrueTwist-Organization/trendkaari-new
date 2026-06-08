@@ -1,6 +1,13 @@
 {
   "sessions": [
     {
+      "id": "bb72eaa1-7ea0-4ee4-be2a-1505d77ef5c5",
+      "startedAt": 1780912063321,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780912063321
+    },
+    {
       "id": "21367663-9331-464d-963a-f62c1887ff55",
       "startedAt": 1780904817275,
       "pageCount": 1,
@@ -101,14 +108,14 @@
   ],
   "pageStats": {
     "/": {
-      "views": 47,
+      "views": 49,
       "scroll": {
         "25": 4,
         "50": 2,
         "75": 2,
         "100": 0
       },
-      "totalDurationMs": 77857753,
+      "totalDurationMs": 109254011,
       "clicks": 1,
       "heatmap": {
         "7,8": 1
@@ -142,9 +149,9 @@
   "pathEdges": {
     "/product/1036 → /product/1036": 6,
     "/product/1036 → /": 1,
-    "/ → /": 35,
+    "/ → /": 36,
     "/celebrity-match/alia-reception → /celebrity-match/alia-reception": 1
   },
-  "totalEvents": 183,
-  "updatedAt": "2026-06-08T08:35:58.583Z"
+  "totalEvents": 195,
+  "updatedAt": "2026-06-08T09:51:20.406Z"
 }

@@ -823,10 +823,11 @@ function deductStock(products, items) {
 /* ─── Editorial Content CRUD ────────────────────────────────────────────── */
 
 const CONTENT_TYPES = {
-  'celebrity-looks': 'celebrity_looks',
-  'trend-pages':     'trend_pages',
-  'knowledge-pages': 'knowledge_pages',
-  'quizzes':         'quizzes',
+  'celebrity-looks':  'celebrity_looks',
+  'trend-pages':      'trend_pages',
+  'knowledge-pages':  'knowledge_pages',
+  'quizzes':          'quizzes',
+  'homepage-blocks':  'homepage_blocks',
 };
 
 /** GET /api/admin/content/:type */

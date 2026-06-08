@@ -174,10 +174,11 @@ router.post('/analytics/events', (req, res) => {
 
 /** GET /api/store/content?type=celebrity-looks — returns admin-edited content (or empty) */
 const CONTENT_TYPE_MAP = {
-  'celebrity-looks': 'celebrity_looks',
-  'trend-pages':     'trend_pages',
-  'knowledge-pages': 'knowledge_pages',
-  'quizzes':         'quizzes',
+  'celebrity-looks':  'celebrity_looks',
+  'trend-pages':      'trend_pages',
+  'knowledge-pages':  'knowledge_pages',
+  'quizzes':          'quizzes',
+  'homepage-blocks':  'homepage_blocks',
 };
 router.get('/content', (req, res) => {
   const storeKey = CONTENT_TYPE_MAP[req.query.type];

@@ -190,61 +190,127 @@ export default function CelebrityLookPage({
   }
 
   const categoryLabel = CATEGORY_LABELS[look.category] || look.category;
+  const heroSrc = look.heroImage || look.image;
+  const isBannerHero = Boolean(look.heroImage);
 
   return (
     <div className="celeb-look">
 
-      <header className="celeb-look__hero">
-        <div className="celeb-look__hero-visual" aria-hidden="true">
-          <ProductImage
-            src={look.image}
-            alt=""
-            className="celeb-look__hero-img"
-            loading="eager"
-            decoding="async"
-          />
-          <div className="celeb-look__hero-overlay" />
+      {isBannerHero ? (
+        <div className="celeb-look__banner-nav container">
+          <button
+            type="button"
+            className="celeb-look__back-btn"
+            onClick={onBack}
+            aria-label="Back to all celebrity looks"
+          >
+            <ChevronLeft size={16} aria-hidden="true" />
+            All celebrity looks
+          </button>
         </div>
+      ) : null}
 
-        <div className="celeb-look__hero-inner container">
-          <div className="celeb-look__hero-content">
-            <button
-              type="button"
-              className="celeb-look__back-btn"
-              onClick={onBack}
-              aria-label="Back to all celebrity looks"
-            >
-              <ChevronLeft size={16} aria-hidden="true" />
-              All celebrity looks
-            </button>
+      <header className={`celeb-look__hero${isBannerHero ? ' celeb-look__hero--banner' : ''}`}>
+        {isBannerHero ? (
+          <button
+            type="button"
+            className="celeb-look__banner-hit"
+            onClick={() => onSelectCategory?.(look.category)}
+            aria-label={`Shop ${categoryLabel}`}
+          >
+            <img
+              src={heroSrc}
+              alt={`${look.celebrity} — ${look.title}`}
+              className="celeb-look__hero-img"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              width="1024"
+              height="576"
+            />
+          </button>
+        ) : (
+          <>
+            <div className="celeb-look__hero-visual" aria-hidden="true">
+              <ProductImage
+                src={heroSrc}
+                alt={`${look.celebrity} — ${look.title}`}
+                className="celeb-look__hero-img"
+                loading="eager"
+                decoding="async"
+              />
+              <div className="celeb-look__hero-overlay" />
+            </div>
 
-            <ContextChips context={look.context} />
-            <h1 className="celeb-look__headline">{look.title}</h1>
-            <p className="celeb-look__byline">as seen on {look.celebrity}</p>
-            {look.hook ? <p className="celeb-look__hook">{look.hook}</p> : null}
-            <div className="celeb-look__hero-actions">
-              <button
-                type="button"
-                className="celeb-look__hero-cta celeb-look__hero-cta--primary"
-                onClick={() => onSelectCategory?.(look.category)}
-              >
-                Shop {categoryLabel}
-                <ArrowRight size={14} aria-hidden="true" />
-              </button>
-              {look.quizSlug ? (
+            <div className="celeb-look__hero-inner container">
+              <div className="celeb-look__hero-content">
                 <button
                   type="button"
-                  className="celeb-look__hero-cta celeb-look__hero-cta--ghost"
-                  onClick={() => onStartQuiz?.(look.quizSlug)}
+                  className="celeb-look__back-btn"
+                  onClick={onBack}
+                  aria-label="Back to all celebrity looks"
                 >
-                  <Sparkles size={14} aria-hidden="true" />
-                  Take style quiz
+                  <ChevronLeft size={16} aria-hidden="true" />
+                  All celebrity looks
                 </button>
-              ) : null}
+
+                <ContextChips context={look.context} />
+                <h1 className="celeb-look__headline">{look.title}</h1>
+                <p className="celeb-look__byline">as seen on {look.celebrity}</p>
+                {look.hook ? <p className="celeb-look__hook">{look.hook}</p> : null}
+                <div className="celeb-look__hero-actions">
+                  <button
+                    type="button"
+                    className="celeb-look__hero-cta celeb-look__hero-cta--primary"
+                    onClick={() => onSelectCategory?.(look.category)}
+                  >
+                    Shop {categoryLabel}
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </button>
+                  {look.quizSlug ? (
+                    <button
+                      type="button"
+                      className="celeb-look__hero-cta celeb-look__hero-cta--ghost"
+                      onClick={() => onStartQuiz?.(look.quizSlug)}
+                    >
+                      <Sparkles size={14} aria-hidden="true" />
+                      Take style quiz
+                    </button>
+                  ) : null}
+                </div>
+              </div>
             </div>
+          </>
+        )}
+      </header>
+
+      {isBannerHero ? (
+        <div className="container celeb-look__banner-meta">
+          <ContextChips context={look.context} />
+          <h1 className="celeb-look__headline">{look.title}</h1>
+          <p className="celeb-look__byline">as seen on {look.celebrity}</p>
+          <div className="celeb-look__hero-actions">
+            <button
+              type="button"
+              className="celeb-look__hero-cta celeb-look__hero-cta--primary"
+              onClick={() => onSelectCategory?.(look.category)}
+            >
+              Shop {categoryLabel}
+              <ArrowRight size={14} aria-hidden="true" />
+            </button>
+            {look.quizSlug ? (
+              <button
+                type="button"
+                className="celeb-look__hero-cta celeb-look__hero-cta--ghost"
+                onClick={() => onStartQuiz?.(look.quizSlug)}
+              >
+                <Sparkles size={14} aria-hidden="true" />
+                Take style quiz
+              </button>
+            ) : null}
           </div>
         </div>
-      </header>
+      ) : null}
 
       <div className="container celeb-look__body">
 

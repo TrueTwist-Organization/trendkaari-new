@@ -77,6 +77,7 @@ body.pdp-page .announcement-track {
 
 body.pdp-page .libas-header-wrapper,
 body.category-page .libas-header-wrapper,
+body.home-page .libas-header-wrapper,
 body.info-page .libas-header-wrapper {
   background-color: var(--bg-white);
   color: var(--text-primary);
@@ -92,6 +93,10 @@ body.category-page .libas-header-wrapper .brand-logo,
 body.category-page .libas-header-wrapper .header-btn,
 body.category-page .libas-header-wrapper .header-icon-btn,
 body.category-page .libas-header-wrapper .header-search-trigger,
+body.home-page .libas-header-wrapper .brand-logo,
+body.home-page .libas-header-wrapper .header-btn,
+body.home-page .libas-header-wrapper .header-icon-btn,
+body.home-page .libas-header-wrapper .header-search-trigger,
 body.info-page .libas-header-wrapper .brand-logo,
 body.info-page .libas-header-wrapper .header-btn,
 body.info-page .libas-header-wrapper .header-icon-btn,

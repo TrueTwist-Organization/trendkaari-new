@@ -9,6 +9,7 @@ import {
   DEFAULT_DISCOVERY_CONFIG,
   resolveOccasionChipImage,
   normalizeFestiveChips,
+  normalizeTrendingSearches,
 } from '../data/discoveryExperience';
 import { castPollVote, getPollResults } from '../utils/pollVotesStorage';
 import { buildDiscoveryExperienceFeed } from '../utils/discoveryExperienceEngine';
@@ -317,62 +318,90 @@ function WeddingFestiveBlock({ block, payload, onNavigate, onSelectProduct, onSe
 
 function EditDeskBlock({ block, payload, onNavigate, onOpenArticle }) {
   const [lead, ...secondary] = payload.articles || [];
+
+  const openArticle = (article) => {
+    if (onOpenArticle) onOpenArticle(article.categorySlug, article.slug);
+    else onNavigate?.(block.route);
+  };
+
   return (
     <BlockShell block={block} onNavigate={onNavigate}>
-      <div className="discovery-xp__editdesk">
-        {lead && (() => {
-          const cat = getCategoryBySlug(lead.categorySlug);
-          return (
-            <button
-              type="button"
-              className="discovery-xp__editdesk-lead"
-              onClick={() =>
-                onOpenArticle
-                  ? onOpenArticle(lead.categorySlug, lead.slug)
-                  : onNavigate?.(block.route)
-              }
-              data-journey-label={lead.title}
-            >
-              <div className="discovery-xp__editdesk-lead-media">
-                <ProductImage src={lead.image} alt="" />
-              </div>
-              <div className="discovery-xp__editdesk-lead-body">
-                <p className="discovery-xp__eyebrow">{cat?.title}</p>
-                <h3 className="discovery-xp__editdesk-headline">{lead.title}</h3>
-                <p className="discovery-xp__editdesk-excerpt">{lead.excerpt}</p>
-                <span className="discovery-xp__editdesk-read">Read the story →</span>
-              </div>
-            </button>
-          );
-        })()}
-        {secondary.length > 0 && (
-          <div className="discovery-xp__editdesk-secondary">
-            {secondary.map((article) => {
-              const cat = getCategoryBySlug(article.categorySlug);
-              return (
-                <button
-                  key={article.id}
-                  type="button"
-                  className="discovery-xp__editdesk-sec"
-                  onClick={() =>
-                    onOpenArticle
-                      ? onOpenArticle(article.categorySlug, article.slug)
-                      : onNavigate?.(block.route)
-                  }
-                  data-journey-label={article.title}
-                >
-                  <div className="discovery-xp__editdesk-sec-media">
-                    <ProductImage src={article.image} alt="" />
+      <div className="discovery-xp__editdesk-showcase">
+        <div className="discovery-xp__editdesk-layout">
+          {lead ? (() => {
+            const cat = getCategoryBySlug(lead.categorySlug);
+            return (
+              <button
+                type="button"
+                className="discovery-xp__editdesk-lead"
+                onClick={() => openArticle(lead)}
+                data-journey-label={lead.title}
+              >
+                <div className="discovery-xp__editdesk-lead-media">
+                  <ProductImage src={lead.image} alt={lead.title} loading="eager" />
+                  <div className="discovery-xp__editdesk-lead-overlay" aria-hidden="true" />
+                </div>
+                <div className="discovery-xp__editdesk-lead-body">
+                  <div className="discovery-xp__editdesk-meta">
+                    <span className="discovery-xp__editdesk-cat">{cat?.title}</span>
+                    {lead.readTime ? (
+                      <span className="discovery-xp__editdesk-time">{lead.readTime}</span>
+                    ) : null}
                   </div>
-                  <div className="discovery-xp__editdesk-sec-body">
-                    <p className="discovery-xp__eyebrow">{cat?.title}</p>
-                    <h4>{article.title}</h4>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        )}
+                  <h3 className="discovery-xp__editdesk-headline">{lead.title}</h3>
+                  <p className="discovery-xp__editdesk-excerpt">{lead.excerpt}</p>
+                  <span className="discovery-xp__editdesk-read">Read the story →</span>
+                </div>
+              </button>
+            );
+          })() : null}
+
+          {secondary.length > 0 ? (
+            <div className="discovery-xp__editdesk-rail">
+              <p className="discovery-xp__editdesk-rail-label">Also in the edit</p>
+              <div className="discovery-xp__editdesk-secondary">
+                {secondary.map((article) => {
+                  const cat = getCategoryBySlug(article.categorySlug);
+                  return (
+                    <button
+                      key={article.id}
+                      type="button"
+                      className="discovery-xp__editdesk-sec"
+                      onClick={() => openArticle(article)}
+                      data-journey-label={article.title}
+                    >
+                      <div className="discovery-xp__editdesk-sec-media">
+                        <ProductImage src={article.image} alt={article.title} loading="lazy" />
+                      </div>
+                      <div className="discovery-xp__editdesk-sec-body">
+                        <div className="discovery-xp__editdesk-meta discovery-xp__editdesk-meta--compact">
+                          <span className="discovery-xp__editdesk-cat">{cat?.title}</span>
+                          {article.readTime ? (
+                            <span className="discovery-xp__editdesk-time">{article.readTime}</span>
+                          ) : null}
+                        </div>
+                        <h4>{article.title}</h4>
+                        <p className="discovery-xp__editdesk-sec-excerpt">{article.excerpt}</p>
+                        <span className="discovery-xp__editdesk-sec-read">Read →</span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
+        </div>
+
+        {block.route ? (
+          <button
+            type="button"
+            className="discovery-xp__editdesk-more"
+            onClick={() => onNavigate?.(block.route)}
+            data-journey-label="Browse magazine"
+          >
+            Browse all magazine stories →
+          </button>
+        ) : null}
       </div>
     </BlockShell>
   );
@@ -381,16 +410,21 @@ function EditDeskBlock({ block, payload, onNavigate, onOpenArticle }) {
 /* ─── 7. Editor's Voice ─────────────────────────────────────────────────── */
 
 function EditorsVoiceBlock({ block, payload, onSelectProduct, onNavigate }) {
+  const picks = payload.picks || [];
+
   return (
     <section
-      className="discovery-xp__block"
+      className="discovery-xp__block discovery-xp__block--editors"
       id={block.id}
       style={{ '--block-accent': block.accent }}
     >
-      <div className="discovery-xp__editors-header">
+      <div className="discovery-xp__block-head">
         <p className="discovery-xp__eyebrow">{block.tagline}</p>
-        <h2 className="discovery-xp__editors-quote">&ldquo;{block.editorQuote}&rdquo;</h2>
-        {block.route && (
+        <h2 className="discovery-xp__title discovery-xp__editors-manifesto">
+          &ldquo;{block.editorQuote || block.title}&rdquo;
+        </h2>
+        {block.hook ? <p className="discovery-xp__hook">{block.hook}</p> : null}
+        {block.route ? (
           <button
             type="button"
             className="discovery-xp__cta"
@@ -400,27 +434,40 @@ function EditorsVoiceBlock({ block, payload, onSelectProduct, onNavigate }) {
             {block.ctaText}
             <ArrowRight size={14} aria-hidden />
           </button>
-        )}
+        ) : null}
       </div>
-      <div className="discovery-xp__editors-row">
-        {payload.picks?.map(({ product, note }, i) => (
-          <button
-            key={product.id}
-            type="button"
-            className={`discovery-xp__editors-card discovery-xp__editors-card--${i + 1}`}
-            onClick={() => onSelectProduct?.(product)}
-            data-journey-label="Editor pick"
-          >
-            <div className="discovery-xp__editors-media">
-              <ProductImage src={product.image} alt={product.title} />
-            </div>
-            <div className="discovery-xp__editors-body">
-              <p className="discovery-xp__editors-note">&ldquo;{note}&rdquo;</p>
-              <h4 className="discovery-xp__editors-name">{product.title}</h4>
-              <span className="discovery-xp__editors-price">₹{product.price}</span>
-            </div>
-          </button>
-        ))}
+
+      <div className="discovery-xp__editors-showcase">
+        <div className="discovery-xp__editors-grid">
+          {picks.map(({ product, note }, index) => (
+            <button
+              key={product.id}
+              type="button"
+              className="discovery-xp__editors-card"
+              onClick={() => onSelectProduct?.(product)}
+              data-journey-label="Editor pick"
+            >
+              <div className="discovery-xp__editors-card-media">
+                <ProductImage
+                  src={product.image}
+                  alt={product.title}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+                <span className="discovery-xp__editors-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </div>
+              <div className="discovery-xp__editors-card-body">
+                <p className="discovery-xp__editors-note">&ldquo;{note}&rdquo;</p>
+                <h3 className="discovery-xp__editors-name">{product.title}</h3>
+                <span className="discovery-xp__editors-price">
+                  ₹{Number(product.price || 0).toLocaleString('en-IN')}
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+        <p className="discovery-xp__editors-byline">— Trendkaari Edit Desk</p>
       </div>
     </section>
   );
@@ -448,80 +495,105 @@ function StyleDebateBlock({ block, onNavigate, fashionPolls = FASHION_POLLS, sty
   };
 
   const poll = pollState[activePoll];
+  const totalVotes = poll?.results?.total || 0;
+  const hasVoted = Boolean(poll?.results?.userVote);
 
   return (
     <BlockShell block={block} onNavigate={onNavigate}>
-      <div className="discovery-xp__debate">
-        {/* Poll tabs */}
-        <div className="discovery-xp__debate-tabs">
-          {pollState.map((p, idx) => (
-            <button
-              key={p.id}
-              type="button"
-              className={`discovery-xp__debate-tab${idx === activePoll ? ' discovery-xp__debate-tab--active' : ''}`}
-              onClick={() => setActivePoll(idx)}
-            >
-              {`Debate ${idx + 1}`}
-            </button>
-          ))}
-        </div>
-
-        {/* Active poll */}
-        <div className="discovery-xp__debate-poll">
-          <p className="discovery-xp__debate-question">{poll.question}</p>
-          {poll.subtext && (
-            <p className="discovery-xp__debate-subtext">{poll.subtext}</p>
-          )}
-          <div className="discovery-xp__debate-options">
-            {poll.options.map((opt) => {
-              const count = poll.results.counts[opt.id] || 0;
-              const pct = poll.results.total
-                ? Math.round((count / poll.results.total) * 100)
-                : 0;
-              const voted = poll.results.userVote === opt.id;
-              return (
+      <div className="discovery-xp__debate-showcase">
+        <div className="discovery-xp__debate-stage">
+          <div className="discovery-xp__debate-main">
+            <div className="discovery-xp__debate-tabs" role="tablist" aria-label="Style debates">
+              {pollState.map((p, idx) => (
                 <button
-                  key={opt.id}
+                  key={p.id}
                   type="button"
-                  className={`discovery-xp__debate-opt${voted ? ' discovery-xp__debate-opt--voted' : ''}`}
-                  onClick={() =>
-                    handleVote(poll.id, opt.id, poll.options.map((o) => o.id))
-                  }
-                  data-journey-label={`Debate: ${opt.label}`}
+                  role="tab"
+                  aria-selected={idx === activePoll}
+                  className={`discovery-xp__debate-tab${idx === activePoll ? ' discovery-xp__debate-tab--active' : ''}`}
+                  onClick={() => setActivePoll(idx)}
                 >
-                  <span
-                    className="discovery-xp__debate-bar"
-                    style={{ width: `${pct}%` }}
-                    aria-hidden
-                  />
-                  <span className="discovery-xp__debate-opt-inner">
-                    <span>{opt.emoji} {opt.label}</span>
-                    {poll.results.total > 0 && (
-                      <span className="discovery-xp__debate-pct">{pct}%</span>
-                    )}
-                  </span>
+                  {`Debate ${idx + 1}`}
                 </button>
-              );
-            })}
-          </div>
-        </div>
+              ))}
+            </div>
 
-        {/* Challenges */}
-        <div className="discovery-xp__challenge-links">
-          {styleChallenges.map((ch) => (
-            <button
-              key={ch.id}
-              type="button"
-              className="discovery-xp__challenge-link"
-              onClick={() => onNavigate?.(ch.route)}
-              data-journey-label={ch.title}
-            >
-              <Trophy size={14} aria-hidden />
-              <span className="discovery-xp__challenge-link-title">{ch.title}</span>
-              <span className="discovery-xp__challenge-link-hook">{ch.hook}</span>
-              <ArrowRight size={14} aria-hidden />
-            </button>
-          ))}
+            <div className={`discovery-xp__debate-poll${hasVoted ? ' discovery-xp__debate-poll--revealed' : ''}`} role="tabpanel">
+              <div className="discovery-xp__debate-poll-head">
+                <span className="discovery-xp__debate-live">Live poll</span>
+                {poll.subtext && hasVoted ? (
+                  <p className="discovery-xp__debate-subtext">{poll.subtext}</p>
+                ) : null}
+              </div>
+              <h3 className="discovery-xp__debate-question">{poll.question}</h3>
+              <div className="discovery-xp__debate-options">
+                {poll.options.map((opt) => {
+                  const count = poll.results.counts[opt.id] || 0;
+                  const pct = poll.results.total
+                    ? Math.round((count / poll.results.total) * 100)
+                    : 0;
+                  const voted = poll.results.userVote === opt.id;
+                  return (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      className={`discovery-xp__debate-opt${voted ? ' discovery-xp__debate-opt--voted' : ''}${hasVoted ? ' discovery-xp__debate-opt--revealed' : ''}`}
+                      onClick={() =>
+                        handleVote(poll.id, opt.id, poll.options.map((o) => o.id))
+                      }
+                      data-journey-label={`Debate: ${opt.label}`}
+                      aria-pressed={voted}
+                    >
+                      <span
+                        className="discovery-xp__debate-bar"
+                        style={{ width: hasVoted ? `${pct}%` : '0%' }}
+                        aria-hidden="true"
+                      />
+                      <span className="discovery-xp__debate-opt-inner">
+                        <span className="discovery-xp__debate-opt-label">
+                          <span className="discovery-xp__debate-emoji" aria-hidden="true">{opt.emoji}</span>
+                          {opt.label}
+                        </span>
+                        {hasVoted ? (
+                          <span className="discovery-xp__debate-pct">{pct}%</span>
+                        ) : null}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="discovery-xp__debate-hint">
+                {hasVoted
+                  ? `${totalVotes.toLocaleString('en-IN')} votes counted · tap another option to switch`
+                  : 'Tap an option to reveal how India voted'}
+              </p>
+            </div>
+          </div>
+
+          <aside className="discovery-xp__debate-rail">
+            <p className="discovery-xp__debate-rail-label">Style games</p>
+            <div className="discovery-xp__challenge-links">
+              {styleChallenges.map((ch) => (
+                <button
+                  key={ch.id}
+                  type="button"
+                  className="discovery-xp__challenge-link"
+                  style={{ '--challenge-accent': ch.accent }}
+                  onClick={() => onNavigate?.(ch.route)}
+                  data-journey-label={ch.title}
+                >
+                  <span className="discovery-xp__challenge-icon" aria-hidden="true">
+                    <Trophy size={16} />
+                  </span>
+                  <span className="discovery-xp__challenge-copy">
+                    <span className="discovery-xp__challenge-link-title">{ch.title}</span>
+                    <span className="discovery-xp__challenge-link-hook">{ch.hook}</span>
+                  </span>
+                  <ArrowRight size={14} className="discovery-xp__challenge-arrow" aria-hidden="true" />
+                </button>
+              ))}
+            </div>
+          </aside>
         </div>
       </div>
     </BlockShell>
@@ -531,25 +603,75 @@ function StyleDebateBlock({ block, onNavigate, fashionPolls = FASHION_POLLS, sty
 /* ─── 9. Trending in India ──────────────────────────────────────────────── */
 
 function TrendingIndiaBlock({ block, onNavigate, onSelectCategory, trendingSearches = TRENDING_SEARCHES }) {
+  const items = useMemo(
+    () => normalizeTrendingSearches(trendingSearches),
+    [trendingSearches],
+  );
+  const [activeIdx, setActiveIdx] = useState(0);
+  const active = items[activeIdx] || items[0];
+
+  const openTrend = (item) => {
+    if (item.route) onNavigate?.(item.route);
+    else if (item.category) onSelectCategory?.(item.category);
+  };
+
   return (
     <BlockShell block={block} ctaLabel={null}>
-      <div className="discovery-xp__trending-index">
-        {trendingSearches.map((item, i) => (
-          <button
-            key={item.label}
-            type="button"
-            className="discovery-xp__trending-term"
-            onClick={() => {
-              if (item.route) onNavigate?.(item.route);
-              else if (item.category) onSelectCategory?.(item.category);
-            }}
-            data-journey-label={`Trending: ${item.label}`}
-          >
-            <span className="discovery-xp__trending-rank">{String(i + 1).padStart(2, '0')}</span>
-            <span className="discovery-xp__trending-label">{item.label}</span>
-            <ArrowRight size={12} aria-hidden />
-          </button>
-        ))}
+      <div className="discovery-xp__trending-showcase">
+        <div className="discovery-xp__trending-index">
+          <div className="discovery-xp__trending-spotlight">
+            <p className="discovery-xp__trending-spotlight-kicker">India&apos;s search chart</p>
+            <button
+              type="button"
+              className="discovery-xp__trending-spotlight-btn"
+              onClick={() => active && openTrend(active)}
+              data-journey-label={`Trending: ${active?.label}`}
+            >
+              <div className="discovery-xp__trending-spotlight-media">
+                {active?.image ? (
+                  <ProductImage key={active.image} src={active.image} alt="" loading="eager" />
+                ) : null}
+                <div className="discovery-xp__trending-spotlight-shade" aria-hidden="true" />
+              </div>
+              <div className="discovery-xp__trending-spotlight-meta">
+                <span className="discovery-xp__trending-spotlight-rank">
+                  #{String(activeIdx + 1).padStart(2, '0')}
+                </span>
+                <h3 className="discovery-xp__trending-spotlight-title">{active?.label}</h3>
+                <span className="discovery-xp__trending-spotlight-heat">
+                  +{active?.heat}% search rise this week
+                </span>
+                <span className="discovery-xp__trending-spotlight-cta">Open this trend →</span>
+              </div>
+            </button>
+          </div>
+
+          <div className="discovery-xp__trending-ranklist" role="list" aria-label="Trending searches">
+            {items.map((item, index) => (
+              <button
+                key={item.label}
+                type="button"
+                role="listitem"
+                className={`discovery-xp__trending-rank${index === activeIdx ? ' is-active' : ''}`}
+                onMouseEnter={() => setActiveIdx(index)}
+                onFocus={() => setActiveIdx(index)}
+                onClick={() => openTrend(item)}
+                data-journey-label={`Trending: ${item.label}`}
+                aria-current={index === activeIdx ? 'true' : undefined}
+              >
+                <span className="discovery-xp__trending-rank-num">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span className="discovery-xp__trending-rank-label">{item.label}</span>
+                <span className="discovery-xp__trending-rank-heat">+{item.heat}%</span>
+                <ArrowRight size={12} className="discovery-xp__trending-rank-arrow" aria-hidden="true" />
+              </button>
+            ))}
+          </div>
+        </div>
+        <p className="discovery-xp__trending-footnote">
+          Hover or tap a row to preview · Updated daily from Trendkaari search patterns
+        </p>
       </div>
     </BlockShell>
   );

@@ -1,11 +1,20 @@
-import { getEditorsPicks, getViralFashion } from './discoveryEngine';
-import { getFeaturedArticles } from '../data/fashionMagazine';
+import { getEditorsVoicePicks, getViralFashion } from './discoveryEngine';
+import { getFeaturedArticles, getArticleBySlug } from '../data/fashionMagazine';
 import { CELEBRITY_LOOKS } from '../data/celebrityLooks';
 import { DISCOVERY_EXPERIENCE_BLOCKS, DEFAULT_DISCOVERY_CONFIG } from '../data/discoveryExperience';
 
 const DEFAULT_EDITOR_NOTES = DEFAULT_DISCOVERY_CONFIG.editorNotes;
 
 const FESTIVE_CATEGORIES = ['lehengas', 'sarees', 'suit sets', 'suits'];
+
+function getEditDeskArticles() {
+  const curated = [
+    getArticleBySlug('fashion-trends', 'co-ord-sets-dominating-2026'),
+    getArticleBySlug('styling-tips', 'kurta-length-decoded'),
+    getArticleBySlug('celebrity-looks', 'deepika-red-carpet-recreate'),
+  ].filter(Boolean);
+  return curated.length >= 3 ? curated : getFeaturedArticles(3);
+}
 
 /**
  * Build homepage feed: 9 India-market discovery blocks.
@@ -27,9 +36,9 @@ export function buildDiscoveryExperienceFeed(products = [], dynamicBlocks = null
     ? discoveryConfig.editorNotes
     : DEFAULT_EDITOR_NOTES;
 
-  const editors = getEditorsPicks(products, 3);
+  const editors = getEditorsVoicePicks(products, 3);
   const viral = getViralFashion(products, 4);
-  const articles = getFeaturedArticles(4);
+  const articles = getEditDeskArticles();
   const celebrities = CELEBRITY_LOOKS.slice(0, 6);
 
   const festiveProducts = products

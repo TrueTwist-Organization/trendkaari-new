@@ -4,6 +4,7 @@ import DiscoveryHero from './DiscoveryHero';
 import HomeAdSlot from './HomeAdSlot';
 import DiscoveryExperienceFeed from './DiscoveryExperienceFeed';
 import ProductImage from './ProductImage';
+import { getEditorsVoicePicks } from '../utils/discoveryEngine';
 import './ExplorationHomepage.css';
 import './DiscoveryExperienceFeed.css';
 
@@ -35,9 +36,10 @@ export default function ExplorationHomepage({
   const productCount = products.length;
 
   const featuredPicks = useMemo(
-    () => products.filter((p) => p.image).slice(0, 4),
+    () => getEditorsVoicePicks(products, 4),
     [products],
   );
+  const [leadPick, ...spotlightRest] = featuredPicks;
 
   if (!products.length) {
     return (
@@ -133,30 +135,72 @@ export default function ExplorationHomepage({
 
       {featuredPicks.length > 0 && (
         <section className="home-spotlight" aria-label="Editor spotlight">
-          <div className="home-spotlight__head container">
-            <p className="home-section-eyebrow">Fresh on the rack</p>
-            <h2 className="home-section-title">Trending picks right now</h2>
-          </div>
-          <div className="home-spotlight__grid container">
-            {featuredPicks.map((product, i) => (
-              <button
-                key={product.id}
-                type="button"
-                className={`home-spotlight__card${i === 0 ? ' home-spotlight__card--lead' : ''}`}
-                onClick={() => onSelectProduct?.(product)}
-                data-journey-label={`Spotlight: ${product.title}`}
-              >
-                <div className="home-spotlight__media">
-                  <ProductImage src={product.image} alt={product.title} loading="lazy" />
-                  {i === 0 && <span className="home-spotlight__badge">Editor pick</span>}
+          <div className="home-spotlight__inner container">
+            <header className="home-spotlight__head">
+              <p className="home-section-eyebrow">Fresh on the rack</p>
+              <h2 className="home-section-title">Trending picks right now</h2>
+              <p className="home-spotlight__sub">
+                Human-curated Indian wear moving fast — tap a pick to open the product story.
+              </p>
+            </header>
+
+            <div className="home-spotlight__stage">
+              {leadPick ? (
+                <button
+                  type="button"
+                  className="home-spotlight__hero"
+                  onClick={() => onSelectProduct?.(leadPick)}
+                  data-journey-label={`Spotlight: ${leadPick.title}`}
+                >
+                  <span className="home-spotlight__badge">Editor pick</span>
+                  <div className="home-spotlight__hero-media">
+                    <ProductImage src={leadPick.image} alt={leadPick.title} loading="lazy" />
+                    <div className="home-spotlight__hero-overlay" aria-hidden="true" />
+                  </div>
+                  <div className="home-spotlight__hero-copy">
+                    <span className="home-spotlight__cat">
+                      {leadPick.category || leadPick.subCategory}
+                    </span>
+                    <h3>{leadPick.title}</h3>
+                    <p className="home-spotlight__price">
+                      ₹{Number(leadPick.price || 0).toLocaleString('en-IN')}
+                    </p>
+                  </div>
+                  <ArrowRight size={16} className="home-spotlight__hero-arrow" aria-hidden="true" />
+                </button>
+              ) : null}
+
+              {spotlightRest.length > 0 ? (
+                <div className="home-spotlight__rail">
+                  <p className="home-spotlight__rail-label">Also trending</p>
+                  <div className="home-spotlight__rail-list">
+                    {spotlightRest.map((product) => (
+                      <button
+                        key={product.id}
+                        type="button"
+                        className="home-spotlight__card"
+                        onClick={() => onSelectProduct?.(product)}
+                        data-journey-label={`Spotlight: ${product.title}`}
+                      >
+                        <div className="home-spotlight__media">
+                          <ProductImage src={product.image} alt={product.title} loading="lazy" />
+                        </div>
+                        <div className="home-spotlight__body">
+                          <span className="home-spotlight__cat">
+                            {product.category || product.subCategory}
+                          </span>
+                          <h3>{product.title}</h3>
+                          <p className="home-spotlight__price">
+                            ₹{Number(product.price || 0).toLocaleString('en-IN')}
+                          </p>
+                        </div>
+                        <ArrowRight size={14} className="home-spotlight__card-arrow" aria-hidden="true" />
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <div className="home-spotlight__body">
-                  <span className="home-spotlight__cat">{product.category || product.subCategory}</span>
-                  <h3>{product.title}</h3>
-                  <p className="home-spotlight__price">₹{product.price}</p>
-                </div>
-              </button>
-            ))}
+              ) : null}
+            </div>
           </div>
         </section>
       )}

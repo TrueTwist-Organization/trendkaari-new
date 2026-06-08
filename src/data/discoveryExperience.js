@@ -83,7 +83,7 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
       { label: 'Mehendi', category: 'kurtas', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
       { label: 'Engagement', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1719_700x.webp' },
       { label: 'Haldi', category: 'suit sets', image: '/suit-sets/Suit Sets/9/L12.01.25_1841_dbebe693-a859-4d15-a687-495f04734aba_700x.webp' },
-      { label: 'Diwali', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1698_700x.webp' },
+      { label: 'Diwali', category: 'sarees', image: '/sarees/Sarees/9/L12.01.25_3547_33128c31-b45d-4240-b2c3-634c0659e06c_700x.webp' },
     ],
   },
   {
@@ -167,7 +167,7 @@ export const FESTIVE_CHIP_IMAGE_BY_LABEL = {
   Mehendi: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
   Engagement: '/lehengas/Lehengas/9/040A1719_700x.webp',
   Haldi: '/suit-sets/Suit Sets/9/L12.01.25_1841_dbebe693-a859-4d15-a687-495f04734aba_700x.webp',
-  Diwali: '/lehengas/Lehengas/9/040A1698_700x.webp',
+  Diwali: '/sarees/Sarees/9/L12.01.25_3547_33128c31-b45d-4240-b2c3-634c0659e06c_700x.webp',
 };
 
 const FESTIVE_CHIP_CATEGORY_BY_LABEL = {
@@ -176,7 +176,7 @@ const FESTIVE_CHIP_CATEGORY_BY_LABEL = {
   Mehendi: 'kurtas',
   Engagement: 'lehengas',
   Haldi: 'suit sets',
-  Diwali: 'lehengas',
+  Diwali: 'sarees',
 };
 
 export function resolveFestiveChipImage(chip, blockPoster = '') {
@@ -262,17 +262,37 @@ export const FASHION_POLLS = [
 ];
 
 export const TRENDING_SEARCHES = [
-  { label: 'Wedding guest fashion', route: '/trends/wedding-fashion' },
-  { label: 'Celebrity airport looks', route: '/trends/airport-looks' },
-  { label: 'Viral Instagram outfits', route: '/trends/viral-instagram-fashion' },
-  { label: 'Festival season edit', route: '/trends/festival-fashion' },
-  { label: 'Sangeet guest outfit', category: 'lehengas' },
-  { label: 'Summer fashion 2026', route: '/trends/summer-fashion' },
-  { label: 'Bollywood inspired looks', route: '/celebrity-match' },
-  { label: 'Handloom sarees', category: 'sarees' },
-  { label: 'Anarkali with pants', category: 'kurtas' },
-  { label: 'Under ₹999 picks', route: '/viral' },
+  { label: 'Wedding guest fashion', route: '/trends/wedding-fashion', image: '/lehengas/Lehengas/1/040A3523_700x.webp' },
+  { label: 'Celebrity airport looks', route: '/trends/airport-looks', image: '/kurtas/Kurtas/9/LBL101KS620_1_700x.webp' },
+  { label: 'Viral Instagram outfits', route: '/trends/viral-instagram-fashion', image: '/co-ords/co-ord_set/1/1.webp' },
+  { label: 'Festival season edit', route: '/trends/festival-fashion', image: '/lehengas/Lehengas/9/040A1707_700x.webp' },
+  { label: 'Sangeet guest outfit', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1719_700x.webp' },
+  { label: 'Summer fashion 2026', route: '/trends/summer-fashion', image: '/sarees/Sarees/9/L12.01.25_3415_700x.webp' },
+  { label: 'Bollywood inspired looks', route: '/celebrity-match', image: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp' },
+  { label: 'Handloom sarees', category: 'sarees', image: '/sarees/Sarees/9/L12.01.25_3547_33128c31-b45d-4240-b2c3-634c0659e06c_700x.webp' },
+  { label: 'Anarkali with pants', category: 'kurtas', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
+  { label: 'Under ₹999 picks', route: '/viral', image: '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp' },
 ];
+
+export const TRENDING_SEARCH_IMAGE_BY_LABEL = Object.fromEntries(
+  TRENDING_SEARCHES.map((item) => [item.label, item.image]),
+);
+
+const TRENDING_HEAT_BY_RANK = [98, 94, 89, 84, 79, 74, 70, 66, 62, 58];
+
+/** Supports admin { label, route?, category? }[] without images */
+export function normalizeTrendingSearches(searches) {
+  if (!Array.isArray(searches)) return [];
+  return searches.map((item, index) => {
+    const label = typeof item === 'string' ? item.trim() : item.label;
+    const base = typeof item === 'string' ? { label } : { ...item, label };
+    return {
+      ...base,
+      image: base.image || TRENDING_SEARCH_IMAGE_BY_LABEL[label] || '',
+      heat: base.heat ?? TRENDING_HEAT_BY_RANK[index] ?? Math.max(55, 90 - index * 4),
+    };
+  });
+}
 
 /** Default discovery extras — seeded into admin store on first load */
 export const DEFAULT_DISCOVERY_CONFIG = {
@@ -280,8 +300,8 @@ export const DEFAULT_DISCOVERY_CONFIG = {
   stripSub: 'Tap any chapter to open it',
   editorNotes: [
     'The desk pick for effortless festive dressing — structure without stiffness.',
-    'A scroll-stopper that still feels wearable off the feed.',
-    'Investment-tier fabric, everyday-friendly silhouette.',
+    'An heirloom-worthy weave that still moves with you at a mehendi.',
+    'A silk-forward silhouette for when the invite says celebration.',
   ],
   fashionPolls: FASHION_POLLS,
   styleChallenges: STYLE_CHALLENGES,

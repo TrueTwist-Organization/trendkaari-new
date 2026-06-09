@@ -9,14 +9,15 @@ import './CollectionHubSections.css';
 export default function CollectionHubSections({
   activeCategory,
   allProducts = [],
+  excludeProductIds = [],
   onSelectProduct,
   onSelectCategory,
   onOpenKnowledgePage,
   placement = 'full',
 }) {
   const hub = useMemo(
-    () => buildCollectionHub(allProducts, activeCategory),
-    [allProducts, activeCategory],
+    () => buildCollectionHub(allProducts, activeCategory, { excludeProductIds }),
+    [allProducts, activeCategory, excludeProductIds],
   );
 
   if (!hub) return null;
@@ -91,59 +92,23 @@ export default function CollectionHubSections({
     );
   }
 
-  if (placement === 'mid' && hub.trending.length >= 4) {
-    return (
-      <section className="collection-hub collection-hub--mid">
-        <div className="container">
-          <DiscoveryRail
-            title={`Trending in ${categoryLabel}`}
-            hook="Top-rated styles shoppers are opening right now"
-            products={hub.trending}
-            tone="hot"
-            onSelectProduct={onSelectProduct}
-            onSeeAll={() => onSelectCategory?.(activeCategory)}
-          />
-        </div>
-      </section>
-    );
-  }
-
   if (placement === 'bottom') {
+    if (!hub.rails?.length) return null;
+
     return (
-      <section className="collection-hub collection-hub--bottom">
+      <section className="collection-hub collection-hub--bottom" aria-label={`${categoryLabel} suggestions`}>
         <div className="container collection-hub__rails">
-          {hub.similarStyles.length >= 4 ? (
+          {hub.rails.map((rail) => (
             <DiscoveryRail
-              title="Similar styles"
-              hook="Same lane, fresh picks — keep scrolling this edit"
-              products={hub.similarStyles}
-              tone="similar"
+              key={rail.id}
+              title={rail.title}
+              hook={rail.hook}
+              products={rail.products}
+              tone={rail.tone}
               onSelectProduct={onSelectProduct}
-              onSeeAll={() => onSelectCategory?.(activeCategory)}
+              onSeeAll={rail.seeAllCategory ? () => onSelectCategory?.(rail.seeAllCategory) : undefined}
             />
-          ) : null}
-
-          {hub.editorPicks.length >= 4 ? (
-            <DiscoveryRail
-              title="Editor recommendations"
-              hook="Hand-picked favourites — high ratings & standout value"
-              products={hub.editorPicks}
-              tone="editorial"
-              onSelectProduct={onSelectProduct}
-              onSeeAll={() => onSelectCategory?.(activeCategory)}
-            />
-          ) : null}
-
-          {hub.relatedProducts.length >= 4 ? (
-            <DiscoveryRail
-              title="More in this edit"
-              hook="Related products to round out your browse"
-              products={hub.relatedProducts}
-              tone="related"
-              onSelectProduct={onSelectProduct}
-              onSeeAll={() => onSelectCategory?.(activeCategory)}
-            />
-          ) : null}
+          ))}
         </div>
       </section>
     );

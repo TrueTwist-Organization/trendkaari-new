@@ -16,6 +16,8 @@ import { scrollToPageTop } from '../utils/scrollToTop';
 import ProductImage from './ProductImage';
 import { getProductHoverImage, getProductPrimaryImage, getProductGalleryImages } from '../utils/productImages';
 import { getAdCode } from '../utils/resolveAdCode';
+import CollectionHubSections from './CollectionHubSections';
+import './CollectionHubSections.css';
 
 const MOBILE_TABS_MQ = '(max-width: 768px)';
 const PAGE_SIZE = 12;
@@ -40,6 +42,8 @@ export default function CollectionListingPage({
   onOpenQuickView,
   onBack,
   onBackToHome,
+  onSelectProduct,
+  onOpenKnowledgePage,
   products = [],
   adCodes = {},
 }) {
@@ -326,6 +330,10 @@ export default function CollectionListingPage({
   });
 
   const paginatedItems = sortedItems.slice(0, visibleCount);
+  const categoryProductIds = useMemo(
+    () => items.map((product) => product.id),
+    [items],
+  );
   const hasMore = visibleCount < sortedItems.length;
   const rangeStart = sortedItems.length === 0 ? 0 : 1;
   const rangeEnd = Math.min(visibleCount, sortedItems.length);
@@ -892,6 +900,18 @@ export default function CollectionListingPage({
         </main>
 
       </div>
+
+      {activeCategory !== 'all' && sortedItems.length > 0 ? (
+        <CollectionHubSections
+          activeCategory={activeCategory}
+          allProducts={products}
+          excludeProductIds={categoryProductIds}
+          onSelectProduct={onSelectProduct || onOpenQuickView}
+          onSelectCategory={onSelectCategory}
+          onOpenKnowledgePage={onOpenKnowledgePage}
+          placement="bottom"
+        />
+      ) : null}
 
       <PlacedAdSlot adCodes={adCodes} placement="category_page_bottom" variant="section" />
     </div>

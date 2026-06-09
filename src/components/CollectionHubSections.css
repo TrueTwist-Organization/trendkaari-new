@@ -12,8 +12,14 @@
 }
 
 .collection-hub--bottom {
-  padding: 1.5rem 0 0.5rem;
-  margin-top: 1.5rem;
+  padding: 2rem 0 0.75rem;
+  margin-top: 0.5rem;
+  background: linear-gradient(180deg, #faf9f6 0%, #fff 100%);
+  border-top: 1px solid rgba(96, 11, 69, 0.06);
+}
+
+.collection-hub__rails .discovery-rail + .discovery-rail {
+  margin-top: 1.75rem;
 }
 
 .collection-hub__head {

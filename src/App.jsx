@@ -1477,6 +1477,7 @@ export default function App() {
                 onSelectCategory={handleSelectCategory}
                 onAddToCart={handleAddToCart}
                 onOpenQuickView={handleOpenQuickView}
+                onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
                 onBack={handleGoBack}
                 onBackToHome={() => navigateToRoute('/')}
                 products={productsList}

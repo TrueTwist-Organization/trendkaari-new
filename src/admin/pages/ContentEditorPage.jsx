@@ -691,7 +691,7 @@ function HomepageBlockForm({ item, onChange, isNew }) {
             value={formatOccasionChips(item.occasionChips)}
             onChange={(v) => set('occasionChips')(parseOccasionChips(v))}
             rows={6}
-            placeholder={'Wedding Guest | lehengas\nOffice | kurtas\nBrunch | co-ords | /shop/co-ords'}
+            placeholder={'Wedding Guest | lehengas\nSangeet | lehengas\nOffice | kurtas\nPuja | kurtas'}
           />
         </Field>
       )}

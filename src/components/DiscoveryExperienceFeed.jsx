@@ -8,6 +8,7 @@ import {
   TRENDING_SEARCHES,
   DEFAULT_DISCOVERY_CONFIG,
   resolveOccasionChipImage,
+  normalizeOccasionChips,
   normalizeFestiveChips,
   normalizeTrendingSearches,
 } from '../data/discoveryExperience';
@@ -212,6 +213,10 @@ function openOccasionChip(chip, block, { onNavigate, onSelectCategory }) {
 
 function OccasionGateBlock({ block, onNavigate, onSelectCategory }) {
   const chipHandlers = { onNavigate, onSelectCategory };
+  const occasionChips = useMemo(
+    () => normalizeOccasionChips(block.occasionChips, block.poster),
+    [block.occasionChips, block.poster],
+  );
 
   return (
     <BlockShell block={block} onNavigate={onNavigate}>
@@ -228,7 +233,7 @@ function OccasionGateBlock({ block, onNavigate, onSelectCategory }) {
           <div className="discovery-xp__occasion-hero-overlay" aria-hidden="true" />
           <div className="discovery-xp__occasion-hero-copy">
             <span className="discovery-xp__occasion-hero-kicker">
-              {block.occasionChips?.length ?? 0} life moments
+              {occasionChips.length} life moments
             </span>
             <p>One quiz builds the full look — not just a product grid.</p>
           </div>
@@ -236,7 +241,7 @@ function OccasionGateBlock({ block, onNavigate, onSelectCategory }) {
         </button>
 
         <div className="discovery-xp__occasion-grid">
-          {block.occasionChips?.map((chip) => (
+          {occasionChips.map((chip) => (
             <button
               key={chip.label}
               type="button"

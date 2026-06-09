@@ -197,8 +197,20 @@
   min-height: auto;
 }
 
-.fashion-knowledge--page > .container:not(.fashion-knowledge__page-wrap) {
+.fashion-knowledge--page .knowledge-page__below-fold {
   margin-top: 2.5rem;
+  padding: 2rem 0 0;
+  background: linear-gradient(180deg, var(--brand-peach-light, #fdeded) 0%, #fff 28%);
+  border-top: 1px solid rgba(96, 11, 69, 0.08);
+}
+
+.fashion-knowledge--page .knowledge-page__below-fold > .container + .container,
+.fashion-knowledge--page .knowledge-page__below-fold > .disc-loop {
+  margin-top: 2.5rem;
+}
+
+.fashion-knowledge--page .knowledge-page__below-fold .knowledge-page__shop-rail {
+  margin-top: 2rem;
 }
 
 .fashion-knowledge__page-wrap {
@@ -341,6 +353,61 @@
   color: #333;
 }
 
+.knowledge-page__paragraph--lead {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: #2a2a2a;
+}
+
+.knowledge-page__trust {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.75rem 0 0;
+  padding: 1rem;
+  border-radius: 14px;
+  background: var(--brand-peach-light, #fdeded);
+  border: 1px solid rgba(96, 11, 69, 0.1);
+}
+
+.knowledge-page__trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.knowledge-page__trust-item strong {
+  display: block;
+  font-size: 0.82rem;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.knowledge-page__trust-item span:not(.knowledge-page__trust-icon) {
+  display: block;
+  font-size: 0.72rem;
+  color: #666;
+  line-height: 1.35;
+  margin-top: 0.15rem;
+}
+
+.knowledge-page__trust-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: var(--know-accent, #600b45);
+  border: 1px solid rgba(96, 11, 69, 0.12);
+}
+
+.knowledge-page__trust-icon--cod {
+  background: color-mix(in srgb, var(--know-accent) 10%, white);
+}
+
 .knowledge-page__heading {
   margin: 1.75rem 0 0.75rem;
   font-family: var(--font-serif);
@@ -395,7 +462,9 @@
 
 .knowledge-page__collections-head h2 {
   margin: 0;
-  font-size: 1.05rem;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
   color: #1a1a1a;
 }
 
@@ -443,28 +512,6 @@
   font-weight: 600;
 }
 
-.knowledge-page__shop-cta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  padding: 1.15rem;
-  border-radius: 14px;
-  background: #faf7f9;
-  border: 1px solid rgba(96, 11, 69, 0.1);
-}
-
-.knowledge-page__shop-cta strong {
-  display: block;
-}
-
-.knowledge-page__shop-cta p {
-  margin: 0.2rem 0 0;
-  font-size: 0.85rem;
-  color: #666;
-}
-
 .knowledge-page__sidebar-card {
   padding: 1.1rem 1.15rem;
   border: 1px solid #ece8ea;
@@ -480,6 +527,62 @@
   font-size: 1rem;
   font-weight: 600;
   color: #1a1a1a;
+}
+
+.knowledge-page__sidebar-card--shop {
+  border-color: color-mix(in srgb, var(--know-accent) 22%, white);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--know-accent) 5%, white) 0%, #fff 100%);
+}
+
+.knowledge-page__sidebar-preview {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.85rem;
+}
+
+.knowledge-page__sidebar-card--shop p {
+  margin: 0 0 1rem;
+  font-size: 0.82rem;
+  color: #666;
+  line-height: 1.45;
+}
+
+.knowledge-page__sidebar-shop-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.knowledge-page__sidebar-collections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.knowledge-page__sidebar-collection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #ece8ea;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+}
+
+.knowledge-page__sidebar-collection:hover {
+  border-color: var(--know-accent);
+  color: var(--know-accent);
 }
 
 .knowledge-page__related {
@@ -555,11 +658,11 @@
   color: var(--know-accent, #600b45);
 }
 
-.knowledge-page__shop-rail {
-  margin-top: 2rem;
-}
-
 @media (max-width: 900px) {
+  .knowledge-page__trust {
+    grid-template-columns: 1fr;
+  }
+
   .knowledge-page__layout {
     grid-template-columns: 1fr;
     gap: 1.75rem;
@@ -592,10 +695,6 @@
     aspect-ratio: 4 / 3;
   }
 
-  .knowledge-page__shop-cta {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 
 /* ── Discovery sections (trends / celebs / quizzes) ─────────────────── */

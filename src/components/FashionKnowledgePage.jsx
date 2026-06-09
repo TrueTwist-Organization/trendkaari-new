@@ -1,10 +1,18 @@
 import React, { useMemo, useEffect } from 'react';
-import { ArrowRight, ChevronRight, FolderOpen, ShoppingBag, Sparkles, TrendingUp, Star } from 'lucide-react';
+import {
+  ArrowRight,
+  Banknote,
+  ChevronRight,
+  FolderOpen,
+  RotateCcw,
+  ShoppingBag,
+  Truck,
+} from 'lucide-react';
 import PageBackButton from './PageBackButton';
 import ProductImage from './ProductImage';
 import DiscoveryRail from './DiscoveryRail';
+import DiscoveryLoopSection from './DiscoveryLoopSection';
 import PlacedAdSlot from './PlacedAdSlot';
-import RecommendationRails from './RecommendationRails';
 import {
   getKnowledgePageBySlug,
   getKnowledgeTopics,
@@ -15,15 +23,16 @@ import {
   getKnowledgePageProducts,
   getRelatedKnowledgePages,
 } from '../utils/knowledgeEngine';
-import { CELEBRITY_LOOKS } from '../data/celebrityLooks';
-import { getTrendPage } from '../data/trendPages';
-import { FASHION_QUIZZES } from '../data/fashionQuizzes';
-import { trackGuidePageViewed, trackRecommendationClicked } from '../utils/ga4';
+import { trackGuidePageViewed } from '../utils/ga4';
 import './FashionKnowledge.css';
 
-function ContentBlock({ block }) {
+function ContentBlock({ block, isLead }) {
   if (block.type === 'paragraph') {
-    return <p className="knowledge-page__paragraph">{block.text}</p>;
+    return (
+      <p className={`knowledge-page__paragraph${isLead ? ' knowledge-page__paragraph--lead' : ''}`}>
+        {block.text}
+      </p>
+    );
   }
   if (block.type === 'heading') {
     return <h2 className="knowledge-page__heading">{block.text}</h2>;
@@ -57,7 +66,6 @@ export default function FashionKnowledgePage({
   onOpenPage,
   onBackToHub,
   onBackToHome,
-  onOpenArticle,
   onStartQuiz,
   onNavigate,
 }) {
@@ -65,34 +73,20 @@ export default function FashionKnowledgePage({
   const topic = getTopicBySlug(page?.topicSlug);
 
   const shopProducts = useMemo(
-    () => getKnowledgePageProducts(products, page),
+    () => getKnowledgePageProducts(products, page).slice(0, 10),
     [products, page],
   );
   const collections = useMemo(() => getKnowledgeCollections(page), [page]);
-  const related = useMemo(() => getRelatedKnowledgePages(page, 3), [page]);
+  const related = useMemo(() => getRelatedKnowledgePages(page, 4), [page]);
+
+  const loopGuides = useMemo(
+    () => related.map((rel) => rel.slug).filter((slug) => slug !== page?.slug),
+    [related, page?.slug],
+  );
 
   useEffect(() => {
     if (page) trackGuidePageViewed(page.slug, page.title, page.topicSlug);
   }, [pageSlug, page]);
-
-  const relatedTrends = useMemo(
-    () => (page?.relatedTrends || []).map((slug) => getTrendPage(slug)).filter(Boolean),
-    [page],
-  );
-  const relatedCelebs = useMemo(
-    () =>
-      (page?.relatedCelebrityIds || [])
-        .map((id) => CELEBRITY_LOOKS.find((l) => l.id === id))
-        .filter(Boolean),
-    [page],
-  );
-  const relatedQuizzes = useMemo(
-    () =>
-      (page?.relatedQuizSlugs || [])
-        .map((slug) => FASHION_QUIZZES[slug])
-        .filter(Boolean),
-    [page],
-  );
 
   if (!page) {
     return (
@@ -104,6 +98,8 @@ export default function FashionKnowledgePage({
       </div>
     );
   }
+
+  const firstParagraphIndex = page.sections.findIndex((s) => s.type === 'paragraph');
 
   return (
     <div
@@ -149,15 +145,49 @@ export default function FashionKnowledgePage({
 
             <article className="knowledge-page__content">
               {page.sections.map((section, index) => (
-                <ContentBlock key={`${section.type}-${index}`} block={section} />
+                <ContentBlock
+                  key={`${section.type}-${index}`}
+                  block={section}
+                  isLead={section.type === 'paragraph' && index === firstParagraphIndex}
+                />
               ))}
+
+              <div className="knowledge-page__trust" aria-label="Shopping benefits">
+                <div className="knowledge-page__trust-item">
+                  <span className="knowledge-page__trust-icon" aria-hidden>
+                    <Truck size={18} strokeWidth={2.25} />
+                  </span>
+                  <div>
+                    <strong>Free Shipping</strong>
+                    <span>On all orders across India</span>
+                  </div>
+                </div>
+                <div className="knowledge-page__trust-item">
+                  <span className="knowledge-page__trust-icon knowledge-page__trust-icon--cod" aria-hidden>
+                    <Banknote size={18} strokeWidth={2.25} />
+                  </span>
+                  <div>
+                    <strong>Cash on Delivery</strong>
+                    <span>Pay when your order arrives</span>
+                  </div>
+                </div>
+                <div className="knowledge-page__trust-item">
+                  <span className="knowledge-page__trust-icon" aria-hidden>
+                    <RotateCcw size={18} strokeWidth={2.25} />
+                  </span>
+                  <div>
+                    <strong>Easy Returns</strong>
+                    <span>Hassle-free exchange policy</span>
+                  </div>
+                </div>
+              </div>
 
               <section className="knowledge-page__collections">
                 <div className="knowledge-page__collections-head">
                   <FolderOpen size={18} aria-hidden />
                   <div>
-                    <h2>Explore related collections</h2>
-                    <p>Shop the categories this guide references.</p>
+                    <h2>Shop related collections</h2>
+                    <p>Categories referenced in this guide.</p>
                   </div>
                 </div>
                 <div className="knowledge-page__collection-grid">
@@ -177,26 +207,24 @@ export default function FashionKnowledgePage({
                   ))}
                 </div>
               </section>
-
-              <div className="knowledge-page__shop-cta">
-                <ShoppingBag size={18} aria-hidden />
-                <div>
-                  <strong>Shop picks for this guide</strong>
-                  <p>Products matched to {page.title.toLowerCase()}.</p>
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => onSelectCategory?.(page.shopCategory)}
-                >
-                  Browse {page.shopCategory}
-                  <ArrowRight size={16} aria-hidden />
-                </button>
-              </div>
             </article>
           </div>
 
           <aside className="knowledge-page__sidebar">
+            <div className="knowledge-page__sidebar-card knowledge-page__sidebar-card--shop">
+              <ProductImage src={page.image} alt="" className="knowledge-page__sidebar-preview" />
+              <h3>Shop this guide</h3>
+              <p>Browse {page.shopCategory} picks inspired by {page.title.toLowerCase()}.</p>
+              <button
+                type="button"
+                className="btn btn-primary knowledge-page__sidebar-shop-btn"
+                onClick={() => onSelectCategory?.(page.shopCategory)}
+              >
+                <ShoppingBag size={16} aria-hidden />
+                Browse {page.shopCategory}
+              </button>
+            </div>
+
             <div className="knowledge-page__sidebar-card">
               <h3>Related guides</h3>
               {related.map((rel) => {
@@ -217,6 +245,25 @@ export default function FashionKnowledgePage({
                 );
               })}
             </div>
+
+            {collections.length > 0 ? (
+              <div className="knowledge-page__sidebar-card">
+                <h3>Quick shop</h3>
+                <div className="knowledge-page__sidebar-collections">
+                  {collections.map((col) => (
+                    <button
+                      key={`sidebar-${col.category}`}
+                      type="button"
+                      className="knowledge-page__sidebar-collection"
+                      onClick={() => onSelectCategory?.(col.category)}
+                    >
+                      {col.label}
+                      <ArrowRight size={13} aria-hidden />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
 
             <div className="knowledge-page__sidebar-card">
               <h3>Topics</h3>
@@ -240,177 +287,41 @@ export default function FashionKnowledgePage({
         </div>
       </div>
 
-      <div className="container">
-        <PlacedAdSlot adCodes={adCodes} placement="knowledge_page_mid" variant="section" />
-      </div>
-
-      {relatedTrends.length > 0 ? (
-        <div className="container knowledge-discover-section">
-          <div className="knowledge-discover-section__head">
-            <TrendingUp size={18} aria-hidden />
-            <div>
-              <h2 className="knowledge-discover-section__title">Trending right now</h2>
-              <p className="knowledge-discover-section__sub">
-                See how this guide plays out in current fashion trends
-              </p>
-            </div>
-          </div>
-          <div className="knowledge-trends-grid">
-            {relatedTrends.map((trend) => (
-              <button
-                key={trend.slug}
-                type="button"
-                className="knowledge-trend-card"
-                onClick={() => {
-                  trackRecommendationClicked('trend', trend.slug, trend.title, 'knowledge_page');
-                  onNavigate?.(`/trends/${trend.slug}`);
-                }}
-              >
-                <div className="knowledge-trend-card__img-wrap">
-                  <img
-                    src={trend.heroImage}
-                    alt={trend.title}
-                    className="knowledge-trend-card__img"
-                    loading="lazy"
-                    decoding="async"
-                    width="300"
-                    height="200"
-                  />
-                  <div
-                    className="knowledge-trend-card__badge"
-                    style={{ background: trend.accent || '#600b45' }}
-                  >
-                    Trending
-                  </div>
-                </div>
-                <div className="knowledge-trend-card__body">
-                  <p className="knowledge-trend-card__title">{trend.title}</p>
-                  <p className="knowledge-trend-card__sub">{trend.subtitle}</p>
-                  <span className="knowledge-trend-card__cta">
-                    Explore trend <ArrowRight size={13} aria-hidden />
-                  </span>
-                </div>
-              </button>
-            ))}
-          </div>
+      <div className="knowledge-page__below-fold">
+        <div className="container">
+          <PlacedAdSlot adCodes={adCodes} placement="knowledge_page_mid" variant="section" />
         </div>
-      ) : null}
 
-      {relatedCelebs.length > 0 ? (
-        <div className="container knowledge-discover-section">
-          <div className="knowledge-discover-section__head">
-            <Star size={18} aria-hidden />
-            <div>
-              <h2 className="knowledge-discover-section__title">See it in action</h2>
-              <p className="knowledge-discover-section__sub">
-                Celebrity looks that bring this guide to life
-              </p>
-            </div>
+        {shopProducts.length ? (
+          <div className="container knowledge-page__shop-rail">
+            <DiscoveryRail
+              title={`Shop ${page.title.replace(/^What is /i, '').replace(/\?$/, '') || page.title}`}
+              hook={`Curated ${page.shopCategory} — hand-picked for this guide`}
+              products={shopProducts}
+              tone="editorial"
+              compact
+              onSelectProduct={onSelectProduct}
+              onSeeAll={() => onSelectCategory?.(page.shopCategory)}
+            />
           </div>
-          <div className="knowledge-celeb-grid">
-            {relatedCelebs.map((look) => (
-              <button
-                key={look.id}
-                type="button"
-                className="knowledge-celeb-card"
-                onClick={() => {
-                  trackRecommendationClicked('celeb', look.id, look.title, 'knowledge_page');
-                  onNavigate?.(`/celebrity-match/${look.id}`);
-                }}
-              >
-                <div className="knowledge-celeb-card__img-wrap">
-                  <img
-                    src={look.image}
-                    alt={look.celebrity}
-                    className="knowledge-celeb-card__img"
-                    loading="lazy"
-                    decoding="async"
-                    width="260"
-                    height="340"
-                  />
-                </div>
-                <div className="knowledge-celeb-card__body">
-                  <p className="knowledge-celeb-card__name">{look.celebrity}</p>
-                  <p className="knowledge-celeb-card__title">{look.title}</p>
-                  <p className="knowledge-celeb-card__ctx">{look.context}</p>
-                  <span className="knowledge-celeb-card__cta">
-                    View look <ArrowRight size={12} aria-hidden />
-                  </span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      ) : null}
+        ) : null}
 
-      {relatedQuizzes.length > 0 ? (
-        <div className="container knowledge-discover-section">
-          <div className="knowledge-discover-section__head">
-            <Sparkles size={18} aria-hidden />
-            <div>
-              <h2 className="knowledge-discover-section__title">Test your knowledge</h2>
-              <p className="knowledge-discover-section__sub">
-                Quick quizzes built around this guide&apos;s topics
-              </p>
-            </div>
-          </div>
-          <div className="knowledge-quiz-grid">
-            {relatedQuizzes.map((quiz) => (
-              <button
-                key={quiz.slug}
-                type="button"
-                className="knowledge-quiz-card"
-                onClick={() => {
-                  trackRecommendationClicked('quiz', quiz.slug, quiz.title, 'knowledge_page');
-                  onStartQuiz?.(quiz.slug);
-                }}
-              >
-                <Sparkles size={22} className="knowledge-quiz-card__icon" aria-hidden />
-                <p className="knowledge-quiz-card__title">{quiz.title}</p>
-                <p className="knowledge-quiz-card__sub">{quiz.subtitle}</p>
-                <span className="knowledge-quiz-card__cta">
-                  Start quiz <ArrowRight size={13} aria-hidden />
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-      ) : null}
-
-      {shopProducts.length ? (
-        <div className="container knowledge-page__shop-rail">
-          <DiscoveryRail
-            title="Products for this guide"
-            hook="Hand-picked from categories mentioned above — tap to explore"
-            products={shopProducts}
-            tone="editorial"
-            onSelectProduct={onSelectProduct}
-            onSeeAll={() => onSelectCategory?.(page.shopCategory)}
-          />
-        </div>
-      ) : null}
-
-      {products.length ? (
-        <RecommendationRails
-          allProducts={products}
-          category={page.shopCategory}
-          knowledgePage={page}
-          onSelectProduct={onSelectProduct}
-          onSelectCategory={onSelectCategory}
-          onOpenArticle={onOpenArticle}
-          onOpenKnowledgePage={onOpenPage}
+        <DiscoveryLoopSection
+          sourceContext="knowledge_page"
+          trendSlugs={page.relatedTrends || []}
+          celebIds={page.relatedCelebrityIds || []}
+          quizSlugs={page.relatedQuizSlugs || []}
+          guideSlugs={loopGuides}
+          title="Where to go next"
+          subtitle="Trends, celebrity looks, quizzes, and guides connected to this topic"
+          onNavigate={onNavigate}
           onStartQuiz={onStartQuiz}
-          adCodes={adCodes}
-          variant="browse"
-          title="Keep exploring"
-          subtitle="Similar products, related collections, articles, quizzes, and trending picks."
-          compact
-          showAds={false}
+          onOpenKnowledgePage={onOpenPage}
         />
-      ) : null}
 
-      <div className="container">
-        <PlacedAdSlot adCodes={adCodes} placement="knowledge_page_bottom" variant="section" />
+        <div className="container">
+          <PlacedAdSlot adCodes={adCodes} placement="knowledge_page_bottom" variant="section" />
+        </div>
       </div>
     </div>
   );

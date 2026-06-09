@@ -18,6 +18,11 @@
   overflow-x: hidden;
 }
 
+/* Fixed header clearance — removed when a visible top ad strip sits above main */
+.main-content:not(.main-content--checkout) {
+  padding-top: var(--site-header-total);
+}
+
 .product-not-found {
   padding: 48px 16px 80px;
   text-align: center;

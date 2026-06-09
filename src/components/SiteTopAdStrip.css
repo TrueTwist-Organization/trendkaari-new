@@ -87,6 +87,11 @@
   }
 }
 
+/* Visible strip already clears the fixed header — avoid double offset on main */
+.site-top-ad-strip[data-has-ads='true'] + .main-content {
+  padding-top: 0;
+}
+
 /* Hero already sits below ad strip — no extra gap */
 .site-top-ad-strip[data-has-ads='true'] + .main-content .hero-slider-section {
   padding-top: 0;

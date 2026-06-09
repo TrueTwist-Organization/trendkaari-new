@@ -31,7 +31,8 @@ export function claimAdSource(sourceKey, ownerKey, code = '') {
   const owner = String(ownerKey || sourceKey || '').trim();
   if (!owner) return true;
 
-  const fingerprint = getAdUnitFingerprint(code, sourceKey);
+  /* Include owner so the same pasted unit can mount in multiple placements (unique div ids per slot). */
+  const fingerprint = getAdUnitFingerprint(code, `${sourceKey}::${owner}`);
   const existing = claimsByFingerprint.get(fingerprint);
   if (!existing) {
     claimsByFingerprint.set(fingerprint, owner);

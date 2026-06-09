@@ -3,9 +3,22 @@ import { ARBITRAGE_EXPERT_YEARS } from '../constants/brand';
 /** Editable homepage shell — trust bar, market map, intros, hero, finale. */
 export const DEFAULT_HOMEPAGE_CONFIG = {
   hero: {
+    titleLine1: 'Celebrate Every',
+    titleLine2: 'Special Moment',
+    subtitle:
+      'Curated Indian ethnic & contemporary wear for festivals, weddings, and everyday style.',
+    primaryCta: 'Shop Now',
+    secondaryCta: 'Explore Collections',
     desktopImage: '/hero/home-hero-banner.png?v=celebrate-special-v2',
     mobileImage: '/hero/home-hero-banner-mobile.png?v=celebrate-special-v2',
+    modelsImage: '/hero/home-hero-models.png?v=5',
+    mobileModelsImage: '/hero/home-hero-models-mobile.png?v=5',
     alt: 'Celebrate Every Special Moment — Trendkaari curated Indian ethnic and contemporary wear',
+    trustBadges: [
+      { icon: 'Award', label: 'Premium Quality' },
+      { icon: 'Leaf', label: 'Curated Collections' },
+      { icon: 'ShieldCheck', label: 'Secure Shopping' },
+    ],
   },
   trust: {
     items: [

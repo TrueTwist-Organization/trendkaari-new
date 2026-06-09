@@ -147,7 +147,15 @@ export default function ExplorationHomepage({
 
   return (
     <div className="exploration-home exploration-home--discovery">
-      <DiscoveryHero onOpenDiscover={onOpenDiscover} hero={home.hero} />
+      <DiscoveryHero
+        hero={home.hero}
+        onShopNow={() => {
+          document.querySelector('.home-categories')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }}
+        onExploreCollections={() => {
+          document.getElementById('home-chapters')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }}
+      />
 
       <HomeAdSlot adCodes={adCodes} placement="homepage_after_hero" />
 

@@ -123,7 +123,12 @@ export default function EndlessDiscovery({
       ) : null}
 
       {showAds && variant === 'product' ? (
-        <PlacedAdSlot adCodes={adCodes} placement="product_before_suggestions" variant="pdp" />
+        <PlacedAdSlot
+          adCodes={adCodes}
+          placement="product_before_suggestions"
+          variant="pdp"
+          ownerKey="product_before_suggestions"
+        />
       ) : null}
 
       {variant !== 'product' ? (
@@ -236,7 +241,12 @@ export default function EndlessDiscovery({
       />
 
       {showAds && variant === 'product' ? (
-        <PlacedAdSlot adCodes={adCodes} placement="product_after_suggestions" variant="pdp" />
+        <PlacedAdSlot
+          adCodes={adCodes}
+          placement="product_after_suggestions"
+          variant="pdp"
+          ownerKey="product_after_suggestions"
+        />
       ) : null}
       {showAds && variant === 'category' ? (
         <PlacedAdSlot adCodes={adCodes} placement="category_after_grid" variant="container" />

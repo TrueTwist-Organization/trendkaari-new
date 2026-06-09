@@ -1,14 +1,22 @@
 import PlacedAdSlot from './PlacedAdSlot';
 import { getAdCode } from '../utils/resolveAdCode';
 
-/** Show the first configured ad from a priority list — one promo break per zone. */
+/** Render every filled placement in order — each maps to its admin slot. */
 export default function PdpAdZone({ adCodes, placements = [], variant = 'pdp', className = '' }) {
-  const hit = placements.find((key) => getAdCode(adCodes, key));
-  if (!hit) return null;
+  const hits = placements.filter((key) => getAdCode(adCodes, key));
+  if (!hits.length) return null;
 
   return (
     <div className={`pdp-ad-zone${className ? ` ${className}` : ''}`}>
-      <PlacedAdSlot adCodes={adCodes} placement={hit} variant={variant} />
+      {hits.map((placement) => (
+        <PlacedAdSlot
+          key={placement}
+          adCodes={adCodes}
+          placement={placement}
+          variant={variant}
+          ownerKey={placement}
+        />
+      ))}
     </div>
   );
 }

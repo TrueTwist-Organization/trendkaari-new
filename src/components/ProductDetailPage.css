@@ -10,7 +10,7 @@
   --pdp-surface: #faf8f6;
   --pdp-border-soft: #ece6ea;
   --pdp-content-max: 1440px;
-  padding-top: 1rem;
+  padding-top: 0.75rem;
   padding-bottom: 32px;
   background: transparent;
 }
@@ -395,6 +395,15 @@
 
 .pdp-ad-zone {
   margin: 4px 0 16px;
+}
+
+.pdp-ad-zone + .pdp-section,
+.pdp-section + .pdp-ad-zone {
+  margin-top: 4px;
+}
+
+.pdp-ad-zone .page-ad-slot-wrap--pdp + .page-ad-slot-wrap--pdp {
+  margin-top: 12px;
 }
 
 .pdp-ad-zone .page-ad-slot-wrap--pdp {

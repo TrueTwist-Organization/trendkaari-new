@@ -191,100 +191,173 @@
 }
 
 /* Page detail */
+.fashion-knowledge--page {
+  background: #fff;
+  padding-bottom: 3rem;
+  min-height: auto;
+}
+
+.fashion-knowledge--page > .container:not(.fashion-knowledge__page-wrap) {
+  margin-top: 2.5rem;
+}
+
 .fashion-knowledge__page-wrap {
-  max-width: 1080px;
-  padding-top: 1.5rem;
+  max-width: 1120px;
+  padding-top: 1.25rem;
 }
 
 .fashion-knowledge__page-top {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
-.fashion-knowledge__breadcrumb {
+.fashion-knowledge--page .fashion-knowledge__breadcrumb {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem;
-  margin-bottom: 1rem;
-  font-size: 0.78rem;
-  color: #8a7b72;
+  margin-bottom: 1.25rem;
+  font-size: 0.74rem;
+  color: #7a7a7a;
 }
 
-.fashion-knowledge__breadcrumb button {
+.fashion-knowledge--page .fashion-knowledge__breadcrumb button {
   background: none;
   border: 0;
-  color: #600b45;
+  color: var(--know-accent, #600b45);
   cursor: pointer;
   padding: 0;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.fashion-knowledge--page .fashion-knowledge__breadcrumb button:hover {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
+.fashion-knowledge--page .fashion-knowledge__breadcrumb span {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
 .fashion-knowledge__eyebrow {
-  margin: 0 0 0.35rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  margin: 0 0 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--know-accent);
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.knowledge-page__intro {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.35rem;
+  border-bottom: 1px solid #f0ecee;
 }
 
 .knowledge-page__title {
   margin: 0;
-  font-size: clamp(1.65rem, 4vw, 2.25rem);
-  line-height: 1.2;
-  color: #600b45;
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 4.2vw, 2.65rem);
+  line-height: 1.15;
+  color: #1a1a1a;
+  max-width: 24ch;
 }
 
 .knowledge-page__dek {
-  margin: 0.65rem 0 0;
-  font-size: 1.05rem;
-  color: #5c4f4a;
-  line-height: 1.5;
-  max-width: 640px;
+  margin: 0.85rem 0 0;
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  color: #5f5f5f;
+  line-height: 1.55;
+  max-width: 52ch;
 }
 
 .knowledge-page__meta {
-  margin: 0.5rem 0 0;
-  font-size: 0.82rem;
-  color: #888;
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  color: #8a8a8a;
+}
+
+.knowledge-page__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.knowledge-page__tag {
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--know-accent) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--know-accent) 18%, white);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--know-accent);
+  letter-spacing: 0.02em;
 }
 
 .knowledge-page__figure {
-  margin: 1.5rem 0;
+  margin: 0 0 1.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #f0ecee;
+  box-shadow: 0 12px 32px rgba(26, 10, 20, 0.06);
 }
 
 .knowledge-page__hero-img {
+  display: block;
   width: 100%;
-  max-height: 400px;
+  aspect-ratio: 16 / 9;
+  max-height: 440px;
   object-fit: cover;
-  border-radius: 14px;
+  object-position: top center;
 }
 
 .knowledge-page__layout {
   display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 2rem 2.5rem;
   align-items: start;
 }
 
+.knowledge-page__main {
+  min-width: 0;
+}
+
+.knowledge-page__content {
+  max-width: 68ch;
+}
+
+.knowledge-page__sidebar {
+  position: sticky;
+  top: calc(var(--site-main-header-h, 88px) + 20px);
+  align-self: start;
+}
+
 .knowledge-page__paragraph {
-  margin: 0 0 1rem;
-  line-height: 1.65;
+  margin: 0 0 1.1rem;
+  font-size: 1.02rem;
+  line-height: 1.7;
   color: #333;
 }
 
 .knowledge-page__heading {
-  margin: 1.5rem 0 0.65rem;
-  font-size: 1.12rem;
+  margin: 1.75rem 0 0.75rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  font-weight: 600;
   color: #1a1a1a;
 }
 
 .knowledge-page__list {
-  margin: 0 0 1rem;
-  padding-left: 1.25rem;
-  line-height: 1.6;
+  margin: 0 0 1.25rem;
+  padding-left: 1.35rem;
+  line-height: 1.65;
   color: #444;
+}
+
+.knowledge-page__list li + li {
+  margin-top: 0.45rem;
 }
 
 .knowledge-page__tip {
@@ -309,6 +382,7 @@
 .knowledge-page__collections {
   margin-top: 2rem;
   padding-top: 1.5rem;
+  border-top: 1px solid #f0ecee;
 }
 
 .knowledge-page__collections-head {
@@ -374,11 +448,11 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   padding: 1.15rem;
   border-radius: 14px;
-  background: #faf7f5;
-  border: 1px solid #ece8e3;
+  background: #faf7f9;
+  border: 1px solid rgba(96, 11, 69, 0.1);
 }
 
 .knowledge-page__shop-cta strong {
@@ -392,21 +466,25 @@
 }
 
 .knowledge-page__sidebar-card {
-  padding: 1rem;
-  border: 1px solid #ece8e3;
-  border-radius: 14px;
-  background: #fff;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid #ece8ea;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
   margin-bottom: 1rem;
+  box-shadow: 0 8px 24px rgba(26, 10, 20, 0.04);
 }
 
 .knowledge-page__sidebar-card h3 {
-  margin: 0 0 0.75rem;
-  font-size: 0.95rem;
+  margin: 0 0 0.85rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
 .knowledge-page__related {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.65rem;
   width: 100%;
   text-align: left;
@@ -421,15 +499,28 @@
   border-bottom: 0;
 }
 
+.knowledge-page__related:hover .knowledge-page__related-title {
+  color: var(--know-accent);
+}
+
 .knowledge-page__related-img {
-  width: 52px;
-  height: 52px;
+  width: 64px;
+  height: 64px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
   flex-shrink: 0;
 }
 
+.knowledge-page__related-topic {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+}
+
 .knowledge-page__related-title {
+  display: block;
   font-size: 0.82rem;
   font-weight: 600;
   line-height: 1.35;
@@ -438,26 +529,69 @@
 
 .knowledge-page__topic-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 0.75rem;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
 }
 
-.knowledge-page__topic-tag {
-  padding: 0.25rem 0.55rem;
-  border-radius: 999px;
-  background: #f5f2ef;
-  font-size: 0.72rem;
-  color: #666;
+.knowledge-page__topic-link {
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0.25rem 0;
+  font-size: 0.82rem;
+  color: var(--know-accent, #600b45);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.knowledge-page__topic-link.is-active {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.fashion-knowledge--page .fashion-knowledge__back {
+  color: var(--know-accent, #600b45);
+}
+
+.knowledge-page__shop-rail {
+  margin-top: 2rem;
 }
 
 @media (max-width: 900px) {
   .knowledge-page__layout {
     grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .knowledge-page__sidebar {
+    position: static;
+    order: 2;
+  }
+
+  .knowledge-page__title,
+  .knowledge-page__dek,
+  .knowledge-page__content {
+    max-width: none;
   }
 }
 
 @media (max-width: 640px) {
+  .fashion-knowledge__page-wrap {
+    padding-top: 1rem;
+  }
+
+  .knowledge-page__intro {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.1rem;
+  }
+
+  .knowledge-page__hero-img {
+    max-height: 280px;
+    aspect-ratio: 4 / 3;
+  }
+
   .knowledge-page__shop-cta {
     flex-direction: column;
     align-items: flex-start;

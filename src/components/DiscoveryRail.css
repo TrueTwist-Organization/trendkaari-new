@@ -264,11 +264,11 @@
 }
 
 .discovery-rail--similar {
-  background: linear-gradient(180deg, #f6f8ff 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--brand-peach-light) 0%, transparent 100%);
 }
 
 .discovery-rail--social .discovery-rail__hook {
-  color: #1565c0;
+  color: var(--brand-plum-mid);
 }
 
 .discovery-rail--look {

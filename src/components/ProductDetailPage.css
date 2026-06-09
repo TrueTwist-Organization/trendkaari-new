@@ -1235,7 +1235,7 @@
 }
 
 .pdp-below-fold .discovery-rail:nth-of-type(2) {
-  background: linear-gradient(180deg, #f6f8ff 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(212, 180, 131, 0.12) 0%, transparent 100%);
   border-radius: 16px;
   margin-bottom: 8px;
 }

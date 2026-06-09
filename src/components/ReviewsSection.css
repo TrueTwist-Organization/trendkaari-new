@@ -2,8 +2,6 @@
 
 .reviews-premium {
   background: radial-gradient(ellipse 90% 70% at 50% 0%, #fdf2f6 0%, #faf6f2 45%, #f7f3ef 100%);
-  border-top: 1px solid rgba(212, 180, 131, 0.25);
-  border-bottom: 1px solid rgba(212, 180, 131, 0.25);
   overflow: hidden;
 }
 

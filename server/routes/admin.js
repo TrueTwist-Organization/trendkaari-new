@@ -50,6 +50,9 @@ import {
   getDiscoveryConfig,
   setDiscoveryConfig,
   seedDiscoveryConfigIfEmpty,
+  getHomepageConfig,
+  setHomepageConfig,
+  seedHomepageConfigIfEmpty,
 } from '../lib/editorialContent.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -391,7 +394,20 @@ router.get('/products', requireAdmin, async (req, res) => {
     );
   }
   if (search) {
-    list = list.filter((p) => p.title?.toLowerCase().includes(search));
+    list = list.filter((p) => {
+      const haystack = [
+        p.title,
+        p.subCategory,
+        p.category,
+        p.description,
+        p.sku,
+        p.id != null ? String(p.id) : '',
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+      return haystack.includes(search);
+    });
   }
 
   res.json({
@@ -408,6 +424,9 @@ router.post('/products', requireAdmin, requireWritableStore, uploadProductImages
     const uploadedUrls = await saveUploadedProductImages(req.files || [], UPLOAD_DIR);
 
     const product = normalizeProductImages(buildProductFromPayload(parsed, uploadedUrls));
+    if (!product.image && !(product.images?.length)) {
+      return res.status(400).json({ error: 'Add at least one product photo before publishing.' });
+    }
     const store = await readFreshStore();
     product.id = nextAdminProductId(store.products || []);
     product.source = 'admin';
@@ -927,6 +946,35 @@ router.post('/discovery-config/seed', requireAdmin, requireWritableStore, async 
   try {
     await seedDiscoveryConfigIfEmpty(req.body);
     res.json({ ok: true, config: getDiscoveryConfig() });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/** GET /api/admin/homepage-config */
+router.get('/homepage-config', requireAdmin, (req, res) => {
+  try {
+    res.json({ config: getHomepageConfig() });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/** POST /api/admin/homepage-config */
+router.post('/homepage-config', requireAdmin, requireWritableStore, async (req, res) => {
+  try {
+    await setHomepageConfig(req.body);
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/** POST /api/admin/homepage-config/seed */
+router.post('/homepage-config/seed', requireAdmin, requireWritableStore, async (req, res) => {
+  try {
+    await seedHomepageConfigIfEmpty(req.body);
+    res.json({ ok: true, config: getHomepageConfig() });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

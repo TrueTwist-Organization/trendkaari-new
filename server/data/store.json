@@ -25390,7 +25390,7 @@
       "updatedAt": "2026-05-21T05:37:10.557Z"
     }
   ],
-  "_storeUpdatedAt": "2026-06-08T13:46:40.622Z",
+  "_storeUpdatedAt": "2026-06-09T06:16:55.983Z",
   "homepage_blocks": [
     {
       "id": "style-quizSAdxcvb",
@@ -25424,23 +25424,10 @@
       "tagline": "Airport edits · Red carpet · Street style",
       "hook": "The look that got 10,000 saves — find your version at a fraction of the price.",
       "route": "/celebrity-match",
-      "accent": "#c9a84c",
+      "accent": "#d4b483",
       "kind": "celebrity",
       "poster": "/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp",
-      "ctaText": "Match a Bollywood look",
-      "dark": true
-    },
-    {
-      "id": "this-week",
-      "title": "This Week in Indian Fashion",
-      "tagline": "Updated every Monday",
-      "hook": "The pieces blowing up across Instagram, Pinterest, and WhatsApp groups right now.",
-      "route": "/viral",
-      "accent": "#b71c1c",
-      "kind": "viral",
-      "poster": "/lehengas/Lehengas/1/040A3523_700x.webp",
-      "ctaText": "See all this week's picks",
-      "savesCount": "3,200+"
+      "ctaText": "Match a Bollywood look"
     },
     {
       "id": "occasion-gate",
@@ -25448,7 +25435,7 @@
       "tagline": "From office to sangeet",
       "hook": "Pick your life moment — we build the complete look, not just a product grid.",
       "route": "/quiz/outfit-finder",
-      "accent": "#1565c0",
+      "accent": "#600b45",
       "kind": "occasion",
       "poster": "/sarees/Sarees/1/0T3A5495_700x.webp",
       "ctaText": "Find your occasion look",
@@ -25472,16 +25459,6 @@
           "label": "Puja",
           "category": "kurtas",
           "image": "/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp"
-        },
-        {
-          "label": "Brunch",
-          "category": "co-ords",
-          "image": "/co-ords/co-ord_set/1/2.webp"
-        },
-        {
-          "label": "First Job",
-          "category": "suit sets",
-          "image": "/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp"
         }
       ]
     },
@@ -25491,7 +25468,7 @@
       "tagline": "The season never ends",
       "hook": "Someone you know is always getting married. Be the guest everyone remembers.",
       "route": "/magazine/festival-fashion",
-      "accent": "#880e4f",
+      "accent": "#4a0834",
       "kind": "festive",
       "poster": "/lehengas/Lehengas/9/040A1707_700x.webp",
       "ctaText": "Open the wedding edit",
@@ -25545,7 +25522,7 @@
       "tagline": "Curated by a human, not an algorithm",
       "hook": "Three pieces. One story behind each. Not because they're popular — because they're right.",
       "route": "/magazine",
-      "accent": "#4527a0",
+      "accent": "#8b1568",
       "kind": "editorial",
       "poster": "/co-ords/co-ord_set/1/1.webp",
       "ctaText": "See all editor picks",
@@ -25567,7 +25544,7 @@
       "title": "Trending in India",
       "tagline": "What India is searching right now",
       "hook": "",
-      "accent": "#37474f",
+      "accent": "#4a0834",
       "kind": "search",
       "poster": "/mens/kurtas/kurta/1/l-pkt410-vebnor-original-imahnybzsfggj62r.webp"
     }

@@ -14,12 +14,13 @@ import {
   Plus, Edit2, Trash2, Save, X, RefreshCw,
   Star, TrendingUp, BookOpen, Sparkles,
   Upload, Image as ImageIcon,
-  AlertTriangle, Check, Layout, ChevronUp, ChevronDown, Settings2,
+  AlertTriangle, Check, Layout, ChevronUp, ChevronDown, Settings2, Home,
 } from 'lucide-react';
 import { getAdminToken } from '../../api/client';
 import { CELEBRITY_LOOKS } from '../../data/celebrityLooks';
 import { TREND_PAGES } from '../../data/trendPages';
 import { DISCOVERY_EXPERIENCE_BLOCKS, DEFAULT_DISCOVERY_CONFIG } from '../../data/discoveryExperience';
+import { DEFAULT_HOMEPAGE_CONFIG, mergeHomepageConfig } from '../../data/homepageConfig';
 import { KNOWLEDGE_PAGES } from '../../data/fashionKnowledge';
 import { FASHION_QUIZZES } from '../../data/fashionQuizzes';
 
@@ -696,11 +697,12 @@ function HomepageBlockForm({ item, onChange, isNew }) {
       )}
 
       {kind === 'festive' && (
-        <Field label="Festive Chips (comma separated)">
-          <Input
-            value={Array.isArray(item.festiveChips) ? item.festiveChips.join(', ') : ''}
-            onChange={(v) => set('festiveChips')(v.split(',').map((s) => s.trim()).filter(Boolean))}
-            placeholder="Sangeet, Reception, Mehendi, Diwali"
+        <Field label="Festive Chips (one per line: Label | category | image)" hint="Image is optional — defaults apply if blank">
+          <Textarea
+            value={formatOccasionChips(item.festiveChips)}
+            onChange={(v) => set('festiveChips')(parseOccasionChips(v))}
+            rows={6}
+            placeholder={'Sangeet | lehengas\nReception | sarees\nDiwali | sarees | /sarees/...webp'}
           />
         </Field>
       )}
@@ -911,6 +913,218 @@ function HomepageBlocksTab() {
   );
 }
 
+/* ── Homepage layout (trust, categories, hero, copy) ───────────────────── */
+
+function formatTrustItems(items) {
+  if (!Array.isArray(items)) return '';
+  return items.map((item) => `${item.icon || 'Sparkles'} | ${item.label || ''} | ${item.sub || ''}`).join('\n');
+}
+
+function parseTrustItems(text) {
+  return String(text || '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [icon, label, sub] = line.split('|').map((s) => s.trim());
+      return { icon: icon || 'Sparkles', label: label || '', sub: sub || '' };
+    });
+}
+
+function formatMarketCategories(items) {
+  if (!Array.isArray(items)) return '';
+  return items.map((c) => [c.label, c.slug, c.image || ''].join(' | ')).join('\n');
+}
+
+function parseMarketCategories(text) {
+  return String(text || '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [label, slug, image] = line.split('|').map((s) => s.trim());
+      const cat = { label, slug };
+      if (image) cat.image = image;
+      return cat;
+    });
+}
+
+function HomepageLayoutTab() {
+  const [config, setConfig] = useState(DEFAULT_HOMEPAGE_CONFIG);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [trustText, setTrustText] = useState('');
+  const [categoriesText, setCategoriesText] = useState('');
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    try {
+      await apiFetch('/api/admin/homepage-config/seed', {
+        method: 'POST',
+        body: JSON.stringify(DEFAULT_HOMEPAGE_CONFIG),
+      });
+      const data = await apiFetch('/api/admin/homepage-config');
+      const cfg = mergeHomepageConfig(data.config);
+      setConfig(cfg);
+      setTrustText(formatTrustItems(cfg.trust?.items));
+      setCategoriesText(formatMarketCategories(cfg.marketMap?.categories));
+    } catch (err) {
+      showToast(err.message, 'error');
+      setConfig(DEFAULT_HOMEPAGE_CONFIG);
+      setTrustText(formatTrustItems(DEFAULT_HOMEPAGE_CONFIG.trust.items));
+      setCategoriesText(formatMarketCategories(DEFAULT_HOMEPAGE_CONFIG.marketMap.categories));
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
+
+  const patch = (section, key, value) => {
+    setConfig((prev) => ({
+      ...prev,
+      [section]: { ...prev[section], [key]: value },
+    }));
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const payload = {
+        ...config,
+        trust: { items: parseTrustItems(trustText) },
+        marketMap: {
+          ...config.marketMap,
+          categories: parseMarketCategories(categoriesText),
+        },
+      };
+      await apiFetch('/api/admin/homepage-config', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
+      setConfig(payload);
+      showToast('Homepage layout saved — live now!', 'success');
+    } catch (err) {
+      showToast(err.message, 'error');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return <div style={{ padding: 40, textAlign: 'center', color: 'var(--admin-text-soft)' }}>Loading homepage layout…</div>;
+  }
+
+  return (
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+        <p style={{ margin: 0, fontSize: 13, color: 'var(--admin-text-soft, #888)' }}>
+          Hero, trust bar, market map categories, section headings &amp; finale CTA
+        </p>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button type="button" onClick={load} className="admin-cyber-btn admin-cyber-btn--ghost" style={{ fontSize: 12, padding: '5px 12px' }}>
+            <RefreshCw size={13} />
+          </button>
+          <button type="button" onClick={handleSave} disabled={saving} className="admin-cyber-btn admin-cyber-btn--primary" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12 }}>
+            <Save size={14} /> {saving ? 'Saving…' : 'Save layout'}
+          </button>
+        </div>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Hero Banner</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+          <ImageField label="Desktop image" value={config.hero?.desktopImage} onChange={(v) => patch('hero', 'desktopImage', v)} />
+          <ImageField label="Mobile image" value={config.hero?.mobileImage} onChange={(v) => patch('hero', 'mobileImage', v)} />
+        </div>
+        <Field label="Alt text (accessibility)">
+          <Input value={config.hero?.alt} onChange={(v) => patch('hero', 'alt', v)} />
+        </Field>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Trust Bar (marquee)</h3>
+        <Field label="Trust items (one per line: Icon | Label | Subtext)" hint="Icons: TrendingUp, Eye, BookOpen, Globe, Sparkles, Compass">
+          <Textarea value={trustText} onChange={setTrustText} rows={5} />
+        </Field>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Market Map (category rail)</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <Field label="Eyebrow">
+            <Input value={config.marketMap?.eyebrow} onChange={(v) => patch('marketMap', 'eyebrow', v)} />
+          </Field>
+          <Field label="Link button text">
+            <Input value={config.marketMap?.linkText} onChange={(v) => patch('marketMap', 'linkText', v)} />
+          </Field>
+        </div>
+        <Field label="Section title">
+          <Input value={config.marketMap?.title} onChange={(v) => patch('marketMap', 'title', v)} />
+        </Field>
+        <Field label="Subtitle">
+          <Textarea value={config.marketMap?.subtitle} onChange={(v) => patch('marketMap', 'subtitle', v)} rows={2} />
+        </Field>
+        <Field label="Categories (one per line: Label | slug | image URL)" hint="slug = category filter e.g. lehengas, co-ords">
+          <Textarea value={categoriesText} onChange={setCategoriesText} rows={7} />
+        </Field>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Editorial Feed Intro</h3>
+        <Field label="Eyebrow">
+          <Input value={config.editorialIntro?.eyebrow} onChange={(v) => patch('editorialIntro', 'eyebrow', v)} />
+        </Field>
+        <Field label="Title (use Enter for line break)" hint="Example: Eight chapters. [new line] One intelligence journey.">
+          <Textarea value={config.editorialIntro?.title} onChange={(v) => patch('editorialIntro', 'title', v)} rows={2} />
+        </Field>
+        <Field label="Description">
+          <Textarea value={config.editorialIntro?.text} onChange={(v) => patch('editorialIntro', 'text', v)} rows={3} />
+        </Field>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Market Signals (spotlight)</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <Field label="Eyebrow">
+            <Input value={config.spotlight?.eyebrow} onChange={(v) => patch('spotlight', 'eyebrow', v)} />
+          </Field>
+          <Field label="Hero badge text">
+            <Input value={config.spotlight?.heroBadge} onChange={(v) => patch('spotlight', 'heroBadge', v)} />
+          </Field>
+        </div>
+        <Field label="Section title">
+          <Input value={config.spotlight?.title} onChange={(v) => patch('spotlight', 'title', v)} />
+        </Field>
+        <Field label="Subtitle">
+          <Textarea value={config.spotlight?.subtitle} onChange={(v) => patch('spotlight', 'subtitle', v)} rows={2} />
+        </Field>
+        <Field label="Side rail label">
+          <Input value={config.spotlight?.railLabel} onChange={(v) => patch('spotlight', 'railLabel', v)} />
+        </Field>
+      </div>
+
+      <div className="glass-panel" style={{ padding: 18, borderRadius: 12, marginBottom: 16 }}>
+        <h3 style={{ margin: '0 0 14px', fontSize: 14, fontWeight: 800 }}>Finale CTA (bottom)</h3>
+        <Field label="Title">
+          <Input value={config.finale?.title} onChange={(v) => patch('finale', 'title', v)} />
+        </Field>
+        <Field label="Description">
+          <Textarea value={config.finale?.text} onChange={(v) => patch('finale', 'text', v)} rows={2} />
+        </Field>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <Field label="Primary button">
+            <Input value={config.finale?.primaryLabel} onChange={(v) => patch('finale', 'primaryLabel', v)} />
+          </Field>
+          <Field label="Secondary button">
+            <Input value={config.finale?.secondaryLabel} onChange={(v) => patch('finale', 'secondaryLabel', v)} />
+          </Field>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── Discovery Extras Tab (polls, trending, rail labels) ───────────────── */
 
 function formatPollOptions(options) {
@@ -1111,6 +1325,7 @@ function DiscoveryExtrasTab() {
 /* ── Root export ──────────────────────────────────────────────────────────── */
 
 const TABS = [
+  { id: 'homepage-layout', label: 'Homepage Layout', icon: Home, custom: 'homepage-layout' },
   { id: 'homepage-blocks', label: 'Homepage Chapters', icon: Layout, custom: 'homepage-blocks' },
   { id: 'discovery-extras', label: 'Polls & Trending', icon: Settings2, custom: 'discovery-extras' },
   {
@@ -1144,17 +1359,17 @@ const TABS = [
 ];
 
 export default function ContentEditorPage() {
-  const [activeTab, setActiveTab] = useState('homepage-blocks');
+  const [activeTab, setActiveTab] = useState('homepage-layout');
   const tab = TABS.find((t) => t.id === activeTab);
 
   return (
     <div className="admin-cyber-page">
       <div style={{ marginBottom: 24 }}>
         <h1 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 800, color: 'var(--admin-text, #e0e0e0)' }}>
-          Content Editor
+          Homepage &amp; Content Editor
         </h1>
         <p style={{ margin: 0, fontSize: 13, color: 'var(--admin-text-soft, #888)' }}>
-          Edit homepage chapters, polls, trending terms, and all editorial content. Drag & drop images directly in any form field.
+          Edit everything on the homepage — hero, categories, 8 editorial chapters, polls, trending, and magazine content.
         </p>
       </div>
 
@@ -1194,6 +1409,10 @@ export default function ContentEditorPage() {
           </button>
         ))}
       </div>
+
+      {tab?.custom === 'homepage-layout' && (
+        <HomepageLayoutTab key="homepage-layout" />
+      )}
 
       {tab?.custom === 'homepage-blocks' && (
         <HomepageBlocksTab key="homepage-blocks" />

@@ -4,19 +4,16 @@
 
 .collection-hub--top {
   background: linear-gradient(180deg, #faf7f5 0%, #fffefb 100%);
-  border-bottom: 1px solid rgba(212, 180, 131, 0.35);
   padding: 1.5rem 0 1.75rem;
 }
 
 .collection-hub--mid {
   padding: 0.5rem 0 1rem;
-  border-bottom: 1px solid #f0ebe6;
 }
 
 .collection-hub--bottom {
   padding: 1.5rem 0 0.5rem;
   margin-top: 1.5rem;
-  border-top: 1px solid rgba(212, 180, 131, 0.35);
 }
 
 .collection-hub__head {

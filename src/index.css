@@ -28,6 +28,10 @@
   --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
   --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
   --shadow-drawer: 0 0 40px rgba(0,0,0,0.15);
+
+  --site-announcement-h: 34px;
+  --site-main-header-h: 100px;
+  --site-header-total: calc(var(--site-announcement-h) + var(--site-main-header-h) - 6px);
 }
 
 /* Global Reset & Base Elements */
@@ -105,9 +109,21 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 32px;
 }
 
+@media (max-width: 1024px) {
+  :root {
+    --site-announcement-h: 30px;
+    --site-main-header-h: 88px;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0 16px;
+  }
+
+  :root {
+    --site-announcement-h: 28px;
+    --site-main-header-h: 64px;
   }
 }
 
@@ -135,18 +151,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   position: relative;
   display: inline-block;
-  padding-bottom: 12px;
+  padding-bottom: 0;
 }
 
 .section-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
-  background-color: var(--brand-plum);
+  content: none;
 }
 
 /* Image Hover Zoom effect */

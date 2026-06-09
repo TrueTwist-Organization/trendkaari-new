@@ -196,18 +196,44 @@ function ThisWeekBlock({ block, payload, onNavigate, onSelectProduct }) {
 
 /* ─── 4. Occasion Gate ──────────────────────────────────────────────────── */
 
+function openOccasionChip(chip, block, { onNavigate, onSelectCategory }) {
+  if (chip?.route) {
+    onNavigate?.(chip.route);
+    return;
+  }
+  if (chip?.category) {
+    onSelectCategory?.(chip.category);
+    return;
+  }
+  if (block?.route) {
+    onNavigate?.(block.route);
+  }
+}
+
 function OccasionGateBlock({ block, onNavigate, onSelectCategory }) {
+  const chipHandlers = { onNavigate, onSelectCategory };
+
   return (
     <BlockShell block={block} onNavigate={onNavigate}>
       <div className="discovery-xp__occasion-showcase">
-        <div className="discovery-xp__occasion-hero" aria-hidden="true">
+        <div className="discovery-xp__occasion-stage">
+        <button
+          type="button"
+          className="discovery-xp__occasion-hero"
+          onClick={() => onNavigate?.(block.route)}
+          aria-label="Find your occasion look — start the outfit quiz"
+          data-journey-label="Occasion hero: outfit finder"
+        >
           <ProductImage src={block.poster} alt="" loading="lazy" />
-          <div className="discovery-xp__occasion-hero-overlay" />
+          <div className="discovery-xp__occasion-hero-overlay" aria-hidden="true" />
           <div className="discovery-xp__occasion-hero-copy">
-            <span className="discovery-xp__occasion-hero-kicker">6 life moments</span>
+            <span className="discovery-xp__occasion-hero-kicker">
+              {block.occasionChips?.length ?? 0} life moments
+            </span>
             <p>One quiz builds the full look — not just a product grid.</p>
           </div>
-        </div>
+          <ArrowRight size={16} className="discovery-xp__occasion-hero-arrow" aria-hidden />
+        </button>
 
         <div className="discovery-xp__occasion-grid">
           {block.occasionChips?.map((chip) => (
@@ -215,10 +241,8 @@ function OccasionGateBlock({ block, onNavigate, onSelectCategory }) {
               key={chip.label}
               type="button"
               className="discovery-xp__occasion-tile"
-              onClick={() => {
-                if (chip.route) onNavigate?.(chip.route);
-                else onSelectCategory?.(chip.category);
-              }}
+              onClick={() => openOccasionChip(chip, block, chipHandlers)}
+              aria-label={`Browse ${chip.label} looks`}
               data-journey-label={`Occasion: ${chip.label}`}
             >
               <ProductImage
@@ -232,12 +256,11 @@ function OccasionGateBlock({ block, onNavigate, onSelectCategory }) {
             </button>
           ))}
         </div>
+        </div>
       </div>
     </BlockShell>
   );
 }
-
-/* ─── 5. Wedding & Festive Edit ─────────────────────────────────────────── */
 
 function WeddingFestiveBlock({ block, payload, onNavigate, onSelectProduct, onSelectCategory }) {
   const chips = useMemo(
@@ -257,23 +280,6 @@ function WeddingFestiveBlock({ block, payload, onNavigate, onSelectProduct, onSe
           <div className="discovery-xp__festive-hero-label">
             <span className="discovery-xp__festive-hero-kicker">Now showing</span>
             <p>{activeChip?.label || 'Festive edit'}</p>
-          </div>
-          <div className="discovery-xp__festive-chips">
-            {chips.map((chip, index) => (
-              <button
-                key={chip.label}
-                type="button"
-                className={`discovery-xp__festive-chip${index === activeIdx ? ' is-active' : ''}`}
-                onClick={() => {
-                  setActiveIdx(index);
-                  onSelectCategory?.(chip.category);
-                }}
-                data-journey-label={`Festive: ${chip.label}`}
-                aria-pressed={index === activeIdx}
-              >
-                {chip.label}
-              </button>
-            ))}
           </div>
         </div>
 
@@ -325,6 +331,70 @@ function WeddingFestiveBlock({ block, payload, onNavigate, onSelectProduct, onSe
 
 /* ─── 6. The Edit Desk (Articles) ───────────────────────────────────────── */
 
+function EditDeskLead({ article, onOpen }) {
+  const cat = getCategoryBySlug(article.categorySlug);
+
+  return (
+    <button
+      type="button"
+      className="discovery-xp__editdesk-lead"
+      onClick={() => onOpen(article)}
+      data-journey-label={article.title}
+    >
+      <div className="discovery-xp__editdesk-lead-media">
+        <ProductImage src={article.image} alt={article.title} loading="eager" />
+        <div className="discovery-xp__editdesk-lead-overlay" aria-hidden="true" />
+        <span className="discovery-xp__editdesk-featured-badge">Featured story</span>
+        <div className="discovery-xp__editdesk-lead-copy">
+          <div className="discovery-xp__editdesk-meta">
+            <span className="discovery-xp__editdesk-cat">{cat?.title}</span>
+            {article.readTime ? (
+              <span className="discovery-xp__editdesk-time">{article.readTime}</span>
+            ) : null}
+          </div>
+          <h3 className="discovery-xp__editdesk-headline">{article.title}</h3>
+          <p className="discovery-xp__editdesk-excerpt">{article.excerpt}</p>
+          <span className="discovery-xp__editdesk-read">
+            Read the story
+            <ArrowRight size={14} aria-hidden />
+          </span>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+function EditDeskSecondary({ article, onOpen }) {
+  const cat = getCategoryBySlug(article.categorySlug);
+
+  return (
+    <button
+      type="button"
+      className="discovery-xp__editdesk-sec"
+      onClick={() => onOpen(article)}
+      data-journey-label={article.title}
+    >
+      <div className="discovery-xp__editdesk-sec-media">
+        <ProductImage src={article.image} alt={article.title} loading="lazy" />
+      </div>
+      <div className="discovery-xp__editdesk-sec-body">
+        <div className="discovery-xp__editdesk-meta discovery-xp__editdesk-meta--compact">
+          <span className="discovery-xp__editdesk-cat">{cat?.title}</span>
+          {article.readTime ? (
+            <span className="discovery-xp__editdesk-time">{article.readTime}</span>
+          ) : null}
+        </div>
+        <h4 className="discovery-xp__editdesk-sec-title">{article.title}</h4>
+        <p className="discovery-xp__editdesk-sec-excerpt">{article.excerpt}</p>
+        <span className="discovery-xp__editdesk-sec-read">
+          Read
+          <ArrowRight size={12} aria-hidden />
+        </span>
+      </div>
+    </button>
+  );
+}
+
 function EditDeskBlock({ block, payload, onNavigate, onOpenArticle }) {
   const [lead, ...secondary] = payload.articles || [];
 
@@ -337,65 +407,15 @@ function EditDeskBlock({ block, payload, onNavigate, onOpenArticle }) {
     <BlockShell block={block} onNavigate={onNavigate}>
       <div className="discovery-xp__editdesk-showcase">
         <div className="discovery-xp__editdesk-layout">
-          {lead ? (() => {
-            const cat = getCategoryBySlug(lead.categorySlug);
-            return (
-              <button
-                type="button"
-                className="discovery-xp__editdesk-lead"
-                onClick={() => openArticle(lead)}
-                data-journey-label={lead.title}
-              >
-                <div className="discovery-xp__editdesk-lead-media">
-                  <ProductImage src={lead.image} alt={lead.title} loading="eager" />
-                  <div className="discovery-xp__editdesk-lead-overlay" aria-hidden="true" />
-                </div>
-                <div className="discovery-xp__editdesk-lead-body">
-                  <div className="discovery-xp__editdesk-meta">
-                    <span className="discovery-xp__editdesk-cat">{cat?.title}</span>
-                    {lead.readTime ? (
-                      <span className="discovery-xp__editdesk-time">{lead.readTime}</span>
-                    ) : null}
-                  </div>
-                  <h3 className="discovery-xp__editdesk-headline">{lead.title}</h3>
-                  <p className="discovery-xp__editdesk-excerpt">{lead.excerpt}</p>
-                  <span className="discovery-xp__editdesk-read">Read the story →</span>
-                </div>
-              </button>
-            );
-          })() : null}
+          {lead ? <EditDeskLead article={lead} onOpen={openArticle} /> : null}
 
           {secondary.length > 0 ? (
             <div className="discovery-xp__editdesk-rail">
               <p className="discovery-xp__editdesk-rail-label">Also in the edit</p>
               <div className="discovery-xp__editdesk-secondary">
-                {secondary.map((article) => {
-                  const cat = getCategoryBySlug(article.categorySlug);
-                  return (
-                    <button
-                      key={article.id}
-                      type="button"
-                      className="discovery-xp__editdesk-sec"
-                      onClick={() => openArticle(article)}
-                      data-journey-label={article.title}
-                    >
-                      <div className="discovery-xp__editdesk-sec-media">
-                        <ProductImage src={article.image} alt={article.title} loading="lazy" />
-                      </div>
-                      <div className="discovery-xp__editdesk-sec-body">
-                        <div className="discovery-xp__editdesk-meta discovery-xp__editdesk-meta--compact">
-                          <span className="discovery-xp__editdesk-cat">{cat?.title}</span>
-                          {article.readTime ? (
-                            <span className="discovery-xp__editdesk-time">{article.readTime}</span>
-                          ) : null}
-                        </div>
-                        <h4>{article.title}</h4>
-                        <p className="discovery-xp__editdesk-sec-excerpt">{article.excerpt}</p>
-                        <span className="discovery-xp__editdesk-sec-read">Read →</span>
-                      </div>
-                    </button>
-                  );
-                })}
+                {secondary.map((article) => (
+                  <EditDeskSecondary key={article.id} article={article} onOpen={openArticle} />
+                ))}
               </div>
             </div>
           ) : null}
@@ -408,7 +428,8 @@ function EditDeskBlock({ block, payload, onNavigate, onOpenArticle }) {
             onClick={() => onNavigate?.(block.route)}
             data-journey-label="Browse magazine"
           >
-            Browse all magazine stories →
+            Browse all magazine stories
+            <ArrowRight size={14} aria-hidden />
           </button>
         ) : null}
       </div>
@@ -868,9 +889,6 @@ export default function DiscoveryExperienceFeed({
           key={item.id}
           className={`discovery-xp__section discovery-xp__section--${index % 2 === 0 ? 'light' : 'cream'}`}
         >
-          <div className="discovery-xp__chapter-marker" aria-hidden="true">
-            <span className="discovery-xp__chapter-num">{String(index + 1).padStart(2, '0')}</span>
-          </div>
           <ExperienceBlock
             item={item}
             handlers={handlers}

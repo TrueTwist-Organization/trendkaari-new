@@ -40,8 +40,13 @@ export default function FashionQuizResult({
   const result = quiz?.results?.[resultKey];
 
   const curatedProducts = useMemo(
-    () => getQuizResultProducts(products, result),
+    () => getQuizResultProducts(products, result, 12),
     [products, result],
+  );
+
+  const curatedProductIds = useMemo(
+    () => curatedProducts.map((p) => p.id),
+    [curatedProducts],
   );
 
   const guides = useMemo(() => getQuizRelatedGuides(result), [result]);
@@ -123,14 +128,15 @@ export default function FashionQuizResult({
           category={result.discoverCategory}
           quizSlug={quizSlug}
           quizResult={result}
+          excludeProductIds={curatedProductIds}
           onSelectProduct={onSelectProduct}
           onSelectCategory={onSelectCategory}
           onOpenArticle={onOpenArticle}
           onOpenKnowledgePage={onOpenKnowledgePage}
           onStartQuiz={onStartQuiz}
           adCodes={adCodes}
-          title="Keep exploring"
-          subtitle="Similar products, related collections, articles, quizzes, and trending picks."
+          title={`More picks for ${result.title}`}
+          subtitle={`Products matched to your ${quiz.title} answers — by category, style, and keywords.`}
           variant="browse"
           showAds={false}
           compact

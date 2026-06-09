@@ -366,11 +366,17 @@
 }
 
 .pdp-section--commerce {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   background: linear-gradient(180deg, #fff9f6 0%, #fff 100%);
   border-color: rgba(96, 11, 69, 0.12);
 }
 
 .pdp-section--configure {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   background: #fff;
   box-shadow: 0 8px 28px rgba(96, 11, 69, 0.06);
 }
@@ -410,8 +416,51 @@
 }
 
 .pdp-below-fold__head {
-  margin-bottom: 8px;
-  padding-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 18px 18px 20px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(96, 11, 69, 0.05) 0%, #fff 100%);
+  border: 1px solid var(--pdp-border-soft);
+}
+
+.pdp-below-fold__head-titles {
+  flex: 1;
+  min-width: 0;
+}
+
+.pdp-below-fold__head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.pdp-below-fold__see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-plum);
+  background: var(--white);
+  transition: var(--transition-fast);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.pdp-below-fold__see-all:hover {
+  background: var(--brand-peach-light);
+  border-color: var(--brand-plum-mid);
 }
 
 .pdp-below-fold__eyebrow {
@@ -420,21 +469,22 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--brand-plum-mid);
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 
 .pdp-below-fold__title {
   font-family: var(--font-serif);
-  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
-  font-weight: 600;
-  margin: 0 0 10px;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0;
   color: var(--text-primary);
 }
 
 .pdp-below-fold__sub {
-  margin: 0;
-  max-width: 52ch;
-  font-size: 0.92rem;
+  margin: 8px 0 0;
+  max-width: 46ch;
+  font-size: 0.88rem;
   line-height: 1.55;
   color: var(--text-muted);
 }
@@ -497,19 +547,22 @@
 }
 
 .pdp-sku-label {
-  font-size: 11px;
-  color: var(--text-light);
-  letter-spacing: 1px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
   margin-bottom: 0;
+  line-height: 1.4;
 }
 
 /* Ratings */
 .pdp-ratings-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   margin-bottom: 0;
-  font-size: 13px;
+  font-size: 0.8125rem;
+  line-height: 1.4;
 }
 
 .pdp-stars-pill {
@@ -534,19 +587,22 @@
 .pdp-ratings-count {
   color: var(--text-muted);
   font-weight: 500;
+  line-height: 1.45;
 }
 
 /* Pricing Section */
 .pdp-pricing-box {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 16px;
 }
 
 .pdp-price-tag-row {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 6px 10px;
 }
 
 .pdp-price-current {
@@ -568,11 +624,10 @@
 }
 
 .pdp-inclusive-taxes {
-  font-size: 12px;
-  color: var(--text-light);
-  margin-top: 0;
-  margin-bottom: 0;
-  font-style: italic;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4;
 }
 
 .pdp-purchase-block .pdp-trust-strip,
@@ -591,11 +646,12 @@
 }
 
 .pdp-promos-header {
-  font-size: 12px;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--brand-plum);
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  margin-bottom: 10px;
 }
 
 .pdp-promos-list {
@@ -611,9 +667,14 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-size: 12px;
+  font-size: 0.8125rem;
   color: var(--text-primary);
-  line-height: 1.4;
+  line-height: 1.55;
+}
+
+.pdp-promos-list li > span:last-child {
+  flex: 1;
+  min-width: 0;
 }
 
 .pdp-promo-dot {
@@ -621,15 +682,24 @@
   font-weight: bold;
 }
 
+.pdp-promo-code-row {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
 .pdp-promo-code {
   background-color: var(--white);
-  border: 1px solid var(--brand-plum-light);
+  border: 1px solid rgba(96, 11, 69, 0.22);
   color: var(--brand-plum);
-  font-family: monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 3px;
-  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 /* Sizing Selector */
@@ -782,7 +852,6 @@
 
 /* Specifications Grid list like Libas website */
 .pdp-specifications-block {
-  border-top: 1px solid var(--border-color);
   padding-top: 24px;
   margin-bottom: 32px;
 }
@@ -825,7 +894,6 @@
 /* Description Tab block */
 /* Amazon-style product detail sections */
 .pdp-amazon-block {
-  border-top: 1px solid var(--border-color);
   padding-top: 16px;
   margin-bottom: 16px;
 }
@@ -891,7 +959,6 @@
 }
 
 .pdp-description-block {
-  border-top: 1px solid var(--border-color);
   padding-top: 24px;
   margin-bottom: 36px;
 }
@@ -1036,12 +1103,11 @@
 /* Below-fold — each discovery block gets its own lane */
 .pdp-below-fold {
   margin-top: 40px;
-  padding-top: 40px;
-  border-top: 1px solid var(--pdp-border-soft);
+  padding-top: 32px;
   background: linear-gradient(180deg, #faf8f6 0%, #fff 120px);
   border-radius: 20px 20px 0 0;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .pdp-below-fold .recommendation-rails--product {
@@ -1104,8 +1170,13 @@
 
 .pdp-below-fold .discovery-rail__head {
   max-width: none;
-  padding: 0 0 14px;
+  padding: 0 18px 14px;
   margin-bottom: 0;
+}
+
+.pdp-below-fold .discovery-rail__track {
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
 .pdp-below-fold .endless-discovery__block {
@@ -1135,7 +1206,6 @@
   margin-bottom: 0;
 }
 .pdp-suggestions-section {
-  border-top: 1px solid var(--border-color);
   padding-top: 48px;
   margin-top: 64px;
 }
@@ -1391,20 +1461,81 @@
     border-radius: 16px 16px 0 0;
   }
 
+  .pdp-below-fold__head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 16px 14px 18px;
+  }
+
+  .pdp-below-fold__head-actions {
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+
+  .pdp-below-fold__sub {
+    max-width: none;
+  }
+
+  .pdp-below-fold .discovery-rail__head,
+  .pdp-below-fold .discovery-rail__track {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .pdp-section--commerce {
+    gap: 10px;
+  }
+
+  .pdp-pricing-box {
+    gap: 6px 12px;
+  }
+
+  .pdp-price-original {
+    font-size: 0.9375rem;
+  }
+
+  .pdp-inclusive-taxes {
+    font-size: 0.8125rem;
+  }
+
   .pdp-promos-container {
-    padding: 12px 14px;
-    margin-bottom: 20px;
+    padding: 14px 16px;
+    margin-bottom: 0;
+  }
+
+  .pdp-promos-header {
+    font-size: 0.78rem;
+    margin-bottom: 8px;
+  }
+
+  .pdp-promos-list {
+    gap: 12px;
   }
 
   .pdp-promos-list li {
-    font-size: 11px;
-    align-items: center;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .pdp-promo-code-row {
+    font-size: 0.8125rem;
+    margin-top: 5px;
   }
 
   .pdp-promo-code {
-    font-size: 10px;
-    padding: 2px 6px;
-    word-break: break-word;
+    font-size: 0.8125rem;
+    padding: 4px 10px;
+  }
+
+  .pdp-ratings-row {
+    gap: 6px 10px;
+  }
+
+  .pdp-ratings-count {
+    flex: 1 1 100%;
+    font-size: 0.8125rem;
   }
 
   .pdp-size-header-row {
@@ -1413,12 +1544,12 @@
   }
 
   .pdp-section-label {
-    font-size: 11px;
-    letter-spacing: 1px;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
   }
 
   .pdp-size-chart-btn {
-    font-size: 11px;
+    font-size: 0.75rem;
     flex-shrink: 0;
     white-space: nowrap;
   }

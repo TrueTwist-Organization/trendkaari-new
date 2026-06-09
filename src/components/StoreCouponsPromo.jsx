@@ -8,8 +8,10 @@ export function formatCouponOffer(coupon) {
   const code = String(coupon.code || '').toUpperCase();
   return (
     <>
-      Shop <strong>₹{min}+</strong> & get <strong>{off}</strong> | Code:{' '}
-      <span className="pdp-promo-code promo-code">{code}</span>
+      Shop <strong>₹{min}+</strong> & get <strong>{off}</strong>
+      <span className="pdp-promo-code-row">
+        Code: <span className="pdp-promo-code promo-code">{code}</span>
+      </span>
     </>
   );
 }

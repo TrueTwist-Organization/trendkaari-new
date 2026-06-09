@@ -877,6 +877,71 @@
   align-items: flex-end;
 }
 
+.admin-cyber-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--admin-text-soft);
+}
+
+.admin-cyber-filter-field--search {
+  flex: 1 1 280px;
+  min-width: min(100%, 280px);
+  max-width: 420px;
+}
+
+.admin-cyber-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-cyber-search-wrap__icon {
+  position: absolute;
+  left: 12px;
+  color: var(--admin-text-soft);
+  pointer-events: none;
+}
+
+.admin-cyber-search-wrap__input {
+  width: 100%;
+  padding-left: 38px;
+  padding-right: 36px;
+}
+
+.admin-cyber-search-wrap__clear {
+  position: absolute;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--admin-text-soft);
+  cursor: pointer;
+}
+
+.admin-cyber-search-wrap__clear:hover {
+  background: var(--admin-plum-soft);
+  color: var(--admin-plum);
+}
+
+.admin-cyber-filter-meta {
+  margin: 0;
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--admin-text-soft);
+  align-self: center;
+}
+
 .admin-cyber-wizard {
   padding: 24px;
 }

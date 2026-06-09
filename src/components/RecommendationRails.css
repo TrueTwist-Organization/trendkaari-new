@@ -1,6 +1,5 @@
 .recommendation-rails {
   padding: 8px 0 24px;
-  border-top: 1px solid var(--border-color);
 }
 
 .recommendation-rails--product {
@@ -26,6 +25,7 @@
   max-width: 1450px;
   margin: 0 auto 8px;
   padding: 16px 16px 4px;
+  text-align: left;
 }
 
 .recommendation-rails__eyebrow {

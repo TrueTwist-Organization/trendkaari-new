@@ -32,6 +32,8 @@ function ArticleCard({ article, category, onOpenArticle }) {
       type="button"
       className="magazine-card"
       onClick={() => onOpenArticle?.(category.slug, article.slug)}
+      aria-label={`Read ${article.title}`}
+      data-journey-label={`Magazine: ${article.title}`}
     >
       <div className="magazine-card__media">
         <ProductImage src={article.image} alt="" className="magazine-card__img" />
@@ -103,6 +105,8 @@ export default function FashionMagazineHub({
                   className="fashion-magazine__category-card"
                   style={{ '--mag-accent': cat.accent }}
                   onClick={() => onOpenCategory?.(cat.slug)}
+                  aria-label={`Explore ${cat.title} — ${cat.tagline}`}
+                  data-journey-label={`Magazine category: ${cat.title}`}
                 >
                   <span className="fashion-magazine__category-icon">
                     <Icon size={20} aria-hidden />
@@ -124,7 +128,7 @@ export default function FashionMagazineHub({
             <h2>Editor&apos;s picks</h2>
             <p>Featured reads across the magazine.</p>
           </div>
-          <div className="fashion-magazine__grid">
+          <div className="fashion-magazine__grid fashion-magazine__grid--featured">
             {featured.map((article) => (
               <ArticleCard
                 key={article.id}

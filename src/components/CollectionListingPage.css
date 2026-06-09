@@ -14,7 +14,6 @@
   background: linear-gradient(135deg, #fdfbf7 0%, #f5f0e6 100%);
   padding: 45px 0;
   text-align: left;
-  border-bottom: 1px solid #eae2d5;
   overflow: hidden;
 }
 
@@ -1047,7 +1046,6 @@
   gap: 12px;
   margin: 36px 0 12px;
   padding: 24px 16px;
-  border-top: 1px solid #eae2d5;
 }
 
 .collection-page-numbers {

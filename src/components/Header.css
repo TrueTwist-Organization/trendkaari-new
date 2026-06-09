@@ -15,7 +15,6 @@
   background-color: var(--bg-white);
   color: var(--text-primary);
   box-shadow: var(--shadow-sm);
-  border-bottom: 1px solid var(--border-color);
 }
 
 .libas-header-wrapper.scrolled .brand-logo {
@@ -36,8 +35,8 @@
 
 /* Announcement Bar */
 .announcement-bar {
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--brand-plum, #600b45);
+  color: rgba(255, 255, 255, 0.92);
   padding: 8px 16px;
   font-size: 11px;
   font-weight: 500;
@@ -82,7 +81,6 @@ body.info-page .libas-header-wrapper {
   background-color: var(--bg-white);
   color: var(--text-primary);
   box-shadow: var(--shadow-sm);
-  border-bottom: 1px solid var(--border-color);
 }
 
 body.pdp-page .libas-header-wrapper .brand-logo,
@@ -105,8 +103,9 @@ body.info-page .libas-header-wrapper .header-search-trigger {
 }
 
 .divider-dot {
-  color: var(--brand-peach);
+  color: var(--brand-gold, #d4b483);
   font-size: 14px;
+  opacity: 0.9;
 }
 
 /* Main Header */

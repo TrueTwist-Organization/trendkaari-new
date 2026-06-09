@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { readStore, readFreshStore, updateStore, resolveStoreAdSlots } from '../lib/store.js';
-import { getContent, getDiscoveryConfig } from '../lib/editorialContent.js';
+import { getContent, getDiscoveryConfig, getHomepageConfig } from '../lib/editorialContent.js';
 import { sendOrderConfirmationEmail } from '../lib/orderEmail.js';
 import { optionalUser } from '../middleware/userAuth.js';
 import { getStoreSettings, getActiveAdSlots } from '../lib/siteConfig.js';
@@ -195,6 +195,15 @@ router.get('/content', (req, res) => {
 router.get('/discovery-config', (req, res) => {
   try {
     res.json({ config: getDiscoveryConfig() });
+  } catch {
+    res.json({ config: null });
+  }
+});
+
+/** GET /api/store/homepage-config — trust bar, market map, hero, section copy */
+router.get('/homepage-config', (req, res) => {
+  try {
+    res.json({ config: getHomepageConfig() });
   } catch {
     res.json({ config: null });
   }

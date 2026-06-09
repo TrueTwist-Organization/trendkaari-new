@@ -1,15 +1,10 @@
 /* Sits below fixed header — margin matches announcement + main header heights */
 .site-top-ad-strip {
-  --site-announcement-h: 34px;
-  --site-main-header-h: 100px;
-  --site-header-total: calc(var(--site-announcement-h) + var(--site-main-header-h) - 6px);
-
   margin-top: var(--site-header-total);
   width: 100%;
   background: #fff;
   position: relative;
   z-index: 900;
-  border-bottom: 1px solid var(--border-color, #efefef);
   box-sizing: border-box;
 }
 
@@ -28,7 +23,7 @@
 
 .site-top-ad-strip .page-ad-slot-wrap--global-top + .ad-slot-embed--global,
 .site-top-ad-strip .ad-slot-embed--global + .page-ad-slot-wrap--global-top {
-  border-top: 1px solid var(--border-color, #efefef);
+  padding-top: 2px;
 }
 
 .site-top-ad-strip .ad-slot-embed {
@@ -67,15 +62,6 @@
 
 @media (max-width: 1024px) {
   .site-top-ad-strip {
-    --site-announcement-h: 30px;
-    --site-main-header-h: 88px;
-  }
-}
-
-@media (max-width: 768px) {
-  .site-top-ad-strip {
-    --site-announcement-h: 28px;
-    --site-main-header-h: 64px;
     width: 100%;
     max-width: 100%;
     overflow: visible;
@@ -96,8 +82,7 @@
 }
 
 @media (max-width: 480px) {
-  .site-top-ad-strip {
-    --site-announcement-h: 28px;
+  :root {
     --site-main-header-h: 60px;
   }
 }

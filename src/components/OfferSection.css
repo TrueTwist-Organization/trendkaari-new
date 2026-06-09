@@ -7,7 +7,6 @@
   width: 100%;
   overflow: hidden;
   background: var(--brand-plum);
-  border-bottom: 1px solid rgba(212, 180, 131, 0.25);
 }
 
 .offer-marquee__viewport {
@@ -104,8 +103,6 @@ body.is-scrolling .offer-marquee__track {
     #fff9fb 62%,
     #ffffff 100%
   );
-  border-top: 1px solid rgba(96, 11, 69, 0.06);
-  border-bottom: 1px solid rgba(96, 11, 69, 0.06);
 }
 
 .offer-section__vignette {

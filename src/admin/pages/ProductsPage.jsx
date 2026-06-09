@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, Search, X } from 'lucide-react';
 import {
   createProduct,
   deleteProduct,
@@ -11,7 +11,9 @@ import { fetchStoreProducts } from '../../api/storeApi';
 import { fetchApiHealth, getAdminToken, setAdminToken } from '../../api/client';
 import { resetCatalogCache } from '../../utils/loadCatalog';
 import { bumpCatalogVersion } from '../../utils/catalogSync';
-import { getProductGalleryImages, getProductPrimaryImage } from '../../utils/productImages';
+import { getProductGalleryImages } from '../../utils/productImages';
+import { resolveMediaUrl } from '../../utils/mediaUrl';
+import ProductImage from '../../components/ProductImage';
 import {
   FABRIC_TAGS,
   GENTS_CATEGORIES,
@@ -28,6 +30,25 @@ import {
 } from '../productDetailFields';
 
 const STEPS = ['Basic Info', 'Taxonomy', 'Storefront Details', 'Variants', 'Media'];
+
+function productMatchesSearch(product, query) {
+  if (!query) return true;
+  const q = query.toLowerCase();
+  const haystack = [
+    product.title,
+    product.subCategory,
+    product.category,
+    product.description,
+    product.sku,
+    product.id != null ? String(product.id) : '',
+    product.id != null ? `lib-${product.id}` : '',
+    product.id != null ? `sku lib-${product.id}` : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+  return haystack.includes(q);
+}
 
 function emptyVariant(gender) {
   const stockBySize = {};
@@ -55,6 +76,8 @@ function colorOptionsForVariant(currentColor) {
 export default function ProductsPage({ onToast }) {
   const [products, setProducts] = useState([]);
   const [genderFilter, setGenderFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [step, setStep] = useState(0);
@@ -80,12 +103,23 @@ export default function ProductsPage({ onToast }) {
   const fileInputRef = useRef(null);
 
   const applyProductList = (list) => {
-    const rows = Array.isArray(list) ? list : [];
-    const filtered =
-      genderFilter === 'all' ? rows : rows.filter((p) => p.gender === genderFilter);
-    setProducts(filtered);
-    return filtered.length;
+    let rows = Array.isArray(list) ? list : [];
+    if (genderFilter !== 'all') {
+      rows = rows.filter((p) => p.gender === genderFilter);
+    }
+    if (debouncedSearch) {
+      rows = rows.filter((p) => productMatchesSearch(p, debouncedSearch));
+    }
+    setProducts(rows);
+    return rows.length;
   };
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setDebouncedSearch(searchQuery.trim());
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, [searchQuery]);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -99,6 +133,7 @@ export default function ProductsPage({ onToast }) {
 
       const params = {};
       if (genderFilter !== 'all') params.gender = genderFilter;
+      if (debouncedSearch) params.search = debouncedSearch;
 
       const data = await fetchAdminProducts(params);
       let count = applyProductList(data?.products);
@@ -148,7 +183,7 @@ export default function ProductsPage({ onToast }) {
     } finally {
       setLoading(false);
     }
-  }, [genderFilter, onToast]);
+  }, [genderFilter, debouncedSearch, onToast]);
 
   const handleSyncCatalog = async () => {
     setSyncing(true);
@@ -365,7 +400,31 @@ export default function ProductsPage({ onToast }) {
       )}
 
       <div className="admin-cyber-filters glass-panel">
-        <label>
+        <label className="admin-cyber-filter-field admin-cyber-filter-field--search">
+          Search products
+          <div className="admin-cyber-search-wrap">
+            <Search size={16} aria-hidden className="admin-cyber-search-wrap__icon" />
+            <input
+              type="search"
+              className="admin-cyber-input admin-cyber-search-wrap__input"
+              placeholder="Name, ID, SKU, or category…"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search products"
+            />
+            {searchQuery ? (
+              <button
+                type="button"
+                className="admin-cyber-search-wrap__clear"
+                onClick={() => setSearchQuery('')}
+                aria-label="Clear search"
+              >
+                <X size={14} aria-hidden />
+              </button>
+            ) : null}
+          </div>
+        </label>
+        <label className="admin-cyber-filter-field">
           Gender
           <select
             className="admin-cyber-input"
@@ -377,6 +436,10 @@ export default function ProductsPage({ onToast }) {
             <option value="gents">Gents</option>
           </select>
         </label>
+        <p className="admin-cyber-filter-meta">
+          {loading ? 'Loading…' : `${products.length} product${products.length === 1 ? '' : 's'}`}
+          {debouncedSearch ? ` matching “${debouncedSearch}”` : ''}
+        </p>
       </div>
 
       {showForm ? (
@@ -609,7 +672,7 @@ export default function ProductsPage({ onToast }) {
                     {existingImages.filter(Boolean).map((src, idx) => (
                       <div key={`existing-${src}`} className="admin-cyber-thumb">
                         {idx === 0 && <span className="admin-cyber-thumb__badge">Main</span>}
-                        <img src={src} alt="" />
+                        <ProductImage src={src} alt="" loading="lazy" />
                         <button
                           type="button"
                           className="admin-cyber-thumb__remove"
@@ -695,7 +758,9 @@ export default function ProductsPage({ onToast }) {
               {products.length === 0 && (
                 <tr>
                   <td colSpan={6} className="admin-cyber-table-empty">
-                    No products yet. Click <strong>ADD NEW PRODUCT</strong> — there is no limit on how many you can add.
+                    {debouncedSearch
+                      ? <>No products match your search. Try another name, ID, or category.</>
+                      : <>No products yet. Click <strong>ADD NEW PRODUCT</strong> — there is no limit on how many you can add.</>}
                   </td>
                 </tr>
               )}
@@ -703,11 +768,7 @@ export default function ProductsPage({ onToast }) {
                 <tr key={p.id}>
                   <td>
                     <div className="admin-cyber-table-product">
-                      <img
-                        src={getProductPrimaryImage(p)}
-                        alt=""
-                        onError={(e) => { e.target.style.opacity = '0.3'; e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="64" viewBox="0 0 48 64"><rect width="48" height="64" fill="%23222"/><text x="50%25" y="50%25" fill="%23666" font-size="10" text-anchor="middle" dy=".3em">No img</text></svg>'; }}
-                      />
+                      <ProductImage product={p} alt="" loading="lazy" />
                       <div>
                         <strong>{p.title}</strong>
                         <span>SKU LIB-{p.id}</span>

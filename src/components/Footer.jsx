@@ -9,9 +9,6 @@ import {
 } from '../constants/contact';
 import './Footer.css';
 
-const SALE_MESSAGE =
-  '🏷️ SALE ALERT!\n\nUse Code: SALE100 to get Flat ₹100 Off on orders above ₹2499!\n\nUse Code: APP10 to get 10% Extra Off on our Mobile Apps!';
-
 export default function Footer({
   onSelectCategory,
   onOpenAccount,
@@ -47,8 +44,8 @@ export default function Footer({
     onScrollToSection?.('gift-unbox-title');
   };
 
-  const handleSale = () => {
-    alert(SALE_MESSAGE);
+  const handleOurApproach = () => {
+    openInfo('about');
   };
 
   const handleTrackOrder = () => {
@@ -72,7 +69,7 @@ export default function Footer({
 
       <div className="container">
         <div className="occasion-bar">
-          <span className="occasion-title text-uppercase letter-spacing-medium">Shop By Occasion:</span>
+          <span className="occasion-title text-uppercase letter-spacing-medium">Browse By Occasion:</span>
           <div className="occasion-links-list">
             <button type="button" onClick={() => goCategory('suit sets')} className="occasion-link">
               Mother&apos;s Day Outfits
@@ -128,8 +125,8 @@ export default function Footer({
                   </button>
                 </li>
                 <li>
-                  <button type="button" className="footer-link-btn" onClick={handleSale}>
-                    Sale
+                  <button type="button" className="footer-link-btn" onClick={handleOurApproach}>
+                    Our Approach
                   </button>
                 </li>
               </ul>
@@ -261,7 +258,7 @@ export default function Footer({
             <div className="column-collapsible-content">
               <div className="subscribe-box">
                 <p className="subscribe-subtitle">
-                  Be the first to know about new launches, sales, trend updates & more!
+                  Get editorial signals, trend breakdowns & new chapter alerts — no hard-sell spam.
                 </p>
                 <form className="subscribe-form" onSubmit={handleSubscribeSubmit}>
                   <input

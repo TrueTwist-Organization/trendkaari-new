@@ -1,17 +1,24 @@
 .discovery-hero {
   width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
-  background: #e8dfd4;
+  background: #3b0a1c;
+  overflow: hidden;
+}
+
+body.home-page .discovery-hero {
+  margin-top: var(--site-header-total);
 }
 
 .discovery-hero__banner {
   display: block;
   width: 100%;
+  max-width: none;
   padding: 0;
   margin: 0;
   border: none;
-  background: none;
+  background: #3b0a1c;
   cursor: pointer;
   line-height: 0;
   -webkit-tap-highlight-color: transparent;
@@ -26,14 +33,9 @@
 .discovery-hero__img {
   width: 100%;
   height: auto;
+  max-width: none;
   display: block;
   vertical-align: top;
-}
-
-@media (max-width: 767px) {
-  .discovery-hero {
-    background: #f3ebe3;
-  }
 }
 
 .discovery-hero__banner:focus-visible {

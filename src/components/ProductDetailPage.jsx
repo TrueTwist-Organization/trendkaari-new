@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Star, ShoppingBag, Plus, Minus, Heart, Truck, RefreshCw, ShieldCheck, X } from 'lucide-react';
+import { Star, ShoppingBag, Plus, Minus, Heart, Truck, RefreshCw, ShieldCheck, X, Sparkles } from 'lucide-react';
 import { getProductDetailContent, getSizeChartForProduct } from '../utils/productContent';
 import ProductDetailsAmazon from './ProductDetailsAmazon';
 import ProductDiscoveryRails from './ProductDiscoveryRails';
@@ -295,12 +295,26 @@ export default function ProductDetailPage({
 
         <section className="pdp-below-fold" aria-label="Recommended products">
           <header className="pdp-below-fold__head">
-            <p className="pdp-below-fold__eyebrow">Complete the look</p>
-            <h2 className="pdp-below-fold__title">More from the {breadcrumbCategory} edit</h2>
-            <p className="pdp-below-fold__sub">
-              Similar co-ords, styling guides, and trending picks — keep exploring after{' '}
-              {product.title.split(' ').slice(0, 3).join(' ')}…
-            </p>
+            <div className="pdp-below-fold__head-titles">
+              <p className="pdp-below-fold__eyebrow">Complete the look</p>
+              <h2 className="pdp-below-fold__title">More from the {breadcrumbCategory} edit</h2>
+              <p className="pdp-below-fold__sub">
+                Similar co-ords, styling guides, and trending picks — keep exploring after{' '}
+                {product.title.split(' ').slice(0, 3).join(' ')}…
+              </p>
+            </div>
+            {onSelectCategory ? (
+              <div className="pdp-below-fold__head-actions">
+                <button
+                  type="button"
+                  className="pdp-below-fold__see-all"
+                  onClick={() => onSelectCategory(product.subCategory || product.category)}
+                >
+                  See all
+                  <Sparkles size={14} aria-hidden />
+                </button>
+              </div>
+            ) : null}
           </header>
           <ProductDiscoveryRails
             product={product}

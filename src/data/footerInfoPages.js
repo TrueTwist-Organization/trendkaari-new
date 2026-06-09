@@ -9,29 +9,30 @@ import { SUPPORT_EMAIL, SUPPORT_PHONE_DISPLAY, SUPPORT_HOURS } from '../constant
 export const FOOTER_INFO_PAGES = {
   about: {
     title: 'About trendkaari',
-    subtitle: 'Curated ethnic & contemporary fashion for every Indian occasion',
-    lastUpdated: 'May 2026',
+    subtitle: '29+ years of fashion arbitrage expertise — editorial discovery, not a storefront',
+    lastUpdated: 'June 2026',
     sections: [
       {
         heading: 'Who we are',
         paragraphs: [
-          'trendkaari is an India-focused fashion brand offering kurtas, suit sets, sarees, lehengas, co-ords, and everyday ethnic wear for women and men. We combine thoughtful design, quality fabrics, and transparent pricing so you can shop confidently for festivals, weddings, office wear, and daily life.',
-          'Our catalog is photographed in natural light with size charts on every product page. We work with verified manufacturing partners and conduct quality checks before dispatch.',
+          'trendkaari is a fashion intelligence desk — not a hard-sell storefront. For 29+ years we have read Indian style markets the way arbitrage experts read signals: where attention moves before mainstream catches up, which edits will compound, and what search and social data reveal next.',
+          'Our chapters, magazines, quizzes, and trend rails are built for deep discovery and editorial engagement. We cover kurtas, sarees, lehengas, co-ords, and everyday ethnic wear through a journalist\'s lens — context, culture, and market movement first.',
         ],
       },
       {
         heading: 'What we stand for',
         list: [
-          'Honest product descriptions and fabric composition on every listing',
-          'Nationwide delivery with SMS and email tracking updates',
-          'Responsive customer care — phone, email, and WhatsApp',
-          'Easy returns on eligible items within 7 days of delivery',
+          'Arbitrage-grade market reading — spotting trends before they peak',
+          'Editorial depth over discount-driven urgency',
+          'India-first intelligence from search, social, and street style',
+          'Discovery journeys designed for curiosity, not checkout pressure',
         ],
       },
       {
-        heading: 'Registered business',
+        heading: 'How we work',
         paragraphs: [
-          'trendkaari operates as an online retailer serving customers across India. For partnership, bulk orders, or media enquiries, write to care@trendkaari with your company details and we will respond within 2 business days.',
+          'We combine human editorial judgment with real-time fashion signals across India. Every chapter in our feed leads somewhere worth reading — style profiles, Bollywood breakdowns, wedding edits, and viral fashion analysis.',
+          'For partnership, media, or editorial enquiries, write to care@trendkaari with your brief and we will respond within 2 business days.',
         ],
       },
     ],

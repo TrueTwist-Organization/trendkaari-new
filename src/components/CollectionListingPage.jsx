@@ -12,6 +12,7 @@ import {
 import { findMenuGroupForTag, MENU_MEN_GROUPS, MENU_WOMEN_GROUPS } from '../data/navCategories';
 import PageBackButton from './PageBackButton';
 import PlacedAdSlot from './PlacedAdSlot';
+import { CATEGORY_GRID_AD_EVERY_N } from '../constants/adGridIntervals';
 import { scrollToPageTop } from '../utils/scrollToTop';
 import ProductImage from './ProductImage';
 import { getProductHoverImage, getProductPrimaryImage, getProductGalleryImages } from '../utils/productImages';
@@ -751,7 +752,7 @@ export default function CollectionListingPage({
                 const hoverImage = getProductHoverImage(product);
                 const showMidGridAd =
                   hasGridAd &&
-                  (index + 1) % 2 === 0 &&
+                  (index + 1) % CATEGORY_GRID_AD_EVERY_N === 0 &&
                   index < paginatedItems.length - 1;
 
                 return (
@@ -902,16 +903,30 @@ export default function CollectionListingPage({
       </div>
 
       {activeCategory !== 'all' && sortedItems.length > 0 ? (
-        <CollectionHubSections
-          activeCategory={activeCategory}
-          allProducts={products}
-          excludeProductIds={categoryProductIds}
-          onSelectProduct={onSelectProduct || onOpenQuickView}
-          onSelectCategory={onSelectCategory}
-          onOpenKnowledgePage={onOpenKnowledgePage}
-          placement="bottom"
-          adCodes={adCodes}
-        />
+        <>
+          <PlacedAdSlot adCodes={adCodes} placement="category_before_hub" variant="section" />
+          <CollectionHubSections
+            activeCategory={activeCategory}
+            allProducts={products}
+            excludeProductIds={categoryProductIds}
+            onSelectProduct={onSelectProduct || onOpenQuickView}
+            onSelectCategory={onSelectCategory}
+            onOpenKnowledgePage={onOpenKnowledgePage}
+            placement="top"
+            adCodes={adCodes}
+          />
+          <PlacedAdSlot adCodes={adCodes} placement="category_after_hub_guide" variant="section" />
+          <CollectionHubSections
+            activeCategory={activeCategory}
+            allProducts={products}
+            excludeProductIds={categoryProductIds}
+            onSelectProduct={onSelectProduct || onOpenQuickView}
+            onSelectCategory={onSelectCategory}
+            onOpenKnowledgePage={onOpenKnowledgePage}
+            placement="bottom"
+            adCodes={adCodes}
+          />
+        </>
       ) : null}
 
       <PlacedAdSlot adCodes={adCodes} placement="category_after_suggestions" variant="section" />

@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import {
   ArrowRight,
   Banknote,
@@ -13,11 +13,8 @@ import ProductImage from './ProductImage';
 import DiscoveryRail from './DiscoveryRail';
 import DiscoveryLoopSection from './DiscoveryLoopSection';
 import PlacedAdSlot from './PlacedAdSlot';
-import {
-  getKnowledgePageBySlug,
-  getKnowledgeTopics,
-  getTopicBySlug,
-} from '../data/fashionKnowledge';
+import { getKnowledgeTopics, getTopicBySlug } from '../data/fashionKnowledge';
+import { getKnowledgePageAsync } from '../utils/editorialContentData';
 import {
   getKnowledgeCollections,
   getKnowledgePageProducts,
@@ -69,7 +66,16 @@ export default function FashionKnowledgePage({
   onStartQuiz,
   onNavigate,
 }) {
-  const page = getKnowledgePageBySlug(pageSlug);
+  const [page, setPage] = useState(null);
+
+  useEffect(() => {
+    if (!pageSlug) {
+      setPage(null);
+      return;
+    }
+    getKnowledgePageAsync(pageSlug).then(setPage);
+  }, [pageSlug]);
+
   const topic = getTopicBySlug(page?.topicSlug);
 
   const shopProducts = useMemo(

@@ -175,8 +175,10 @@
 /* ─── Individual Trend Page ──────────────────────────────────────────────── */
 
 .trend-page {
+  --trend-header-offset: var(--site-header-total, 114px);
   background: #fff;
   min-height: 100vh;
+  padding-top: var(--trend-header-offset);
 }
 
 .trend-page__body {
@@ -191,54 +193,55 @@
 /* ─── Hero ───────────────────────────────────────────────────────────────── */
 
 .trend-page__hero {
-  background: linear-gradient(180deg, #fdf8fa 0%, #fff 100%);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--trend-accent, #600b45) 6%, #fff) 0%,
+    #fff 55%
+  );
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .trend-page__hero-nav {
-  padding-top: 1rem;
-  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.5rem;
 }
 
 .trend-page__hero-split {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding-bottom: 2rem;
 }
 
 .trend-page__hero-visual {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
-  max-height: 520px;
+  max-height: 440px;
   overflow: hidden;
+  border-radius: 16px;
   background: #1a0a14;
+  box-shadow: 0 12px 40px rgba(28, 28, 28, 0.12);
 }
 
 .trend-page__hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center top;
   display: block;
 }
 
 .trend-page__hero-panel {
-  background: linear-gradient(180deg, #fdf8fa 0%, #fff 100%);
-  padding: 1.5rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem 0 0.25rem;
 }
 
 .trend-page__hero-panel-inner {
-  max-width: 640px;
-  padding: 0 16px;
-  margin: 0 auto;
-}
-
-@media (min-width: 769px) {
-  .trend-page__hero-panel-inner {
-    padding: 0;
-    margin: 0;
-    max-width: none;
-  }
+  width: 100%;
+  max-width: 520px;
 }
 
 .trend-page__hero-eyebrow {
@@ -316,49 +319,42 @@
   color: var(--text-light, #767676);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .trend-page__hero-split {
-    display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    min-height: min(72vh, 640px);
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 32px 2.5rem;
-    gap: 0;
-    align-items: stretch;
-  }
-
-  .trend-page__hero-nav {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding-top: 1.25rem;
-    padding-bottom: 0.5rem;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: center;
+    padding-bottom: 2.5rem;
   }
 
   .trend-page__hero-visual {
-    order: 2;
-    aspect-ratio: unset;
-    max-height: none;
-    min-height: 480px;
-    border-radius: 0 20px 20px 0;
+    aspect-ratio: 3 / 4;
+    max-height: min(520px, 58vh);
+    min-height: 360px;
   }
 
   .trend-page__hero-panel {
-    order: 1;
-    display: flex;
-    align-items: center;
-    padding: 2rem 2.5rem 2rem 0;
-    background: transparent;
+    padding: 1rem 0;
   }
 
   .trend-page__hero-title {
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-size: clamp(2rem, 3.2vw, 3rem);
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1024px) {
   .trend-page__hero-split {
-    grid-template-columns: 420px 1fr;
+    grid-template-columns: minmax(320px, 44%) minmax(0, 1fr);
+    gap: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .trend-page__hero-visual {
+    max-height: min(560px, 62vh);
+  }
+
+  .trend-page__hero-title {
+    font-size: clamp(2.25rem, 3.5vw, 3.35rem);
   }
 }
 

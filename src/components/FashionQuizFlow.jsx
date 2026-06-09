@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { getQuizBySlug } from '../data/fashionQuizzes';
+import { getQuizBySlugAsync } from '../utils/editorialContentData';
 import { resolveQuizResult } from '../utils/quizEngine';
 import { trackQuizStarted } from '../utils/ga4';
 import './FashionQuiz.css';
@@ -18,9 +18,17 @@ export default function FashionQuizFlow({
   onOpenKnowledgePage,
   onStartQuiz,
 }) {
-  const quiz = getQuizBySlug(quizSlug);
+  const [quiz, setQuiz] = useState(null);
   const [stepIndex, setStepIndex] = useState(0);
   const [answers, setAnswers] = useState({});
+
+  useEffect(() => {
+    if (!quizSlug) {
+      setQuiz(null);
+      return;
+    }
+    getQuizBySlugAsync(quizSlug).then(setQuiz);
+  }, [quizSlug]);
 
   useEffect(() => {
     if (quiz) trackQuizStarted(quizSlug, quiz.title);

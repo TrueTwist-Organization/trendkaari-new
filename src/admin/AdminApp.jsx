@@ -107,7 +107,7 @@ export default function AdminApp() {
         <AdminLayout admin={admin} activePage={page} onNavigate={setPage} onLogout={handleLogout}>
           {page === 'dashboard' && <DashboardPage />}
           {page === 'journeys' && <JourneyReportsPage />}
-          {page === 'content' && <ContentPage />}
+          {page === 'content' && <ContentPage onNavigate={setPage} />}
           {page === 'content-editor' && <ContentEditorPage />}
           {page === 'image-manager' && <ImageManagerPage />}
           {page === 'products' && <ProductsPage onToast={showToast} />}

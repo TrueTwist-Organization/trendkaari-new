@@ -149,7 +149,7 @@ export default function ExplorationHomepage({
     <div className="exploration-home exploration-home--discovery">
       <DiscoveryHero onOpenDiscover={onOpenDiscover} hero={home.hero} />
 
-      <HomeAdSlot adCodes={adCodes} placement="home_after_hero" />
+      <HomeAdSlot adCodes={adCodes} placement="homepage_after_hero" />
 
       <section className="home-trust" aria-label="Why Trendkaari">
         <div className="home-trust__static container">
@@ -178,9 +178,9 @@ export default function ExplorationHomepage({
         </div>
       </section>
 
-      <HomeAdSlot adCodes={adCodes} placement="home_main" />
+      <HomeAdSlot adCodes={adCodes} placement="homepage_after_trust" />
 
-      <HomeAdSlot adCodes={adCodes} placement="home_before_categories" />
+      <HomeAdSlot adCodes={adCodes} placement="homepage_before_categories" />
 
       <section className="home-categories" aria-label="Browse by category">
         <div className="home-categories__inner container">
@@ -198,7 +198,7 @@ export default function ExplorationHomepage({
         </div>
       </section>
 
-      <HomeAdSlot adCodes={adCodes} placement="home_between_categories_gift" />
+      <HomeAdSlot adCodes={adCodes} placement="homepage_after_categories" />
 
       <main className="exploration-home__main" id="home-chapters">
         <div className="exploration-home__intro container">
@@ -207,7 +207,7 @@ export default function ExplorationHomepage({
           <p className="exploration-home__intro-text">{home.editorialIntro.text}</p>
         </div>
 
-        <HomeAdSlot adCodes={adCodes} placement="home_after_trends" />
+        <HomeAdSlot adCodes={adCodes} placement="homepage_before_editorial" />
 
         <DiscoveryExperienceFeed
           products={products}
@@ -219,11 +219,10 @@ export default function ExplorationHomepage({
         />
       </main>
 
-      <HomeAdSlot adCodes={adCodes} placement="home_after_gift" />
+      <HomeAdSlot adCodes={adCodes} placement="homepage_before_spotlight" />
 
       {featuredPicks.length > 0 && (
         <>
-          <HomeAdSlot adCodes={adCodes} placement="home_after_promo" />
           <section className="home-spotlight" aria-label="Market signals">
           <div className="home-spotlight__inner container">
             <header className="home-spotlight__head">
@@ -285,11 +284,11 @@ export default function ExplorationHomepage({
             </div>
           </div>
         </section>
-          <HomeAdSlot adCodes={adCodes} placement="home_before_reviews" />
+          <HomeAdSlot adCodes={adCodes} placement="homepage_after_spotlight" />
         </>
       )}
 
-      <HomeAdSlot adCodes={adCodes} placement="home_after_reviews" />
+      <HomeAdSlot adCodes={adCodes} placement="homepage_before_finale" />
 
       <section className="exploration-home__finale">
         <div className="exploration-home__finale-bg" aria-hidden="true" />
@@ -312,6 +311,8 @@ export default function ExplorationHomepage({
           </div>
         </div>
       </section>
+
+      <HomeAdSlot adCodes={adCodes} placement="homepage_after_finale" />
     </div>
   );
 }

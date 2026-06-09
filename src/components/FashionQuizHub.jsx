@@ -1,5 +1,7 @@
-import React from 'react';
-import { ArrowRight, Sparkles, Shirt, PartyPopper, Heart, ChevronLeft, Wand2, Clock3, ShoppingBag } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowRight, Sparkles, Shirt, PartyPopper, Heart, Wand2 } from 'lucide-react';
+import PageBackButton from './PageBackButton';
+import { fetchQuizzesList } from '../utils/editorialContentData';
 import { getAllQuizzes } from '../data/fashionQuizzes';
 import './FashionQuiz.css';
 import './AiStyleFinder.css';
@@ -24,41 +26,19 @@ export default function FashionQuizHub({
   onOpenKnowledgePage,
   adCodes = {},
 }) {
-  const quizzes = getAllQuizzes();
+  const [quizzes, setQuizzes] = useState(getAllQuizzes());
+
+  useEffect(() => {
+    fetchQuizzesList().then((list) => {
+      if (list?.length) setQuizzes(list);
+    });
+  }, []);
 
   return (
     <div className="fashion-quiz fashion-quiz--hub">
-      <header className="fashion-quiz-hub__hero">
-        <div className="container fashion-quiz-hub__hero-inner">
-          <button type="button" className="fashion-quiz__back" onClick={onBack}>
-            <ChevronLeft size={18} />
-            Home
-          </button>
-
-          <div className="fashion-quiz-hub__hero-copy">
-            <p className="fashion-quiz__eyebrow">Fashion Quiz Hub</p>
-            <h1 className="fashion-quiz__title">Find your style in minutes</h1>
-            <p className="fashion-quiz__subtitle">
-              Playful quizzes that end with product picks, styling guides, and your next scroll — tuned to how you dress.
-            </p>
-          </div>
-
-          <ul className="fashion-quiz-hub__trust" aria-label="Quiz highlights">
-            <li>
-              <Sparkles size={15} aria-hidden />
-              4 style quizzes
-            </li>
-            <li>
-              <ShoppingBag size={15} aria-hidden />
-              Curated product picks
-            </li>
-            <li>
-              <Clock3 size={15} aria-hidden />
-              ~2 min each
-            </li>
-          </ul>
-        </div>
-      </header>
+      <div className="container fashion-quiz-hub__top">
+        <PageBackButton onClick={onBack} label="Home" />
+      </div>
 
       <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="quiz_hub_mid" variant="section" />

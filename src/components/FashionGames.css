@@ -516,12 +516,12 @@
 /* —— Games Hub —— */
 .fashion-games--hub {
   background: #fff;
+  padding-top: var(--site-header-total, 114px);
 }
 
-.fashion-games-hub__hero {
-  background: linear-gradient(155deg, #120818 0%, #600b45 50%, #2a1040 100%);
-  color: #fff;
-  padding: 1rem 0 3.25rem;
+.fashion-games-hub__top {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .fashion-games-hub__hero-inner {
@@ -561,10 +561,8 @@
 }
 
 .fashion-games-hub__stage {
-  margin-top: -2rem;
+  margin-top: 0.75rem;
   padding-bottom: 2.5rem;
-  position: relative;
-  z-index: 1;
 }
 
 .fashion-games-hub__grid {

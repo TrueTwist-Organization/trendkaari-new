@@ -93,7 +93,10 @@ export default function SpinWheel({ orderId, orderTotal, onClose }) {
               <span
                 key={segment.id}
                 className="spin-wheel-disc__label"
-                style={{ transform: `rotate(${i * SEGMENT_DEG + SEGMENT_DEG / 2}deg)` }}
+                style={{
+                  transform: `rotate(${i * SEGMENT_DEG + SEGMENT_DEG / 2}deg)`,
+                  color: segment.labelColor || '#fff',
+                }}
               >
                 {segment.label}
               </span>

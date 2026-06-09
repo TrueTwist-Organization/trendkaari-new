@@ -1,13 +1,10 @@
-import React, { useMemo } from 'react';
-import { ArrowRight, BookMarked, ChevronLeft, GraduationCap } from 'lucide-react';
+import React, { useMemo, useEffect, useState } from 'react';
+import { ArrowRight, BookMarked } from 'lucide-react';
+import PageBackButton from './PageBackButton';
 import ProductImage from './ProductImage';
 import DiscoveryLoopSection from './DiscoveryLoopSection';
-import {
-  getAllKnowledgePages,
-  getFeaturedKnowledgePages,
-  getKnowledgeTopics,
-  getKnowledgePagesByTopic,
-} from '../data/fashionKnowledge';
+import { getKnowledgeTopics } from '../data/fashionKnowledge';
+import { fetchKnowledgePages } from '../utils/editorialContentData';
 import { ensureUniqueGuideImages } from '../utils/guideImages';
 import './FashionKnowledge.css';
 
@@ -43,8 +40,18 @@ export default function FashionKnowledgeHub({
   onNavigate,
 }) {
   const topics = getKnowledgeTopics();
-  const featured = useMemo(() => ensureUniqueGuideImages(getFeaturedKnowledgePages(8), 4), []);
-  const allPages = getAllKnowledgePages();
+  const [allPages, setAllPages] = useState([]);
+
+  useEffect(() => {
+    fetchKnowledgePages().then(setAllPages);
+  }, []);
+
+  const featured = useMemo(() => {
+    const featuredList = allPages.filter((p) => p.featured);
+    const rest = allPages.filter((p) => !p.featured);
+    return ensureUniqueGuideImages([...featuredList, ...rest].slice(0, 8), 4);
+  }, [allPages]);
+
   const featuredIds = useMemo(() => new Set(featured.map((p) => p.id)), [featured]);
 
   const topicMap = useMemo(
@@ -59,26 +66,8 @@ export default function FashionKnowledgeHub({
 
   return (
     <div className="fashion-knowledge fashion-knowledge--hub">
-      <header className="fashion-knowledge__hero">
-        <div className="container">
-          <button type="button" className="fashion-knowledge__back" onClick={onBack}>
-            <ChevronLeft size={18} />
-            Home
-          </button>
-          <span className="fashion-knowledge__badge">
-            <GraduationCap size={14} aria-hidden />
-            Fashion Knowledge
-          </span>
-          <h1 className="fashion-knowledge__title">Learn before you shop</h1>
-          <p className="fashion-knowledge__subtitle">
-            Silhouettes, fabrics, garment types, and colour — every guide links naturally to
-            products and collections you can explore next.
-          </p>
-          <p className="fashion-knowledge__hero-count">{allPages.length} guides · updated regularly</p>
-        </div>
-      </header>
-
       <div className="container fashion-knowledge__body">
+        <PageBackButton onClick={onBack} label="Home" />
         <section className="fashion-knowledge__section fashion-knowledge__section--featured">
           <div className="fashion-knowledge__section-head">
             <BookMarked size={18} aria-hidden />
@@ -101,7 +90,7 @@ export default function FashionKnowledgeHub({
 
         {topics.map((topic) => {
           const pages = ensureUniqueGuideImages(
-            getKnowledgePagesByTopic(topic.slug).filter((p) => !featuredIds.has(p.id)),
+            allPages.filter((p) => p.topicSlug === topic.slug && !featuredIds.has(p.id)),
             3,
           );
           if (!pages.length) return null;

@@ -445,12 +445,12 @@
 /* —— Quiz Hub —— */
 .fashion-quiz--hub {
   background: #fff;
+  padding-top: var(--site-header-total, 114px);
 }
 
-.fashion-quiz-hub__hero {
-  background: linear-gradient(155deg, #1a0a14 0%, #600b45 48%, #3d1530 100%);
-  color: #fff;
-  padding: 1rem 0 3.25rem;
+.fashion-quiz-hub__top {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .fashion-quiz-hub__hero-inner {
@@ -487,10 +487,8 @@
 }
 
 .fashion-quiz-hub__stage {
-  margin-top: -2rem;
+  margin-top: 0.75rem;
   padding-bottom: 2.5rem;
-  position: relative;
-  z-index: 1;
 }
 
 .fashion-quiz-hub__stage-inner {

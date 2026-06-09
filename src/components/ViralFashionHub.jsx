@@ -1,18 +1,16 @@
 import React, { useMemo, useRef } from 'react';
 import {
   ArrowRight,
-  ChevronLeft,
   ChevronRight,
-  Flame,
-  RefreshCw,
   Share2,
   Star,
   Trophy,
   Zap,
 } from 'lucide-react';
+import PageBackButton from './PageBackButton';
 import ProductImage from './ProductImage';
 import ProductDiscountChip from './ProductDiscountChip';
-import { buildViralFashionHub, countViralHubClicks } from '../utils/viralFashionEngine';
+import { buildViralFashionHub } from '../utils/viralFashionEngine';
 import EndlessDiscovery from './EndlessDiscovery';
 import PlacedAdSlot from './PlacedAdSlot';
 import './ViralFashionHub.css';
@@ -201,55 +199,13 @@ export default function ViralFashionHub({
   adCodes = {},
 }) {
   const hub = useMemo(() => buildViralFashionHub(products), [products]);
-  const clickCount = useMemo(() => countViralHubClicks(hub), [hub]);
-
   if (!hub) return null;
 
   return (
     <div className="viral-hub">
-      <header className="viral-hub__hero">
-        <div className="container">
-          <button type="button" className="viral-hub__back" onClick={onBack}>
-            <ChevronLeft size={18} />
-            Home
-          </button>
-
-          <div className="viral-hub__hero-badges">
-            <span className="viral-hub__live">
-              <span className="viral-hub__live-dot" aria-hidden />
-              Live edit
-            </span>
-            <span className="viral-hub__refresh">
-              <RefreshCw size={13} aria-hidden />
-              {hub.refreshLabel}
-            </span>
-          </div>
-
-          <h1 className="viral-hub__title">
-            <Flame size={28} className="viral-hub__title-icon" aria-hidden />
-            Viral Fashion Hub
-          </h1>
-          <p className="viral-hub__subtitle">
-            Seven scroll-stopping lanes — viral picks, IG trends, celebrity edits, bestsellers, and budget steals.
-            Every section updates from the catalog automatically.
-          </p>
-
-          <div className="viral-hub__stats">
-            <div className="viral-hub__stat">
-              <strong>{clickCount}+</strong>
-              <span>clicks waiting</span>
-            </div>
-            <div className="viral-hub__stat">
-              <strong>{hub.sections.length}</strong>
-              <span>viral lanes</span>
-            </div>
-            <div className="viral-hub__stat viral-hub__stat--hot">
-              <strong>NEW</strong>
-              <span>this week</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      <div className="container viral-hub__top">
+        <PageBackButton onClick={onBack} label="Home" />
+      </div>
 
       <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="viral_hub_mid" variant="section" />

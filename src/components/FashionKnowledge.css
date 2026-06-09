@@ -112,25 +112,11 @@
 /* Hub */
 .fashion-knowledge--hub {
   background: #fff;
-}
-
-.fashion-knowledge--hub .fashion-knowledge__hero {
-  padding: 1.25rem 0 2.75rem;
-}
-
-.fashion-knowledge--hub .fashion-knowledge__title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.9rem, 4.5vw, 2.75rem);
-}
-
-.fashion-knowledge__hero-count {
-  margin: 1rem 0 0;
-  font-size: 0.82rem;
-  opacity: 0.82;
+  padding-top: var(--site-header-total, 114px);
 }
 
 .fashion-knowledge--hub .fashion-knowledge__body {
-  padding-top: 2.25rem;
+  padding-top: 1rem;
   padding-bottom: 1rem;
 }
 

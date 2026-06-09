@@ -47,13 +47,13 @@ import { categoryPath, normalizeCategoryPathname, slugToCategory } from './utils
 import { isValidCelebrityLookId } from './utils/celebrityLooksData';
 import { recordCategoryBrowse, recordProductView } from './utils/viewHistory';
 import JourneyTracker from './components/JourneyTracker';
-import { isValidQuizResult, isValidQuizSlug } from './data/fashionQuizzes';
+import { isValidQuizResult, isValidQuizSlug, prefetchEditorialContent } from './utils/editorialContentData';
 import { isValidStyleFinderResultKey } from './data/aiStyleFinder';
 import {
   isValidMagazineArticle,
   isValidMagazineCategorySlug,
 } from './data/fashionMagazine';
-import { isValidKnowledgePageSlug } from './data/fashionKnowledge';
+import { isValidKnowledgePageSlug } from './utils/editorialContentData';
 import { isValidGameSlug } from './data/fashionGames';
 import './App.css';
 
@@ -626,6 +626,7 @@ export default function App() {
       fetchStoreGiftCombos().then((list) => {
         if (list?.length) setGiftCombos(list);
       });
+      prefetchEditorialContent();
     });
   }, []);
 
@@ -944,14 +945,18 @@ export default function App() {
 
   // Shopper Shopping Bag Actions
   const handleAddToCart = (product, size, qty = 1) => {
-    if (!size) {
-      alert("Please select a size first!");
+    const resolvedSize =
+      size || product?.selectedSize || product?.sizes?.[0] || 'M';
+    if (!resolvedSize) {
+      alert('Please select a size first!');
       return;
     }
 
+    setIsWishlistOpen(false);
+
     setCartItems((prevItems) => {
       const existingIdx = prevItems.findIndex(
-        (item) => item.id === product.id && item.selectedSize === size
+        (item) => item.id === product.id && item.selectedSize === resolvedSize
       );
 
       if (existingIdx > -1) {
@@ -959,7 +964,7 @@ export default function App() {
         updated[existingIdx].quantity += qty;
         return updated;
       } else {
-        return [...prevItems, { ...product, selectedSize: size, quantity: qty }];
+        return [...prevItems, { ...product, selectedSize: resolvedSize, quantity: qty }];
       }
     });
 
@@ -1233,7 +1238,7 @@ export default function App() {
             <SiteTopAdStrip code={adCodes.global_banner} slotKey="global_banner" />
           ) : null}
           {viewMode === 'home' && !isCategoryPage ? (
-            <SiteTopAdStrip code={adCodes.home_below_header} slotKey="home_below_header" />
+            <SiteTopAdStrip code={adCodes.homepage_below_header || adCodes.home_below_header} slotKey="homepage_below_header" />
           ) : null}
         </>
       )}
@@ -1613,6 +1618,7 @@ export default function App() {
         isOpen={isWishlistOpen}
         onClose={() => setIsWishlistOpen(false)}
         wishlistItems={wishlistItems}
+        allProducts={productsList}
         onRemoveItem={handleRemoveFromWishlist}
         onAddToCart={handleAddToCart}
         onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}

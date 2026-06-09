@@ -187,7 +187,7 @@ function tightenIframes(content, box) {
     slot.style.minWidth = '0';
     slot.style.margin = '0 auto';
     slot.style.overflow = 'visible';
-    slot.style.minHeight = isMobileView() ? '250px' : '90px';
+    slot.style.minHeight = '0';
     slot.style.display = 'block';
   });
 
@@ -207,7 +207,7 @@ function tightenIframes(content, box) {
     ins.style.minWidth = '0';
     ins.style.margin = '0 auto';
     ins.style.overflow = 'visible';
-    ins.style.minHeight = isMobileView() ? '250px' : '90px';
+    ins.style.minHeight = '0';
   });
 }
 
@@ -245,7 +245,7 @@ function syncHostHeight(host) {
     ...shellHeights,
     ...slotHeights,
     ...iframeHeights,
-    isMobileView() ? 250 : 90
+    0
   );
 
   const nextHeight = Math.ceil(measured);

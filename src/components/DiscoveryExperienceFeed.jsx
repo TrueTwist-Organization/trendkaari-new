@@ -11,11 +11,13 @@ import {
   normalizeOccasionChips,
   normalizeFestiveChips,
   normalizeTrendingSearches,
+  resolveTrendRouteForSearch,
 } from '../data/discoveryExperience';
 import { castPollVote, getPollResults } from '../utils/pollVotesStorage';
 import { buildDiscoveryExperienceFeed } from '../utils/discoveryExperienceEngine';
 import { CELEBRITY_LOOKS, fetchCelebrityLooks } from '../utils/celebrityLooksData';
 import HomeAdSlot from './HomeAdSlot';
+import { HOMEPAGE_CHAPTER_AD_BY_BLOCK_ID } from '../constants/adPlacements';
 import './DiscoveryExperienceFeed.css';
 
 /* ─── Shared shell ──────────────────────────────────────────────────────── */
@@ -647,8 +649,12 @@ function TrendingIndiaBlock({ block, onNavigate, onSelectCategory, trendingSearc
   const active = items[activeIdx] || items[0];
 
   const openTrend = (item) => {
-    if (item.route) onNavigate?.(item.route);
-    else if (item.category) onSelectCategory?.(item.category);
+    const route = resolveTrendRouteForSearch(item);
+    if (route) {
+      onNavigate?.(route);
+      return;
+    }
+    if (item?.category) onSelectCategory?.(item.category);
   };
 
   return (
@@ -891,27 +897,30 @@ export default function DiscoveryExperienceFeed({
         stripLabel={activeConfig.stripLabel}
         stripSub={activeConfig.stripSub}
       />
-      {feed.map((item, index) => (
-        <React.Fragment key={item.id}>
-          <div
-            className={`discovery-xp__section discovery-xp__section--${index % 2 === 0 ? 'light' : 'cream'}`}
-          >
-            <ExperienceBlock
-              item={item}
-              handlers={handlers}
-              discoveryConfig={activeConfig}
-            />
-          </div>
-          {(index + 1) % 2 === 0 ? (
-            <div className="container">
-              <HomeAdSlot adCodes={adCodes} placement="home_editorial_every_2" />
-            </div>
-          ) : null}
-        </React.Fragment>
-      ))}
       <div className="container">
-        <HomeAdSlot adCodes={adCodes} placement="home_editorial_bottom" />
+        <HomeAdSlot adCodes={adCodes} placement="homepage_after_poster_strip" />
       </div>
+      {feed.map((item, index) => {
+        const chapterPlacement = HOMEPAGE_CHAPTER_AD_BY_BLOCK_ID[item.id];
+        return (
+          <React.Fragment key={item.id}>
+            <div
+              className={`discovery-xp__section discovery-xp__section--${index % 2 === 0 ? 'light' : 'cream'}`}
+            >
+              <ExperienceBlock
+                item={item}
+                handlers={handlers}
+                discoveryConfig={activeConfig}
+              />
+            </div>
+            {chapterPlacement ? (
+              <div className="container">
+                <HomeAdSlot adCodes={adCodes} placement={chapterPlacement} />
+              </div>
+            ) : null}
+          </React.Fragment>
+        );
+      })}
     </div>
   );
 }

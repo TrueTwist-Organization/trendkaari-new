@@ -106,44 +106,50 @@ export default function FashionMagazineArticle({
           <span>{article.title}</span>
         </nav>
 
-        <header className="magazine-article__hero">
-          <p className="fashion-magazine__eyebrow">
-            {category.title}
-            {article.celebrity ? ` · ${article.celebrity}` : ''}
-          </p>
-          <h1 className="magazine-article__title">{article.title}</h1>
-          <p className="magazine-article__dek">{article.dek}</p>
-          <p className="magazine-article__byline">
-            {article.author} · {article.publishedAt} · {article.readTime}
-          </p>
-        </header>
-
-        <figure className="magazine-article__figure">
-          <ProductImage src={article.image} alt="" className="magazine-article__hero-img" />
-        </figure>
-
         <div className="magazine-article__layout">
-          <article className="magazine-article__content">
-            {article.sections.map((section, index) => (
-              <ArticleBlock key={`${section.type}-${index}`} block={section} />
-            ))}
+          <div className="magazine-article__main">
+            <header className="magazine-article__intro">
+              <p className="magazine-article__eyebrow">
+                {category.title}
+                {article.celebrity ? ` · ${article.celebrity}` : ''}
+              </p>
+              <h1 className="magazine-article__title">{article.title}</h1>
+              <p className="magazine-article__dek">{article.dek}</p>
+              <p className="magazine-article__byline">
+                <span>{article.author}</span>
+                <span aria-hidden>·</span>
+                <span>{article.publishedAt}</span>
+                <span aria-hidden>·</span>
+                <span>{article.readTime}</span>
+              </p>
+            </header>
 
-            <div className="magazine-article__shop-cta">
-              <ShoppingBag size={18} aria-hidden />
-              <div>
-                <strong>Shop this story</strong>
-                <p>Browse the {article.shopCategory} edit tied to this piece.</p>
+            <figure className="magazine-article__figure">
+              <ProductImage src={article.image} alt="" className="magazine-article__hero-img" />
+            </figure>
+
+            <article className="magazine-article__content">
+              {article.sections.map((section, index) => (
+                <ArticleBlock key={`${section.type}-${index}`} block={section} />
+              ))}
+
+              <div className="magazine-article__shop-cta">
+                <ShoppingBag size={18} aria-hidden />
+                <div>
+                  <strong>Shop this story</strong>
+                  <p>Browse the {article.shopCategory} edit tied to this piece.</p>
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => onSelectCategory?.(article.shopCategory)}
+                >
+                  Open collection
+                  <ArrowRight size={16} aria-hidden />
+                </button>
               </div>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => onSelectCategory?.(article.shopCategory)}
-              >
-                Open collection
-                <ArrowRight size={16} aria-hidden />
-              </button>
-            </div>
-          </article>
+            </article>
+          </div>
 
           <aside className="magazine-article__sidebar">
             <div className="magazine-article__sidebar-card">

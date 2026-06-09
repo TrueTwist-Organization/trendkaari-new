@@ -121,8 +121,22 @@ export const OCCASION_CHIP_IMAGE_BY_LABEL = {
   Sangeet: '/lehengas/Lehengas/9/040A1707_700x.webp',
   Office: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
   Puja: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
-  Brunch: '/co-ords/co-ord_set/1/2.webp',
-  'First Job': '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp',
+};
+
+const EXCLUDED_OCCASION_CHIP_LABELS = new Set(['brunch', 'first job']);
+
+const DEFAULT_OCCASION_CHIPS = [
+  { label: 'Wedding Guest', category: 'lehengas', image: '/lehengas/Lehengas/1/040A3523_700x.webp' },
+  { label: 'Sangeet', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1707_700x.webp' },
+  { label: 'Office', category: 'kurtas', image: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp' },
+  { label: 'Puja', category: 'kurtas', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
+];
+
+const OCCASION_CHIP_CATEGORY_BY_LABEL = {
+  'Wedding Guest': 'lehengas',
+  Sangeet: 'lehengas',
+  Office: 'kurtas',
+  Puja: 'kurtas',
 };
 
 const OCCASION_CHIP_IMAGE_BY_CATEGORY = {
@@ -142,6 +156,33 @@ export function resolveOccasionChipImage(chip, blockPoster = '') {
     return OCCASION_CHIP_IMAGE_BY_CATEGORY[cat];
   }
   return blockPoster;
+}
+
+/** Supports admin string[] or { label, category, image, route }[] — caps at 4 chips. */
+export function normalizeOccasionChips(chips, blockPoster = '') {
+  if (!Array.isArray(chips)) return [];
+
+  const normalized = chips
+    .map((chip) => {
+      if (typeof chip === 'string') {
+        const label = chip.trim();
+        return {
+          label,
+          category: OCCASION_CHIP_CATEGORY_BY_LABEL[label] || 'kurtas',
+          image: resolveOccasionChipImage({ label }, blockPoster),
+        };
+      }
+      return {
+        label: chip.label,
+        category: chip.category || OCCASION_CHIP_CATEGORY_BY_LABEL[chip.label] || 'kurtas',
+        route: chip.route,
+        image: resolveOccasionChipImage(chip, blockPoster),
+      };
+    })
+    .filter((chip) => chip.label && !EXCLUDED_OCCASION_CHIP_LABELS.has(chip.label.trim().toLowerCase()));
+
+  const picked = (normalized.length ? normalized : DEFAULT_OCCASION_CHIPS).slice(0, 4);
+  return picked;
 }
 
 /** Default poster image per festive occasion label */

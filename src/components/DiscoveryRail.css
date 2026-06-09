@@ -87,13 +87,13 @@
 
 .discovery-rail__track {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 14px;
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: 4px 16px 28px;
+  padding: 4px 16px 36px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -110,10 +110,11 @@
   text-align: left;
   background: var(--bg-white);
   border-radius: var(--radius-md);
-  overflow: visible;
+  overflow: hidden;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
   transition: var(--transition-smooth);
+  min-height: 0;
 }
 
 .discovery-rail__card:hover {
@@ -162,8 +163,8 @@
 
 .discovery-rail__meta {
   padding: 12px 12px 14px;
-  flex: 1;
-  min-height: 0;
+  flex: 1 0 auto;
+  min-height: 5.25rem;
   overflow: visible;
 }
 
@@ -277,9 +278,14 @@
 }
 
 @media (min-width: 1024px) {
-  .discovery-rail__head,
+  /* Track only — head uses max-width centering; vw padding on head double-indents titles */
   .discovery-rail__track {
     padding-left: max(16px, calc((100vw - 1450px) / 2 + 16px));
     padding-right: max(16px, calc((100vw - 1450px) / 2 + 16px));
+  }
+
+  .container .discovery-rail__track {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }

@@ -16,8 +16,12 @@ import {
   X,
 } from 'lucide-react';
 import { apiFetch, getAdminToken } from '../../api/client';
+import { resolveMediaUrl } from '../../utils/mediaUrl';
 
-const BASE_URL = 'http://localhost:5173';
+function getSiteBaseUrl() {
+  if (typeof window !== 'undefined') return window.location.origin;
+  return '';
+}
 
 function toast(msg, type = 'info') {
   const el = document.createElement('div');
@@ -40,7 +44,7 @@ function ImageCard({ img, onCopy, onDelete, canDelete }) {
   const [broken, setBroken] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`${BASE_URL}${img.url}`).then(() => {
+    navigator.clipboard.writeText(`${getSiteBaseUrl()}${img.url}`).then(() => {
       setCopied(true);
       onCopy(img.url);
       setTimeout(() => setCopied(false), 2000);
@@ -82,7 +86,7 @@ function ImageCard({ img, onCopy, onDelete, canDelete }) {
           </div>
         ) : (
           <img
-            src={img.url}
+            src={resolveMediaUrl(img.url)}
             alt={img.name}
             onError={() => setBroken(true)}
             style={{

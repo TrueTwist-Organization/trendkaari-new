@@ -23,6 +23,8 @@ import {
   getTrendingThisWeek,
   MIN_RAIL_PRODUCTS,
 } from './recommendationEngine';
+import { buildQuizDiscoveryRails } from './quizEngine';
+import { buildGameHubDiscoveryRails } from './fashionGameEngine';
 
 export const MIN_ENDLESS_CLICKS = 10;
 export const MIN_COLLECTIONS = 4;
@@ -180,12 +182,24 @@ function getRelatedQuizzes(ctx, limit = MIN_QUIZZES) {
 }
 
 function getRelatedCollections(ctx, limit = MIN_COLLECTIONS) {
+  const { quizResult } = ctx;
   const anchor = resolveAnchorCategory(ctx);
   const collections = getRelatedCollectionsForCategory(anchor);
-  if (collections.length >= limit) return collections.slice(0, limit);
+  const merged = [...collections];
+
+  if (quizResult?.categories?.length) {
+    for (const cat of quizResult.categories) {
+      for (const col of getRelatedCollectionsForCategory(cat)) {
+        if (merged.length >= limit) break;
+        if (merged.some((x) => x.category === col.category)) continue;
+        merged.push(col);
+      }
+    }
+  }
+
+  if (merged.length >= limit) return merged.slice(0, limit);
 
   const fallback = getRelatedCollectionsForCategory('all');
-  const merged = [...collections];
   for (const col of fallback) {
     if (merged.length >= limit) break;
     if (merged.some((x) => x.category === col.category)) continue;
@@ -195,12 +209,49 @@ function getRelatedCollections(ctx, limit = MIN_COLLECTIONS) {
 }
 
 export function buildEndlessDiscovery(ctx) {
-  const { allProducts, product = null, productsPerRail = DEFAULT_RAIL_PRODUCTS } = ctx;
+  const {
+    allProducts,
+    product = null,
+    quizResult = null,
+    gameHub = false,
+    excludeProductIds = [],
+    productsPerRail = DEFAULT_RAIL_PRODUCTS,
+  } = ctx;
   if (!allProducts?.length) return null;
 
   const anchor = resolveAnchorCategory(ctx);
-  const exclude = new Set();
+  const exclude = new Set(excludeProductIds);
   if (product?.id) exclude.add(product.id);
+
+  const relatedCollections = getRelatedCollections(ctx);
+  const relatedReading = getRelatedReading(ctx);
+  const relatedQuizzes = getRelatedQuizzes(ctx);
+
+  if (quizResult) {
+    const quizRails = buildQuizDiscoveryRails(allProducts, quizResult, productsPerRail, exclude);
+    if (quizRails) {
+      return {
+        anchorCategory: anchor,
+        ...quizRails,
+        relatedCollections,
+        relatedReading,
+        relatedQuizzes,
+      };
+    }
+  }
+
+  if (gameHub) {
+    const gameRails = buildGameHubDiscoveryRails(allProducts, productsPerRail);
+    if (gameRails) {
+      return {
+        anchorCategory: anchor,
+        ...gameRails,
+        relatedCollections,
+        relatedReading,
+        relatedQuizzes,
+      };
+    }
+  }
 
   const similarProducts = getRelatedProducts(product, anchor, allProducts, productsPerRail, new Set(exclude));
   similarProducts.forEach((p) => exclude.add(p.id));
@@ -209,10 +260,6 @@ export function buildEndlessDiscovery(ctx) {
   similarStyles.forEach((p) => exclude.add(p.id));
 
   const trendingProducts = getTrendingThisWeek(allProducts, productsPerRail, new Set(exclude));
-
-  const relatedCollections = getRelatedCollections(ctx);
-  const relatedReading = getRelatedReading(ctx);
-  const relatedQuizzes = getRelatedQuizzes(ctx);
 
   return {
     anchorCategory: anchor,

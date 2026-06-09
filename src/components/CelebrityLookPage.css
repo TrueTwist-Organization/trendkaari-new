@@ -91,7 +91,6 @@
 .celeb-look__banner-nav {
   padding: 0.65rem 16px 0.35rem;
   background: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .celeb-look__banner-hit {
@@ -120,7 +119,6 @@
 
 .celeb-look__banner-meta {
   padding: 1.15rem 16px 0.25rem;
-  border-bottom: 1px solid rgba(96, 11, 69, 0.08);
 }
 
 .celeb-look__banner-meta .celeb-look__context-row {
@@ -341,7 +339,6 @@
 /* ─── Style Notes ────────────────────────────────────────────────────────── */
 .celeb-look__notes-section {
   padding: 2.5rem 0 2rem;
-  border-bottom: 1px solid rgba(96, 11, 69, 0.08);
   margin-bottom: 2.5rem;
 }
 
@@ -502,8 +499,6 @@
 .celeb-look__explore-section {
   margin-bottom: 2.5rem;
   padding: 2rem 0;
-  border-top: 1px solid rgba(96, 11, 69, 0.08);
-  border-bottom: 1px solid rgba(96, 11, 69, 0.08);
 }
 
 .celeb-look__explore-cards {

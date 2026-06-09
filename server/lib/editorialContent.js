@@ -72,3 +72,26 @@ export async function seedDiscoveryConfigIfEmpty(defaults) {
     });
   }
 }
+
+/** Homepage shell: trust bar, market map, hero, intros, spotlight, finale. */
+export function getHomepageConfig() {
+  const store = readStore();
+  return store.homepage_config || null;
+}
+
+export async function setHomepageConfig(config) {
+  return updateStore((store) => {
+    store.homepage_config = config;
+    return store;
+  });
+}
+
+export async function seedHomepageConfigIfEmpty(defaults) {
+  const store = readStore();
+  if (!store.homepage_config) {
+    await updateStore((s) => {
+      s.homepage_config = defaults;
+      return s;
+    });
+  }
+}

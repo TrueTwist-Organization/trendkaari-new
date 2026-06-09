@@ -2,6 +2,7 @@
 
 import { filterProductsByCategory } from './categoryFilter';
 import { STYLE_GAME_OPTIONS, getGameBySlug } from '../data/fashionGames';
+import { MIN_RAIL_PRODUCTS } from './recommendationEngine';
 import {
   getBattleStats,
   getProductRatingStats,
@@ -124,4 +125,74 @@ export function buildGameSession(gameSlug, allProducts) {
 export function formatVoteCount(count) {
   if (count >= 1000) return `${(count / 1000).toFixed(1)}k votes`;
   return `${count} votes`;
+}
+
+function takeUnique(products, limit, exclude = new Set()) {
+  const out = [];
+  for (const p of products) {
+    if (exclude.has(p.id)) continue;
+    out.push(p);
+    exclude.add(p.id);
+    if (out.length >= limit) break;
+  }
+  return out;
+}
+
+function backfillRail(allProducts, picked, limit, exclude, seed) {
+  if (picked.length >= MIN_RAIL_PRODUCTS) return picked.slice(0, limit);
+  const out = [...picked];
+  for (const p of seededShuffle(allProducts, seed)) {
+    if (exclude.has(p.id) || out.some((x) => x.id === p.id)) continue;
+    out.push(p);
+    exclude.add(p.id);
+    if (out.length >= Math.max(MIN_RAIL_PRODUCTS, limit)) break;
+  }
+  return out.slice(0, limit);
+}
+
+function pickLaneProducts(allProducts, option, limit, exclude) {
+  const pool = filterProductsByCategory(allProducts, option.shopCategory);
+  const source = pool.length ? pool : allProducts;
+  const ranked = seededShuffle(source, `game-hub-${option.id}-${weekSeed()}`);
+  const picked = takeUnique(ranked, limit, exclude);
+  return backfillRail(allProducts, picked, limit, exclude, `game-hub-fill-${option.id}`);
+}
+
+/** Product rails mapped to the four style lanes used in Choose Your Style. */
+export function buildGameHubDiscoveryRails(allProducts, productsPerRail = 8) {
+  if (!allProducts?.length) return null;
+
+  const lanes = STYLE_GAME_OPTIONS;
+  const exclude = new Set();
+
+  const minimal = lanes.find((l) => l.id === 'minimal') || lanes[0];
+  const bold = lanes.find((l) => l.id === 'bold') || lanes[1];
+  const festive = lanes.find((l) => l.id === 'festive') || lanes[2];
+
+  return {
+    similarProducts: {
+      id: 'game-minimal-lane',
+      title: `${minimal.label} picks`,
+      hook: minimal.hook,
+      tone: 'related',
+      products: pickLaneProducts(allProducts, minimal, productsPerRail, exclude),
+      category: minimal.shopCategory,
+    },
+    similarStyles: {
+      id: 'game-bold-lane',
+      title: `${bold.label} picks`,
+      hook: bold.hook,
+      tone: 'similar',
+      products: pickLaneProducts(allProducts, bold, productsPerRail, exclude),
+      category: bold.shopCategory,
+    },
+    trendingProducts: {
+      id: 'game-festive-lane',
+      title: `${festive.label} picks`,
+      hook: festive.hook,
+      tone: 'hot',
+      products: pickLaneProducts(allProducts, festive, productsPerRail, exclude),
+      category: festive.shopCategory,
+    },
+  };
 }

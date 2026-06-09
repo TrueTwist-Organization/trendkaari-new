@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, Search, User, Heart, ShoppingBag } from 'lucide-react';
-import { SITE_LOGO_ALT, SITE_LOGO_SRC } from '../constants/brand';
+import { SITE_LOGO_ALT, SITE_LOGO_SRC, SITE_EXPERTISE_LINE, ARBITRAGE_EXPERT_YEARS } from '../constants/brand';
 import './Header.css';
 
 export default function Header({
@@ -40,11 +40,11 @@ export default function Header({
       {/* Top Announcement Bar */}
       <div className="announcement-bar">
         <div className="announcement-track">
-          <span>SHOP ₹199+ & GET FLAT ₹20 OFF | USE CODE: SALE100</span>
+          <span>{ARBITRAGE_EXPERT_YEARS}+ YEARS OF FASHION ARBITRAGE EXPERTISE</span>
           <span className="divider-dot">•</span>
-          <span className="mobile-hidden">FREE SHIPPING ON ALL ORDERS WITHIN INDIA</span>
+          <span className="mobile-hidden">{SITE_EXPERTISE_LINE.toUpperCase()}</span>
           <span className="divider-dot mobile-hidden">•</span>
-          <span>EASY 7-DAY RETURNS</span>
+          <span>INDIA&apos;S STYLE INTELLIGENCE</span>
         </div>
       </div>
 

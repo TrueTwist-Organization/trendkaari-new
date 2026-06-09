@@ -10,6 +10,14 @@
       "destination": "https://trendkaari-api-production.up.railway.app/api/:path*"
     },
     {
+      "source": "/product-media/:path*",
+      "destination": "https://trendkaari-api-production.up.railway.app/product-media/:path*"
+    },
+    {
+      "source": "/combos/:path*",
+      "destination": "https://trendkaari-api-production.up.railway.app/combos/:path*"
+    },
+    {
       "source": "/((?!api/).*)",
       "destination": "/index.html"
     }

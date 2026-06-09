@@ -40,7 +40,6 @@
 .info-page__hero {
   margin-bottom: 32px;
   padding-bottom: 24px;
-  border-bottom: 1px solid rgba(212, 180, 131, 0.45);
 }
 
 .info-page__eyebrow {
@@ -89,7 +88,6 @@
 .info-page__section + .info-page__section {
   margin-top: 28px;
   padding-top: 28px;
-  border-top: 1px solid rgba(212, 180, 131, 0.25);
 }
 
 .info-page__section:first-child {
@@ -137,7 +135,6 @@
 .info-page__inline-cta {
   margin-top: 32px;
   padding-top: 24px;
-  border-top: 1px solid rgba(212, 180, 131, 0.35);
 }
 
 .info-page__cta {

@@ -17,7 +17,7 @@ function getEditDeskArticles() {
 }
 
 /**
- * Build homepage feed: 9 India-market discovery blocks.
+ * Build homepage feed: 8 India-market discovery blocks.
  * No product spotlights. Every block navigates to a dedicated page.
  * Business model: curiosity → exploration → page depth → ad revenue.
  *

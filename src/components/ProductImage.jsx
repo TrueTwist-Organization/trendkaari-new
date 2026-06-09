@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { getProductImageCandidates } from '../utils/productImages';
+import { resolveMediaUrl } from '../utils/mediaUrl';
 
 const FALLBACK_SRC =
   'data:image/svg+xml,' +
@@ -20,7 +21,7 @@ export default function ProductImage({
   const candidates = useMemo(() => {
     const fromProduct = product ? getProductImageCandidates(product) : [];
     const merged = [src, ...(Array.isArray(images) ? images : []), ...fromProduct]
-      .map((value) => String(value || '').trim())
+      .map((value) => resolveMediaUrl(String(value || '').trim()))
       .filter(Boolean);
     return [...new Set(merged)];
   }, [src, images, product]);

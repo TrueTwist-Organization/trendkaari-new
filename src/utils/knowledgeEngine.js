@@ -3,6 +3,7 @@
  */
 
 import { filterProductsByCategory } from './categoryFilter';
+import { getCategoryImage } from './categoryImages';
 import { buildRecommendationRails } from './recommendationEngine';
 import {
   getFeaturedKnowledgePages,
@@ -49,9 +50,17 @@ export function getKnowledgePageProducts(allProducts, page, limit = PAGE_PRODUCT
 }
 
 export function getKnowledgeCollections(page) {
-  if (page?.collectionLabels?.length) return page.collectionLabels;
-  const cat = page?.shopCategory;
-  return cat ? [{ category: cat, label: `Shop ${cat}` }] : [];
+  const fallbackImage = page?.image || getCategoryImage(page?.shopCategory);
+  const labels = page?.collectionLabels?.length
+    ? page.collectionLabels
+    : page?.shopCategory
+      ? [{ category: page.shopCategory, label: `Shop ${page.shopCategory}` }]
+      : [];
+
+  return labels.map((col) => ({
+    ...col,
+    image: col.image || getCategoryImage(col.category, fallbackImage),
+  }));
 }
 
 export function getKnowledgeRecommendationRails(allProducts, page) {

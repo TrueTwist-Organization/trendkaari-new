@@ -10,6 +10,7 @@
  */
 import React, { useMemo } from 'react';
 import { ArrowRight, TrendingUp, Star, Sparkles, BookOpen } from 'lucide-react';
+import ProductImage from './ProductImage';
 import { CELEBRITY_LOOKS } from '../data/celebrityLooks';
 import { getTrendPage } from '../data/trendPages';
 import { FASHION_QUIZZES } from '../data/fashionQuizzes';
@@ -37,14 +38,12 @@ function LoopCard({ type, image, title, subtitle, onClick }) {
     >
       <div className="disc-loop__card-media">
         {hasImage ? (
-          <img
+          <ProductImage
             src={image}
-            alt=""
+            alt={title}
             className="disc-loop__card-img"
             loading="lazy"
             decoding="async"
-            width="220"
-            height="160"
           />
         ) : (
           <div className="disc-loop__card-no-img" aria-hidden="true">
@@ -143,7 +142,7 @@ export default function DiscoveryLoopSection({
           result.push({
             key: `quiz-${slug}`,
             type: 'quiz',
-            image: null,
+            image: quiz.coverImage || null,
             title: quiz.title,
             subtitle: quiz.subtitle,
             onClick: () => {

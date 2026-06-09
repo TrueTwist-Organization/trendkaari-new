@@ -13,6 +13,7 @@ export const FASHION_QUIZZES = {
     title: 'Fashion Personality Quiz',
     subtitle: 'Discover your style DNA in 5 quick taps',
     description: 'Answer a few mood questions and we’ll match you to a fashion personality — plus products picked for your vibe.',
+    coverImage: '/tops/7/1.webp',
     accent: '#600b45',
     steps: [
       {
@@ -153,6 +154,7 @@ export const FASHION_QUIZZES = {
     title: 'Outfit Finder',
     subtitle: 'Tell us the moment — we’ll build the look',
     description: 'Occasion, fit, and weather in four steps. Get a curated outfit lane with products ready to explore.',
+    coverImage: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
     accent: '#1565c0',
     steps: [
       {
@@ -280,6 +282,7 @@ export const FASHION_QUIZZES = {
     title: 'Festival Look Finder',
     subtitle: 'Match your celebration to the perfect edit',
     description: 'Diwali, Navratri, Eid or wedding season — find your festival lane in four steps.',
+    coverImage: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
     accent: '#e65100',
     steps: [
       {
@@ -427,6 +430,7 @@ export const FASHION_QUIZZES = {
     title: 'Wedding Style Finder',
     subtitle: 'From mehendi to reception — find your lane',
     description: 'Tell us your role and event. We’ll recommend wedding-ready products and styling guides.',
+    coverImage: '/lehengas/Lehengas/1/040A3523_700x.webp',
     accent: '#880e4f',
     steps: [
       {

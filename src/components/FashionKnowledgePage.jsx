@@ -198,6 +198,11 @@ export default function FashionKnowledgePage({
                       className="knowledge-page__collection-card"
                       onClick={() => onSelectCategory?.(col.category)}
                     >
+                      <ProductImage
+                        src={col.image}
+                        alt={col.label}
+                        className="knowledge-page__collection-img"
+                      />
                       <span className="knowledge-page__collection-label">{col.label}</span>
                       <span className="knowledge-page__collection-cta">
                         Open collection
@@ -257,7 +262,12 @@ export default function FashionKnowledgePage({
                       className="knowledge-page__sidebar-collection"
                       onClick={() => onSelectCategory?.(col.category)}
                     >
-                      {col.label}
+                      <ProductImage
+                        src={col.image}
+                        alt=""
+                        className="knowledge-page__sidebar-collection-img"
+                      />
+                      <span className="knowledge-page__sidebar-collection-label">{col.label}</span>
                       <ArrowRight size={13} aria-hidden />
                     </button>
                   ))}

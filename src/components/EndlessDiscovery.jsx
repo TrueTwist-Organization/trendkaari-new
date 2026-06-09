@@ -102,9 +102,9 @@ export default function EndlessDiscovery({
         showHead={!(showIntro && title)}
         onSelectProduct={onSelectProduct}
         onSeeAll={() => onSelectCategory?.(discovery.similarProducts.category)}
-        adCodes={showAds && variant === 'product' ? adCodes : {}}
-        adPlacement="product_similar_every_6"
-        adEveryN={SUGGESTION_RAIL_AD_EVERY_N}
+        adCodes={{}}
+        adPlacement=""
+        adEveryN={0}
       />
 
       {variant !== 'product' ? (
@@ -235,19 +235,11 @@ export default function EndlessDiscovery({
         compact={compact}
         onSelectProduct={onSelectProduct}
         onSeeAll={() => onSelectCategory?.(discovery.trendingProducts.category)}
-        adCodes={showAds && variant === 'product' ? adCodes : {}}
-        adPlacement="product_trending_every_6"
-        adEveryN={SUGGESTION_RAIL_AD_EVERY_N}
+        adCodes={{}}
+        adPlacement=""
+        adEveryN={0}
       />
 
-      {showAds && variant === 'product' ? (
-        <PlacedAdSlot
-          adCodes={adCodes}
-          placement="product_after_suggestions"
-          variant="pdp"
-          ownerKey="product_after_suggestions"
-        />
-      ) : null}
       {showAds && variant === 'category' ? (
         <PlacedAdSlot adCodes={adCodes} placement="category_after_grid" variant="container" />
       ) : null}

@@ -158,7 +158,6 @@ export default function ProductDetailPage({
                     </ul>
                   ) : null}
                   <p className="pdp-sku-label">SKU: LIB-{(product.id * 8934).toString(16).toUpperCase()}</p>
-                  <PdpAdZone adCodes={adCodes} placements={['product_after_title']} />
                   <div className="pdp-ratings-row">
                     <div className="pdp-stars-pill">
                       <span className="pdp-rating-val">{product.rating}</span>
@@ -167,7 +166,6 @@ export default function ProductDetailPage({
                     <span className="pdp-ratings-divider">|</span>
                     <span className="pdp-ratings-count">{product.reviewsCount} Verified Customer Reviews</span>
                   </div>
-                  <PdpAdZone adCodes={adCodes} placements={['product_after_rating']} />
                 </section>
 
                 <section className="pdp-section pdp-section--commerce" aria-label="Pricing and offers">
@@ -205,11 +203,9 @@ export default function ProductDetailPage({
                   </div>
 
                   <StoreCouponsPromo coupons={coupons} showFreeShipping={false} />
-                  <PdpAdZone adCodes={adCodes} placements={['product_after_offers']} />
                 </section>
 
                 <section className="pdp-section pdp-section--configure" aria-label="Size and purchase">
-                  <PdpAdZone adCodes={adCodes} placements={['product_before_size']} />
                   <div className="pdp-size-selector-section">
                     <div className="pdp-size-header-row">
                       <span className="pdp-section-label">SELECT SIZE</span>
@@ -230,7 +226,6 @@ export default function ProductDetailPage({
                       ))}
                     </div>
                   </div>
-                  <PdpAdZone adCodes={adCodes} placements={['product_after_size']} />
 
                   <div className="pdp-qty-section">
                     <span className="pdp-section-label">QUANTITY</span>
@@ -244,7 +239,6 @@ export default function ProductDetailPage({
                       </button>
                     </div>
                   </div>
-                  <PdpAdZone adCodes={adCodes} placements={['product_above_cart']} />
 
                   <div className="pdp-actions-row">
                     <button type="button" className="btn btn-primary pdp-add-to-bag-btn" onClick={handleAddToBag}>
@@ -263,8 +257,6 @@ export default function ProductDetailPage({
                 </section>
 
                 <PdpAdZone adCodes={adCodes} placements={['product_below_cart']} />
-
-                <PdpAdZone adCodes={adCodes} placements={['product_before_trust']} />
 
                 <section className="pdp-section pdp-section--assurance" aria-label="Delivery and returns">
                   <h2 className="pdp-section-heading">Why shop this piece</h2>
@@ -300,14 +292,9 @@ export default function ProductDetailPage({
                   </div>
                 </section>
 
-                <PdpAdZone adCodes={adCodes} placements={['product_after_trust']} />
-                <PdpAdZone adCodes={adCodes} placements={['product_before_details']} />
-
                 <section className="pdp-section pdp-section--details" aria-label="Product details">
                   <ProductDetailsAmazon product={product} />
                 </section>
-
-                <PdpAdZone adCodes={adCodes} placements={['product_after_details']} />
               </div>
             </div>
           </div>

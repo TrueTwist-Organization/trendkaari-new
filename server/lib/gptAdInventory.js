@@ -153,21 +153,21 @@ export const PLACEMENT_GPT_UNIT = {
   homepage_before_spotlight: 'a10',
   homepage_after_finale: 'a11',
 
-  /* Category — no in-grid repeat slots (would duplicate on same page) */
+  /* Category — exactly 6 in-page ads (unique unit each) */
   category_top: 'a1',
-  category_sidebar_top: 'a2',
+  category_after_banner: 'a2',
+  category_sidebar_top: 'a3',
   category_below_sort: 'a5',
   category_after_grid: 'a10',
   category_page_bottom: 'a4',
 
-  /* Product — 7 body units (+ a12 header); each unit once on PDP */
+  /* Product — exactly 6 in-page ads (unique unit each) */
   product_top: 'a1',
   product_gallery_bottom: 'a3',
   product_after_price: 'a4',
-  product_after_offers: 'a10',
   product_below_cart: 'a2',
   product_before_suggestions: 'a11',
-  product_similar_every_6: 'a5',
+  product_page_bottom: 'a10',
 
   /* Checkout / cart */
   cart_above_checkout: 'a5',

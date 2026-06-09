@@ -5,7 +5,7 @@ const CATEGORY_IMAGES = {
   'suit sets': '/suit-sets/Suit Sets/9/L12.01.25_1930_700x.webp',
   sarees: '/sarees/Sarees/1/0T3A5495_700x.webp',
   lehengas: '/lehengas/Lehengas/1/040A3523_700x.webp',
-  'co-ords': '/co-ords/co-ord_set/1/1.webp',
+  'co-ords': '/co-ords/co-ord_set/9/3.webp',
   tops: '/tops/4/1.webp',
   bottoms: '/bottoms/bottom_wear/9/4.webp',
   dresses: '/dresses/ws/Tops/1/shopping.webp',

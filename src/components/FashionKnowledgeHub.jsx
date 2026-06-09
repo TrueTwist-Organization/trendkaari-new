@@ -8,6 +8,7 @@ import {
   getKnowledgeTopics,
   getKnowledgePagesByTopic,
 } from '../data/fashionKnowledge';
+import { ensureUniqueGuideImages } from '../utils/guideImages';
 import './FashionKnowledge.css';
 
 function KnowledgeCard({ page, topic, onOpenPage }) {
@@ -42,7 +43,7 @@ export default function FashionKnowledgeHub({
   onNavigate,
 }) {
   const topics = getKnowledgeTopics();
-  const featured = useMemo(() => getFeaturedKnowledgePages(8), []);
+  const featured = useMemo(() => ensureUniqueGuideImages(getFeaturedKnowledgePages(8), 4), []);
   const allPages = getAllKnowledgePages();
   const featuredIds = useMemo(() => new Set(featured.map((p) => p.id)), [featured]);
 
@@ -99,7 +100,10 @@ export default function FashionKnowledgeHub({
         </section>
 
         {topics.map((topic) => {
-          const pages = getKnowledgePagesByTopic(topic.slug).filter((p) => !featuredIds.has(p.id));
+          const pages = ensureUniqueGuideImages(
+            getKnowledgePagesByTopic(topic.slug).filter((p) => !featuredIds.has(p.id)),
+            3,
+          );
           if (!pages.length) return null;
           return (
             <section key={topic.slug} className="fashion-knowledge__section">

@@ -310,7 +310,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Which kurti lengths and fabrics work best with wide-leg bottoms.',
     excerpt: 'Palazzos are comfort royalty — but proportion matters. Match top length and fabric weight correctly.',
     readTime: '4 min read',
-    image: '/co-ords/co-ord_set/1/1.webp',
+    image: '/kurtas/Kurtas/9/LBL101KS620_1_700x.webp',
     shopCategory: 'co-ords',
     shopCategories: ['co-ords', 'kurtas'],
     collectionLabels: [
@@ -382,7 +382,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Matching sets that do all the thinking for you — how to wear the trend India is obsessed with.',
     excerpt: 'Co-ord sets are the easiest way to look put-together. One decision, two pieces, zero effort.',
     readTime: '5 min read',
-    image: '/co-ords/co-ord_set/9/1.webp',
+    image: '/co-ords/co-ord_set/9/3.webp',
     shopCategory: 'co-ords',
     shopCategories: ['co-ords', 'suit sets', 'tops'],
     collectionLabels: [
@@ -438,7 +438,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Cotton, linen, rayon, chiffon — which fabrics keep you cool and stylish when temperatures rise.',
     excerpt: 'Summer dressing is 80% fabric choice. The right weave keeps you breathable, sweat-free, and fresh.',
     readTime: '6 min read',
-    image: '/kurtas/Kurtas/1/040A2925_700x.webp',
+    image: '/kurtas/Kurtas/1/LBL101KS612_3_202083ca-68f1-4ac5-8bf1-9932a8f97562_700x.webp',
     shopCategory: 'tops',
     shopCategories: ['tops', 'kurtas', 'co-ords', 'sarees'],
     collectionLabels: [

@@ -11,11 +11,16 @@ const STATIC_BLOCK_BY_ID = Object.fromEntries(
   DISCOVERY_EXPERIENCE_BLOCKS.map((block) => [block.id, block]),
 );
 
-/** Merge API blocks with code defaults so stale flags (e.g. dark: true) don't override shipped UI. */
-function mergeHomepageBlocks(dynamicBlocks) {
-  return dynamicBlocks.map((apiBlock) => {
-    const defaults = STATIC_BLOCK_BY_ID[apiBlock.id];
-    if (!defaults) return { dark: false, ...apiBlock };
+/**
+ * Resolve homepage blocks from API overrides against the canonical static list.
+ * Drops rogue admin blocks (e.g. duplicate celebrity sections) and stale retired chapters.
+ */
+function resolveHomepageBlocks(dynamicBlocks) {
+  const apiById = Object.fromEntries(dynamicBlocks.map((block) => [block.id, block]));
+
+  return DISCOVERY_EXPERIENCE_BLOCKS.map((defaults) => {
+    const apiBlock = apiById[defaults.id];
+    if (!apiBlock) return defaults;
 
     const merged = { ...defaults, ...apiBlock };
     merged.dark = defaults.dark === true;
@@ -50,7 +55,7 @@ export function buildDiscoveryExperienceFeed(
   if (!products?.length) return { posterRow: [], feed: [] };
 
   const activeBlocks = (Array.isArray(dynamicBlocks) && dynamicBlocks.length)
-    ? mergeHomepageBlocks(dynamicBlocks)
+    ? resolveHomepageBlocks(dynamicBlocks)
     : DISCOVERY_EXPERIENCE_BLOCKS;
 
   const editorNotes = discoveryConfig?.editorNotes?.length

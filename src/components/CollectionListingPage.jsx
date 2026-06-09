@@ -12,11 +12,9 @@ import {
 import { findMenuGroupForTag, MENU_MEN_GROUPS, MENU_WOMEN_GROUPS } from '../data/navCategories';
 import PageBackButton from './PageBackButton';
 import PlacedAdSlot from './PlacedAdSlot';
-import { CATEGORY_GRID_AD_EVERY_N } from '../constants/adGridIntervals';
 import { scrollToPageTop } from '../utils/scrollToTop';
 import ProductImage from './ProductImage';
 import { getProductHoverImage, getProductPrimaryImage, getProductGalleryImages } from '../utils/productImages';
-import { getAdCode } from '../utils/resolveAdCode';
 import CollectionHubSections from './CollectionHubSections';
 import './CollectionHubSections.css';
 
@@ -48,9 +46,6 @@ export default function CollectionListingPage({
   products = [],
   adCodes = {},
 }) {
-  const hasGridAd = Boolean(
-    getAdCode(adCodes, 'ads_every_2_products'),
-  );
   const [selectedSizes, setSelectedSizes] = useState({});
   const [sortBy, setSortBy] = useState('featured');
   const [filters, setFilters] = useState({
@@ -449,8 +444,6 @@ export default function CollectionListingPage({
 
       <PlacedAdSlot adCodes={adCodes} placement="category_after_banner" variant="section" />
 
-      <PlacedAdSlot adCodes={adCodes} placement="category_before_quick_tabs" variant="section" />
-
       {/* 2. Quick Navigation Tabs — mobile: auto-scroll; desktop: manual scroll */}
       <div className={`collection-quick-tabs-bar${isMobileTabs ? ' collection-quick-tabs-bar--auto' : ''}`}>
         <div className="container collection-quick-tabs-layout">
@@ -472,8 +465,6 @@ export default function CollectionListingPage({
           </div>
         </div>
       </div>
-
-      <PlacedAdSlot adCodes={adCodes} placement="category_after_quick_tabs" variant="section" />
 
       {/* Main workspace: left sidebar filters & right product listing */}
       <div className="container collection-main-workspace-grid">
@@ -660,18 +651,6 @@ export default function CollectionListingPage({
             </div>
           </div>
 
-          <PlacedAdSlot
-            adCodes={adCodes}
-            placement="category_sidebar_middle"
-            variant="sidebar"
-          />
-
-          <PlacedAdSlot
-            adCodes={adCodes}
-            placement="category_sidebar_bottom"
-            variant="sidebar"
-          />
-
           {/* Trust Banner Inside Sidebar */}
           <div className="sidebar-trust-ad">
             <span className="ad-bold">100% ORIGINAL PRODUCTS</span>
@@ -682,12 +661,6 @@ export default function CollectionListingPage({
 
         {/* ==================== RIGHT PRODUCT LISTING SECTION ==================== */}
         <main className="collection-listing-main-content">
-          <PlacedAdSlot
-            adCodes={adCodes}
-            placement="category_above_sort"
-            variant="container"
-          />
-
           {/* Top Bar: Items count and Sorting dropdown */}
           <div className="collection-sorting-topbar">
             <span className="listing-count-label">
@@ -718,27 +691,6 @@ export default function CollectionListingPage({
             variant="container"
           />
 
-          <div className="category-mobile-sidebar-ads" aria-label="Promotions">
-            <PlacedAdSlot
-              adCodes={adCodes}
-              placement="category_sidebar_top"
-              ownerKey="category_sidebar_top_mobile"
-              variant="container"
-            />
-            <PlacedAdSlot
-              adCodes={adCodes}
-              placement="category_sidebar_middle"
-              ownerKey="category_sidebar_middle_mobile"
-              variant="container"
-            />
-            <PlacedAdSlot
-              adCodes={adCodes}
-              placement="category_sidebar_bottom"
-              ownerKey="category_sidebar_bottom_mobile"
-              variant="container"
-            />
-          </div>
-
           {/* Listing Grid */}
           {sortedItems.length > 0 ? (
             <div className="collection-products-grid" id="catalog-products-list">
@@ -750,14 +702,9 @@ export default function CollectionListingPage({
                 const primaryImage = getProductPrimaryImage(product);
                 const hasSecondaryImage = gallery.length > 1;
                 const hoverImage = getProductHoverImage(product);
-                const showMidGridAd =
-                  hasGridAd &&
-                  (index + 1) % CATEGORY_GRID_AD_EVERY_N === 0 &&
-                  index < paginatedItems.length - 1;
 
                 return (
-                  <React.Fragment key={product.id}>
-                  <div className="collection-item-card hover-zoom-container">
+                  <div key={product.id} className="collection-item-card hover-zoom-container">
                     
                     {/* Image Area with Premium Hover Image Swap */}
                     <div 
@@ -851,16 +798,6 @@ export default function CollectionListingPage({
                     </div>
 
                   </div>
-                  {showMidGridAd && (
-                    <PlacedAdSlot
-                      adCodes={adCodes}
-                      placement="ads_every_2_products"
-                      ownerKey={`ads_every_2_products_${index}`}
-                      allowDuplicateSource
-                      variant="grid-full"
-                    />
-                  )}
-                  </React.Fragment>
                 );
               })}
             </div>
@@ -904,7 +841,6 @@ export default function CollectionListingPage({
 
       {activeCategory !== 'all' && sortedItems.length > 0 ? (
         <>
-          <PlacedAdSlot adCodes={adCodes} placement="category_before_hub" variant="section" />
           <CollectionHubSections
             activeCategory={activeCategory}
             allProducts={products}
@@ -913,9 +849,8 @@ export default function CollectionListingPage({
             onSelectCategory={onSelectCategory}
             onOpenKnowledgePage={onOpenKnowledgePage}
             placement="top"
-            adCodes={adCodes}
+            adCodes={{}}
           />
-          <PlacedAdSlot adCodes={adCodes} placement="category_after_hub_guide" variant="section" />
           <CollectionHubSections
             activeCategory={activeCategory}
             allProducts={products}
@@ -924,12 +859,11 @@ export default function CollectionListingPage({
             onSelectCategory={onSelectCategory}
             onOpenKnowledgePage={onOpenKnowledgePage}
             placement="bottom"
-            adCodes={adCodes}
+            adCodes={{}}
           />
         </>
       ) : null}
 
-      <PlacedAdSlot adCodes={adCodes} placement="category_after_suggestions" variant="section" />
       <PlacedAdSlot adCodes={adCodes} placement="category_page_bottom" variant="section" />
     </div>
   );

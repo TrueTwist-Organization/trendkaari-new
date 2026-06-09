@@ -14,6 +14,7 @@ import { getAllGames } from '../data/fashionGames';
 import { getGameHubStats } from '../utils/gameVotesStorage';
 import { formatVoteCount } from '../utils/fashionGameEngine';
 import EndlessDiscovery from './EndlessDiscovery';
+import PlacedAdSlot from './PlacedAdSlot';
 import './FashionGames.css';
 
 const GAME_ICONS = {
@@ -31,6 +32,7 @@ export default function FashionGamesHub({
   onOpenArticle,
   onOpenKnowledgePage,
   onStartQuiz,
+  adCodes = {},
 }) {
   const games = getAllGames();
   const hubStats = useMemo(() => getGameHubStats(), []);
@@ -76,6 +78,10 @@ export default function FashionGamesHub({
           </ul>
         </div>
       </header>
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="games_hub_mid" variant="section" />
+      </div>
 
       <section className="fashion-games-hub__stage" aria-label="Choose a game">
         <div className="container fashion-games-hub__stage-inner">

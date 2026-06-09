@@ -1614,6 +1614,134 @@
   color: var(--admin-text-soft);
 }
 
+.admin-ad-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.admin-ad-stats__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 100px;
+}
+
+.admin-ad-stats__item strong {
+  font-size: 22px;
+  color: var(--admin-plum);
+  line-height: 1.1;
+}
+
+.admin-ad-stats__item span {
+  font-size: 12px;
+  color: var(--admin-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.admin-ad-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+
+.admin-ad-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 220px;
+}
+
+.admin-ad-search input {
+  flex: 1;
+}
+
+.admin-ad-filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--admin-text-muted);
+  white-space: nowrap;
+}
+
+.admin-ad-placement-section__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.admin-ad-placement-section__toggle h2 {
+  margin: 0;
+}
+
+.admin-ad-placement-card--filled {
+  border-color: rgba(96, 11, 69, 0.35) !important;
+}
+
+.admin-ad-placement-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-ad-placement-card__status {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--admin-plum);
+  background: rgba(96, 11, 69, 0.1);
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.admin-ad-placement-card__toolbar {
+  margin-bottom: 10px;
+}
+
+.admin-ad-placement-card__gpt-btn {
+  font-size: 12px;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-ad-placement-card__warn {
+  color: #b45309;
+  font-weight: 600;
+}
+
+.admin-ad-waf-banner--warn {
+  border-left-color: #d97706;
+  background: rgba(217, 119, 6, 0.08);
+}
+
+.admin-ad-warn-list {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 12px;
+  color: var(--admin-text-muted);
+}
+
+.admin-ad-warn-list li {
+  margin-bottom: 4px;
+}
+
 @media (max-width: 900px) {
   .admin-ad-placement-section__grid {
     grid-template-columns: 1fr;

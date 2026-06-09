@@ -910,9 +910,11 @@ export default function CollectionListingPage({
           onSelectCategory={onSelectCategory}
           onOpenKnowledgePage={onOpenKnowledgePage}
           placement="bottom"
+          adCodes={adCodes}
         />
       ) : null}
 
+      <PlacedAdSlot adCodes={adCodes} placement="category_after_suggestions" variant="section" />
       <PlacedAdSlot adCodes={adCodes} placement="category_page_bottom" variant="section" />
     </div>
   );

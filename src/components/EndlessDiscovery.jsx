@@ -98,6 +98,9 @@ export default function EndlessDiscovery({
         compact={compact}
         onSelectProduct={onSelectProduct}
         onSeeAll={() => onSelectCategory?.(discovery.similarProducts.category)}
+        adCodes={showAds && variant === 'product' ? adCodes : {}}
+        adPlacement="product_suggestions_every_2"
+        adEveryN={2}
       />
 
       <DiscoveryRail
@@ -108,6 +111,9 @@ export default function EndlessDiscovery({
         compact={compact}
         onSelectProduct={onSelectProduct}
         onSeeAll={() => onSelectCategory?.(discovery.similarStyles.category)}
+        adCodes={showAds && variant === 'product' ? adCodes : {}}
+        adPlacement="product_suggestions_every_2"
+        adEveryN={2}
       />
 
       {showAds && variant === 'product' ? (
@@ -207,14 +213,6 @@ export default function EndlessDiscovery({
           ))}
         </div>
       </section>
-
-      {showAds && variant === 'product' ? (
-        <PlacedAdSlot
-          adCodes={adCodes}
-          placement="product_suggestions_every_2"
-          variant="pdp-suggestions-full"
-        />
-      ) : null}
 
       <DiscoveryRail
         title={discovery.trendingProducts.title}

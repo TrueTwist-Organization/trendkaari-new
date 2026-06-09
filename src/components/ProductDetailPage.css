@@ -630,6 +630,97 @@
   line-height: 1.4;
 }
 
+/* Free shipping + COD — prominent highlights below price */
+.pdp-delivery-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0 16px;
+}
+
+.pdp-delivery-highlight {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 12px 12px 10px;
+  border-radius: 12px;
+  border: 1.5px solid var(--brand-border-soft);
+  background: linear-gradient(135deg, var(--brand-peach-light) 0%, var(--brand-surface-warm) 100%);
+  box-shadow: 0 4px 16px var(--brand-shadow-plum);
+  min-width: 0;
+}
+
+.pdp-delivery-highlight--shipping {
+  border-color: rgba(96, 11, 69, 0.22);
+}
+
+.pdp-delivery-highlight--cod {
+  border-color: rgba(212, 180, 131, 0.55);
+  background: linear-gradient(135deg, #fff9f0 0%, var(--brand-peach-light) 100%);
+}
+
+.pdp-delivery-highlight__badge {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-plum-mid), var(--brand-plum));
+  box-shadow: 0 2px 8px rgba(96, 11, 69, 0.25);
+}
+
+.pdp-delivery-highlight--cod .pdp-delivery-highlight__badge {
+  background: linear-gradient(135deg, var(--brand-gold), var(--brand-gold-light));
+  color: var(--brand-plum-hover);
+}
+
+.pdp-delivery-highlight__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-plum);
+  background: #fff;
+  border: 1px solid var(--brand-border-plum);
+}
+
+.pdp-delivery-highlight--cod .pdp-delivery-highlight__icon {
+  color: var(--brand-plum-hover);
+  border-color: var(--brand-border-soft);
+  background: #fffefb;
+}
+
+.pdp-delivery-highlight__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.pdp-delivery-highlight__copy strong {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--brand-plum);
+  line-height: 1.25;
+}
+
+.pdp-delivery-highlight__copy span {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
 .pdp-purchase-block .pdp-trust-strip,
 .pdp-info-block .pdp-trust-strip {
   margin-top: 4px;
@@ -1052,7 +1143,7 @@
 /* Trust Badges — compact cards under CTA */
 .pdp-trust-strip {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
   padding: 0;
   border-top: none;
@@ -1067,6 +1158,27 @@
   border-radius: 8px;
   background: var(--pdp-surface);
   min-width: 0;
+}
+
+.pdp-trust-item--featured {
+  border-color: rgba(96, 11, 69, 0.2);
+  background: linear-gradient(180deg, var(--brand-peach-light) 0%, var(--pdp-surface) 100%);
+  box-shadow: 0 2px 10px var(--brand-shadow-plum);
+}
+
+.pdp-trust-item--featured .pdp-trust-title-bold {
+  color: var(--brand-plum);
+}
+
+.pdp-trust-item--featured .pdp-trust-icon {
+  background: #fff;
+  border: 1px solid var(--brand-border-soft);
+}
+
+@media (max-width: 1100px) {
+  .pdp-trust-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .pdp-trust-icon {
@@ -1436,8 +1548,18 @@
     gap: 12px;
   }
   
-  .pdp-trust-strip {
+  .pdp-delivery-highlights {
     grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .pdp-delivery-highlight {
+    padding: 14px 12px;
+  }
+
+  .pdp-trust-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
   }
 

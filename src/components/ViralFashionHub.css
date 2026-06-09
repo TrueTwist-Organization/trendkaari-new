@@ -1,5 +1,5 @@
 .viral-hub {
-  background: linear-gradient(180deg, #fff5f3 0%, #fff 12rem);
+  background: linear-gradient(180deg, var(--brand-peach-light) 0%, var(--brand-surface-warm) 12rem);
   min-height: 100vh;
   padding-bottom: 3rem;
 }
@@ -7,8 +7,8 @@
 .viral-hub__hero {
   padding: 1.25rem 0 2.5rem;
   background:
-    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(255, 77, 106, 0.18), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 90% 0%, rgba(255, 159, 67, 0.14), transparent 50%);
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(96, 11, 69, 0.1), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 90% 0%, rgba(212, 180, 131, 0.16), transparent 50%);
 }
 
 .viral-hub__back {
@@ -17,7 +17,7 @@
   gap: 0.25rem;
   border: none;
   background: transparent;
-  color: #6b4b57;
+  color: var(--text-muted);
   font-size: 0.875rem;
   cursor: pointer;
   margin-bottom: 1rem;
@@ -45,15 +45,15 @@
 }
 
 .viral-hub__live {
-  background: rgba(255, 59, 92, 0.1);
-  color: #d91e45;
+  background: rgba(96, 11, 69, 0.1);
+  color: var(--brand-plum);
 }
 
 .viral-hub__live-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #ff3b5c;
+  background: var(--brand-plum-mid);
   animation: viral-pulse 1.4s ease-in-out infinite;
 }
 
@@ -71,8 +71,8 @@
 
 .viral-hub__refresh {
   background: rgba(255, 255, 255, 0.85);
-  color: #7a5563;
-  border: 1px solid rgba(217, 30, 69, 0.12);
+  color: var(--text-muted);
+  border: 1px solid var(--brand-border-plum);
 }
 
 .viral-hub__title {
@@ -82,17 +82,17 @@
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   line-height: 1.1;
   margin: 0 0 0.75rem;
-  color: #2a1520;
+  color: var(--brand-plum-hover);
 }
 
 .viral-hub__title-icon {
-  color: #ff3b5c;
+  color: var(--brand-plum-mid);
   flex-shrink: 0;
 }
 
 .viral-hub__subtitle {
   max-width: 42rem;
-  color: #6f4f5c;
+  color: var(--text-muted);
   line-height: 1.55;
   margin: 0 0 1.5rem;
 }
@@ -108,23 +108,23 @@
   padding: 0.75rem 1rem;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(217, 30, 69, 0.1);
-  box-shadow: 0 8px 24px rgba(217, 30, 69, 0.06);
+  border: 1px solid var(--brand-border-plum);
+  box-shadow: 0 8px 24px var(--brand-shadow-plum);
 }
 
 .viral-hub__stat strong {
   display: block;
   font-size: 1.15rem;
-  color: #2a1520;
+  color: var(--brand-plum-hover);
 }
 
 .viral-hub__stat span {
   font-size: 0.78rem;
-  color: #8a6673;
+  color: var(--text-muted);
 }
 
 .viral-hub__stat--hot strong {
-  color: #ff3b5c;
+  color: var(--brand-plum-mid);
 }
 
 .viral-hub__section {
@@ -132,7 +132,7 @@
 }
 
 .viral-hub__section:nth-child(even) {
-  background: linear-gradient(180deg, rgba(255, 245, 243, 0.65), transparent);
+  background: linear-gradient(180deg, rgba(253, 237, 237, 0.75), transparent);
 }
 
 .viral-hub__section-head {
@@ -160,45 +160,45 @@
 }
 
 .viral-hub__section-icon--viral-hot {
-  background: rgba(255, 59, 92, 0.12);
-  color: #ff3b5c;
+  background: rgba(96, 11, 69, 0.1);
+  color: var(--brand-plum-mid);
 }
 
 .viral-hub__section-icon--instagram {
-  background: linear-gradient(135deg, #fdf497, #fd5949, #d6249f);
+  background: linear-gradient(135deg, var(--brand-gold-light), var(--brand-plum-mid));
   color: #fff;
 }
 
 .viral-hub__section-icon--celebrity {
-  background: rgba(124, 58, 237, 0.12);
-  color: #7c3aed;
+  background: rgba(96, 11, 69, 0.12);
+  color: var(--brand-plum);
 }
 
 .viral-hub__section-icon--bestseller {
-  background: rgba(245, 158, 11, 0.15);
-  color: #d97706;
+  background: rgba(212, 180, 131, 0.22);
+  color: var(--brand-plum-hover);
 }
 
 .viral-hub__section-icon--rated {
-  background: rgba(16, 185, 129, 0.12);
-  color: #059669;
+  background: rgba(139, 21, 104, 0.1);
+  color: var(--brand-plum-mid);
 }
 
 .viral-hub__section-icon--budget-499,
 .viral-hub__section-icon--budget-999 {
-  background: rgba(14, 165, 233, 0.12);
-  color: #0284c7;
+  background: rgba(212, 180, 131, 0.18);
+  color: var(--brand-plum);
 }
 
 .viral-hub__section-title {
   margin: 0 0 0.35rem;
   font-size: clamp(1.2rem, 2.5vw, 1.55rem);
-  color: #2a1520;
+  color: var(--brand-plum-hover);
 }
 
 .viral-hub__section-hook {
   margin: 0;
-  color: #7a5563;
+  color: var(--text-muted);
   line-height: 1.45;
   max-width: 36rem;
   font-size: 0.92rem;
@@ -209,7 +209,7 @@
   align-items: center;
   gap: 0.35rem;
   border: none;
-  background: #2a1520;
+  background: var(--brand-plum);
   color: #fff;
   border-radius: 999px;
   padding: 0.55rem 0.95rem;
@@ -231,8 +231,8 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  border: 1px solid rgba(42, 21, 32, 0.12);
-  background: #fff;
+  border: 1px solid var(--brand-border-plum);
+  background: var(--brand-surface-warm);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -256,29 +256,29 @@
   flex: 0 0 min(220px, 72vw);
   scroll-snap-align: start;
   border: none;
-  background: #fff;
+  background: var(--brand-surface-warm);
   border-radius: 16px;
   overflow: hidden;
   text-align: left;
   cursor: pointer;
-  box-shadow: 0 10px 28px rgba(42, 21, 32, 0.08);
+  box-shadow: 0 10px 28px var(--brand-shadow-plum);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .viral-hub__card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 36px rgba(217, 30, 69, 0.12);
+  box-shadow: 0 16px 36px var(--brand-shadow-gold);
 }
 
 .viral-hub__card--ranked {
-  border: 1px solid rgba(245, 158, 11, 0.25);
+  border: 1px solid var(--brand-border-soft);
 }
 
 .viral-hub__card-media {
   position: relative;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  background: #f8eef0;
+  background: var(--brand-peach-light);
 }
 
 .viral-hub__card-img {
@@ -295,14 +295,14 @@
   min-width: 1.75rem;
   height: 1.75rem;
   border-radius: 999px;
-  background: #f59e0b;
-  color: #fff;
+  background: var(--brand-gold);
+  color: var(--brand-plum-hover);
   font-size: 0.75rem;
   font-weight: 800;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+  box-shadow: 0 4px 12px var(--brand-shadow-gold);
 }
 
 .viral-hub__badge {
@@ -313,7 +313,7 @@
   max-width: calc(100% - 1rem);
   padding: 0.28rem 0.55rem;
   border-radius: 999px;
-  background: rgba(255, 59, 92, 0.92);
+  background: rgba(96, 11, 69, 0.92);
   color: #fff;
   font-size: 0.68rem;
   font-weight: 700;
@@ -321,16 +321,16 @@
 }
 
 .viral-hub__section--instagram .viral-hub__badge {
-  background: linear-gradient(135deg, #fd5949, #d6249f);
+  background: linear-gradient(135deg, var(--brand-gold), var(--brand-plum-mid));
 }
 
 .viral-hub__section--rated .viral-hub__badge {
-  background: rgba(5, 150, 105, 0.92);
+  background: rgba(139, 21, 104, 0.92);
 }
 
 .viral-hub__section--budget-499 .viral-hub__badge,
 .viral-hub__section--budget-999 .viral-hub__badge {
-  background: rgba(2, 132, 199, 0.92);
+  background: rgba(74, 8, 52, 0.92);
 }
 
 .viral-hub__tap {
@@ -342,7 +342,7 @@
   background: rgba(255, 255, 255, 0.88);
   font-size: 0.68rem;
   font-weight: 600;
-  color: #2a1520;
+  color: var(--brand-plum-hover);
   opacity: 0;
   transform: translateY(4px);
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -362,7 +362,7 @@
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #a07b88;
+  color: var(--text-muted);
   margin-bottom: 0.25rem;
 }
 
@@ -370,7 +370,7 @@
   margin: 0 0 0.45rem;
   font-size: 0.88rem;
   line-height: 1.35;
-  color: #2a1520;
+  color: var(--brand-plum-hover);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -385,18 +385,18 @@
 
 .viral-hub__card-price {
   font-weight: 700;
-  color: #2a1520;
+  color: var(--brand-plum-hover);
 }
 
 .viral-hub__card-meta {
   display: block;
   margin-top: 0.35rem;
   font-size: 0.72rem;
-  color: #8a6673;
+  color: var(--text-muted);
 }
 
 .viral-hub__card-meta--hot {
-  color: #ff3b5c;
+  color: var(--brand-plum-mid);
   font-weight: 600;
 }
 
@@ -404,7 +404,7 @@
   margin-top: 0.35rem;
   border: none;
   background: transparent;
-  color: #d91e45;
+  color: var(--brand-plum);
   font-size: 0.85rem;
   font-weight: 600;
   display: inline-flex;
@@ -486,7 +486,7 @@
 
 .viral-hub__celebrity-pick {
   border: none;
-  background: #faf5f6;
+  background: var(--brand-peach-light);
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
@@ -504,7 +504,7 @@
   font-size: 0.72rem;
   font-weight: 700;
   padding: 0.35rem 0.25rem;
-  color: #2a1520;
+  color: var(--brand-plum-hover);
 }
 
 .viral-hub__finale {
@@ -514,13 +514,13 @@
 }
 
 .viral-hub__finale p {
-  color: #8a6673;
+  color: var(--text-muted);
   margin: 0 0 1rem;
 }
 
 .viral-hub__finale-btn {
   border: none;
-  background: #2a1520;
+  background: var(--brand-plum);
   color: #fff;
   border-radius: 999px;
   padding: 0.75rem 1.35rem;

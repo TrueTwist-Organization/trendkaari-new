@@ -2,6 +2,7 @@ import React from 'react';
 import { ChevronRight, Mail, Phone } from 'lucide-react';
 import PageBackButton from './PageBackButton';
 import RecommendationRails from './RecommendationRails';
+import PlacedAdSlot from './PlacedAdSlot';
 import { getInfoPage } from '../data/footerInfoPages';
 import {
   SUPPORT_EMAIL,
@@ -22,6 +23,7 @@ export default function InfoPage({
   onOpenArticle,
   onOpenKnowledgePage,
   onStartQuiz,
+  adCodes = {},
 }) {
   const page = getInfoPage(slug);
 
@@ -73,6 +75,8 @@ export default function InfoPage({
           {page.subtitle && <p className="info-page__subtitle">{page.subtitle}</p>}
         </header>
 
+        <PlacedAdSlot adCodes={adCodes} placement="content_page_top" variant="section" />
+
         <div className="info-page__layout">
           <article className="info-page__article">
             {page.sections.map((section) => (
@@ -121,6 +125,8 @@ export default function InfoPage({
             </div>
           </aside>
         </div>
+
+        <PlacedAdSlot adCodes={adCodes} placement="content_page_bottom" variant="section" />
       </div>
 
       {products.length > 0 && onSelectProduct ? (

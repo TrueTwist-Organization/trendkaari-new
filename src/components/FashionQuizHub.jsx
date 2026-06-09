@@ -4,6 +4,7 @@ import { getAllQuizzes } from '../data/fashionQuizzes';
 import './FashionQuiz.css';
 import './AiStyleFinder.css';
 import EndlessDiscovery from './EndlessDiscovery';
+import PlacedAdSlot from './PlacedAdSlot';
 
 const QUIZ_ICONS = {
   personality: Sparkles,
@@ -21,6 +22,7 @@ export default function FashionQuizHub({
   onSelectCategory,
   onOpenArticle,
   onOpenKnowledgePage,
+  adCodes = {},
 }) {
   const quizzes = getAllQuizzes();
 
@@ -57,6 +59,10 @@ export default function FashionQuizHub({
           </ul>
         </div>
       </header>
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="quiz_hub_mid" variant="section" />
+      </div>
 
       <section className="fashion-quiz-hub__stage" aria-label="Choose a quiz">
         <div className="container fashion-quiz-hub__stage-inner">
@@ -112,6 +118,10 @@ export default function FashionQuizHub({
           </div>
         </div>
       </section>
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="quiz_hub_bottom" variant="section" />
+      </div>
 
       {products.length > 0 ? (
         <section className="fashion-quiz-hub__discovery" aria-label="Recommended products">

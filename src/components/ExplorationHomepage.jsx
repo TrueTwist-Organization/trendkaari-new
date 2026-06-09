@@ -215,6 +215,7 @@ export default function ExplorationHomepage({
           onSelectProduct={onSelectProduct}
           onSelectCategory={onSelectCategory}
           onOpenArticle={onOpenArticle}
+          adCodes={adCodes}
         />
       </main>
 

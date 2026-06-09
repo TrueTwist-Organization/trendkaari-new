@@ -1,7 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import ProductImage from './ProductImage';
 import ProductDiscountChip from './ProductDiscountChip';
+import PlacedAdSlot from './PlacedAdSlot';
+import { getAdCode } from '../utils/resolveAdCode';
 import './DiscoveryRail.css';
 
 export default function DiscoveryRail({
@@ -12,8 +14,31 @@ export default function DiscoveryRail({
   onSeeAll,
   tone = 'default',
   compact = false,
+  adCodes = {},
+  adPlacement = '',
+  adEveryN = 0,
+  adVariant = 'rail-inline',
 }) {
   const trackRef = useRef(null);
+
+  const trackItems = useMemo(() => {
+    const adCode = adPlacement ? getAdCode(adCodes, adPlacement) : '';
+    const injectAds = adEveryN > 0 && adCode;
+    const items = [];
+
+    products.forEach((product, index) => {
+      items.push({ type: 'product', key: String(product.id), product });
+      if (
+        injectAds &&
+        (index + 1) % adEveryN === 0 &&
+        index < products.length - 1
+      ) {
+        items.push({ type: 'ad', key: `ad-${adPlacement}-${index}`, adIndex: index });
+      }
+    });
+
+    return items;
+  }, [products, adCodes, adPlacement, adEveryN]);
 
   if (!products.length) return null;
 
@@ -48,31 +73,48 @@ export default function DiscoveryRail({
       </div>
 
       <div className="discovery-rail__track" ref={trackRef}>
-        {products.map((product) => (
-          <button
-            key={product.id}
-            type="button"
-            className="discovery-rail__card"
-            onClick={() => onSelectProduct?.(product)}
-          >
-            <div className="discovery-rail__img-wrap hover-zoom-container">
-              <ProductImage
-                src={product.image}
-                alt={product.title}
-                className="discovery-rail__img hover-zoom-img"
-              />
-              <span className="discovery-rail__tap-hint">Tap to explore</span>
-            </div>
-            <div className="discovery-rail__meta">
-              <span className="discovery-rail__cat">{product.subCategory || product.category}</span>
-              <h3 className="discovery-rail__name">{product.title}</h3>
-              <div className="discovery-rail__price-row">
-                <span className="discovery-rail__price">₹{product.price}</span>
-                <ProductDiscountChip product={product} className="product-discount-chip--compact" />
+        {trackItems.map((item) => {
+          if (item.type === 'ad') {
+            return (
+              <div key={item.key} className="discovery-rail__ad-break">
+                <PlacedAdSlot
+                  adCodes={adCodes}
+                  placement={adPlacement}
+                  variant={adVariant}
+                  ownerKey={`${adPlacement}-${item.adIndex}`}
+                  allowDuplicateSource
+                />
               </div>
-            </div>
-          </button>
-        ))}
+            );
+          }
+
+          const product = item.product;
+          return (
+            <button
+              key={item.key}
+              type="button"
+              className="discovery-rail__card"
+              onClick={() => onSelectProduct?.(product)}
+            >
+              <div className="discovery-rail__img-wrap hover-zoom-container">
+                <ProductImage
+                  src={product.image}
+                  alt={product.title}
+                  className="discovery-rail__img hover-zoom-img"
+                />
+                <span className="discovery-rail__tap-hint">Tap to explore</span>
+              </div>
+              <div className="discovery-rail__meta">
+                <span className="discovery-rail__cat">{product.subCategory || product.category}</span>
+                <h3 className="discovery-rail__name">{product.title}</h3>
+                <div className="discovery-rail__price-row">
+                  <span className="discovery-rail__price">₹{product.price}</span>
+                  <ProductDiscountChip product={product} className="product-discount-chip--compact" />
+                </div>
+              </div>
+            </button>
+          );
+        })}
       </div>
     </section>
   );

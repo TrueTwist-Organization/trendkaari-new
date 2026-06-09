@@ -3,6 +3,7 @@ import { ArrowRight, ChevronRight, FolderOpen, ShoppingBag, Sparkles, TrendingUp
 import PageBackButton from './PageBackButton';
 import ProductImage from './ProductImage';
 import DiscoveryRail from './DiscoveryRail';
+import PlacedAdSlot from './PlacedAdSlot';
 import RecommendationRails from './RecommendationRails';
 import {
   getKnowledgePageBySlug,
@@ -132,6 +133,8 @@ export default function FashionKnowledgePage({
         <figure className="knowledge-page__figure">
           <ProductImage src={page.image} alt="" className="knowledge-page__hero-img" />
         </figure>
+
+        <PlacedAdSlot adCodes={adCodes} placement="knowledge_page_mid" variant="section" />
 
         <div className="knowledge-page__layout">
           <article className="knowledge-page__content">
@@ -376,6 +379,10 @@ export default function FashionKnowledgePage({
           showAds={false}
         />
       ) : null}
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="knowledge_page_bottom" variant="section" />
+      </div>
     </div>
   );
 }

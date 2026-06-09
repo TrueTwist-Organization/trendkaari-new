@@ -15,6 +15,7 @@ import {
 import { castPollVote, getPollResults } from '../utils/pollVotesStorage';
 import { buildDiscoveryExperienceFeed } from '../utils/discoveryExperienceEngine';
 import { CELEBRITY_LOOKS, fetchCelebrityLooks } from '../utils/celebrityLooksData';
+import HomeAdSlot from './HomeAdSlot';
 import './DiscoveryExperienceFeed.css';
 
 /* ─── Shared shell ──────────────────────────────────────────────────────── */
@@ -841,6 +842,7 @@ export default function DiscoveryExperienceFeed({
   onSelectProduct,
   onSelectCategory,
   onOpenArticle,
+  adCodes = {},
 }) {
   const [dynamicBlocks, setDynamicBlocks] = useState(null);
   const [discoveryConfig, setDiscoveryConfig] = useState(null);
@@ -890,17 +892,26 @@ export default function DiscoveryExperienceFeed({
         stripSub={activeConfig.stripSub}
       />
       {feed.map((item, index) => (
-        <div
-          key={item.id}
-          className={`discovery-xp__section discovery-xp__section--${index % 2 === 0 ? 'light' : 'cream'}`}
-        >
-          <ExperienceBlock
-            item={item}
-            handlers={handlers}
-            discoveryConfig={activeConfig}
-          />
-        </div>
+        <React.Fragment key={item.id}>
+          <div
+            className={`discovery-xp__section discovery-xp__section--${index % 2 === 0 ? 'light' : 'cream'}`}
+          >
+            <ExperienceBlock
+              item={item}
+              handlers={handlers}
+              discoveryConfig={activeConfig}
+            />
+          </div>
+          {(index + 1) % 2 === 0 ? (
+            <div className="container">
+              <HomeAdSlot adCodes={adCodes} placement="home_editorial_every_2" />
+            </div>
+          ) : null}
+        </React.Fragment>
       ))}
+      <div className="container">
+        <HomeAdSlot adCodes={adCodes} placement="home_editorial_bottom" />
+      </div>
     </div>
   );
 }

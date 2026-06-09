@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Star, ShoppingBag, Plus, Minus, Heart, Truck, RefreshCw, ShieldCheck, X, Sparkles } from 'lucide-react';
+import { Star, ShoppingBag, Plus, Minus, Heart, Truck, RefreshCw, ShieldCheck, Banknote, X, Sparkles } from 'lucide-react';
 import { getProductDetailContent, getSizeChartForProduct } from '../utils/productContent';
 import ProductDetailsAmazon from './ProductDetailsAmazon';
 import ProductDiscoveryRails from './ProductDiscoveryRails';
@@ -176,7 +176,31 @@ export default function ProductDetailPage({
                     <span className="pdp-discount-percentage">({product.discount || '50% OFF'})</span>
                   </div>
                   <p className="pdp-inclusive-taxes">inclusive of all taxes</p>
-                  <StoreCouponsPromo coupons={coupons} />
+
+                  <div className="pdp-delivery-highlights" aria-label="Delivery benefits">
+                    <div className="pdp-delivery-highlight pdp-delivery-highlight--shipping">
+                      <span className="pdp-delivery-highlight__badge">Free</span>
+                      <span className="pdp-delivery-highlight__icon" aria-hidden>
+                        <Truck size={20} strokeWidth={2.25} />
+                      </span>
+                      <div className="pdp-delivery-highlight__copy">
+                        <strong>Free Shipping</strong>
+                        <span>On all orders across India</span>
+                      </div>
+                    </div>
+                    <div className="pdp-delivery-highlight pdp-delivery-highlight--cod">
+                      <span className="pdp-delivery-highlight__badge">COD</span>
+                      <span className="pdp-delivery-highlight__icon" aria-hidden>
+                        <Banknote size={20} strokeWidth={2.25} />
+                      </span>
+                      <div className="pdp-delivery-highlight__copy">
+                        <strong>Cash on Delivery</strong>
+                        <span>Pay when your order arrives</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <StoreCouponsPromo coupons={coupons} showFreeShipping={false} />
                 </section>
 
                 <PdpAdZone
@@ -250,25 +274,32 @@ export default function ProductDetailPage({
                 <section className="pdp-section pdp-section--assurance" aria-label="Delivery and returns">
                   <h2 className="pdp-section-heading">Why shop this piece</h2>
                   <div className="pdp-trust-strip">
-                    <div className="pdp-trust-item">
+                    <div className="pdp-trust-item pdp-trust-item--featured">
                       <Truck size={16} className="pdp-trust-icon" />
                       <div className="pdp-trust-text-box">
-                        <span className="pdp-trust-title-bold">Express Shipping</span>
-                        <span className="pdp-trust-subtitle-small">Fast dispatch in 24 hrs</span>
+                        <span className="pdp-trust-title-bold">Free Shipping</span>
+                        <span className="pdp-trust-subtitle-small">Pan-India delivery</span>
+                      </div>
+                    </div>
+                    <div className="pdp-trust-item pdp-trust-item--featured">
+                      <Banknote size={16} className="pdp-trust-icon" />
+                      <div className="pdp-trust-text-box">
+                        <span className="pdp-trust-title-bold">Cash on Delivery</span>
+                        <span className="pdp-trust-subtitle-small">Pay at your doorstep</span>
                       </div>
                     </div>
                     <div className="pdp-trust-item">
                       <RefreshCw size={16} className="pdp-trust-icon" />
                       <div className="pdp-trust-text-box">
                         <span className="pdp-trust-title-bold">Easy Returns</span>
-                        <span className="pdp-trust-subtitle-small">7 Days Policy</span>
+                        <span className="pdp-trust-subtitle-small">7 days policy</span>
                       </div>
                     </div>
                     <div className="pdp-trust-item">
                       <ShieldCheck size={16} className="pdp-trust-icon" />
                       <div className="pdp-trust-text-box">
                         <span className="pdp-trust-title-bold">100% Original</span>
-                        <span className="pdp-trust-subtitle-small">Direct from Brand</span>
+                        <span className="pdp-trust-subtitle-small">Direct from brand</span>
                       </div>
                     </div>
                   </div>

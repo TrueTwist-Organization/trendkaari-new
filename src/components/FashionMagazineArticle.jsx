@@ -5,6 +5,7 @@ import ProductImage from './ProductImage';
 import DiscoveryRail from './DiscoveryRail';
 import RecommendationRails from './RecommendationRails';
 import DiscoveryLoopSection from './DiscoveryLoopSection';
+import PlacedAdSlot from './PlacedAdSlot';
 import {
   getArticleBySlug,
   getCategoryBySlug,
@@ -191,6 +192,10 @@ export default function FashionMagazineArticle({
         </div>
       </div>
 
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="magazine_article_mid" variant="section" />
+      </div>
+
       {shopProducts.length ? (
         <div className="container">
           <DiscoveryRail
@@ -222,6 +227,10 @@ export default function FashionMagazineArticle({
           showAds={false}
         />
       ) : null}
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="magazine_article_bottom" variant="section" />
+      </div>
 
       <DiscoveryLoopSection
         sourceContext="magazine_article"

@@ -4,6 +4,7 @@ import ProductImage from './ProductImage';
 import DiscoveryRail from './DiscoveryRail';
 import { getCategoryDisplayName } from '../utils/categoryFilter';
 import { buildCollectionHub, countCollectionHubClicks } from '../utils/collectionHubEngine';
+import PlacedAdSlot from './PlacedAdSlot';
 import './CollectionHubSections.css';
 
 export default function CollectionHubSections({
@@ -14,6 +15,7 @@ export default function CollectionHubSections({
   onSelectCategory,
   onOpenKnowledgePage,
   placement = 'full',
+  adCodes = {},
 }) {
   const hub = useMemo(
     () => buildCollectionHub(allProducts, activeCategory, { excludeProductIds }),
@@ -98,16 +100,26 @@ export default function CollectionHubSections({
     return (
       <section className="collection-hub collection-hub--bottom" aria-label={`${categoryLabel} suggestions`}>
         <div className="container collection-hub__rails">
-          {hub.rails.map((rail) => (
-            <DiscoveryRail
-              key={rail.id}
-              title={rail.title}
-              hook={rail.hook}
-              products={rail.products}
-              tone={rail.tone}
-              onSelectProduct={onSelectProduct}
-              onSeeAll={rail.seeAllCategory ? () => onSelectCategory?.(rail.seeAllCategory) : undefined}
-            />
+          {hub.rails.map((rail, index) => (
+            <React.Fragment key={rail.id}>
+              <DiscoveryRail
+                title={rail.title}
+                hook={rail.hook}
+                products={rail.products}
+                tone={rail.tone}
+                onSelectProduct={onSelectProduct}
+                onSeeAll={rail.seeAllCategory ? () => onSelectCategory?.(rail.seeAllCategory) : undefined}
+              />
+              {(index + 1) % 2 === 0 ? (
+                <PlacedAdSlot
+                  adCodes={adCodes}
+                  placement="category_suggestions_mid"
+                  variant="section"
+                  ownerKey={`category_suggestions_mid-${index}`}
+                  allowDuplicateSource
+                />
+              ) : null}
+            </React.Fragment>
           ))}
         </div>
       </section>

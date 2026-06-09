@@ -74,6 +74,19 @@ const HOME_SLOTS = [
     description: 'Last homepage slot — after reviews, before footer.',
     placeholder: 'Paste ad HTML/script…',
   },
+  {
+    key: 'home_editorial_every_2',
+    title: 'Home — Every 2 Discovery Chapters',
+    description:
+      'Homepage editorial feed — full-width strip after every 2nd discovery block (Style DNA, Bollywood, polls, etc.).',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'home_editorial_bottom',
+    title: 'Home — After Discovery Feed',
+    description: 'Homepage — after all discovery experience chapters, before spotlight section.',
+    placeholder: 'Paste ad HTML/script…',
+  },
 ];
 
 const CATEGORY_SLOTS = [
@@ -148,6 +161,18 @@ const CATEGORY_SLOTS = [
     key: 'category_page_bottom',
     title: 'Category — Page Bottom',
     description: 'Last slot on /category — after grid & filters section.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'category_after_suggestions',
+    title: 'Category — After Suggestion Rails',
+    description: 'Below cross-category suggestion rails (Complete your look, Trending, etc.).',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'category_suggestions_mid',
+    title: 'Category — Between Suggestion Rails',
+    description: 'Between hub suggestion rails — after every 2nd rail.',
     placeholder: 'Paste ad HTML/script…',
   },
 ];
@@ -322,11 +347,99 @@ const CHECKOUT_SLOTS = [
   },
 ];
 
+const CONTENT_SLOTS = [
+  {
+    key: 'discover_feed_mid',
+    title: 'Discover — Mid Feed',
+    description: '/discover page — after every 2nd product rail.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'discover_feed_bottom',
+    title: 'Discover — Bottom',
+    description: '/discover page — end of feed, before footer.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'magazine_article_mid',
+    title: 'Magazine Article — Mid',
+    description: 'Between article body and “Shop this story” rail.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'magazine_article_bottom',
+    title: 'Magazine Article — Bottom',
+    description: 'Below recommendation rails, above “Where to go next”.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'quiz_hub_mid',
+    title: 'Quiz Hub — Mid',
+    description: 'Between quiz hero and quiz card grid.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'quiz_hub_bottom',
+    title: 'Quiz Hub — Bottom',
+    description: 'Below quiz grid, above endless discovery.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'quiz_result_mid',
+    title: 'Quiz Result — Mid',
+    description: 'Between result hero and “Picked for your result” rail.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'quiz_result_bottom',
+    title: 'Quiz Result — Bottom',
+    description: 'Bottom of quiz result page, above footer.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'knowledge_page_mid',
+    title: 'Knowledge Guide — Mid',
+    description: 'Mid-page on fashion knowledge / styling guides.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'knowledge_page_bottom',
+    title: 'Knowledge Guide — Bottom',
+    description: 'Bottom of knowledge guide pages.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'content_page_top',
+    title: 'Info Pages — Top',
+    description: 'Top of static info pages (privacy, returns, shipping, etc.).',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'content_page_bottom',
+    title: 'Info Pages — Bottom',
+    description: 'Bottom of static info pages, above recommendations.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'viral_hub_mid',
+    title: 'Viral Fashion — Mid',
+    description: 'Mid-page on viral fashion hub.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'games_hub_mid',
+    title: 'Games Hub — Mid',
+    description: 'Mid-page on fashion games hub.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+];
+
 const OTHER_SLOTS = [
   {
     key: 'global_banner',
-    title: 'Global Banner',
-    description: 'Every page — directly below site header.',
+    title: 'Global Banner (2nd strip)',
+    description:
+      'Second strip below header when site_common_ad is also filled. If only this slot is filled, it shows as the main header ad.',
     placeholder: 'Paste ad HTML/script (e.g. Google Tag Manager)…',
   },
 ];
@@ -338,6 +451,7 @@ export const AD_PLACEMENT_DEFINITIONS = [
   ...HOME_SLOTS,
   ...CATEGORY_SLOTS,
   ...PRODUCT_SLOTS,
+  ...CONTENT_SLOTS,
   ...OTHER_SLOTS,
 ];
 
@@ -351,6 +465,8 @@ export const CATEGORY_AD_PLACEMENT_KEYS = CATEGORY_SLOTS.map((d) => d.key);
 
 export const PRODUCT_AD_PLACEMENT_KEYS = PRODUCT_SLOTS.map((d) => d.key);
 
+export const CONTENT_AD_PLACEMENT_KEYS = CONTENT_SLOTS.map((d) => d.key);
+
 export const OTHER_AD_PLACEMENT_KEYS = OTHER_SLOTS.map((d) => d.key);
 
 /** Admin panel section order */
@@ -360,6 +476,7 @@ export const AD_PLACEMENT_SECTIONS = [
   { id: 'home', title: 'Homepage', keys: HOME_AD_PLACEMENT_KEYS },
   { id: 'category', title: 'Category Listing', keys: CATEGORY_AD_PLACEMENT_KEYS },
   { id: 'product', title: 'Product Detail', keys: PRODUCT_AD_PLACEMENT_KEYS },
+  { id: 'content', title: 'Discover · Magazine · Quiz · Guides', keys: CONTENT_AD_PLACEMENT_KEYS },
   { id: 'other', title: 'Other', keys: OTHER_AD_PLACEMENT_KEYS },
 ];
 

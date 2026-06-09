@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { buildDiscoveryRails } from '../utils/discoveryEngine';
 import DiscoveryRail from './DiscoveryRail';
 import HomeAdSlot from './HomeAdSlot';
+import PlacedAdSlot from './PlacedAdSlot';
 import RecommendationRails from './RecommendationRails';
 import './DiscoveryFeed.css';
 
@@ -85,16 +86,20 @@ export default function DiscoveryFeed({
             }
           />
           {(index + 1) % 2 === 0 ? (
-            <HomeAdSlot
-              adCodes={adCodes}
-              placement={
-                index === 1
-                  ? 'home_after_trends'
-                  : index === 3
-                    ? 'home_after_promo'
-                    : 'home_after_gift'
-              }
-            />
+            fullPage ? (
+              <PlacedAdSlot adCodes={adCodes} placement="discover_feed_mid" variant="section" />
+            ) : (
+              <HomeAdSlot
+                adCodes={adCodes}
+                placement={
+                  index === 1
+                    ? 'home_after_trends'
+                    : index === 3
+                      ? 'home_after_promo'
+                      : 'home_after_gift'
+                }
+              />
+            )
           ) : null}
         </React.Fragment>
       ))}
@@ -119,6 +124,9 @@ export default function DiscoveryFeed({
             subtitle="Similar products, related collections, articles, quizzes, and trending picks."
             showAds={false}
           />
+          {fullPage ? (
+            <PlacedAdSlot adCodes={adCodes} placement="discover_feed_bottom" variant="section" />
+          ) : null}
           <div className="discovery-feed__end">
             <p>You’ve reached the end — but there’s always another category to open.</p>
             <button

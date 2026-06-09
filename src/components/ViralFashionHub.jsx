@@ -14,6 +14,7 @@ import ProductImage from './ProductImage';
 import ProductDiscountChip from './ProductDiscountChip';
 import { buildViralFashionHub, countViralHubClicks } from '../utils/viralFashionEngine';
 import EndlessDiscovery from './EndlessDiscovery';
+import PlacedAdSlot from './PlacedAdSlot';
 import './ViralFashionHub.css';
 
 const SECTION_ICONS = {
@@ -197,6 +198,7 @@ export default function ViralFashionHub({
   onOpenArticle,
   onOpenKnowledgePage,
   onStartQuiz,
+  adCodes = {},
 }) {
   const hub = useMemo(() => buildViralFashionHub(products), [products]);
   const clickCount = useMemo(() => countViralHubClicks(hub), [hub]);
@@ -248,6 +250,10 @@ export default function ViralFashionHub({
           </div>
         </div>
       </header>
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="viral_hub_mid" variant="section" />
+      </div>
 
       <div className="viral-hub__lanes">
         {hub.sections.map((section) => {

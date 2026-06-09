@@ -1229,6 +1229,9 @@ export default function App() {
             code={adCodes.site_common_ad || adCodes.global_banner}
             slotKey="site_common_ad"
           />
+          {adCodes.site_common_ad && adCodes.global_banner ? (
+            <SiteTopAdStrip code={adCodes.global_banner} slotKey="global_banner" />
+          ) : null}
           {viewMode === 'home' && !isCategoryPage ? (
             <SiteTopAdStrip code={adCodes.home_below_header} slotKey="home_below_header" />
           ) : null}
@@ -1241,6 +1244,7 @@ export default function App() {
         {viewMode === 'info' ? (
           <InfoPage
             slug={infoSlug}
+            adCodes={adCodes}
             onBack={handleGoBack}
             onBackToHome={() => navigateToRoute('/')}
             onOpenAccount={handleOpenProfile}
@@ -1266,6 +1270,7 @@ export default function App() {
         ) : viewMode === 'viral' ? (
           <ViralFashionHub
             products={productsList}
+            adCodes={adCodes}
             onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
             onSelectCategory={handleSelectCategory}
             onOpenArticle={handleOpenMagazineArticle}
@@ -1317,6 +1322,7 @@ export default function App() {
         ) : viewMode === 'games' ? (
           <FashionGamesHub
             products={productsList}
+            adCodes={adCodes}
             onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
             onSelectCategory={handleSelectCategory}
             onOpenArticle={handleOpenMagazineArticle}
@@ -1431,6 +1437,7 @@ export default function App() {
         ) : viewMode === 'quiz' ? (
           <FashionQuizHub
             products={productsList}
+            adCodes={adCodes}
             onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
             onSelectCategory={handleSelectCategory}
             onOpenArticle={handleOpenMagazineArticle}

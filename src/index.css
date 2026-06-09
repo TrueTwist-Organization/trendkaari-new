@@ -8,6 +8,12 @@
   --brand-peach: #FDE8E8;
   --brand-peach-light: #fdeded;
   --brand-peach-hover: #fcd5d5;
+  --brand-surface-warm: #fffefb;
+  --brand-surface-cream: #faf6f2;
+  --brand-shadow-plum: rgba(96, 11, 69, 0.08);
+  --brand-shadow-gold: rgba(212, 180, 131, 0.28);
+  --brand-border-soft: rgba(212, 180, 131, 0.42);
+  --brand-border-plum: rgba(96, 11, 69, 0.14);
   --text-primary: #1c1c1c;
   --text-muted: #575757;
   --text-light: #767676;

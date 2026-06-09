@@ -19,6 +19,7 @@ import {
   getQuizResultProducts,
 } from '../utils/quizEngine';
 import { getDiscoveryContext } from '../utils/discoveryContext';
+import PlacedAdSlot from './PlacedAdSlot';
 import './FashionQuiz.css';
 
 export default function FashionQuizResult({
@@ -109,6 +110,10 @@ export default function FashionQuizResult({
             </button>
           </div>
         </div>
+      </div>
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="quiz_result_mid" variant="section" />
       </div>
 
       <div className="container fashion-quiz-result__body">
@@ -230,6 +235,8 @@ export default function FashionQuizResult({
             </button>
           </div>
         </section>
+
+        <PlacedAdSlot adCodes={adCodes} placement="quiz_result_bottom" variant="section" />
       </div>
     </div>
   );

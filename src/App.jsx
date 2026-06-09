@@ -1345,13 +1345,10 @@ export default function App() {
           />
         ) : viewMode === 'knowledge' ? (
           <FashionKnowledgeHub
-            products={productsList}
-            onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
-            onSelectCategory={handleSelectCategory}
-            onOpenArticle={handleOpenMagazineArticle}
-            onStartQuiz={(slug) => navigateToRoute(`/quiz/${slug}`)}
             onOpenPage={handleOpenKnowledgePage}
             onBack={() => navigateToRoute('/')}
+            onStartQuiz={(slug) => navigateToRoute(`/quiz/${slug}`)}
+            onNavigate={navigateToRoute}
           />
         ) : viewMode === 'knowledge-page' ? (
           <FashionKnowledgePage

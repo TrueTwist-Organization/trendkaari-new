@@ -132,7 +132,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Straight, A-line, Anarkali, asymmetric — find your kurti lane.',
     excerpt: 'The kurti is the most versatile piece in Indian wardrobes. This guide maps silhouettes to body type and occasion.',
     readTime: '7 min read',
-    image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
+    image: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
     shopCategory: 'kurtas',
     shopCategories: ['kurtas', 'tops', 'co-ords'],
     collectionLabels: [
@@ -279,7 +279,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Crisp, sheer, and dance-floor friendly — the party fabric explained.',
     excerpt: 'Georgette adds movement without weight. Learn when to choose it over silk or chiffon.',
     readTime: '4 min read',
-    image: '/sarees/Sarees/1/0T3A5495_700x.webp',
+    image: '/sarees/Sarees/9/L12.01.25_3441_700x.webp',
     shopCategory: 'sarees',
     shopCategories: ['sarees', 'suit sets'],
     collectionLabels: [
@@ -382,7 +382,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Matching sets that do all the thinking for you — how to wear the trend India is obsessed with.',
     excerpt: 'Co-ord sets are the easiest way to look put-together. One decision, two pieces, zero effort.',
     readTime: '5 min read',
-    image: '/co-ords/co-ord_set/1/1.webp',
+    image: '/co-ords/co-ord_set/9/1.webp',
     shopCategory: 'co-ords',
     shopCategories: ['co-ords', 'suit sets', 'tops'],
     collectionLabels: [
@@ -438,7 +438,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Cotton, linen, rayon, chiffon — which fabrics keep you cool and stylish when temperatures rise.',
     excerpt: 'Summer dressing is 80% fabric choice. The right weave keeps you breathable, sweat-free, and fresh.',
     readTime: '6 min read',
-    image: '/tops/4/1.webp',
+    image: '/kurtas/Kurtas/1/040A2925_700x.webp',
     shopCategory: 'tops',
     shopCategories: ['tops', 'kurtas', 'co-ords', 'sarees'],
     collectionLabels: [
@@ -495,7 +495,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'From bride to wedding guest — what to wear, what to avoid, and how to dress for every function.',
     excerpt: 'Indian wedding dressing has rules — mostly unspoken. This guide breaks down every function, every role, and every fabric decision.',
     readTime: '9 min read',
-    image: '/lehengas/Lehengas/1/040A3523_700x.webp',
+    image: '/lehengas/Lehengas/9/040A1707_700x.webp',
     shopCategory: 'lehengas',
     shopCategories: ['lehengas', 'sarees', 'suit sets', 'kurtas'],
     collectionLabels: [

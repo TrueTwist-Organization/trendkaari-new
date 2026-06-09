@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { ArrowRight, BookMarked, ChevronLeft, GraduationCap } from 'lucide-react';
 import ProductImage from './ProductImage';
+import DiscoveryLoopSection from './DiscoveryLoopSection';
 import {
   getAllKnowledgePages,
   getFeaturedKnowledgePages,
@@ -8,13 +9,17 @@ import {
   getKnowledgePagesByTopic,
 } from '../data/fashionKnowledge';
 import './FashionKnowledge.css';
-import EndlessDiscovery from './EndlessDiscovery';
 
 function KnowledgeCard({ page, topic, onOpenPage }) {
   return (
-    <button type="button" className="knowledge-card" onClick={() => onOpenPage?.(page.slug)}>
+    <button
+      type="button"
+      className="knowledge-card"
+      onClick={() => onOpenPage?.(page.slug)}
+      style={{ '--know-accent': topic?.accent || '#600b45' }}
+    >
       <div className="knowledge-card__media">
-        <ProductImage src={page.image} alt="" className="knowledge-card__img" />
+        <ProductImage src={page.image} alt={page.title} className="knowledge-card__img" />
         <span className="knowledge-card__topic">{topic?.title}</span>
       </div>
       <div className="knowledge-card__body">
@@ -33,19 +38,22 @@ function KnowledgeCard({ page, topic, onOpenPage }) {
 export default function FashionKnowledgeHub({
   onOpenPage,
   onBack,
-  products = [],
-  onSelectProduct,
-  onSelectCategory,
-  onOpenArticle,
   onStartQuiz,
+  onNavigate,
 }) {
   const topics = getKnowledgeTopics();
-  const featured = useMemo(() => getFeaturedKnowledgePages(5), []);
+  const featured = useMemo(() => getFeaturedKnowledgePages(8), []);
   const allPages = getAllKnowledgePages();
+  const featuredIds = useMemo(() => new Set(featured.map((p) => p.id)), [featured]);
 
   const topicMap = useMemo(
     () => Object.fromEntries(topics.map((t) => [t.slug, t])),
     [topics],
+  );
+
+  const loopGuides = useMemo(
+    () => featured.map((p) => p.slug).slice(0, 6),
+    [featured],
   );
 
   return (
@@ -65,19 +73,20 @@ export default function FashionKnowledgeHub({
             Silhouettes, fabrics, garment types, and colour — every guide links naturally to
             products and collections you can explore next.
           </p>
+          <p className="fashion-knowledge__hero-count">{allPages.length} guides · updated regularly</p>
         </div>
       </header>
 
       <div className="container fashion-knowledge__body">
-        <section className="fashion-knowledge__section">
+        <section className="fashion-knowledge__section fashion-knowledge__section--featured">
           <div className="fashion-knowledge__section-head">
             <BookMarked size={18} aria-hidden />
             <div>
               <h2>Start here</h2>
-              <p>Most-read reference guides.</p>
+              <p>Most-read reference guides — pick any card to begin.</p>
             </div>
           </div>
-          <div className="fashion-knowledge__grid">
+          <div className="fashion-knowledge__grid fashion-knowledge__grid--featured">
             {featured.map((page) => (
               <KnowledgeCard
                 key={page.id}
@@ -90,7 +99,7 @@ export default function FashionKnowledgeHub({
         </section>
 
         {topics.map((topic) => {
-          const pages = getKnowledgePagesByTopic(topic.slug);
+          const pages = getKnowledgePagesByTopic(topic.slug).filter((p) => !featuredIds.has(p.id));
           if (!pages.length) return null;
           return (
             <section key={topic.slug} className="fashion-knowledge__section">
@@ -101,7 +110,7 @@ export default function FashionKnowledgeHub({
                 <h2>{topic.title}</h2>
                 <p>{topic.description}</p>
               </div>
-              <div className="fashion-knowledge__grid fashion-knowledge__grid--compact">
+              <div className="fashion-knowledge__grid fashion-knowledge__grid--topic">
                 {pages.map((page) => (
                   <KnowledgeCard
                     key={page.id}
@@ -114,26 +123,20 @@ export default function FashionKnowledgeHub({
             </section>
           );
         })}
-
-        <p className="fashion-knowledge__count">{allPages.length} guides · updated regularly</p>
-
-        {products.length > 0 ? (
-          <EndlessDiscovery
-            allProducts={products}
-            category="kurtas"
-            onSelectProduct={onSelectProduct}
-            onSelectCategory={onSelectCategory}
-            onOpenArticle={onOpenArticle}
-            onOpenKnowledgePage={onOpenPage}
-            onStartQuiz={onStartQuiz}
-            variant="browse"
-            title="Endless discovery"
-            subtitle="Similar products, related collections, articles, quizzes, and trending picks."
-            compact
-            showAds={false}
-          />
-        ) : null}
       </div>
+
+      <DiscoveryLoopSection
+        sourceContext="knowledge_hub"
+        guideSlugs={loopGuides}
+        trendSlugs={['festival-fashion', 'wedding-fashion', 'summer-fashion']}
+        celebIds={['kiara-festive', 'deepika-airport']}
+        quizSlugs={['outfit-finder', 'festival-look']}
+        title="Keep exploring"
+        subtitle="Trends, celebrity looks, quizzes, and more style guides"
+        onNavigate={onNavigate}
+        onStartQuiz={onStartQuiz}
+        onOpenKnowledgePage={onOpenPage}
+      />
     </div>
   );
 }

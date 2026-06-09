@@ -23,6 +23,7 @@ function resolveHomepageBlocks(dynamicBlocks) {
     if (!apiBlock) return defaults;
 
     const merged = { ...defaults, ...apiBlock };
+    merged.accent = defaults.accent;
     merged.dark = defaults.dark === true;
     return merged;
   });

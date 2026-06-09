@@ -14,6 +14,7 @@ export default function DiscoveryRail({
   onSeeAll,
   tone = 'default',
   compact = false,
+  showHead = true,
   adCodes = {},
   adPlacement = '',
   adEveryN = 0,
@@ -50,27 +51,46 @@ export default function DiscoveryRail({
   };
 
   return (
-    <section className={`discovery-rail discovery-rail--${tone}${compact ? ' discovery-rail--compact' : ''}`}>
-      <div className="discovery-rail__head">
-        <div className="discovery-rail__titles">
-          <h2 className="discovery-rail__title">{title}</h2>
-          {hook ? <p className="discovery-rail__hook">{hook}</p> : null}
-        </div>
-        <div className="discovery-rail__actions">
-          {onSeeAll ? (
-            <button type="button" className="discovery-rail__see-all" onClick={onSeeAll}>
-              See all
-              <Sparkles size={14} aria-hidden />
+    <section className={`discovery-rail discovery-rail--${tone}${compact ? ' discovery-rail--compact' : ''}${showHead ? '' : ' discovery-rail--headless'}`}>
+      {showHead ? (
+        <div className="discovery-rail__head">
+          <div className="discovery-rail__titles">
+            <h2 className="discovery-rail__title">{title}</h2>
+            {hook ? <p className="discovery-rail__hook">{hook}</p> : null}
+          </div>
+          <div className="discovery-rail__actions">
+            {onSeeAll ? (
+              <button type="button" className="discovery-rail__see-all" onClick={onSeeAll}>
+                See all
+                <Sparkles size={14} aria-hidden />
+              </button>
+            ) : null}
+            <button type="button" className="discovery-rail__nav" onClick={() => scrollBy(-1)} aria-label="Scroll left">
+              <ChevronLeft size={18} />
             </button>
-          ) : null}
-          <button type="button" className="discovery-rail__nav" onClick={() => scrollBy(-1)} aria-label="Scroll left">
-            <ChevronLeft size={18} />
-          </button>
-          <button type="button" className="discovery-rail__nav" onClick={() => scrollBy(1)} aria-label="Scroll right">
-            <ChevronRight size={18} />
-          </button>
+            <button type="button" className="discovery-rail__nav" onClick={() => scrollBy(1)} aria-label="Scroll right">
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="discovery-rail__head discovery-rail__head--nav-only">
+          <div className="discovery-rail__actions">
+            {onSeeAll ? (
+              <button type="button" className="discovery-rail__see-all" onClick={onSeeAll}>
+                See all
+                <Sparkles size={14} aria-hidden />
+              </button>
+            ) : null}
+            <button type="button" className="discovery-rail__nav" onClick={() => scrollBy(-1)} aria-label="Scroll left">
+              <ChevronLeft size={18} />
+            </button>
+            <button type="button" className="discovery-rail__nav" onClick={() => scrollBy(1)} aria-label="Scroll right">
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="discovery-rail__track" ref={trackRef}>
         {trackItems.map((item) => {

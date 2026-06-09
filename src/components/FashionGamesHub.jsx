@@ -10,6 +10,7 @@ import { getAllGames } from '../data/fashionGames';
 import { getGameHubStats } from '../utils/gameVotesStorage';
 import { formatVoteCount } from '../utils/fashionGameEngine';
 import PageBackButton from './PageBackButton';
+import PageShell from './PageShell';
 import EndlessDiscovery from './EndlessDiscovery';
 import PlacedAdSlot from './PlacedAdSlot';
 import './FashionGames.css';
@@ -35,10 +36,18 @@ export default function FashionGamesHub({
   const hubStats = useMemo(() => getGameHubStats(), []);
 
   return (
-    <div className="fashion-games fashion-games--hub">
-      <div className="container fashion-games-hub__top">
-        <PageBackButton onClick={onBack} label="Home" />
-      </div>
+    <PageShell
+      className="fashion-games fashion-games--hub"
+      variant="hub"
+      eyebrow="Fashion games"
+      title="Play & vote"
+      subtitle="Rate outfits, pick a style lane, or battle looks head-to-head — see how your taste compares."
+      top={
+        <div className="container fashion-games-hub__top">
+          <PageBackButton onClick={onBack} label="Home" />
+        </div>
+      }
+    >
 
       <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="games_hub_mid" variant="section" />
@@ -101,6 +110,6 @@ export default function FashionGamesHub({
           </div>
         </section>
       ) : null}
-    </div>
+    </PageShell>
   );
 }

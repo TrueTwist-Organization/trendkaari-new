@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import ProductImage from './ProductImage';
 import PageBackButton from './PageBackButton';
+import PageShell from './PageShell';
 import {
   getMagazineCategories,
 } from '../data/fashionMagazine';
@@ -73,9 +74,19 @@ export default function FashionMagazineHub({
   );
 
   return (
-    <div className="fashion-magazine fashion-magazine--hub">
+    <PageShell
+      className="fashion-magazine fashion-magazine--hub"
+      variant="hub"
+      eyebrow="Editorial"
+      title="Fashion Magazine"
+      subtitle="Trends, styling tips, celebrity looks, and buying guides — curated reads that lead to shop."
+      top={
+        <div className="container fashion-magazine__body">
+          <PageBackButton onClick={onBack} label="Home" />
+        </div>
+      }
+    >
       <div className="container fashion-magazine__body">
-        <PageBackButton onClick={onBack} label="Home" />
         <section className="fashion-magazine__categories">
           <div className="fashion-magazine__section-head">
             <h2>Browse by category</h2>
@@ -160,6 +171,6 @@ export default function FashionMagazineHub({
           />
         ) : null}
       </div>
-    </div>
+    </PageShell>
   );
 }

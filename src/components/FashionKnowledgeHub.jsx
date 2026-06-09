@@ -1,6 +1,7 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { ArrowRight, BookMarked } from 'lucide-react';
 import PageBackButton from './PageBackButton';
+import PageShell from './PageShell';
 import ProductImage from './ProductImage';
 import DiscoveryLoopSection from './DiscoveryLoopSection';
 import { getKnowledgeTopics } from '../data/fashionKnowledge';
@@ -65,9 +66,19 @@ export default function FashionKnowledgeHub({
   );
 
   return (
-    <div className="fashion-knowledge fashion-knowledge--hub">
+    <PageShell
+      className="fashion-knowledge fashion-knowledge--hub"
+      variant="hub"
+      eyebrow="Style guides"
+      title="Fashion Knowledge"
+      subtitle="Expert guides on fabrics, fits, occasions, and how to shop smarter."
+      top={
+        <div className="container fashion-knowledge__body">
+          <PageBackButton onClick={onBack} label="Home" />
+        </div>
+      }
+    >
       <div className="container fashion-knowledge__body">
-        <PageBackButton onClick={onBack} label="Home" />
         <section className="fashion-knowledge__section fashion-knowledge__section--featured">
           <div className="fashion-knowledge__section-head">
             <BookMarked size={18} aria-hidden />
@@ -130,6 +141,6 @@ export default function FashionKnowledgeHub({
         onStartQuiz={onStartQuiz}
         onOpenKnowledgePage={onOpenPage}
       />
-    </div>
+    </PageShell>
   );
 }

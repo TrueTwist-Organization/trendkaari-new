@@ -112,7 +112,7 @@
 /* Hub */
 .fashion-knowledge--hub {
   background: #fff;
-  padding-top: var(--site-header-total, 114px);
+  padding-top: 0;
 }
 
 .fashion-knowledge--hub .fashion-knowledge__body {

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { useRedisPersistence } from './redisStore.js';
 import { useSqlitePersistence, loadStoreFromSqlite } from './sqliteDb.js';
 import { isValidAdSlot, sanitizeAdSlotList } from './adSlotValidation.js';
+import { getDefaultAdSlots } from './defaultAdSlots.js';
 
 /** Admin defines 66 placements — allow all filled slots to persist (no artificial 30 cap). */
 const MAX_SAVED_AD_SLOTS = 80;
@@ -195,12 +196,29 @@ export async function savePersistedAdSlots(adSlots, { allowEmpty = false } = {})
 /** Always read fresh from durable storage for public/admin APIs */
 export async function resolveStoreAdSlots(fallback = []) {
   const persisted = await loadPersistedAdSlots({ bypassCache: true });
+  const seed = getDefaultAdSlots();
 
-  if (persisted !== undefined) {
-    return sanitizeAdSlotList(persisted);
+  if (persisted === undefined) {
+    return sanitizeAdSlotList(seed.length ? seed : fallback);
   }
 
-  return sanitizeAdSlotList(Array.isArray(fallback) ? fallback : []);
+  if (!persisted.length && seed.length) {
+    return sanitizeAdSlotList(seed);
+  }
+
+  /* Backfill built-in GPT map when admin has fewer than the standard inventory. */
+  const seedTarget = seed.length;
+  if (seedTarget > 0 && persisted.length < seedTarget) {
+    const merged = mergeAdSlotRecords(persisted, seed);
+    if (merged.length > persisted.length) {
+      savePersistedAdSlots(merged, { allowEmpty: false }).catch((err) => {
+        console.warn('[ad-slots] auto-seed save failed:', err.message);
+      });
+    }
+    return sanitizeAdSlotList(merged);
+  }
+
+  return sanitizeAdSlotList(persisted);
 }
 
 export async function mergeAndPersistAdSlots(incoming = []) {

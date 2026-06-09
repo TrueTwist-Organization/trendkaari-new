@@ -1,6 +1,34 @@
 {
   "sessions": [
     {
+      "id": "d877c157-bcac-447c-8f7b-4072aa0d3a72",
+      "startedAt": 1780993565212,
+      "pageCount": 1,
+      "lastPage": "/knowledge/what-is-anarkali",
+      "updatedAt": 1780993565212
+    },
+    {
+      "id": "abc805d6-7e62-4145-944d-39e5b6966b3d",
+      "startedAt": 1780993535965,
+      "pageCount": 1,
+      "lastPage": "/discover",
+      "updatedAt": 1780993535965
+    },
+    {
+      "id": "1fd13263-5a8f-4f89-99d8-54029fef9e04",
+      "startedAt": 1780993308487,
+      "pageCount": 1,
+      "lastPage": "/knowledge/what-is-anarkali",
+      "updatedAt": 1780993308487
+    },
+    {
+      "id": "40ed3ad3-e660-4e67-80e9-eaf6fdad6639",
+      "startedAt": 1780991211813,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1780991211813
+    },
+    {
       "id": "9cb50247-ae04-4c09-a5fc-9a9721795e52",
       "startedAt": 1780985298155,
       "pageCount": 1,
@@ -9,10 +37,10 @@
     },
     {
       "id": "bce2c2e1-eafb-43fd-b371-dd03969d19d9",
-      "startedAt": 1780985753911,
+      "startedAt": 1780991212389,
       "pageCount": 1,
-      "lastPage": "/product/1028",
-      "updatedAt": 1780985753911
+      "lastPage": "/",
+      "updatedAt": 1780991212389
     },
     {
       "id": "c4391bb0-b653-4b4e-9928-203968eb31dc",
@@ -185,15 +213,15 @@
   ],
   "pageStats": {
     "/": {
-      "views": 200,
+      "views": 232,
       "scroll": {
-        "25": 48,
+        "25": 52,
         "50": 30,
         "75": 22,
         "100": 15
       },
-      "totalDurationMs": 156239585,
-      "clicks": 47,
+      "totalDurationMs": 172828136,
+      "clicks": 51,
       "heatmap": {
         "7,8": 1,
         "4,4": 2,
@@ -205,7 +233,7 @@
         "5,4": 3,
         "5,7": 2,
         "3,3": 1,
-        "3,5": 1,
+        "3,5": 2,
         "4,5": 4,
         "5,8": 1,
         "4,0": 1,
@@ -214,12 +242,13 @@
         "2,8": 1,
         "8,8": 1,
         "5,6": 2,
-        "2,4": 1,
+        "2,4": 2,
         "6,7": 1,
         "5,1": 1,
-        "1,0": 1,
+        "1,0": 2,
         "0,6": 1,
-        "1,5": 1
+        "1,5": 1,
+        "1,4": 1
       }
     },
     "/product/1036": {
@@ -425,17 +454,17 @@
       }
     },
     "/celebrity-match/deepika-airport": {
-      "views": 4,
+      "views": 5,
       "scroll": {
-        "25": 2,
-        "50": 1,
-        "75": 1,
-        "100": 1
+        "25": 3,
+        "50": 2,
+        "75": 2,
+        "100": 2
       },
-      "totalDurationMs": 945919,
-      "clicks": 1,
+      "totalDurationMs": 950919,
+      "clicks": 2,
       "heatmap": {
-        "4,0": 1
+        "4,0": 2
       }
     },
     "/product/3409": {
@@ -542,14 +571,14 @@
       "heatmap": {}
     },
     "/discover": {
-      "views": 5,
+      "views": 6,
       "scroll": {
-        "25": 3,
-        "50": 1,
-        "75": 1,
+        "25": 4,
+        "50": 2,
+        "75": 2,
         "100": 1
       },
-      "totalDurationMs": 561149,
+      "totalDurationMs": 573558,
       "clicks": 10,
       "heatmap": {
         "5,0": 1,
@@ -808,29 +837,59 @@
       }
     },
     "/games": {
-      "views": 1,
+      "views": 2,
       "scroll": {
         "25": 1,
         "50": 1,
         "75": 1,
         "100": 0
       },
-      "totalDurationMs": 171874,
-      "clicks": 2,
+      "totalDurationMs": 175922,
+      "clicks": 6,
       "heatmap": {
-        "1,0": 1,
-        "0,1": 1
+        "1,0": 3,
+        "0,1": 1,
+        "0,6": 1,
+        "0,7": 1
       }
     },
     "/product/1028": {
-      "views": 1,
+      "views": 4,
       "scroll": {
-        "25": 1,
-        "50": 1,
+        "25": 2,
+        "50": 2,
+        "75": 2,
+        "100": 2
+      },
+      "totalDurationMs": 2697022,
+      "clicks": 1,
+      "heatmap": {
+        "5,1": 1
+      }
+    },
+    "/category/gents-kurtas": {
+      "views": 9,
+      "scroll": {
+        "25": 3,
+        "50": 3,
+        "75": 3,
+        "100": 3
+      },
+      "totalDurationMs": 840757,
+      "clicks": 1,
+      "heatmap": {
+        "4,1": 1
+      }
+    },
+    "/knowledge/what-is-anarkali": {
+      "views": 4,
+      "scroll": {
+        "25": 2,
+        "50": 2,
         "75": 1,
         "100": 1
       },
-      "totalDurationMs": 1354882,
+      "totalDurationMs": 6,
       "clicks": 0,
       "heatmap": {}
     }
@@ -838,7 +897,7 @@
   "pathEdges": {
     "/product/1036 → /product/1036": 6,
     "/product/1036 → /": 1,
-    "/ → /": 151,
+    "/ → /": 178,
     "/celebrity-match/alia-reception → /celebrity-match/alia-reception": 8,
     "/ → /dmin": 1,
     "/dmin → /dmin": 1,
@@ -861,8 +920,8 @@
     "/ → /quiz/outfit-finder": 3,
     "/quiz/outfit-finder → /product/1008": 1,
     "/product/1008 → /": 1,
-    "/ → /celebrity-match/deepika-airport": 2,
-    "/celebrity-match/deepika-airport → /": 1,
+    "/ → /celebrity-match/deepika-airport": 3,
+    "/celebrity-match/deepika-airport → /": 2,
     "/ → /product/3409": 1,
     "/product/3409 → /product/3806": 1,
     "/product/3806 → /product/3305": 1,
@@ -878,7 +937,7 @@
     "/product/3806 → /product/3806": 6,
     "/product/3806 → /": 1,
     "/celebrity-match/deepika-airport → /celebrity-match/deepika-airport": 2,
-    "/ → /discover": 3,
+    "/ → /discover": 4,
     "/discover → /": 2,
     "/celebrity-match/janhvi-sangeet → /product/1016": 1,
     "/product/1016 → /product/1016": 8,
@@ -926,8 +985,15 @@
     "/ → /quiz": 1,
     "/quiz → /games": 1,
     "/games → /category/all": 1,
-    "/celebrity-match/alia-reception → /product/1028": 1
+    "/celebrity-match/alia-reception → /product/1028": 1,
+    "/product/1028 → /product/1028": 3,
+    "/product/1028 → /": 1,
+    "/ → /games": 1,
+    "/games → /category/gents-kurtas": 1,
+    "/category/gents-kurtas → /category/gents-kurtas": 8,
+    "/category/gents-kurtas → /": 1,
+    "/knowledge/what-is-anarkali → /knowledge/what-is-anarkali": 2
   },
-  "totalEvents": 1537,
-  "updatedAt": "2026-06-09T06:21:09.786Z"
+  "totalEvents": 1720,
+  "updatedAt": "2026-06-09T08:26:05.212Z"
 }

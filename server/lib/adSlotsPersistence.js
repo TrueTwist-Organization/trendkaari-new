@@ -47,6 +47,22 @@ export function mergeAdSlotRecords(existing = [], incoming = []) {
   return [...map.values()];
 }
 
+/** Add seed placements only when admin storage has no entry for that placement. */
+export function backfillMissingSeedPlacements(existing = [], seed = []) {
+  const map = new Map();
+  (existing || []).forEach((slot) => {
+    if (slot?.placement && String(slot.code || '').trim()) {
+      map.set(slot.placement, slot);
+    }
+  });
+  (seed || []).forEach((slot) => {
+    if (slot?.placement && String(slot.code || '').trim() && !map.has(slot.placement)) {
+      map.set(slot.placement, slot);
+    }
+  });
+  return [...map.values()];
+}
+
 async function readFromBlob() {
   const { head } = await import('@vercel/blob');
   const meta = await head(BLOB_PATHNAME);
@@ -206,10 +222,9 @@ export async function resolveStoreAdSlots(fallback = []) {
     return sanitizeAdSlotList(seed);
   }
 
-  /* Backfill built-in GPT map when admin has fewer than the standard inventory. */
-  const seedTarget = seed.length;
-  if (seedTarget > 0 && persisted.length < seedTarget) {
-    const merged = mergeAdSlotRecords(persisted, seed);
+  /* Backfill built-in GPT map when standard placements are missing from admin storage. */
+  if (seed.length > 0) {
+    const merged = backfillMissingSeedPlacements(persisted, seed);
     if (merged.length > persisted.length) {
       savePersistedAdSlots(merged, { allowEmpty: false }).catch((err) => {
         console.warn('[ad-slots] auto-seed save failed:', err.message);

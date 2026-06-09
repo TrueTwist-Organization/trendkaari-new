@@ -20,6 +20,7 @@ import PlacedAdSlot from '../components/PlacedAdSlot';
 import { CheckoutFreeShipBar } from './CheckoutStepExtras';
 import { SUCCESS_STEP_INDEX } from './checkoutSteps';
 import { formatCouponDiscountShort } from '../utils/couponDiscount';
+import { isSpinWheelEligible, SPIN_WHEEL_MIN_ORDER } from '../constants/spinWheel';
 
 function wrapStep(stepIndex, node, adCodes, shellProps = {}) {
   return (
@@ -638,6 +639,21 @@ export default function CheckoutStepPages({ step, ctx }) {
           {reservedMinutes > 0 && (
             <div className="co-fashion-alert">
               Complete within {reservedMinutes} min — items reserved
+            </div>
+          )}
+          {isSpinWheelEligible(grandTotal) ? (
+            <div className="co-spin-teaser" role="note">
+              <Sparkles size={16} aria-hidden />
+              <span>
+                <strong>Spin wheel unlocked!</strong> Place this ₹{grandTotal} order to spin and win coupons.
+              </span>
+            </div>
+          ) : (
+            <div className="co-spin-teaser" role="note">
+              <Sparkles size={16} aria-hidden />
+              <span>
+                Shop ₹{SPIN_WHEEL_MIN_ORDER}+ to unlock a <strong>free spin wheel</strong> reward after checkout.
+              </span>
             </div>
           )}
           <div className="co-pay-methods" role="tablist">

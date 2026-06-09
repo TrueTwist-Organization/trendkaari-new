@@ -2090,6 +2090,30 @@
   border-color: var(--co-border-glow);
 }
 
+.co-spin-teaser {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--co-text, #3d2a35);
+  background: linear-gradient(135deg, rgba(96, 11, 69, 0.08), rgba(212, 180, 131, 0.14));
+  border: 1px solid rgba(96, 11, 69, 0.18);
+}
+
+.co-spin-teaser svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #600b45;
+}
+
+.co-spin-teaser strong {
+  color: #600b45;
+}
+
 .co-ship-btn .co-parcel-icon {
   margin-right: 6px;
   display: inline-block;

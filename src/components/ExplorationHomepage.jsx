@@ -66,8 +66,8 @@ export default function ExplorationHomepage({
         <div className="home-trust__inner container">
           {TRUST_ITEMS.map(({ icon: Icon, label, sub }) => (
             <div key={label} className="home-trust__item">
-              <span className="home-trust__icon"><Icon size={18} aria-hidden /></span>
-              <div>
+              <span className="home-trust__icon"><Icon size={17} aria-hidden /></span>
+              <div className="home-trust__copy">
                 <strong>{label}</strong>
                 <span>{sub}</span>
               </div>

@@ -78,8 +78,10 @@ export default function EndlessDiscovery({
   };
 
   return (
-    <section className={`endless-discovery endless-discovery--${variant} recommendation-rails recommendation-rails--${variant}`}>
-      {showIntro ? (
+    <section
+      className={`endless-discovery endless-discovery--${variant} recommendation-rails recommendation-rails--${variant}${showIntro && title ? ' endless-discovery--intro-merged' : ''}`}
+    >
+      {showIntro && title ? (
         <header className="recommendation-rails__intro endless-discovery__intro">
           <div>
             <p className="recommendation-rails__eyebrow endless-discovery__eyebrow">
@@ -97,6 +99,7 @@ export default function EndlessDiscovery({
         products={discovery.similarProducts.products}
         tone={discovery.similarProducts.tone}
         compact={compact}
+        showHead={!(showIntro && title)}
         onSelectProduct={onSelectProduct}
         onSeeAll={() => onSelectCategory?.(discovery.similarProducts.category)}
         adCodes={showAds && variant === 'product' ? adCodes : {}}

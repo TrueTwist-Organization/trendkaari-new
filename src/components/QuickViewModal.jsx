@@ -6,6 +6,7 @@ import StoreCouponsPromo from './StoreCouponsPromo';
 import ProductImage from './ProductImage';
 import { getProductGalleryImages, getProductPrimaryImage } from '../utils/productImages';
 import { buildRecommendationGrid } from '../utils/recommendationEngine';
+import { formatSizeChartAsText } from '../utils/productContent';
 
 export default function QuickViewModal({ 
   product, 
@@ -198,7 +199,11 @@ export default function QuickViewModal({
             <div className="quickview-size-selector-section-new">
               <div className="size-label-row-new">
                 <span className="quickview-label-new">SELECT SIZE:</span>
-                <button className="size-chart-link-btn" onClick={() => alert("📏 SIZE CHART & MEASUREMENTS\n\nStandard Indian sizes (in inches):\nXS: Chest 34, Waist 28\nS: Chest 36, Waist 30\nM: Chest 38, Waist 32\nL: Chest 40, Waist 34\nXL: Chest 42, Waist 36\nXXL: Chest 44, Waist 38")}>
+                <button
+                  className="size-chart-link-btn"
+                  type="button"
+                  onClick={() => alert(formatSizeChartAsText(product))}
+                >
                   SIZE CHART
                 </button>
               </div>

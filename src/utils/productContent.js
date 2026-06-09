@@ -17,6 +17,47 @@ const SIZE_CHART_ETHNIC = [
   { size: 'XXL', chest: '42 – 44', shoulder: '16.5', length: '48', sleeve: '19' },
 ];
 
+/** Men's jeans — waist / hip / inseam (inches). */
+const SIZE_CHART_JEANS = [
+  { size: 'S', waist: '28 – 29', hip: '36 – 37', inseam: '30', thigh: '21', rise: '9.5' },
+  { size: 'M', waist: '30 – 31', hip: '38 – 39', inseam: '30', thigh: '22', rise: '10' },
+  { size: 'L', waist: '32 – 33', hip: '40 – 41', inseam: '31', thigh: '23', rise: '10.5' },
+  { size: 'XL', waist: '34 – 35', hip: '42 – 43', inseam: '31', thigh: '24', rise: '11' },
+  { size: 'XXL', waist: '36 – 37', hip: '44 – 45', inseam: '31', thigh: '25', rise: '11.5' },
+];
+
+const SIZE_CHART_COLUMN_DEFS = {
+  ethnic: [
+    { key: 'chest', label: 'Chest' },
+    { key: 'shoulder', label: 'Shoulder' },
+    { key: 'length', label: 'Length' },
+    { key: 'sleeve', label: 'Sleeve' },
+  ],
+  mens: [
+    { key: 'chest', label: 'Chest' },
+    { key: 'shoulder', label: 'Shoulder' },
+    { key: 'length', label: 'Length' },
+    { key: 'sleeve', label: 'Sleeve' },
+  ],
+  'ladies-western': [
+    { key: 'chest', label: 'Chest' },
+    { key: 'shoulder', label: 'Shoulder' },
+    { key: 'length', label: 'Length' },
+    { key: 'sleeve', label: 'Sleeve' },
+  ],
+  jeans: [
+    { key: 'waist', label: 'Waist' },
+    { key: 'hip', label: 'Hip' },
+    { key: 'inseam', label: 'Inseam' },
+    { key: 'thigh', label: 'Thigh' },
+    { key: 'rise', label: 'Rise' },
+  ],
+};
+
+function isJeans(product) {
+  return (product?.subCategory || '').toLowerCase() === 'jeans';
+}
+
 function isMensWestern(product) {
   const sub = (product.subCategory || '').toLowerCase();
   const cat = (product.category || '').toLowerCase();
@@ -167,8 +208,8 @@ function mensWesternContent(product) {
       'Product Care': 'Machine wash cold, do not bleach, dry in shade',
       Colour: color,
     },
-    sizeChart: SIZE_CHART_APPAREL,
-    sizeChartType: 'mens',
+    sizeChart: sub === 'jeans' ? SIZE_CHART_JEANS : SIZE_CHART_APPAREL,
+    sizeChartType: sub === 'jeans' ? 'jeans' : 'mens',
   };
 }
 
@@ -416,11 +457,14 @@ export function getProductDetailContent(product) {
         product.additionalInfo && Object.keys(product.additionalInfo).length
           ? product.additionalInfo
           : generated.additionalInfo,
-      sizeChart:
-        product.sizeChart?.length
+      sizeChart: isJeans(product)
+        ? SIZE_CHART_JEANS
+        : product.sizeChart?.length
           ? product.sizeChart
           : generated.sizeChart,
-      sizeChartType: product.sizeChartType || generated.sizeChartType,
+      sizeChartType: isJeans(product)
+        ? 'jeans'
+        : product.sizeChartType || generated.sizeChartType,
     };
   }
 
@@ -481,8 +525,12 @@ export function applyProductDetailDefaults(product) {
     additionalInfo: hasNonEmptyObject(product.additionalInfo)
       ? product.additionalInfo
       : generated.additionalInfo,
-    sizeChart: product.sizeChart?.length ? product.sizeChart : generated.sizeChart,
-    sizeChartType: product.sizeChartType || generated.sizeChartType,
+    sizeChart: isJeans(product)
+      ? SIZE_CHART_JEANS
+      : product.sizeChart?.length
+        ? product.sizeChart
+        : generated.sizeChart,
+    sizeChartType: isJeans(product) ? 'jeans' : product.sizeChartType || generated.sizeChartType,
     discount: String(product.discount || '').trim() || autoDiscount,
     rating:
       product.rating != null && product.rating !== ''
@@ -496,8 +544,50 @@ export function applyProductDetailDefaults(product) {
 }
 
 export function getSizeChartForProduct(product) {
+  if (isJeans(product)) return SIZE_CHART_JEANS;
   const content = getProductDetailContent(product);
   return content?.sizeChart || SIZE_CHART_ETHNIC;
+}
+
+export function getSizeChartMeta(product) {
+  if (isJeans(product)) {
+    return {
+      type: 'jeans',
+      title: 'Jeans Size Chart (inches)',
+      columns: SIZE_CHART_COLUMN_DEFS.jeans,
+      note:
+        'Waist is measured flat across the top edge. Hip at the widest point. Inseam from crotch seam to hem. Compare with jeans you already wear for the best fit.',
+    };
+  }
+
+  const content = getProductDetailContent(product);
+  const type = content?.sizeChartType || 'ethnic';
+  const columns =
+    SIZE_CHART_COLUMN_DEFS[type] ||
+    SIZE_CHART_COLUMN_DEFS.ethnic;
+
+  const titleByType = {
+    ethnic: 'Size Chart (inches)',
+    mens: 'Size Chart (inches)',
+    'ladies-western': 'Size Chart (inches)',
+  };
+
+  return {
+    type,
+    title: titleByType[type] || 'Size Chart (inches)',
+    columns,
+    note: 'Measurements are approximate. For the best fit, compare with a similar garment you own.',
+  };
+}
+
+export function formatSizeChartAsText(product) {
+  const meta = getSizeChartMeta(product);
+  const chart = getSizeChartForProduct(product);
+  const header = ['Size', ...meta.columns.map((col) => col.label)].join('  ·  ');
+  const rows = chart.map((row) =>
+    [row.size, ...meta.columns.map((col) => row[col.key] || '—')].join('  ·  '),
+  );
+  return [meta.title, '', header, ...rows, '', meta.note].join('\n');
 }
 
 /** Split "LABEL: body text" bullets like Amazon About this item */

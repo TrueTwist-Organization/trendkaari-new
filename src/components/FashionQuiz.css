@@ -445,7 +445,7 @@
 /* —— Quiz Hub —— */
 .fashion-quiz--hub {
   background: #fff;
-  padding-top: var(--site-header-total, 114px);
+  padding-top: 0;
 }
 
 .fashion-quiz-hub__top {

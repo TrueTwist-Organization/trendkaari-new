@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Sparkles, Shirt, PartyPopper, Heart, Wand2 } from 'lucide-react';
 import PageBackButton from './PageBackButton';
+import PageShell from './PageShell';
 import { fetchQuizzesList } from '../utils/editorialContentData';
 import { getAllQuizzes } from '../data/fashionQuizzes';
 import './FashionQuiz.css';
@@ -35,10 +36,18 @@ export default function FashionQuizHub({
   }, []);
 
   return (
-    <div className="fashion-quiz fashion-quiz--hub">
-      <div className="container fashion-quiz-hub__top">
-        <PageBackButton onClick={onBack} label="Home" />
-      </div>
+    <PageShell
+      className="fashion-quiz fashion-quiz--hub"
+      variant="hub"
+      eyebrow="Style quizzes"
+      title="Find your fashion vibe"
+      subtitle="Quick quizzes and AI Style Finder — personalized picks in minutes."
+      top={
+        <div className="container fashion-quiz-hub__top">
+          <PageBackButton onClick={onBack} label="Home" />
+        </div>
+      }
+    >
 
       <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="quiz_hub_mid" variant="section" />
@@ -123,6 +132,6 @@ export default function FashionQuizHub({
           </div>
         </section>
       ) : null}
-    </div>
+    </PageShell>
   );
 }

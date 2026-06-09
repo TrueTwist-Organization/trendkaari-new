@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Star, ShoppingBag, Plus, Minus, Heart, Truck, RefreshCw, ShieldCheck, Banknote, X, Sparkles } from 'lucide-react';
-import { getProductDetailContent, getSizeChartForProduct } from '../utils/productContent';
+import { getProductDetailContent, getSizeChartForProduct, getSizeChartMeta } from '../utils/productContent';
 import ProductDetailsAmazon from './ProductDetailsAmazon';
 import ProductDiscoveryRails from './ProductDiscoveryRails';
 import './ProductDetailPage.css';
@@ -37,6 +37,7 @@ export default function ProductDetailPage({
 
   const detailContent = getProductDetailContent(product);
   const sizeChart = getSizeChartForProduct(product);
+  const sizeChartMeta = getSizeChartMeta(product);
   const pImages = getProductGalleryImages(product);
 
   const breadcrumbCategory = (product.subCategory || product.category || 'Shop')
@@ -368,7 +369,7 @@ export default function ProductDetailPage({
           <div className="pdp-size-chart-backdrop" onClick={() => setShowSizeChart(false)} />
           <div className="pdp-size-chart-panel">
             <div className="pdp-size-chart-head">
-              <h3>Size Chart (inches)</h3>
+              <h3>{sizeChartMeta.title}</h3>
               <button type="button" onClick={() => setShowSizeChart(false)} aria-label="Close">
                 <X size={20} />
               </button>
@@ -378,27 +379,25 @@ export default function ProductDetailPage({
                 <thead>
                   <tr>
                     <th>Size</th>
-                    <th>Chest</th>
-                    <th>Shoulder</th>
-                    <th>Length</th>
-                    <th>Sleeve</th>
+                    {sizeChartMeta.columns.map((col) => (
+                      <th key={col.key}>{col.label}</th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
                   {sizeChart.map((row) => (
                     <tr key={row.size}>
                       <td><strong>{row.size}</strong></td>
-                      <td>{row.chest}</td>
-                      <td>{row.shoulder}</td>
-                      <td>{row.length}</td>
-                      <td>{row.sleeve}</td>
+                      {sizeChartMeta.columns.map((col) => (
+                        <td key={col.key}>{row[col.key] || '—'}</td>
+                      ))}
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             <p className="pdp-size-chart-note">
-              Measurements are approximate. For the best fit, compare with a similar garment you own.
+              {sizeChartMeta.note}
             </p>
           </div>
         </div>

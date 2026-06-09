@@ -22,7 +22,7 @@
 }
 
 .recommendation-rails__intro {
-  max-width: 1450px;
+  max-width: 1440px;
   margin: 0 auto 8px;
   padding: 16px 16px 4px;
   text-align: left;
@@ -51,4 +51,17 @@
 
 .recommendation-rails .discovery-rail:first-of-type {
   padding-top: 12px;
+}
+
+.endless-discovery--intro-merged .recommendation-rails__intro {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.endless-discovery--intro-merged .discovery-rail:first-of-type {
+  padding-top: 0;
+}
+
+.discovery-rail--headless {
+  padding-top: 8px;
 }

@@ -8,6 +8,7 @@ import {
   Zap,
 } from 'lucide-react';
 import PageBackButton from './PageBackButton';
+import PageShell from './PageShell';
 import ProductImage from './ProductImage';
 import ProductDiscountChip from './ProductDiscountChip';
 import { buildViralFashionHub } from '../utils/viralFashionEngine';
@@ -202,10 +203,18 @@ export default function ViralFashionHub({
   if (!hub) return null;
 
   return (
-    <div className="viral-hub">
-      <div className="container viral-hub__top">
-        <PageBackButton onClick={onBack} label="Home" />
-      </div>
+    <PageShell
+      className="viral-hub"
+      variant="hub"
+      eyebrow="Trending now"
+      title="Viral Fashion"
+      subtitle="Most opened looks, Instagram edits, celebrity-inspired picks, and best sellers."
+      top={
+        <div className="container viral-hub__top">
+          <PageBackButton onClick={onBack} label="Home" />
+        </div>
+      }
+    >
 
       <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="viral_hub_mid" variant="section" />
@@ -262,6 +271,6 @@ export default function ViralFashionHub({
           </button>
         </div>
       </footer>
-    </div>
+    </PageShell>
   );
 }

@@ -106,8 +106,9 @@ export default function DiscoveryFeed({
             onStartQuiz={onStartQuiz}
             adCodes={adCodes}
             variant="browse"
-            title="Endless discovery"
-            subtitle="Similar products, related collections, articles, quizzes, and trending picks."
+            title=""
+            subtitle=""
+            showIntro={false}
             showAds={false}
           />
           {fullPage ? (

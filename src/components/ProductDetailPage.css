@@ -4,13 +4,13 @@
 }
 
 .product-detail-page-container {
-  --pdp-header-offset: 114px;
+  --pdp-header-offset: var(--site-header-total, 114px);
   --pdp-section-gap: 20px;
   --pdp-radius: 10px;
   --pdp-surface: #faf8f6;
   --pdp-border-soft: #ece6ea;
   --pdp-content-max: 1440px;
-  padding-top: var(--pdp-header-offset);
+  padding-top: 1rem;
   padding-bottom: 32px;
   background: transparent;
 }

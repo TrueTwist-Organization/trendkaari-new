@@ -273,13 +273,14 @@ export default function CheckoutFlow({
     if (!isOpen || !onNavigateCheckout) return;
     if (isCheckoutErrorSlug(stepSlug)) return;
     if (!isSuccessSlug(stepSlug)) return;
+    if (completedOrder) return;
     setOrderFailed(true);
     const saved = loadOrderFailure();
     const msg = saved?.message || 'We could not complete your order due to a technical issue.';
     setOrderFailMessage(msg);
     if (!saved) saveOrderFailure(msg);
     onNavigateCheckout(`/checkout/${CHECKOUT_ERROR_SLUG}`);
-  }, [isOpen, stepSlug, onNavigateCheckout]);
+  }, [isOpen, stepSlug, onNavigateCheckout, completedOrder]);
 
   useEffect(() => {
     if (!isOpen || !isCheckoutErrorSlug(stepSlug)) return;
@@ -559,16 +560,15 @@ export default function CheckoutFlow({
             'Confirmation email could not be sent. Please start checkout again from your bag.'
         );
       }
-      const failMsg = 'We could not complete your order due to a technical issue.';
+      clearOrderFailure();
       setPaymentFail(false);
       setError('');
-      setOrderFailMessage(failMsg);
-      saveOrderFailure(failMsg);
+      setOrderFailMessage('');
+      setOrderFailed(false);
+      setCompletedOrder(result.order);
       clearCheckoutState();
-      setCompletedOrder(null);
-      setOrderFailed(true);
-      onNavigateCheckout?.(`/checkout/${CHECKOUT_ERROR_SLUG}`);
-      scrollToPageTop();
+      spawnConfetti();
+      goStep(SUCCESS_STEP_INDEX);
     } catch (err) {
       const msg = err?.message || '';
       if (/sign in/i.test(msg)) {

@@ -1,5 +1,5 @@
 /**
- * Restore primary ad placements only (one ad per section — no stacks).
+ * Restore GPT ad placements from server/lib/gptAdInventory.js (unique unit per slot).
  *
  * Usage:
  *   node scripts/restore-ad-slots.js
@@ -8,36 +8,26 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { PRIMARY_AD_PLACEMENT_KEYS } from '../src/constants/adPlacements.js';
-import { encodeAdCode } from '../server/lib/adSlotCode.js';
-import { buildGptAdHtml } from '../server/lib/gptAdTemplates.js';
+import { getDefaultAdSlots } from '../server/lib/defaultAdSlots.js';
 import { savePersistedAdSlots } from '../server/lib/adSlotsPersistence.js';
 import { saveAdSlotsToSqlite } from '../server/lib/sqliteDb.js';
+import { PLACEMENT_GPT_UNIT } from '../server/lib/gptAdInventory.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '../server/data/ad-slots.json');
-const now = new Date().toISOString();
 
-const slots = PRIMARY_AD_PLACEMENT_KEYS.map((placement, index) => {
-  const unit = index % 2 === 0 ? 'a1' : 'a2';
-  const html = buildGptAdHtml(placement, { unit });
-  return {
-    placement,
-    code: encodeAdCode(html),
-    encoded: true,
-    updatedAt: now,
-  };
-});
+const slots = getDefaultAdSlots();
 
 fs.writeFileSync(OUT_PATH, JSON.stringify(slots, null, 2), 'utf8');
-console.log(`Wrote ${slots.length} primary ad slots → ${OUT_PATH}`);
+console.log(`Wrote ${slots.length} ad slots → ${OUT_PATH}`);
+console.log('Placements:', Object.keys(PLACEMENT_GPT_UNIT).join(', '));
 
 if (process.env.USE_SQLITE === 'true') {
   await saveAdSlotsToSqlite(slots);
-  console.log('Synced ad slots into SQLite (products untouched).');
+  console.log('Synced ad slots into SQLite.');
 }
 
 if (process.argv.includes('--push')) {
-  await savePersistedAdSlots(slots);
+  await savePersistedAdSlots(slots, { allowEmpty: false });
   console.log('Pushed ad slots to remote persistence (Blob/Redis).');
 }

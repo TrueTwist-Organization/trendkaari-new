@@ -64,17 +64,59 @@ export function buildStyleGameOptions(allProducts) {
   });
 }
 
-export function buildLookBattles(allProducts, rounds = 5) {
-  if (!allProducts?.length) return [];
-  const pool = seededShuffle(allProducts, `battle-${weekSeed()}`);
-  const battles = [];
+export function filterProductsByGender(products, gender = 'women') {
+  const g = String(gender || 'women').toLowerCase();
+  return (products || []).filter((p) => {
+    const cat = (p.category || '').toLowerCase();
+    if (g === 'men') return cat === 'men' || cat === 'gents';
+    return cat === 'women';
+  });
+}
 
-  for (let i = 0; i < pool.length - 1 && battles.length < rounds; i += 2) {
-    battles.push({
-      id: `battle-${battles.length + 1}`,
-      left: pool[i],
-      right: pool[i + 1],
-    });
+/** Pair looks within the same gender; prefer same sub-category matchups. */
+export function buildLookBattles(allProducts, rounds = 5, { gender = 'women' } = {}) {
+  const pool = filterProductsByGender(allProducts, gender);
+  if (pool.length < 2) return [];
+
+  const seed = `battle-${gender}-${weekSeed()}`;
+  const battles = [];
+  const used = new Set();
+
+  const bySubCategory = pool.reduce((acc, product) => {
+    const key = (product.subCategory || 'other').toLowerCase();
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(product);
+    return acc;
+  }, {});
+
+  for (const key of seededShuffle(Object.keys(bySubCategory), seed)) {
+    const items = seededShuffle(bySubCategory[key], `${seed}-${key}`);
+    for (let i = 0; i < items.length - 1 && battles.length < rounds; i += 2) {
+      const left = items[i];
+      const right = items[i + 1];
+      if (used.has(left.id) || used.has(right.id)) continue;
+      used.add(left.id);
+      used.add(right.id);
+      battles.push({
+        id: `battle-${battles.length + 1}`,
+        left,
+        right,
+      });
+    }
+  }
+
+  if (battles.length < rounds) {
+    const remaining = seededShuffle(
+      pool.filter((p) => !used.has(p.id)),
+      `${seed}-fill`,
+    );
+    for (let i = 0; i < remaining.length - 1 && battles.length < rounds; i += 2) {
+      battles.push({
+        id: `battle-${battles.length + 1}`,
+        left: remaining[i],
+        right: remaining[i + 1],
+      });
+    }
   }
 
   return battles;
@@ -101,7 +143,7 @@ export function getLookBattleResults(productIds) {
   return getBattleStats(productIds);
 }
 
-export function buildGameSession(gameSlug, allProducts) {
+export function buildGameSession(gameSlug, allProducts, options = {}) {
   const game = getGameBySlug(gameSlug);
   if (!game || !allProducts?.length) return null;
 
@@ -115,8 +157,9 @@ export function buildGameSession(gameSlug, allProducts) {
   }
 
   if (game.type === 'battle') {
-    const battles = buildLookBattles(allProducts, game.rounds);
-    return { game, type: 'battle', battles };
+    const gender = options.gender || 'women';
+    const battles = buildLookBattles(allProducts, game.rounds, { gender });
+    return { game, type: 'battle', battles, gender };
   }
 
   return null;

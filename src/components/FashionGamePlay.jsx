@@ -61,6 +61,11 @@ function ResultsBar({ label, percent, accent, isWinner, isUser }) {
   );
 }
 
+const BATTLE_GENDERS = [
+  { id: 'women', label: "Women's" },
+  { id: 'men', label: "Men's" },
+];
+
 export default function FashionGamePlay({
   gameSlug,
   products = [],
@@ -74,7 +79,11 @@ export default function FashionGamePlay({
   onPlayAgain: _onPlayAgain,
 }) {
   const game = getGameBySlug(gameSlug);
-  const session = useMemo(() => buildGameSession(gameSlug, products), [gameSlug, products]);
+  const [battleGender, setBattleGender] = useState('women');
+  const session = useMemo(
+    () => buildGameSession(gameSlug, products, { gender: battleGender }),
+    [gameSlug, products, battleGender],
+  );
 
   const [phase, setPhase] = useState('play');
   const [roundIndex, setRoundIndex] = useState(0);
@@ -122,6 +131,15 @@ export default function FashionGamePlay({
     recordStyleVote(optionId);
     setPhase('results');
     refreshResults();
+  };
+
+  const handleBattleGenderChange = (nextGender) => {
+    if (nextGender === battleGender) return;
+    setBattleGender(nextGender);
+    setPhase('play');
+    setRoundIndex(0);
+    setBattleWinners([]);
+    setBattleProductIds([]);
   };
 
   const handleBattlePick = (winner, loser) => {
@@ -223,30 +241,82 @@ export default function FashionGamePlay({
     }
 
     if (session.type === 'battle') {
+      if (!session.battles.length) {
+        return (
+          <div className="fashion-games-play fashion-games-play--battle">
+            <p className="fashion-games-play__prompt">Not enough looks for this category yet.</p>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() =>
+                handleBattleGenderChange(battleGender === 'women' ? 'men' : 'women')
+              }
+            >
+              Try {battleGender === 'women' ? "Men's" : "Women's"} battles
+            </button>
+          </div>
+        );
+      }
+
       const battle = session.battles[roundIndex];
       if (!battle) return null;
 
+      const progressPct = ((roundIndex + 1) / session.battles.length) * 100;
+      const activeGender = BATTLE_GENDERS.find((g) => g.id === battleGender) || BATTLE_GENDERS[0];
+
       return (
         <div className="fashion-games-play fashion-games-play--battle">
-          <p className="fashion-games-play__progress">
-            Battle {roundIndex + 1} of {session.battles.length}
-          </p>
+          <div className="fashion-games-battle-toolbar">
+            <div className="fashion-games-gender-tabs" role="tablist" aria-label="Battle category">
+              {BATTLE_GENDERS.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={battleGender === option.id}
+                  className={`fashion-games-gender-tabs__btn${
+                    battleGender === option.id ? ' is-active' : ''
+                  }`}
+                  onClick={() => handleBattleGenderChange(option.id)}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            <p className="fashion-games-battle-toolbar__meta">
+              Battle {roundIndex + 1} of {session.battles.length}
+              <span>{activeGender.label} looks</span>
+            </p>
+          </div>
+
+          <div className="fashion-games-battle-progress" aria-hidden>
+            <span
+              className="fashion-games-battle-progress__fill"
+              style={{ width: `${progressPct}%` }}
+            />
+          </div>
+
           <p className="fashion-games-play__prompt">Tap the look that wins</p>
-          <div className="fashion-games-battle-grid">
+
+          <div className="fashion-games-battle-arena">
             {[battle.left, battle.right].map((product, idx) => (
               <button
                 key={product.id}
                 type="button"
-                className="fashion-games-battle-card hover-zoom-container"
+                className={`fashion-games-battle-card hover-zoom-container${
+                  idx === 0 ? ' fashion-games-battle-card--left' : ' fashion-games-battle-card--right'
+                }`}
                 onClick={() =>
                   handleBattlePick(product, idx === 0 ? battle.right : battle.left)
                 }
               >
-                <ProductImage
-                  src={product.image}
-                  alt={product.title}
-                  className="fashion-games-battle-card__img hover-zoom-img"
-                />
+                <div className="fashion-games-battle-card__media">
+                  <ProductImage
+                    src={product.image}
+                    alt={product.title}
+                    className="fashion-games-battle-card__img hover-zoom-img"
+                  />
+                </div>
                 <div className="fashion-games-battle-card__body">
                   <span>{product.subCategory || product.category}</span>
                   <h3>{product.title}</h3>
@@ -255,8 +325,10 @@ export default function FashionGamePlay({
                 </div>
               </button>
             ))}
+            <div className="fashion-games-battle-vs" aria-hidden>
+              VS
+            </div>
           </div>
-          <p className="fashion-games-battle-vs">VS</p>
         </div>
       );
     }
@@ -403,6 +475,7 @@ export default function FashionGamePlay({
                 setSessionRatings([]);
                 setBattleWinners([]);
                 setBattleProductIds([]);
+                setBattleGender('women');
                 refreshResults();
               }}
             >
@@ -417,7 +490,7 @@ export default function FashionGamePlay({
         {products.length > 0 && phase === 'results' ? (
           <EndlessDiscovery
             allProducts={products}
-            category="kurtas"
+            category={session.type === 'battle' && battleGender === 'men' ? 'shirts' : 'kurtas'}
             onSelectProduct={onSelectProduct}
             onSelectCategory={onSelectCategory}
             onOpenArticle={onOpenArticle}

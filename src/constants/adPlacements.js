@@ -1,6 +1,30 @@
 /** Fixed ad placements — admin pastes HTML/JS; storefront injects per slot */
 
 import { CHECKOUT_BASE, CHECKOUT_STEPS } from '../checkout/checkoutSteps.js';
+import { DEFAULT_HOMEPAGE_CONFIG } from '../data/homepageConfig.js';
+import { DISCOVERY_EXPERIENCE_BLOCKS, DEFAULT_DISCOVERY_CONFIG } from '../data/discoveryExperience.js';
+
+const HOME_SECTIONS = DEFAULT_HOMEPAGE_CONFIG;
+const EDITORIAL_FEED_TITLE = HOME_SECTIONS.editorialIntro.title.replace(/\n/g, ' ');
+
+/** Discovery chapter block id → homepage ad placement (storefront wiring) */
+export const HOMEPAGE_CHAPTER_AD_BY_BLOCK_ID = {
+  'style-quiz': 'homepage_after_style_quiz',
+  'bollywood-looks': 'homepage_after_bollywood_looks',
+  'occasion-gate': 'homepage_after_occasion_gate',
+  'wedding-festive': 'homepage_after_wedding_festive',
+  'edit-desk': 'homepage_after_edit_desk',
+  'editors-voice': 'homepage_after_editors_voice',
+  'style-debate': 'homepage_after_style_debate',
+  'trending-india': 'homepage_after_trending_india',
+};
+
+const CHAPTER_TITLE_BY_PLACEMENT = Object.fromEntries(
+  Object.entries(HOMEPAGE_CHAPTER_AD_BY_BLOCK_ID).map(([blockId, placementKey]) => {
+    const block = DISCOVERY_EXPERIENCE_BLOCKS.find((b) => b.id === blockId);
+    return [placementKey, block?.title ?? blockId];
+  }),
+);
 
 const COMMON_SLOTS = [
   {
@@ -12,82 +36,145 @@ const COMMON_SLOTS = [
   },
 ];
 
+/** Homepage-only ad slots — titles match live section headings (top → bottom) */
 const HOME_SLOTS = [
   {
-    key: 'home_below_header',
-    title: 'Home — Top (Below Header)',
-    description: 'First slot on homepage, immediately under the site header (before hero arches).',
+    key: 'homepage_below_header',
+    title: 'Below Header',
+    description: 'Homepage — under site header, before hero banner.',
     placeholder: 'Paste ad HTML/script — top of homepage…',
   },
   {
-    key: 'home_after_hero',
-    title: 'Home — After Hero',
-    description: 'Full-width strip after the “Look Good / Feel Good” hero arches section.',
+    key: 'homepage_after_hero',
+    title: 'Celebrate Every Special Moment',
+    description: 'Ad below hero banner.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'home_after_trends',
-    title: 'Home — After Shop by Trends',
-    description: 'Below the “Shop by Trends” carousel.',
+    key: 'homepage_after_trust',
+    title: 'Why Trendkaari',
+    description: 'Ad below trust bar (expertise · arbitrage · editorial · India-first).',
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'home_main',
-    title: 'Home — Before Promo Banner',
-    description: 'Above the large promo banner slider (women/men/combo banners).',
+    key: 'homepage_before_categories',
+    title: HOME_SECTIONS.marketMap.title,
+    description: `Ad above “${HOME_SECTIONS.marketMap.title}” category rail.`,
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'home_after_promo',
-    title: 'Home — After Promo Banner',
-    description: 'Below the promo banner slider, before “Shop by Categories”.',
+    key: 'homepage_after_categories',
+    title: HOME_SECTIONS.marketMap.title,
+    description: `Ad below “${HOME_SECTIONS.marketMap.title}” category rail.`,
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'home_before_categories',
-    title: 'Home — Before Categories',
-    description: 'Directly above “Shop by Categories” (women & gents circles).',
+    key: 'homepage_before_editorial',
+    title: EDITORIAL_FEED_TITLE,
+    description: `Ad above “${EDITORIAL_FEED_TITLE}” intro and chapter feed.`,
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'home_between_categories_gift',
-    title: 'Home — Between Categories & Gift',
-    description:
-      'Homepage — exactly between “Shop by Categories” (circle icons) and “Gift Collection” (unbox boxes). Full-width strip in that gap.',
-    placeholder: 'Paste ad HTML/script (banner, AdSense, image ad)…',
-  },
-  {
-    key: 'home_after_gift',
-    title: 'Home — After Gift Section',
-    description: 'Below the gift collection section.',
+    key: 'homepage_after_poster_strip',
+    title: DEFAULT_DISCOVERY_CONFIG.stripLabel,
+    description: `Ad below “${DEFAULT_DISCOVERY_CONFIG.stripLabel}” chapter poster strip.`,
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'home_before_reviews',
-    title: 'Home — Before Reviews',
-    description: 'Above customer reviews / testimonials.',
+    key: 'homepage_after_style_quiz',
+    title: CHAPTER_TITLE_BY_PLACEMENT.homepage_after_style_quiz,
+    description: `Ad below “${CHAPTER_TITLE_BY_PLACEMENT.homepage_after_style_quiz}”.`,
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'home_after_reviews',
-    title: 'Home — Bottom (After Reviews)',
-    description: 'Last homepage slot — after reviews, before footer.',
+    key: 'homepage_after_bollywood_looks',
+    title: CHAPTER_TITLE_BY_PLACEMENT.homepage_after_bollywood_looks,
+    description: `Ad below “${CHAPTER_TITLE_BY_PLACEMENT.homepage_after_bollywood_looks}”.`,
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'home_editorial_every_2',
-    title: 'Home — Every 2 Discovery Chapters',
-    description:
-      'Homepage editorial feed — full-width strip after every 2nd discovery block (Style DNA, Bollywood, polls, etc.).',
+    key: 'homepage_after_occasion_gate',
+    title: CHAPTER_TITLE_BY_PLACEMENT.homepage_after_occasion_gate,
+    description: `Ad below “${CHAPTER_TITLE_BY_PLACEMENT.homepage_after_occasion_gate}”.`,
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'home_editorial_bottom',
-    title: 'Home — After Discovery Feed',
-    description: 'Homepage — after all discovery experience chapters, before spotlight section.',
+    key: 'homepage_after_wedding_festive',
+    title: CHAPTER_TITLE_BY_PLACEMENT.homepage_after_wedding_festive,
+    description: `Ad below “${CHAPTER_TITLE_BY_PLACEMENT.homepage_after_wedding_festive}”.`,
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'homepage_after_edit_desk',
+    title: CHAPTER_TITLE_BY_PLACEMENT.homepage_after_edit_desk,
+    description: `Ad below “${CHAPTER_TITLE_BY_PLACEMENT.homepage_after_edit_desk}”.`,
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'homepage_after_editors_voice',
+    title: CHAPTER_TITLE_BY_PLACEMENT.homepage_after_editors_voice,
+    description: `Ad below “${CHAPTER_TITLE_BY_PLACEMENT.homepage_after_editors_voice}”.`,
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'homepage_after_style_debate',
+    title: CHAPTER_TITLE_BY_PLACEMENT.homepage_after_style_debate,
+    description: `Ad below “${CHAPTER_TITLE_BY_PLACEMENT.homepage_after_style_debate}”.`,
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'homepage_after_trending_india',
+    title: CHAPTER_TITLE_BY_PLACEMENT.homepage_after_trending_india,
+    description: `Ad below “${CHAPTER_TITLE_BY_PLACEMENT.homepage_after_trending_india}”.`,
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'homepage_before_spotlight',
+    title: HOME_SECTIONS.spotlight.title,
+    description: `Ad above “${HOME_SECTIONS.spotlight.title}”.`,
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'homepage_after_spotlight',
+    title: HOME_SECTIONS.spotlight.title,
+    description: `Ad below “${HOME_SECTIONS.spotlight.title}”.`,
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'homepage_before_finale',
+    title: HOME_SECTIONS.finale.title,
+    description: `Ad above “${HOME_SECTIONS.finale.title}”.`,
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'homepage_after_finale',
+    title: HOME_SECTIONS.finale.title,
+    description: `Ad below “${HOME_SECTIONS.finale.title}” — last homepage slot.`,
     placeholder: 'Paste ad HTML/script…',
   },
 ];
+
+/** Retired shared homepage slots → first matching per-section slot (admin + storefront migration) */
+export const RETIRED_HOMEPAGE_AD_ALIASES = {
+  homepage_editorial_every_2: 'homepage_after_style_quiz',
+  home_editorial_every_2: 'homepage_after_style_quiz',
+  homepage_editorial_bottom: 'homepage_after_trending_india',
+};
+
+/** Old home_* keys → new homepage_* keys (for saved admin ads) */
+export const LEGACY_HOMEPAGE_AD_ALIASES = {
+  homepage_below_header: 'home_below_header',
+  homepage_after_hero: 'home_after_hero',
+  homepage_after_trust: 'home_main',
+  homepage_before_categories: 'home_before_categories',
+  homepage_after_categories: 'home_between_categories_gift',
+  homepage_before_editorial: 'home_after_trends',
+  homepage_after_poster_strip: 'home_after_trends',
+  homepage_after_trending_india: 'home_editorial_bottom',
+  homepage_before_spotlight: 'home_after_gift',
+  homepage_after_spotlight: 'home_after_promo',
+  homepage_before_finale: 'home_after_reviews',
+};
 
 const CATEGORY_SLOTS = [
   {
@@ -146,36 +233,59 @@ const CATEGORY_SLOTS = [
   },
   {
     key: 'ads_every_2_products',
-    title: 'Category — Every 2 Products (In Grid)',
-    description:
-      'Inside product grid — full-width row after every 2 products (2, 4, 6…).',
+    title: 'Product Grid — Every 2 Products',
+    description: 'Main catalog grid only — full-width ad after every 2nd product card (2, 4, 6…).',
     placeholder: 'Paste ad HTML/script…',
   },
   {
     key: 'category_after_grid',
-    title: 'Category — After Product Grid',
-    description: 'Below all product cards (when grid has items).',
+    title: 'After Product Grid',
+    description: 'Below infinite-scroll product grid, still inside listing column.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'category_page_bottom',
-    title: 'Category — Page Bottom',
-    description: 'Last slot on /category — after grid & filters section.',
+    key: 'category_before_hub',
+    title: 'Before Collection Hub',
+    description: 'After filters + product grid workspace — above buying guide & related collections.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'category_after_suggestions',
-    title: 'Category — After Suggestion Rails',
-    description: 'Below cross-category suggestion rails (Complete your look, Trending, etc.).',
+    key: 'category_after_hub_guide',
+    title: 'After Collection Hub Guide',
+    description: 'Below buying guide + related collections — above horizontal suggestion rails.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'category_suggestions_every_6',
+    title: 'Suggestion Rails — Every 6 Products',
+    description:
+      'Inside each horizontal suggestion rail — inline ad after every 6th product (6, 12…). Same rhythm as product page.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
     key: 'category_suggestions_mid',
-    title: 'Category — Between Suggestion Rails',
-    description: 'Between hub suggestion rails — after every 2nd rail.',
+    title: 'Between Suggestion Rails',
+    description: 'Full-width ad after each horizontal suggestion rail (Complete your look, Trending, etc.).',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'category_after_suggestions',
+    title: 'After Suggestion Rails',
+    description: 'Below all hub suggestion rails.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'category_page_bottom',
+    title: 'Page Bottom',
+    description: 'Last slot on /category — footer area.',
     placeholder: 'Paste ad HTML/script…',
   },
 ];
+
+/** Retired product ad keys → new per-rail interval slots */
+export const RETIRED_PRODUCT_AD_ALIASES = {
+  product_suggestions_every_2: 'product_similar_every_6',
+};
 
 const PRODUCT_SLOTS = [
   {
@@ -264,20 +374,28 @@ const PRODUCT_SLOTS = [
   },
   {
     key: 'product_before_suggestions',
-    title: 'Product — Before You May Also Like',
-    description: 'Above related products grid.',
+    title: 'More from the Edit — Above Rails',
+    description: 'Product page below-fold — above similar / trending suggestion rails.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
-    key: 'product_suggestions_every_2',
-    title: 'Product — Every 2 Suggestions',
-    description: 'Inside “You may also like” — after every 2 related products.',
+    key: 'product_similar_every_6',
+    title: 'Similar Products — Every 6 Items',
+    description:
+      'Inside “Similar products” horizontal rail — inline ad after every 6th product (6, 12…).',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'product_trending_every_6',
+    title: 'Trending Picks — Every 6 Items',
+    description:
+      'Inside bottom “Trending” rail on PDP — inline ad after every 6th product (6, 12…).',
     placeholder: 'Paste ad HTML/script…',
   },
   {
     key: 'product_after_suggestions',
-    title: 'Product — After Suggestions',
-    description: 'Below related products section.',
+    title: 'More from the Edit — Below Rails',
+    description: 'Product page below-fold — after all suggestion rails.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
@@ -473,9 +591,9 @@ export const OTHER_AD_PLACEMENT_KEYS = OTHER_SLOTS.map((d) => d.key);
 export const AD_PLACEMENT_SECTIONS = [
   { id: 'common', title: 'Common — All Pages', keys: COMMON_AD_PLACEMENT_KEYS },
   { id: 'checkout', title: 'Checkout — Every Page', keys: CHECKOUT_AD_PLACEMENT_KEYS },
-  { id: 'home', title: 'Homepage', keys: HOME_AD_PLACEMENT_KEYS },
-  { id: 'category', title: 'Category Listing', keys: CATEGORY_AD_PLACEMENT_KEYS },
-  { id: 'product', title: 'Product Detail', keys: PRODUCT_AD_PLACEMENT_KEYS },
+  { id: 'home', title: 'Homepage — Ad Slots', keys: HOME_AD_PLACEMENT_KEYS },
+  { id: 'category', title: 'Category Page — Ad Slots', keys: CATEGORY_AD_PLACEMENT_KEYS },
+  { id: 'product', title: 'Product Page — Ad Slots', keys: PRODUCT_AD_PLACEMENT_KEYS },
   { id: 'content', title: 'Discover · Magazine · Quiz · Guides', keys: CONTENT_AD_PLACEMENT_KEYS },
   { id: 'other', title: 'Other', keys: OTHER_AD_PLACEMENT_KEYS },
 ];

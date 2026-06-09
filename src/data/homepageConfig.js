@@ -35,7 +35,7 @@ export const DEFAULT_HOMEPAGE_CONFIG = {
     eyebrow: 'Market map',
     title: 'Start with a category lens',
     subtitle:
-      'Six entry points into the fashion landscape — tap one, then scroll into the editorial chapters below.',
+      'Women and men — tap a category lens, then scroll into the editorial chapters below.',
     linkText: 'View all categories',
     categories: [
       { slug: 'lehengas', label: 'Lehengas', image: '/lehengas/Lehengas/1/040A3523_700x.webp' },
@@ -44,6 +44,11 @@ export const DEFAULT_HOMEPAGE_CONFIG = {
       { slug: 'co-ords', label: 'Co-ords', image: '/co-ords/co-ord_set/1/1.webp' },
       { slug: 'suit sets', label: 'Suit Sets', image: '/suit-sets/Suit Sets/9/L12.01.25_1930_700x.webp' },
       { slug: 'tops', label: 'Tops', image: '/tops/4/1.webp' },
+      {
+        slug: 'men-traditional',
+        label: 'Men',
+        image: '/mens/kurtas/kurta/4/xxl-dmm-daswani-exports-original-imahmgj4r2evzddc.webp',
+      },
     ],
   },
   editorialIntro: {
@@ -69,6 +74,15 @@ export const DEFAULT_HOMEPAGE_CONFIG = {
   },
 };
 
+function mergeMarketMapCategories(storedCategories) {
+  const defaults = DEFAULT_HOMEPAGE_CONFIG.marketMap.categories;
+  if (!Array.isArray(storedCategories) || !storedCategories.length) return defaults;
+
+  const slugs = new Set(storedCategories.map((cat) => cat.slug));
+  const missing = defaults.filter((cat) => !slugs.has(cat.slug));
+  return missing.length ? [...storedCategories, ...missing] : storedCategories;
+}
+
 export function mergeHomepageConfig(stored) {
   if (!stored || typeof stored !== 'object') return DEFAULT_HOMEPAGE_CONFIG;
   return {
@@ -81,9 +95,7 @@ export function mergeHomepageConfig(stored) {
     marketMap: {
       ...DEFAULT_HOMEPAGE_CONFIG.marketMap,
       ...stored.marketMap,
-      categories: Array.isArray(stored.marketMap?.categories) && stored.marketMap.categories.length
-        ? stored.marketMap.categories
-        : DEFAULT_HOMEPAGE_CONFIG.marketMap.categories,
+      categories: mergeMarketMapCategories(stored.marketMap?.categories),
     },
     editorialIntro: { ...DEFAULT_HOMEPAGE_CONFIG.editorialIntro, ...stored.editorialIntro },
     spotlight: { ...DEFAULT_HOMEPAGE_CONFIG.spotlight, ...stored.spotlight },

@@ -110,6 +110,7 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     title: 'Trending in India',
     tagline: 'What India is searching right now',
     hook: '',
+    route: '/trends',
     accent: '#4a0834',
     kind: 'search',
     poster: '/mens/kurtas/kurta/1/l-pkt410-vebnor-original-imahnybzsfggj62r.webp',
@@ -288,17 +289,44 @@ export const FASHION_POLLS = [
 ];
 
 export const TRENDING_SEARCHES = [
-  { label: 'Wedding guest fashion', route: '/trends/wedding-fashion', image: '/lehengas/Lehengas/1/040A3523_700x.webp' },
-  { label: 'Celebrity airport looks', route: '/trends/airport-looks', image: '/kurtas/Kurtas/9/LBL101KS620_1_700x.webp' },
-  { label: 'Viral Instagram outfits', route: '/trends/viral-instagram-fashion', image: '/co-ords/co-ord_set/1/1.webp' },
-  { label: 'Festival season edit', route: '/trends/festival-fashion', image: '/lehengas/Lehengas/9/040A1707_700x.webp' },
-  { label: 'Sangeet guest outfit', category: 'lehengas', image: '/lehengas/Lehengas/9/040A1719_700x.webp' },
-  { label: 'Summer fashion 2026', route: '/trends/summer-fashion', image: '/sarees/Sarees/9/L12.01.25_3415_700x.webp' },
-  { label: 'Bollywood inspired looks', route: '/celebrity-match', image: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp' },
-  { label: 'Handloom sarees', category: 'sarees', image: '/sarees/Sarees/9/L12.01.25_3547_33128c31-b45d-4240-b2c3-634c0659e06c_700x.webp' },
-  { label: 'Anarkali with pants', category: 'kurtas', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
-  { label: 'Under ₹999 picks', route: '/viral', image: '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp' },
+  { label: 'Wedding guest fashion', slug: 'wedding-fashion', route: '/trends/wedding-fashion', image: '/lehengas/Lehengas/1/040A3523_700x.webp' },
+  { label: 'Celebrity airport looks', slug: 'airport-looks', route: '/trends/airport-looks', image: '/kurtas/Kurtas/9/LBL101KS620_1_700x.webp' },
+  { label: 'Viral Instagram outfits', slug: 'viral-instagram-fashion', route: '/trends/viral-instagram-fashion', image: '/co-ords/co-ord_set/1/1.webp' },
+  { label: 'Festival season edit', slug: 'festival-fashion', route: '/trends/festival-fashion', image: '/lehengas/Lehengas/9/040A1707_700x.webp' },
+  { label: 'Sangeet guest outfit', slug: 'sangeet-guest-outfit', route: '/trends/sangeet-guest-outfit', image: '/lehengas/Lehengas/9/040A1719_700x.webp' },
+  { label: 'Summer fashion 2026', slug: 'summer-fashion', route: '/trends/summer-fashion', image: '/sarees/Sarees/9/L12.01.25_3415_700x.webp' },
+  { label: 'Bollywood inspired looks', slug: 'bollywood-inspired-looks', route: '/trends/bollywood-inspired-looks', image: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp' },
+  { label: 'Handloom sarees', slug: 'handloom-sarees', route: '/trends/handloom-sarees', image: '/sarees/Sarees/9/L12.01.25_3547_33128c31-b45d-4240-b2c3-634c0659e06c_700x.webp' },
+  { label: 'Anarkali with pants', slug: 'anarkali-with-pants', route: '/trends/anarkali-with-pants', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
+  { label: 'Under ₹999 picks', slug: 'affordable-picks', route: '/trends/affordable-picks', image: '/suit-sets/Suit Sets/9/L12.01.25_1911_700x.webp' },
 ];
+
+const TREND_ROUTE_BY_LABEL = Object.fromEntries(
+  TRENDING_SEARCHES.map((item) => [item.label, item.route]),
+);
+
+const TREND_ROUTE_BY_CATEGORY = {
+  lehengas: '/trends/sangeet-guest-outfit',
+  sarees: '/trends/handloom-sarees',
+  kurtas: '/trends/anarkali-with-pants',
+};
+
+/** Resolve a storefront route for a trending search row (homepage → trend page). */
+export function resolveTrendRouteForSearch(item = {}) {
+  const route = String(item.route || '').trim();
+  if (route) return route;
+
+  const slug = String(item.slug || '').trim();
+  if (slug) return `/trends/${slug}`;
+
+  const label = String(item.label || '').trim();
+  if (label && TREND_ROUTE_BY_LABEL[label]) return TREND_ROUTE_BY_LABEL[label];
+
+  const category = String(item.category || '').trim().toLowerCase();
+  if (category && TREND_ROUTE_BY_CATEGORY[category]) return TREND_ROUTE_BY_CATEGORY[category];
+
+  return null;
+}
 
 export const TRENDING_SEARCH_IMAGE_BY_LABEL = Object.fromEntries(
   TRENDING_SEARCHES.map((item) => [item.label, item.image]),
@@ -312,11 +340,20 @@ export function normalizeTrendingSearches(searches) {
   return searches.map((item, index) => {
     const label = typeof item === 'string' ? item.trim() : item.label;
     const base = typeof item === 'string' ? { label } : { ...item, label };
-    return {
+    const normalized = {
       ...base,
       image: base.image || TRENDING_SEARCH_IMAGE_BY_LABEL[label] || '',
       heat: base.heat ?? TRENDING_HEAT_BY_RANK[index] ?? Math.max(55, 90 - index * 4),
     };
+    const route = resolveTrendRouteForSearch(normalized);
+    if (route) {
+      normalized.route = route;
+      if (!normalized.slug) {
+        const slug = route.replace(/^\/trends\//, '');
+        if (slug) normalized.slug = slug;
+      }
+    }
+    return normalized;
   });
 }
 

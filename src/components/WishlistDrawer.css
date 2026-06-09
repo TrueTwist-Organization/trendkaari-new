@@ -154,6 +154,31 @@
   color: var(--text-muted);
 }
 
+.wishlist-size-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.wishlist-size-pill {
+  min-width: 32px;
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.wishlist-size-pill.is-active {
+  border-color: var(--brand-plum);
+  background: var(--brand-plum);
+  color: #fff;
+}
+
 .wishlist-add-bag-btn {
   align-self: flex-start;
   margin-top: 4px;

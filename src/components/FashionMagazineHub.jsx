@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import {
   ArrowRight,
   BookOpen,
-  ChevronLeft,
   Flame,
   Leaf,
   Sparkles,
@@ -10,6 +9,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import ProductImage from './ProductImage';
+import PageBackButton from './PageBackButton';
 import {
   getMagazineCategories,
 } from '../data/fashionMagazine';
@@ -74,22 +74,8 @@ export default function FashionMagazineHub({
 
   return (
     <div className="fashion-magazine fashion-magazine--hub">
-      <header className="fashion-magazine__hero">
-        <div className="container">
-          <button type="button" className="fashion-magazine__back" onClick={onBack}>
-            <ChevronLeft size={18} />
-            Home
-          </button>
-          <p className="fashion-magazine__eyebrow">Trendkaari Magazine</p>
-          <h1 className="fashion-magazine__title">Fashion stories worth scrolling</h1>
-          <p className="fashion-magazine__subtitle">
-            Trends, styling tips, celebrity edits, seasonal guides, festival looks, and buying advice —
-            every story links to shoppable collections.
-          </p>
-        </div>
-      </header>
-
       <div className="container fashion-magazine__body">
+        <PageBackButton onClick={onBack} label="Home" />
         <section className="fashion-magazine__categories">
           <div className="fashion-magazine__section-head">
             <h2>Browse by category</h2>

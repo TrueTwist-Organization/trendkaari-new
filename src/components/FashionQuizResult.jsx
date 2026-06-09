@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import {
   ArrowRight,
   BookOpen,
@@ -11,7 +11,7 @@ import DiscoveryRail from './DiscoveryRail';
 import RecommendationRails from './RecommendationRails';
 import ProductImage from './ProductImage';
 import DiscoveryLoopSection from './DiscoveryLoopSection';
-import { getQuizBySlug } from '../data/fashionQuizzes';
+import { getQuizBySlugAsync } from '../utils/editorialContentData';
 import { trackQuizCompleted } from '../utils/ga4';
 import {
   getQuizRelatedGuides,
@@ -37,7 +37,16 @@ export default function FashionQuizResult({
   onStartQuiz,
   onNavigate,
 }) {
-  const quiz = getQuizBySlug(quizSlug);
+  const [quiz, setQuiz] = useState(null);
+
+  useEffect(() => {
+    if (!quizSlug) {
+      setQuiz(null);
+      return;
+    }
+    getQuizBySlugAsync(quizSlug).then(setQuiz);
+  }, [quizSlug]);
+
   const result = quiz?.results?.[resultKey];
 
   const curatedProducts = useMemo(

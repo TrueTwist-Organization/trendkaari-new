@@ -5,6 +5,15 @@
   min-height: calc(100vh - 120px);
 }
 
+.fashion-magazine--hub {
+  padding-top: var(--site-header-total, 114px);
+  background: #fff;
+}
+
+.fashion-magazine--hub .fashion-magazine__body {
+  padding-top: 1rem;
+}
+
 .fashion-magazine__hero {
   background: linear-gradient(145deg, #1a0a14 0%, var(--mag-accent, #600b45) 55%, #3d1530 100%);
   color: #fff;

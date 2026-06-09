@@ -1,14 +1,13 @@
 .viral-hub {
-  background: linear-gradient(180deg, var(--brand-peach-light) 0%, var(--brand-surface-warm) 12rem);
+  background: #fff;
   min-height: 100vh;
+  padding-top: var(--site-header-total, 114px);
   padding-bottom: 3rem;
 }
 
-.viral-hub__hero {
-  padding: 1.25rem 0 2.5rem;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(96, 11, 69, 0.1), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 90% 0%, rgba(212, 180, 131, 0.16), transparent 50%);
+.viral-hub__top {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .viral-hub__back {

@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { buildDiscoveryRails } from '../utils/discoveryEngine';
 import DiscoveryRail from './DiscoveryRail';
-import HomeAdSlot from './HomeAdSlot';
 import PlacedAdSlot from './PlacedAdSlot';
 import RecommendationRails from './RecommendationRails';
 import './DiscoveryFeed.css';
@@ -86,20 +85,7 @@ export default function DiscoveryFeed({
             }
           />
           {(index + 1) % 2 === 0 ? (
-            fullPage ? (
-              <PlacedAdSlot adCodes={adCodes} placement="discover_feed_mid" variant="section" />
-            ) : (
-              <HomeAdSlot
-                adCodes={adCodes}
-                placement={
-                  index === 1
-                    ? 'home_after_trends'
-                    : index === 3
-                      ? 'home_after_promo'
-                      : 'home_after_gift'
-                }
-              />
-            )
+            <PlacedAdSlot adCodes={adCodes} placement="discover_feed_mid" variant="section" />
           ) : null}
         </React.Fragment>
       ))}

@@ -2100,18 +2100,36 @@
   font-size: 12px;
   line-height: 1.45;
   color: var(--co-text, #3d2a35);
-  background: linear-gradient(135deg, rgba(96, 11, 69, 0.08), rgba(212, 180, 131, 0.14));
-  border: 1px solid rgba(96, 11, 69, 0.18);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--brand-plum, #600b45) 7%, white),
+    color-mix(in srgb, var(--brand-gold, #d4b483) 16%, white)
+  );
+  border: 1px solid var(--brand-border-soft, rgba(212, 180, 131, 0.42));
 }
 
 .co-spin-teaser svg {
   flex-shrink: 0;
   margin-top: 1px;
-  color: #600b45;
+  color: var(--brand-plum, #600b45);
 }
 
 .co-spin-teaser strong {
-  color: #600b45;
+  color: var(--brand-plum, #600b45);
+}
+
+.co-spin-teaser--unlocked {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #bf360c 8%, white),
+    color-mix(in srgb, #e65100 12%, white)
+  );
+  border-color: color-mix(in srgb, #e65100 28%, white);
+}
+
+.co-spin-teaser--unlocked svg,
+.co-spin-teaser--unlocked strong {
+  color: #e65100;
 }
 
 .co-ship-btn .co-parcel-icon {

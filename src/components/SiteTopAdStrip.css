@@ -2,7 +2,7 @@
 .site-top-ad-strip {
   margin-top: var(--site-header-total);
   width: 100%;
-  background: linear-gradient(180deg, var(--brand-peach-light) 0%, var(--brand-surface-warm) 100%);
+  background: transparent;
   position: relative;
   z-index: 900;
   box-sizing: border-box;

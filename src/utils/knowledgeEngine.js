@@ -5,12 +5,8 @@
 import { filterProductsByCategory } from './categoryFilter';
 import { getCategoryImage } from './categoryImages';
 import { buildRecommendationRails } from './recommendationEngine';
-import {
-  getFeaturedKnowledgePages,
-  getKnowledgePagesByTopic,
-  getRelatedKnowledgePages,
-  getTopicBySlug,
-} from '../data/fashionKnowledge';
+import { getTopicBySlug } from '../data/fashionKnowledge';
+import { getAllKnowledgePages } from './editorialContentData';
 
 const PAGE_PRODUCTS = 10;
 
@@ -71,6 +67,33 @@ export function getKnowledgeRecommendationRails(allProducts, page) {
   });
 }
 
+export function getKnowledgePagesByTopic(topicSlug) {
+  return getAllKnowledgePages().filter((p) => p.topicSlug === topicSlug);
+}
+
+export function getFeaturedKnowledgePages(limit = 5) {
+  const pages = getAllKnowledgePages();
+  const featured = pages.filter((p) => p.featured);
+  const rest = pages.filter((p) => !p.featured);
+  return [...featured, ...rest].slice(0, limit);
+}
+
+export function getRelatedKnowledgePages(page, limit = 3) {
+  if (!page) return [];
+  const KNOWLEDGE_PAGES = getAllKnowledgePages();
+  const byId = new Map(KNOWLEDGE_PAGES.map((p) => [p.id, p]));
+  const related = (page.relatedPageIds || []).map((id) => byId.get(id)).filter(Boolean);
+  const sameTopic = KNOWLEDGE_PAGES.filter(
+    (p) => p.topicSlug === page.topicSlug && p.id !== page.id,
+  );
+  const merged = [...related];
+  for (const p of sameTopic) {
+    if (merged.length >= limit) break;
+    if (!merged.some((x) => x.id === p.id)) merged.push(p);
+  }
+  return merged.slice(0, limit);
+}
+
 export function buildKnowledgeHubData() {
   return {
     featured: getFeaturedKnowledgePages(5),
@@ -78,4 +101,4 @@ export function buildKnowledgeHubData() {
   };
 }
 
-export { getRelatedKnowledgePages, getFeaturedKnowledgePages, getTopicBySlug };
+export { getTopicBySlug };

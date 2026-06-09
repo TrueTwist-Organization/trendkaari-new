@@ -1,18 +1,15 @@
 import React, { useMemo } from 'react';
 import {
   ArrowRight,
-  ChevronLeft,
   Gamepad2,
   Star,
   Swords,
   Palette,
-  Users,
-  Zap,
-  Trophy,
 } from 'lucide-react';
 import { getAllGames } from '../data/fashionGames';
 import { getGameHubStats } from '../utils/gameVotesStorage';
 import { formatVoteCount } from '../utils/fashionGameEngine';
+import PageBackButton from './PageBackButton';
 import EndlessDiscovery from './EndlessDiscovery';
 import PlacedAdSlot from './PlacedAdSlot';
 import './FashionGames.css';
@@ -36,48 +33,12 @@ export default function FashionGamesHub({
 }) {
   const games = getAllGames();
   const hubStats = useMemo(() => getGameHubStats(), []);
-  const totalVotes = useMemo(
-    () => Object.values(hubStats).reduce((sum, count) => sum + (count || 0), 0),
-    [hubStats],
-  );
 
   return (
     <div className="fashion-games fashion-games--hub">
-      <header className="fashion-games-hub__hero">
-        <div className="container fashion-games-hub__hero-inner">
-          <button type="button" className="fashion-games__back" onClick={onBack}>
-            <ChevronLeft size={18} />
-            Home
-          </button>
-
-          <div className="fashion-games-hub__hero-copy">
-            <span className="fashion-games__badge">
-              <Gamepad2 size={14} aria-hidden />
-              Mini Fashion Games
-            </span>
-            <h1 className="fashion-games__title">Play, vote, see results</h1>
-            <p className="fashion-games__subtitle">
-              Rate outfits, pick a style lane, or battle looks head-to-head. Every vote is saved and
-              community results update instantly.
-            </p>
-          </div>
-
-          <ul className="fashion-games-hub__trust" aria-label="Game highlights">
-            <li>
-              <Zap size={15} aria-hidden />
-              3 quick games
-            </li>
-            <li>
-              <Users size={15} aria-hidden />
-              {formatVoteCount(totalVotes)} played
-            </li>
-            <li>
-              <Trophy size={15} aria-hidden />
-              Live community scores
-            </li>
-          </ul>
-        </div>
-      </header>
+      <div className="container fashion-games-hub__top">
+        <PageBackButton onClick={onBack} label="Home" />
+      </div>
 
       <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="games_hub_mid" variant="section" />

@@ -642,7 +642,7 @@ export default function CheckoutStepPages({ step, ctx }) {
             </div>
           )}
           {isSpinWheelEligible(grandTotal) ? (
-            <div className="co-spin-teaser" role="note">
+            <div className="co-spin-teaser co-spin-teaser--unlocked" role="note">
               <Sparkles size={16} aria-hidden />
               <span>
                 <strong>Spin wheel unlocked!</strong> Place this ₹{grandTotal} order to spin and win coupons.

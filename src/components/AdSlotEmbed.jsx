@@ -5,6 +5,7 @@ import { destroyGptSlotsForKey, prepareAdHtmlForSlot, sanitizeAdHtmlForEmbed, ha
 import { fitAdsInContainer, observeAdFills, ensureGlobalAdFitListeners } from '../utils/fitAdsInContainer';
 import { scheduleAdFit } from '../utils/scheduleAdFit';
 import './AdSlotEmbed.css';
+import '../styles/brand-themed-ads.css';
 
 /** Inject admin HTML/scripts so &lt;script&gt; tags actually execute */
 export default function AdSlotEmbed({ html, className = '', slotKey = '', eager = true }) {

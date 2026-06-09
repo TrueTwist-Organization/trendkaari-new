@@ -21,7 +21,7 @@ const NAV = [
   { id: 'dashboard',     label: 'Dashboard',       icon: LayoutDashboard },
   { id: 'journeys',      label: 'Journey Insights', icon: Route },
   { id: 'content-editor', label: 'Homepage & Content', icon: Layers },
-  { id: 'content',       label: 'Content Viewer',   icon: Layers },
+  { id: 'content',       label: 'Content Manager',  icon: Layers },
   { id: 'image-manager', label: 'Image Manager',    icon: Images },
   { id: 'products',      label: 'Inventory',         icon: Package },
   { id: 'orders',        label: 'Orders',            icon: ShoppingBag },

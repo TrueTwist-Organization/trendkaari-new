@@ -13,9 +13,10 @@
  *
  * Mobile first. No JS animations. No heavy dependencies.
  */
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { ArrowRight, Sparkles, BookOpen, TrendingUp } from 'lucide-react';
-import { TREND_PAGES, getTrendPage } from '../data/trendPages';
+import { TREND_PAGES } from '../data/trendPages';
+import { fetchTrendPages, getTrendPageAsync } from '../utils/editorialContentData';
 import { CELEBRITY_LOOKS } from '../data/celebrityLooks';
 import ProductImage from './ProductImage';
 import PageBackButton from './PageBackButton';
@@ -146,8 +147,8 @@ function GoDeeper({ trend, onStartQuiz, onOpenKnowledgePage }) {
   );
 }
 
-function MoreTrends({ relatedSlugs, onNavigate }) {
-  const relatedTrends = TREND_PAGES.filter((t) => relatedSlugs.includes(t.slug));
+function MoreTrends({ relatedSlugs, onNavigate, allTrends }) {
+  const relatedTrends = allTrends.filter((t) => relatedSlugs.includes(t.slug));
   return (
     <section className="trend-page__more">
       <p className="trend-page__eyebrow">KEEP EXPLORING</p>
@@ -189,6 +190,12 @@ function MoreTrends({ relatedSlugs, onNavigate }) {
 /* ─── Trend Hub (index at /trends) ────────────────────────────────────────── */
 
 function TrendHub({ onNavigate, onBack }) {
+  const [trends, setTrends] = useState(TREND_PAGES);
+
+  useEffect(() => {
+    fetchTrendPages().then(setTrends);
+  }, []);
+
   return (
     <div className="trend-hub">
       <div className="trend-hub__hero container">
@@ -201,7 +208,7 @@ function TrendHub({ onNavigate, onBack }) {
       </div>
 
       <div className="trend-hub__grid container">
-        {TREND_PAGES.map((trend) => (
+        {trends.map((trend) => (
           <TrendHeroCard key={trend.slug} trend={trend} onNavigate={onNavigate} />
         ))}
       </div>
@@ -213,6 +220,7 @@ function TrendHub({ onNavigate, onBack }) {
 
 function TrendPageFull({
   trend,
+  allTrends,
   products,
   onBack,
   onNavigate,
@@ -250,18 +258,7 @@ function TrendPageFull({
           />
         </div>
 
-        <div className="trend-page__hero-split">
-          <div className="trend-page__hero-visual" aria-hidden="true">
-            <img
-              src={trend.heroImage}
-              alt=""
-              className="trend-page__hero-img"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </div>
-
+        <div className="trend-page__hero-split container">
           <div className="trend-page__hero-panel">
             <div className="trend-page__hero-panel-inner">
               <span className="trend-page__hero-eyebrow">{trend.eyebrow}</span>
@@ -290,6 +287,17 @@ function TrendPageFull({
                 <span>{trend.quizzes.length} style quizzes</span>
               </div>
             </div>
+          </div>
+
+          <div className="trend-page__hero-visual">
+            <img
+              src={trend.heroImage}
+              alt=""
+              className="trend-page__hero-img"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
           </div>
         </div>
       </header>
@@ -406,7 +414,7 @@ function TrendPageFull({
         />
 
         {/* ─── More Trends ────────────────────────────────────────────── */}
-        <MoreTrends relatedSlugs={trend.relatedTrends} onNavigate={onNavigate} />
+        <MoreTrends relatedSlugs={trend.relatedTrends} onNavigate={onNavigate} allTrends={allTrends} />
 
         {/* ─── Endless Discovery ──────────────────────────────────────── */}
         {products.length > 0 && (
@@ -443,7 +451,25 @@ export default function TrendPage({
   onStartQuiz,
   onOpenKnowledgePage,
 }) {
-  const trend = useMemo(() => (trendSlug ? getTrendPage(trendSlug) : null), [trendSlug]);
+  const [trend, setTrend] = useState(null);
+  const [allTrends, setAllTrends] = useState(TREND_PAGES);
+  const [loading, setLoading] = useState(Boolean(trendSlug));
+
+  useEffect(() => {
+    fetchTrendPages().then(setAllTrends);
+  }, []);
+
+  useEffect(() => {
+    if (!trendSlug) {
+      setTrend(null);
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    getTrendPageAsync(trendSlug)
+      .then(setTrend)
+      .finally(() => setLoading(false));
+  }, [trendSlug]);
 
   useEffect(() => {
     if (trendSlug && trend) {
@@ -457,6 +483,14 @@ export default function TrendPage({
         onNavigate={onNavigate}
         onBack={onBack}
       />
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="trend-page container" style={{ padding: '3rem 1rem', color: 'var(--text-muted)' }}>
+        Loading trend…
+      </div>
     );
   }
 
@@ -474,6 +508,7 @@ export default function TrendPage({
   return (
     <TrendPageFull
       trend={trend}
+      allTrends={allTrends}
       products={products}
       onBack={onBack}
       onNavigate={onNavigate}

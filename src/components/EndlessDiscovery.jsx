@@ -8,6 +8,7 @@ import {
   countEndlessDiscoveryClicks,
   MIN_ENDLESS_CLICKS,
 } from '../utils/endlessDiscoveryEngine';
+import { SUGGESTION_RAIL_AD_EVERY_N } from '../constants/adGridIntervals';
 import './EndlessDiscovery.css';
 import './RecommendationRails.css';
 
@@ -99,54 +100,58 @@ export default function EndlessDiscovery({
         onSelectProduct={onSelectProduct}
         onSeeAll={() => onSelectCategory?.(discovery.similarProducts.category)}
         adCodes={showAds && variant === 'product' ? adCodes : {}}
-        adPlacement="product_suggestions_every_2"
-        adEveryN={2}
+        adPlacement="product_similar_every_6"
+        adEveryN={SUGGESTION_RAIL_AD_EVERY_N}
       />
 
-      <DiscoveryRail
-        title={discovery.similarStyles.title}
-        hook={discovery.similarStyles.hook}
-        products={discovery.similarStyles.products}
-        tone={discovery.similarStyles.tone}
-        compact={compact}
-        onSelectProduct={onSelectProduct}
-        onSeeAll={() => onSelectCategory?.(discovery.similarStyles.category)}
-        adCodes={showAds && variant === 'product' ? adCodes : {}}
-        adPlacement="product_suggestions_every_2"
-        adEveryN={2}
-      />
+      {variant !== 'product' ? (
+        <DiscoveryRail
+          title={discovery.similarStyles.title}
+          hook={discovery.similarStyles.hook}
+          products={discovery.similarStyles.products}
+          tone={discovery.similarStyles.tone}
+          compact={compact}
+          onSelectProduct={onSelectProduct}
+          onSeeAll={() => onSelectCategory?.(discovery.similarStyles.category)}
+          adCodes={showAds && variant === 'product' ? adCodes : {}}
+          adPlacement="product_similar_every_6"
+          adEveryN={SUGGESTION_RAIL_AD_EVERY_N}
+        />
+      ) : null}
 
       {showAds && variant === 'product' ? (
         <PlacedAdSlot adCodes={adCodes} placement="product_before_suggestions" variant="pdp" />
       ) : null}
 
-      <section className="endless-discovery__block endless-discovery__block--collections">
-        <div className="endless-discovery__block-head">
-          <span className="endless-discovery__block-icon" aria-hidden>
-            <FolderOpen size={18} />
-          </span>
-          <div>
-            <h3 className="endless-discovery__block-title">Related Collections</h3>
-            <p className="endless-discovery__block-hook">
-              Jump lanes — each collection opens a new rabbit hole
-            </p>
+      {variant !== 'product' ? (
+        <section className="endless-discovery__block endless-discovery__block--collections">
+          <div className="endless-discovery__block-head">
+            <span className="endless-discovery__block-icon" aria-hidden>
+              <FolderOpen size={18} />
+            </span>
+            <div>
+              <h3 className="endless-discovery__block-title">Related Collections</h3>
+              <p className="endless-discovery__block-hook">
+                Jump lanes — each collection opens a new rabbit hole
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="endless-discovery__collections-grid">
-          {discovery.relatedCollections.map((col) => (
-            <button
-              key={col.category}
-              type="button"
-              className="endless-discovery__collection-card"
-              onClick={() => onSelectCategory?.(col.category)}
-            >
-              <span className="endless-discovery__collection-label">{col.label}</span>
-              <span className="endless-discovery__collection-hook">{col.hook}</span>
-              <ArrowRight size={14} aria-hidden />
-            </button>
-          ))}
-        </div>
-      </section>
+          <div className="endless-discovery__collections-grid">
+            {discovery.relatedCollections.map((col) => (
+              <button
+                key={col.category}
+                type="button"
+                className="endless-discovery__collection-card"
+                onClick={() => onSelectCategory?.(col.category)}
+              >
+                <span className="endless-discovery__collection-label">{col.label}</span>
+                <span className="endless-discovery__collection-hook">{col.hook}</span>
+                <ArrowRight size={14} aria-hidden />
+              </button>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="endless-discovery__block endless-discovery__block--reading">
         <div className="endless-discovery__block-head">
@@ -222,6 +227,9 @@ export default function EndlessDiscovery({
         compact={compact}
         onSelectProduct={onSelectProduct}
         onSeeAll={() => onSelectCategory?.(discovery.trendingProducts.category)}
+        adCodes={showAds && variant === 'product' ? adCodes : {}}
+        adPlacement="product_trending_every_6"
+        adEveryN={SUGGESTION_RAIL_AD_EVERY_N}
       />
 
       {showAds && variant === 'product' ? (

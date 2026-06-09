@@ -5,7 +5,7 @@
 import { filterProductsByCategory, getCategoryDisplayName } from './categoryFilter';
 import { FASHION_GUIDES } from '../data/fashionGuides';
 import { CELEBRITY_LOOKS } from '../data/celebrityLooks';
-import { getQuizBySlug } from '../data/fashionQuizzes';
+import { getQuizBySlug } from './editorialContentData';
 import { buildRecommendationRails, MIN_RAIL_PRODUCTS } from './recommendationEngine';
 
 const MIN_PRODUCTS = 8;

@@ -25390,7 +25390,7 @@
       "updatedAt": "2026-05-21T05:37:10.557Z"
     }
   ],
-  "_storeUpdatedAt": "2026-06-09T06:16:55.983Z",
+  "_storeUpdatedAt": "2026-06-09T06:31:55.997Z",
   "homepage_blocks": [
     {
       "id": "style-quizSAdxcvb",
@@ -25422,12 +25422,13 @@
       "id": "bollywood-looks",
       "title": "Bollywood Style",
       "tagline": "Airport edits · Red carpet · Street style",
-      "hook": "The look that got 10,000 saves — find your version at a fraction of the price.",
+      "hook": "The look that got 10,000 saves — decode why it spread, then explore your version.",
       "route": "/celebrity-match",
       "accent": "#d4b483",
       "kind": "celebrity",
       "poster": "/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp",
-      "ctaText": "Match a Bollywood look"
+      "ctaText": "Match a Bollywood look",
+      "dark": false
     },
     {
       "id": "occasion-gate",

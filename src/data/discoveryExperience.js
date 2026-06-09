@@ -34,6 +34,7 @@ export const DISCOVERY_EXPERIENCE_BLOCKS = [
     kind: 'celebrity',
     poster: '/sarees/Sarees/9/L12.01.25_3492_9d036254-9d70-42ef-9073-da5533651b09_700x.webp',
     ctaText: 'Match a Bollywood look',
+    dark: false,
   },
   {
     id: 'occasion-gate',

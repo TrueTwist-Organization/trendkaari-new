@@ -7,6 +7,22 @@ const DEFAULT_EDITOR_NOTES = DEFAULT_DISCOVERY_CONFIG.editorNotes;
 
 const FESTIVE_CATEGORIES = ['lehengas', 'sarees', 'suit sets', 'suits'];
 
+const STATIC_BLOCK_BY_ID = Object.fromEntries(
+  DISCOVERY_EXPERIENCE_BLOCKS.map((block) => [block.id, block]),
+);
+
+/** Merge API blocks with code defaults so stale flags (e.g. dark: true) don't override shipped UI. */
+function mergeHomepageBlocks(dynamicBlocks) {
+  return dynamicBlocks.map((apiBlock) => {
+    const defaults = STATIC_BLOCK_BY_ID[apiBlock.id];
+    if (!defaults) return { dark: false, ...apiBlock };
+
+    const merged = { ...defaults, ...apiBlock };
+    merged.dark = defaults.dark === true;
+    return merged;
+  });
+}
+
 function getEditDeskArticles() {
   const curated = [
     getArticleBySlug('fashion-trends', 'co-ord-sets-dominating-2026'),
@@ -34,7 +50,7 @@ export function buildDiscoveryExperienceFeed(
   if (!products?.length) return { posterRow: [], feed: [] };
 
   const activeBlocks = (Array.isArray(dynamicBlocks) && dynamicBlocks.length)
-    ? dynamicBlocks
+    ? mergeHomepageBlocks(dynamicBlocks)
     : DISCOVERY_EXPERIENCE_BLOCKS;
 
   const editorNotes = discoveryConfig?.editorNotes?.length

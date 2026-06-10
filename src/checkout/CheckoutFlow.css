@@ -2132,6 +2132,116 @@
   color: #e65100;
 }
 
+.co-spin-teaser--action {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.co-spin-teaser__btn {
+  margin-left: auto;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-plum, #600b45), #8b1568);
+  box-shadow: 0 6px 16px rgba(96, 11, 69, 0.22);
+}
+
+.co-spin-teaser__btn:hover {
+  filter: brightness(1.05);
+}
+
+.co-spin-applied-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--brand-plum, #600b45);
+  background: color-mix(in srgb, var(--brand-plum, #600b45) 6%, white);
+  border: 1px solid color-mix(in srgb, var(--brand-plum, #600b45) 14%, white);
+}
+
+.co-spin-teaser--done {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--brand-plum, #600b45) 8%, white),
+    color-mix(in srgb, var(--brand-gold, #d4b483) 14%, white)
+  );
+}
+
+.co-spin-breakdown {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--brand-plum, #600b45) 12%, white);
+  box-shadow: 0 8px 24px rgba(96, 11, 69, 0.06);
+}
+
+.co-spin-breakdown__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 13px;
+  color: var(--co-text-muted, #575757);
+  border-bottom: 1px dashed color-mix(in srgb, var(--brand-plum, #600b45) 10%, white);
+}
+
+.co-spin-breakdown__row:last-of-type {
+  border-bottom: 0;
+}
+
+.co-spin-breakdown__row strong {
+  color: var(--co-text, #1c1c1c);
+  font-size: 14px;
+}
+
+.co-spin-breakdown__row em {
+  display: block;
+  margin-top: 2px;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  color: #e65100;
+}
+
+.co-spin-breakdown__row--discount strong {
+  color: #e65100;
+}
+
+.co-spin-breakdown__row--muted strong {
+  color: var(--co-text-muted, #575757);
+}
+
+.co-spin-breakdown__row--total {
+  padding-top: 12px;
+  margin-top: 4px;
+  border-top: 2px solid color-mix(in srgb, var(--brand-plum, #600b45) 16%, white);
+  border-bottom: 0;
+  font-weight: 700;
+  color: var(--brand-plum, #600b45);
+}
+
+.co-spin-breakdown__row--total strong {
+  font-size: 18px;
+  color: var(--brand-plum, #600b45);
+}
+
+.co-spin-breakdown__note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--brand-plum, #600b45);
+}
+
 .co-ship-btn .co-parcel-icon {
   margin-right: 6px;
   display: inline-block;

@@ -982,6 +982,10 @@ export default function App() {
       return {
         order: {
           ...newOrder,
+          subtotal: newOrder.subtotal ?? orderDetails.subtotal,
+          discount: newOrder.discount ?? orderDetails.discount ?? 0,
+          grandTotal: newOrder.grandTotal ?? orderDetails.grandTotal,
+          items: newOrder.items?.length ? newOrder.items : orderDetails.items,
           trackingId: newOrder.trackingId || 'TRK' + Math.floor(100000000 + Math.random() * 900000000),
           eta: newOrder.eta || '3–5 days',
         },

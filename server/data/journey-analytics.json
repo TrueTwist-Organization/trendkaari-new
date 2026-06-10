@@ -1,6 +1,13 @@
 {
   "sessions": [
     {
+      "id": "af511bcd-c76a-492e-a432-a703dcb4f825",
+      "startedAt": 1781074508567,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1781074508567
+    },
+    {
       "id": "2db45bc3-cf7b-463d-9ad0-09341bd9aa04",
       "startedAt": 1781071333984,
       "pageCount": 1,
@@ -283,15 +290,15 @@
   ],
   "pageStats": {
     "/": {
-      "views": 336,
+      "views": 350,
       "scroll": {
-        "25": 64,
+        "25": 66,
         "50": 40,
         "75": 29,
         "100": 18
       },
-      "totalDurationMs": 185768473,
-      "clicks": 76,
+      "totalDurationMs": 185805072,
+      "clicks": 78,
       "heatmap": {
         "7,8": 1,
         "4,4": 2,
@@ -300,7 +307,7 @@
         "5,5": 4,
         "5,0": 2,
         "4,6": 2,
-        "5,4": 3,
+        "5,4": 4,
         "5,7": 2,
         "3,3": 1,
         "3,5": 3,
@@ -328,7 +335,8 @@
         "0,1": 2,
         "3,6": 1,
         "0,0": 3,
-        "0,5": 1
+        "0,5": 1,
+        "5,3": 1
       }
     },
     "/product/1036": {
@@ -428,20 +436,21 @@
       }
     },
     "/magazine": {
-      "views": 4,
+      "views": 5,
       "scroll": {
         "25": 3,
         "50": 3,
         "75": 2,
         "100": 2
       },
-      "totalDurationMs": 121595,
-      "clicks": 5,
+      "totalDurationMs": 123369,
+      "clicks": 6,
       "heatmap": {
         "6,3": 1,
         "5,0": 1,
         "4,0": 2,
-        "0,0": 1
+        "0,0": 1,
+        "8,7": 1
       }
     },
     "/category/kurtas": {
@@ -526,17 +535,20 @@
       }
     },
     "/product/1008": {
-      "views": 1,
+      "views": 2,
       "scroll": {
-        "25": 1,
-        "50": 1,
+        "25": 2,
+        "50": 2,
         "75": 1,
         "100": 1
       },
-      "totalDurationMs": 140715,
-      "clicks": 1,
+      "totalDurationMs": 161528,
+      "clicks": 4,
       "heatmap": {
-        "5,0": 1
+        "5,0": 1,
+        "6,9": 1,
+        "6,4": 1,
+        "8,9": 1
       }
     },
     "/celebrity-match/deepika-airport": {
@@ -604,70 +616,75 @@
       }
     },
     "/checkout/bag": {
-      "views": 6,
+      "views": 15,
       "scroll": {
-        "25": 2,
-        "50": 2,
-        "75": 2,
-        "100": 2
+        "25": 7,
+        "50": 7,
+        "75": 7,
+        "100": 7
       },
-      "totalDurationMs": 90597,
-      "clicks": 5,
+      "totalDurationMs": 11118007,
+      "clicks": 24,
       "heatmap": {
-        "5,4": 2,
+        "5,4": 4,
         "7,7": 1,
-        "5,6": 1,
-        "6,6": 1
+        "5,6": 15,
+        "6,6": 1,
+        "4,8": 1,
+        "4,6": 1,
+        "4,4": 1
       }
     },
     "/checkout/savings": {
-      "views": 7,
+      "views": 11,
       "scroll": {
         "25": 0,
         "50": 0,
         "75": 0,
         "100": 0
       },
-      "totalDurationMs": 18847,
-      "clicks": 6,
+      "totalDurationMs": 27378,
+      "clicks": 10,
       "heatmap": {
-        "5,3": 3,
+        "5,3": 7,
         "6,4": 1,
         "4,3": 2
       }
     },
     "/checkout/total": {
-      "views": 7,
+      "views": 10,
       "scroll": {
         "25": 0,
         "50": 0,
         "75": 0,
         "100": 0
       },
-      "totalDurationMs": 12965,
-      "clicks": 5,
+      "totalDurationMs": 14870,
+      "clicks": 8,
       "heatmap": {
         "5,2": 1,
-        "5,3": 2,
+        "5,3": 5,
         "4,4": 1,
         "4,3": 1
       }
     },
     "/checkout/contact": {
-      "views": 6,
+      "views": 9,
       "scroll": {
         "25": 0,
         "50": 0,
         "75": 0,
         "100": 0
       },
-      "totalDurationMs": 9176,
-      "clicks": 4,
+      "totalDurationMs": 21816,
+      "clicks": 14,
       "heatmap": {
-        "5,5": 1,
+        "5,5": 3,
         "9,0": 1,
-        "4,5": 1,
-        "4,4": 1
+        "4,5": 4,
+        "4,4": 1,
+        "4,2": 4,
+        "5,4": 1
       }
     },
     "/discover": {
@@ -854,18 +871,19 @@
     "/style-finder": {
       "views": 7,
       "scroll": {
-        "25": 2,
-        "50": 2,
+        "25": 3,
+        "50": 3,
         "75": 1,
         "100": 1
       },
-      "totalDurationMs": 74044,
-      "clicks": 5,
+      "totalDurationMs": 16893379,
+      "clicks": 6,
       "heatmap": {
         "1,0": 2,
         "0,1": 1,
         "0,2": 1,
-        "5,0": 1
+        "5,0": 1,
+        "3,6": 1
       }
     },
     "/category/all": {
@@ -1027,17 +1045,18 @@
       "heatmap": {}
     },
     "/magazine/celebrity-looks/deepika-red-carpet-recreate": {
-      "views": 1,
+      "views": 2,
       "scroll": {
-        "25": 1,
+        "25": 2,
         "50": 1,
         "75": 1,
         "100": 1
       },
-      "totalDurationMs": 645416,
-      "clicks": 1,
+      "totalDurationMs": 648087,
+      "clicks": 2,
       "heatmap": {
-        "3,5": 1
+        "3,5": 1,
+        "4,7": 1
       }
     },
     "/product/2310": {
@@ -1103,23 +1122,27 @@
       }
     },
     "/checkout/address": {
-      "views": 3,
+      "views": 6,
       "scroll": {
         "25": 0,
         "50": 0,
         "75": 0,
         "100": 0
       },
-      "totalDurationMs": 114271,
-      "clicks": 8,
+      "totalDurationMs": 147737,
+      "clicks": 23,
       "heatmap": {
-        "5,5": 1,
-        "4,7": 1,
-        "4,3": 1,
+        "5,5": 3,
+        "4,7": 2,
+        "4,3": 4,
         "3,5": 1,
         "4,5": 1,
-        "6,5": 2,
-        "3,8": 1
+        "6,5": 3,
+        "3,8": 1,
+        "5,4": 3,
+        "4,4": 2,
+        "3,4": 1,
+        "5,7": 2
       }
     },
     "/category/suit-sets": {
@@ -1213,50 +1236,76 @@
       }
     },
     "/checkout/review": {
-      "views": 1,
+      "views": 4,
       "scroll": {
         "25": 0,
         "50": 0,
         "75": 0,
         "100": 0
       },
-      "totalDurationMs": 1386,
-      "clicks": 1,
+      "totalDurationMs": 8921,
+      "clicks": 4,
       "heatmap": {
-        "4,4": 1
+        "4,4": 1,
+        "5,3": 1,
+        "5,2": 2
       }
     },
     "/checkout/summary": {
-      "views": 1,
+      "views": 4,
       "scroll": {
         "25": 0,
         "50": 0,
         "75": 0,
         "100": 0
       },
-      "totalDurationMs": 777,
-      "clicks": 1,
+      "totalDurationMs": 7036,
+      "clicks": 4,
       "heatmap": {
-        "4,4": 1
+        "4,4": 1,
+        "5,4": 2,
+        "5,3": 1
       }
     },
     "/checkout/payment": {
-      "views": 1,
+      "views": 16,
       "scroll": {
-        "25": 0,
-        "50": 0,
-        "75": 0,
-        "100": 0
+        "25": 6,
+        "50": 6,
+        "75": 6,
+        "100": 6
       },
-      "totalDurationMs": 4327,
-      "clicks": 4,
+      "totalDurationMs": 2409594,
+      "clicks": 25,
       "heatmap": {
-        "5,5": 1,
-        "4,4": 2,
-        "4,5": 1
+        "5,5": 7,
+        "4,4": 4,
+        "4,5": 5,
+        "4,2": 1,
+        "5,7": 1,
+        "6,3": 2,
+        "3,5": 3,
+        "5,6": 1,
+        "6,2": 1
       }
     },
     "/checkout/error": {
+      "views": 8,
+      "scroll": {
+        "25": 2,
+        "50": 2,
+        "75": 2,
+        "100": 2
+      },
+      "totalDurationMs": 81570,
+      "clicks": 4,
+      "heatmap": {
+        "4,8": 2,
+        "5,8": 1,
+        "4,9": 1
+      }
+    },
+    "/magazine/festival-fashion": {
       "views": 1,
       "scroll": {
         "25": 0,
@@ -1264,17 +1313,63 @@
         "75": 0,
         "100": 0
       },
-      "totalDurationMs": 2774,
+      "totalDurationMs": 1528,
       "clicks": 1,
       "heatmap": {
-        "4,8": 1
+        "6,5": 1
+      }
+    },
+    "/magazine/festival-fashion/navratri-garba-picks": {
+      "views": 1,
+      "scroll": {
+        "25": 1,
+        "50": 0,
+        "75": 0,
+        "100": 0
+      },
+      "totalDurationMs": 2005,
+      "clicks": 1,
+      "heatmap": {
+        "5,2": 1
+      }
+    },
+    "/product/1012": {
+      "views": 1,
+      "scroll": {
+        "25": 0,
+        "50": 0,
+        "75": 0,
+        "100": 0
+      },
+      "totalDurationMs": 8531,
+      "clicks": 8,
+      "heatmap": {
+        "6,6": 1,
+        "8,2": 5,
+        "8,9": 2
+      }
+    },
+    "/product/1026": {
+      "views": 1,
+      "scroll": {
+        "25": 1,
+        "50": 0,
+        "75": 0,
+        "100": 0
+      },
+      "totalDurationMs": 9603,
+      "clicks": 7,
+      "heatmap": {
+        "7,2": 1,
+        "8,2": 5,
+        "8,9": 1
       }
     }
   },
   "pathEdges": {
     "/product/1036 → /product/1036": 6,
     "/product/1036 → /": 1,
-    "/ → /": 270,
+    "/ → /": 281,
     "/celebrity-match/alia-reception → /celebrity-match/alia-reception": 8,
     "/ → /dmin": 1,
     "/dmin → /dmin": 1,
@@ -1285,7 +1380,7 @@
     "/trends → /": 1,
     "/ → /celebrity-match/alia-reception": 5,
     "/celebrity-match/alia-reception → /": 4,
-    "/ → /magazine": 2,
+    "/ → /magazine": 3,
     "/magazine → /category/kurtas": 1,
     "/category/kurtas → /product/900000": 1,
     "/product/900000 → /product/900000": 16,
@@ -1303,12 +1398,12 @@
     "/product/3409 → /product/3806": 1,
     "/product/3806 → /product/3305": 1,
     "/product/3305 → /checkout/bag": 1,
-    "/checkout/bag → /checkout/savings": 5,
-    "/checkout/savings → /checkout/total": 5,
-    "/checkout/total → /checkout/contact": 5,
+    "/checkout/bag → /checkout/savings": 9,
+    "/checkout/savings → /checkout/total": 8,
+    "/checkout/total → /checkout/contact": 8,
     "/checkout/contact → /checkout/total": 2,
     "/checkout/total → /checkout/savings": 2,
-    "/checkout/savings → /checkout/bag": 2,
+    "/checkout/savings → /checkout/bag": 3,
     "/checkout/bag → /product/3305": 1,
     "/product/3305 → /product/3806": 1,
     "/product/3806 → /product/3806": 6,
@@ -1378,7 +1473,7 @@
     "/category/tops → /product/1050": 1,
     "/product/1050 → /product/1046": 1,
     "/product/1046 → /checkout/bag": 1,
-    "/checkout/contact → /checkout/address": 3,
+    "/checkout/contact → /checkout/address": 6,
     "/ → /category/suit-sets": 1,
     "/category/suit-sets → /category/dupatta-sets": 1,
     "/category/dupatta-sets → /product/247": 1,
@@ -1398,13 +1493,25 @@
     "/product/1000 → /product/1000": 9,
     "/product/1000 → /checkout/bag": 1,
     "/checkout/address → /checkout/contact": 1,
-    "/checkout/address → /checkout/review": 1,
-    "/checkout/review → /checkout/summary": 1,
-    "/checkout/summary → /checkout/payment": 1,
-    "/checkout/payment → /checkout/error": 1,
-    "/checkout/error → /": 1,
-    "/ → /category/all": 1
+    "/checkout/address → /checkout/review": 4,
+    "/checkout/review → /checkout/summary": 4,
+    "/checkout/summary → /checkout/payment": 4,
+    "/checkout/payment → /checkout/error": 4,
+    "/checkout/error → /": 4,
+    "/ → /category/all": 1,
+    "/style-finder → /product/1008": 1,
+    "/product/1008 → /checkout/bag": 1,
+    "/checkout/bag → /checkout/bag": 5,
+    "/ → /magazine/festival-fashion": 1,
+    "/magazine/festival-fashion → /magazine/festival-fashion/navratri-garba-picks": 1,
+    "/magazine/festival-fashion/navratri-garba-picks → /product/1012": 1,
+    "/product/1012 → /checkout/bag": 1,
+    "/checkout/payment → /checkout/payment": 12,
+    "/checkout/error → /checkout/error": 4,
+    "/magazine → /magazine/celebrity-looks/deepika-red-carpet-recreate": 1,
+    "/magazine/celebrity-looks/deepika-red-carpet-recreate → /product/1026": 1,
+    "/product/1026 → /checkout/bag": 1
   },
-  "totalEvents": 2536,
-  "updatedAt": "2026-06-10T06:02:13.984Z"
+  "totalEvents": 2882,
+  "updatedAt": "2026-06-10T06:55:08.569Z"
 }

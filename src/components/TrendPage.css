@@ -59,62 +59,113 @@
   max-width: 48ch;
 }
 
-/* Hub grid — 1-col mobile, 2-col tablet, top card full-width */
-.trend-hub__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  padding-bottom: 3rem;
+/* Hub reports rail — uniform editorial cards, horizontal scroll */
+.trend-hub__reports {
+  padding: 0.5rem 0 2rem;
 }
 
-@media (min-width: 480px) {
-  .trend-hub__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .trend-hub__grid > :first-child {
-    grid-column: 1 / -1;
-  }
+.trend-hub__reports-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 1rem;
 }
 
-@media (min-width: 900px) {
-  .trend-hub__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.trend-hub__reports-title {
+  margin: 0;
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
+  font-weight: 500;
+  color: #1c1c1c;
+}
 
-  .trend-hub__grid > :first-child {
-    grid-column: 1 / 3;
-    grid-row: 1 / 3;
-  }
+.trend-hub__reports-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.trend-hub__reports-count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted, #575757);
+  margin-right: 4px;
+}
+
+.trend-hub__nav {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color, #e8e0da);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #1c1c1c;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.trend-hub__nav:hover {
+  border-color: var(--brand-plum, #600b45);
+  color: var(--brand-plum, #600b45);
+}
+
+.trend-hub__rail-wrap {
+  overflow: hidden;
+}
+
+.trend-hub__rail {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px max(16px, calc((100vw - 1440px) / 2 + 16px)) 20px;
+  scroll-padding-inline: max(16px, calc((100vw - 1440px) / 2 + 16px));
+}
+
+.trend-hub__rail::-webkit-scrollbar {
+  display: none;
+}
+
+.trend-hub__rail > [role='listitem'] {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
 }
 
 .trend-hub__card {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  width: clamp(260px, 78vw, 320px);
   padding: 0;
   border: none;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  background: none;
+  background: #f5f0eb;
+  box-shadow: 0 8px 24px rgba(28, 28, 28, 0.08);
   -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trend-hub__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(28, 28, 28, 0.12);
 }
 
 .trend-hub__card-media {
   position: relative;
-  aspect-ratio: 4 / 3;
-}
-
-.trend-hub__grid > :first-child .trend-hub__card-media {
-  aspect-ratio: 16 / 9;
-}
-
-@media (min-width: 900px) {
-  .trend-hub__grid > :first-child .trend-hub__card-media {
-    aspect-ratio: unset;
-    height: 100%;
-  }
+  aspect-ratio: 3 / 4;
+  width: 100%;
 }
 
 .trend-hub__card-img {
@@ -127,39 +178,43 @@
 .trend-hub__card-overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.08) 0%,
-    rgba(0, 0, 0, 0.65) 100%
+    rgba(0, 0, 0, 0.02) 35%,
+    rgba(0, 0, 0, 0.55) 72%,
+    rgba(0, 0, 0, 0.82) 100%
   );
 }
 
 .trend-hub__card-copy {
   position: absolute;
+  z-index: 2;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 1rem;
+  padding: 1rem 1rem 1.1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.25rem;
   color: #fff;
+  text-align: left;
 }
 
 .trend-hub__card-label {
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .trend-hub__card-title {
   margin: 0;
   font-family: var(--font-serif, 'Playfair Display', serif);
-  font-size: clamp(1.05rem, 3vw, 1.35rem);
+  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .trend-hub__card-cta {
@@ -168,9 +223,27 @@
   gap: 0.3rem;
   font-size: 0.75rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   margin-top: 0.35rem;
 }
+
+@media (min-width: 768px) {
+  .trend-hub__card {
+    width: clamp(280px, 28vw, 340px);
+  }
+
+  .trend-hub__rail {
+    gap: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .trend-hub__card {
+    width: 320px;
+  }
+}
+
+/* Legacy grid selectors removed — hub uses rail above */
 
 /* ─── Individual Trend Page ──────────────────────────────────────────────── */
 

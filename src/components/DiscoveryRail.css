@@ -19,6 +19,16 @@
   margin-bottom: 10px;
 }
 
+.discovery-rail__rail-wrap {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
 .discovery-rail__titles {
   flex: 1;
   min-width: 0;
@@ -90,6 +100,11 @@
   color: var(--brand-plum);
 }
 
+.discovery-rail__nav--edge {
+  align-self: center;
+  box-shadow: var(--shadow-sm);
+}
+
 .discovery-rail__ad-break {
   flex: 0 0 min(300px, 88vw);
   width: min(300px, 88vw);
@@ -136,7 +151,8 @@
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: 4px 16px 36px;
+  padding: 4px 4px 36px;
+  min-width: 0;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -291,7 +307,7 @@
 }
 
 .discovery-rail--compact .discovery-rail__card {
-  flex-basis: clamp(130px, 24vw, 180px);
+  flex-basis: clamp(140px, 32vw, 180px);
 }
 
 .discovery-rail--compact .discovery-rail__meta {
@@ -315,37 +331,100 @@
   }
 }
 
-@media (max-width: 768px) {
+.discovery-rail__actions--mobile-scroll {
+  display: none;
+}
+
+@media (max-width: 767px) {
   .discovery-rail__head {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 14px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 12px;
   }
 
-  .discovery-rail__actions {
-    justify-content: flex-start;
+  .discovery-rail__titles {
+    flex: 1 1 calc(100% - 96px);
+    min-width: 0;
+  }
+
+  .discovery-rail__actions--mobile-scroll {
+    display: flex;
+    margin-left: auto;
     padding-top: 0;
+  }
+
+  .discovery-rail__actions:not(.discovery-rail__actions--mobile-scroll) {
+    width: 100%;
   }
 
   .discovery-rail__hook {
     max-width: none;
   }
+
+  .discovery-feed--full .discovery-rail__rail-wrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .discovery-feed--full .discovery-rail__track {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Full-width swipe rail — edge arrows squeeze the track and clip cards on small screens */
+  .discovery-rail__rail-wrap {
+    display: block;
+    padding: 0;
+  }
+
+  .discovery-rail__nav--edge {
+    display: none;
+  }
+
+  .discovery-rail__track {
+    padding: 4px 16px 36px;
+    scroll-padding-inline: 16px;
+  }
+
+  .discovery-rail__card {
+    flex: 0 0 clamp(168px, 78vw, 260px);
+  }
+
+  .discovery-rail--compact .discovery-rail__card {
+    flex: 0 0 clamp(168px, 78vw, 260px);
+  }
 }
 
 @media (min-width: 1024px) {
   /* Track only — head uses max-width centering; vw padding on head double-indents titles */
-  .discovery-rail__track {
-    padding-left: max(16px, calc((100vw - 1440px) / 2 + 16px));
-    padding-right: max(16px, calc((100vw - 1440px) / 2 + 16px));
+  .discovery-rail__rail-wrap {
+    padding-left: max(8px, calc((100vw - 1440px) / 2 + 8px));
+    padding-right: max(8px, calc((100vw - 1440px) / 2 + 8px));
   }
 
-  .discovery-feed--full .discovery-rail__track {
+  .discovery-rail__track {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .discovery-feed--full .discovery-rail__rail-wrap {
     padding-left: var(--discovery-inner, 32px);
     padding-right: var(--discovery-inner, 32px);
   }
 
+  .discovery-feed--full .discovery-rail__track {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .container .discovery-rail__rail-wrap {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
   .container .discovery-rail__track {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 4px;
+    padding-right: 4px;
   }
 }

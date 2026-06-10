@@ -13,8 +13,8 @@
  *
  * Mobile first. No JS animations. No heavy dependencies.
  */
-import React, { useMemo, useEffect, useState } from 'react';
-import { ArrowRight, Sparkles, BookOpen, TrendingUp } from 'lucide-react';
+import React, { useMemo, useEffect, useState, useRef } from 'react';
+import { ArrowRight, Sparkles, BookOpen, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import { TREND_PAGES } from '../data/trendPages';
 import { fetchTrendPages, getTrendPageAsync } from '../utils/editorialContentData';
 import { CELEBRITY_LOOKS } from '../data/celebrityLooks';
@@ -46,13 +46,13 @@ function TrendHeroCard({ trend, onNavigate }) {
           decoding="async"
         />
         <div className="trend-hub__card-overlay" aria-hidden="true" />
-      </div>
-      <div className="trend-hub__card-copy">
-        <span className="trend-hub__card-label">{trend.label}</span>
-        <p className="trend-hub__card-title">{trend.title}</p>
-        <span className="trend-hub__card-cta">
-          Explore <ArrowRight size={13} aria-hidden="true" />
-        </span>
+        <div className="trend-hub__card-copy">
+          <span className="trend-hub__card-label">{trend.label}</span>
+          <p className="trend-hub__card-title">{trend.title}</p>
+          <span className="trend-hub__card-cta">
+            Explore <ArrowRight size={13} aria-hidden="true" />
+          </span>
+        </div>
       </div>
     </button>
   );
@@ -192,10 +192,18 @@ function MoreTrends({ relatedSlugs, onNavigate, allTrends }) {
 
 function TrendHub({ onNavigate, onBack, adCodes = {} }) {
   const [trends, setTrends] = useState(TREND_PAGES);
+  const railRef = useRef(null);
 
   useEffect(() => {
     fetchTrendPages().then(setTrends);
   }, []);
+
+  const scrollRail = (direction) => {
+    const el = railRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.82 * direction;
+    el.scrollBy({ left: amount, behavior: 'smooth' });
+  };
 
   return (
     <div className="trend-hub">
@@ -212,17 +220,43 @@ function TrendHub({ onNavigate, onBack, adCodes = {} }) {
         <PlacedAdSlot adCodes={adCodes} placement="trend_hub_top" variant="section" />
       </div>
 
+      <section className="trend-hub__reports" aria-label="Trend reports">
+        <div className="container trend-hub__reports-head">
+          <h2 className="trend-hub__reports-title">Browse trend reports</h2>
+          <div className="trend-hub__reports-actions">
+            <span className="trend-hub__reports-count">{trends.length} reports</span>
+            <button
+              type="button"
+              className="trend-hub__nav"
+              onClick={() => scrollRail(-1)}
+              aria-label="Scroll left"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              type="button"
+              className="trend-hub__nav"
+              onClick={() => scrollRail(1)}
+              aria-label="Scroll right"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
+
+        <div className="trend-hub__rail-wrap">
+          <div className="trend-hub__rail" ref={railRef} role="list">
+            {trends.map((trend) => (
+              <div key={trend.slug} role="listitem">
+                <TrendHeroCard trend={trend} onNavigate={onNavigate} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="trend_hub_mid" variant="section" />
-      </div>
-
-      <div className="trend-hub__grid container">
-        {trends.map((trend) => (
-          <TrendHeroCard key={trend.slug} trend={trend} onNavigate={onNavigate} />
-        ))}
-      </div>
-
-      <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="trend_hub_bottom" variant="section" />
       </div>
     </div>

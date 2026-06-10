@@ -15,6 +15,7 @@ import { CELEBRITY_LOOKS } from '../data/celebrityLooks';
 import { getTrendPage } from '../data/trendPages';
 import { FASHION_QUIZZES } from '../data/fashionQuizzes';
 import { getKnowledgePageBySlug } from '../data/fashionKnowledge';
+import { ensureUniqueLoopImages } from '../utils/guideImages';
 import { trackRecommendationClicked } from '../utils/ga4';
 import './DiscoveryLoopSection.css';
 
@@ -80,6 +81,7 @@ function LoopCard({ type, image, title, subtitle, onClick }) {
  * @param {Function}  props.onNavigate        — navigates to any internal path
  * @param {Function}  props.onStartQuiz       — launches a quiz by slug
  * @param {Function}  props.onOpenKnowledgePage — opens a knowledge page by slug
+ * @param {Set<string>} [props.reservedImages]   — images already used on this page (avoid repeats)
  */
 export default function DiscoveryLoopSection({
   trendSlugs = [],
@@ -90,6 +92,7 @@ export default function DiscoveryLoopSection({
   sourceContext = 'unknown',
   title = 'Continue exploring',
   subtitle = 'Every tap opens a new dimension of your style journey',
+  reservedImages = null,
   onNavigate,
   onStartQuiz,
   onOpenKnowledgePage,
@@ -173,8 +176,8 @@ export default function DiscoveryLoopSection({
       }
     }
 
-    return result;
-  }, [trendSlugs, celebIds, quizSlugs, guideSlugs, excludeType, sourceContext, onNavigate, onStartQuiz, onOpenKnowledgePage]);
+    return ensureUniqueLoopImages(result, reservedImages);
+  }, [trendSlugs, celebIds, quizSlugs, guideSlugs, excludeType, sourceContext, reservedImages, onNavigate, onStartQuiz, onOpenKnowledgePage]);
 
   if (items.length === 0) return null;
 

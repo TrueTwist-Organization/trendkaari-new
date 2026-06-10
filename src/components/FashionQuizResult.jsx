@@ -85,10 +85,7 @@ export default function FashionQuizResult({
   }
 
   return (
-    <div
-      className="fashion-quiz fashion-quiz--result"
-      style={{ '--quiz-accent': quiz.accent }}
-    >
+    <div className="fashion-quiz fashion-quiz--result">
       <div className="fashion-quiz-result__hero">
         <div className="container">
           <button type="button" className="fashion-quiz__back" onClick={onBackToHub}>

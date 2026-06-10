@@ -344,7 +344,7 @@ export const KNOWLEDGE_PAGES = [
     dek: 'Two celebration heroes — compare comfort, styling time, and occasion fit.',
     excerpt: 'Both are wedding-guest favourites. Your choice depends on movement, styling confidence, and function type.',
     readTime: '5 min read',
-    image: '/lehengas/Lehengas/1/040A3523_700x.webp',
+    image: '/sarees/Sarees/9/L12.01.25_3441_700x.webp',
     shopCategory: 'lehengas',
     shopCategories: ['lehengas', 'sarees'],
     collectionLabels: [

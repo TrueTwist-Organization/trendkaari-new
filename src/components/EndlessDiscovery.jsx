@@ -8,6 +8,7 @@ import {
   countEndlessDiscoveryClicks,
   MIN_ENDLESS_CLICKS,
 } from '../utils/endlessDiscoveryEngine';
+import { dedupeEndlessDiscovery } from '../utils/pageImageDedupe';
 import { SUGGESTION_RAIL_AD_EVERY_N } from '../constants/adGridIntervals';
 import './EndlessDiscovery.css';
 import './RecommendationRails.css';
@@ -35,22 +36,10 @@ export default function EndlessDiscovery({
   showAds = true,
   compact = false,
   productsPerRail,
+  reservedImages = null,
 }) {
-  const discovery = useMemo(
-    () =>
-      buildEndlessDiscovery({
-        allProducts,
-        product,
-        category,
-        article,
-        knowledgePage,
-        quizSlug,
-        quizResult,
-        gameHub,
-        excludeProductIds,
-        productsPerRail: productsPerRail || (compact ? 8 : 10),
-      }),
-    [
+  const discovery = useMemo(() => {
+    const raw = buildEndlessDiscovery({
       allProducts,
       product,
       category,
@@ -60,10 +49,23 @@ export default function EndlessDiscovery({
       quizResult,
       gameHub,
       excludeProductIds,
-      productsPerRail,
-      compact,
-    ],
-  );
+      productsPerRail: productsPerRail || (compact ? 8 : 10),
+    });
+    return dedupeEndlessDiscovery(raw, reservedImages).discovery;
+  }, [
+    allProducts,
+    product,
+    category,
+    article,
+    knowledgePage,
+    quizSlug,
+    quizResult,
+    gameHub,
+    excludeProductIds,
+    productsPerRail,
+    compact,
+    reservedImages,
+  ]);
 
   const clickCount = useMemo(() => countEndlessDiscoveryClicks(discovery), [discovery]);
 

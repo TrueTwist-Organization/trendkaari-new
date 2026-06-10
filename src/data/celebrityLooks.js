@@ -57,7 +57,7 @@ export const CELEBRITY_LOOKS = [
     context: 'Sangeet · Mumbai',
     title: 'Embellished Lehenga Edit',
     hook: 'Shop the look →',
-    image: '/lehengas/Lehengas/1/040A3523_700x.webp',
+    image: '/lehengas/Lehengas/9/040A1707_700x.webp',
     category: 'lehengas',
     theme: 'Festive',
     styleNotes: [

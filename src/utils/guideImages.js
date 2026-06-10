@@ -1,30 +1,18 @@
-/** Pool of distinct guide card images — used to avoid duplicates side-by-side. */
+/** Guide & editorial card image helpers — pool lives in pageImageDedupe.js */
+import { createPageImageRegistry, GUIDE_IMAGE_POOL } from './pageImageDedupe';
 
-export const GUIDE_IMAGE_POOL = [
-  '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp',
-  '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
-  '/kurtas/Kurtas/9/LBL101KS620_1_700x.webp',
-  '/kurtas/Kurtas/1/LBL101KS612_3_202083ca-68f1-4ac5-8bf1-9932a8f97562_700x.webp',
-  '/tops/4/1.webp',
-  '/tops/7/1.webp',
-  '/tops/9/2.webp',
-  '/sarees/Sarees/1/0T3A5495_700x.webp',
-  '/sarees/Sarees/9/L12.01.25_3441_700x.webp',
-  '/co-ords/co-ord_set/9/3.webp',
-  '/co-ords/co-ord_set/7/4.webp',
-  '/lehengas/Lehengas/9/040A1707_700x.webp',
-  '/lehengas/Lehengas/1/040A3523_700x.webp',
-  '/suit-sets/Suit Sets/9/L12.01.25_1930_700x.webp',
-];
+export { GUIDE_IMAGE_POOL };
 
 /**
- * Ensure no two adjacent cards in the same grid row share the same image.
+ * Ensure cards avoid duplicate images within a grid row and (optionally) across a whole page.
  * @param {Array<{ image?: string }>} pages
  * @param {number} columns — grid columns at target breakpoint (default 4)
+ * @param {Set<string>} [usedImages] — shared set to dedupe across multiple grids on one page
  */
-export function ensureUniqueGuideImages(pages, columns = 4) {
+export function ensureUniqueGuideImages(pages, columns = 4, usedImages = null) {
   if (!pages?.length) return [];
 
+  const globalUsed = usedImages instanceof Set ? usedImages : new Set();
   const assigned = [];
   let poolIdx = 0;
 
@@ -40,14 +28,42 @@ export function ensureUniqueGuideImages(pages, columns = 4) {
   };
 
   return pages.map((page, index) => {
-    let image = page.image || nextFromPool(new Set(assigned));
-
     const leftNeighbor = index % columns !== 0 ? assigned[index - 1] : null;
-    if (leftNeighbor && image === leftNeighbor) {
-      image = nextFromPool(new Set([leftNeighbor]));
+    const avoid = new Set(globalUsed);
+    if (leftNeighbor) avoid.add(leftNeighbor);
+
+    let image = page.image;
+    if (!image || avoid.has(image)) {
+      image = nextFromPool(avoid);
     }
 
     assigned[index] = image;
+    globalUsed.add(image);
     return { ...page, image };
+  });
+}
+
+/** Hub listing cards — always pick unique pool images (ignore CMS duplicates / similar kurtas). */
+export function assignHubGuideImages(pages, columns = 4, usedImages = null) {
+  return ensureUniqueGuideImages(
+    pages.map((page) => ({ ...page, image: '' })),
+    columns,
+    usedImages,
+  );
+}
+
+/**
+ * Discovery loop cards — replace missing or duplicate thumbnails with pool images.
+ * @param {Array<{ image?: string | null }>} items
+ * @param {Set<string>} [reservedImages] — images already shown above on the same page
+ */
+export function ensureUniqueLoopImages(items, reservedImages = null) {
+  if (!items?.length) return [];
+
+  const registry = createPageImageRegistry(reservedImages);
+
+  return items.map((item) => {
+    const image = registry.reserve(item.image);
+    return { ...item, image };
   });
 }

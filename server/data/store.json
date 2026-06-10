@@ -1181,7 +1181,7 @@
       ],
       "rating": "5.0",
       "reviewsCount": 95,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -1192,7 +1192,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -6500,7 +6500,7 @@
       ],
       "rating": "4.7",
       "reviewsCount": 117,
-      "stock": 24,
+      "stock": 20,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -6511,7 +6511,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 0,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -10205,7 +10205,7 @@
       ],
       "rating": "4.8",
       "reviewsCount": 145,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -10216,7 +10216,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -22375,6 +22375,166 @@
   ],
   "orders": [
     {
+      "id": "ORD-909376",
+      "userId": null,
+      "customerName": "Jinal",
+      "email": "jinalman30@gmail.com",
+      "address": "hb, gr, re, r, 123456",
+      "items": [
+        {
+          "id": 1046,
+          "title": "Blush Rose Pink Gingham Peplum Top",
+          "price": 149,
+          "originalPrice": 298,
+          "image": "/tops/6/1.webp",
+          "selectedSize": "XS",
+          "quantity": 7,
+          "gender": "ladies",
+          "subCategory": "tops",
+          "category": "women"
+        },
+        {
+          "id": 2209,
+          "title": "Black Classic Polo T-Shirt",
+          "price": 99,
+          "originalPrice": 198,
+          "image": "/t-shirts/t-shirt/9/1.webp",
+          "selectedSize": "XS",
+          "quantity": 1,
+          "gender": "ladies",
+          "subCategory": "t-shirts",
+          "category": "women"
+        },
+        {
+          "id": 1000,
+          "title": "Ruby Red Gota Striped Straight Kurta Set",
+          "price": 149,
+          "originalPrice": 298,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "kurtas",
+          "wearType": "traditional",
+          "image": "/kurtas/Kurtas/1/LBL101KS612_1_700x.webp",
+          "images": [
+            "/kurtas/Kurtas/1/LBL101KS612_1_700x.webp",
+            "/kurtas/Kurtas/1/LBL101KS612_2_6321d434-bf17-49b0-a8e6-5cfbeedbf925_700x.webp",
+            "/kurtas/Kurtas/1/LBL101KS612_3_202083ca-68f1-4ac5-8bf1-9932a8f97562_700x.webp",
+            "/kurtas/Kurtas/1/LBL101KS612_4_b207b08b-595d-45b3-9aa7-f0b13b16fa04_700x.webp",
+            "/kurtas/Kurtas/1/LBL101KS612_5_a4bb0890-0486-4dc9-bdc2-47f4f383a9ce_700x.webp",
+            "/kurtas/Kurtas/1/LBL101KS612_6_b9031da5-058a-42b1-8193-2bee49c5426c_700x.webp",
+            "/kurtas/Kurtas/1/LBL101KS612_7_11331730-5fca-4a0b-8c31-00613ce6d558_700x.webp"
+          ],
+          "description": "Discover Ruby Red Gota Striped Straight Kurta Set from FlexFit Studio—where tradition meets contemporary design. This kurtas is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "5.0",
+          "reviewsCount": 95,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Ruby Red Gota Striped Straight Kurta Set from FlexFit Studio—where tradition meets contemporary design. This kurtas is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Ruby Red Gota Striped Straight Kurta Set features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        }
+      ],
+      "subtotal": 1291,
+      "discount": 0,
+      "grandTotal": 1291,
+      "status": "Pending",
+      "paymentStatus": "Paid",
+      "date": "10/6/2026, 11:30:25 am",
+      "createdAt": "2026-06-10T06:00:25.744Z"
+    },
+    {
       "id": "ORD-663782",
       "userId": null,
       "customerName": "Guest",
@@ -22507,10 +22667,11 @@
       "subtotal": 249,
       "discount": 0,
       "grandTotal": 249,
-      "status": "Pending",
+      "status": "Processing",
       "paymentStatus": "Paid",
       "date": "8/6/2026, 4:48:23 pm",
-      "createdAt": "2026-06-08T11:18:23.407Z"
+      "createdAt": "2026-06-08T11:18:23.407Z",
+      "confirmedAt": "2026-06-09T11:23:07.130Z"
     },
     {
       "id": "ORD-252283",
@@ -25192,7 +25353,50 @@
     {
       "code": "SALE100",
       "discount": 20,
+      "discountType": "flat",
       "minPurchase": 199
+    },
+    {
+      "code": "SPIN5",
+      "discount": 5,
+      "discountType": "percent",
+      "minPurchase": 499
+    },
+    {
+      "code": "SPIN10",
+      "discount": 10,
+      "discountType": "percent",
+      "minPurchase": 799
+    },
+    {
+      "code": "SPIN15",
+      "discount": 15,
+      "discountType": "percent",
+      "minPurchase": 999
+    },
+    {
+      "code": "SPIN50",
+      "discount": 50,
+      "discountType": "flat",
+      "minPurchase": 799
+    },
+    {
+      "code": "SPIN75",
+      "discount": 75,
+      "discountType": "flat",
+      "minPurchase": 599
+    },
+    {
+      "code": "SPIN100",
+      "discount": 100,
+      "discountType": "flat",
+      "minPurchase": 1499
+    },
+    {
+      "code": "SPINFREE",
+      "discount": 49,
+      "discountType": "flat",
+      "minPurchase": 399
     }
   ],
   "users": [
@@ -25390,7 +25594,7 @@
       "updatedAt": "2026-05-21T05:37:10.557Z"
     }
   ],
-  "_storeUpdatedAt": "2026-06-09T08:23:07.078Z",
+  "_storeUpdatedAt": "2026-06-10T06:02:30.709Z",
   "homepage_blocks": [
     {
       "id": "style-quizSAdxcvb",
@@ -27419,7 +27623,7 @@
       "title": "Outfit Finder",
       "subtitle": "Tell us the moment — we’ll build the look",
       "description": "Occasion, fit, and weather in four steps. Get a curated outfit lane with products ready to explore.",
-      "accent": "#1565c0",
+      "accent": "#600b45",
       "steps": [
         {
           "id": "occasion",

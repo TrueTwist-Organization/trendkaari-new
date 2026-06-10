@@ -17,5 +17,5 @@ export default function PlacedAdSlot({
   const owner = ownerKey || placement;
   if (!allowDuplicateSource && !claimAdSource(source, owner, code)) return null;
 
-  return <PageAdSlot code={code} label={placement} variant={variant} />;
+  return <PageAdSlot code={code} label={owner} variant={variant} />;
 }

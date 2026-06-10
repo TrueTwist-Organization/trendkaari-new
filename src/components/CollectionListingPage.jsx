@@ -702,9 +702,11 @@ export default function CollectionListingPage({
                 const primaryImage = getProductPrimaryImage(product);
                 const hasSecondaryImage = gallery.length > 1;
                 const hoverImage = getProductHoverImage(product);
+                const showInlineAd = (index + 1) % 2 === 0;
 
                 return (
-                  <div key={product.id} className="collection-item-card hover-zoom-container">
+                  <React.Fragment key={product.id}>
+                  <div className="collection-item-card hover-zoom-container">
                     
                     {/* Image Area with Premium Hover Image Swap */}
                     <div 
@@ -798,6 +800,18 @@ export default function CollectionListingPage({
                     </div>
 
                   </div>
+                  {showInlineAd ? (
+                    <div className="collection-products-grid-ad">
+                      <PlacedAdSlot
+                        adCodes={adCodes}
+                        placement="ads_every_2_products"
+                        ownerKey={`ads_every_2_products-${index}`}
+                        allowDuplicateSource
+                        variant="container"
+                      />
+                    </div>
+                  ) : null}
+                  </React.Fragment>
                 );
               })}
             </div>

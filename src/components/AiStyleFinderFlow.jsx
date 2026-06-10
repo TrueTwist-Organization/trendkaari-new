@@ -56,7 +56,7 @@ export default function AiStyleFinderFlow({
   );
 
   return (
-    <div className="fashion-quiz fashion-quiz--flow ai-style-finder" style={{ '--quiz-accent': '#4527a0' }}>
+    <div className="fashion-quiz fashion-quiz--flow ai-style-finder">
       {stepIndex === 0 ? (
         <div className="ai-style-finder__intro">
           <div className="container">

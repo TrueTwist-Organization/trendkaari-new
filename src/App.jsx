@@ -16,6 +16,7 @@ import UserAuthModal from './components/UserAuthModal';
 import AccountDrawer from './components/AccountDrawer';
 import QuickViewModal from './components/QuickViewModal';
 import MobileNavbar from './components/MobileNavbar';
+import { mergeSpinWheelCoupons } from './data/spinWheelCoupons';
 import {
   fetchStoreAdSlots,
   fetchStoreCoupons,
@@ -30,6 +31,8 @@ import { applySiteSettingsToDocument } from './utils/siteSettings';
 import { adSlotsToCodeMap } from './utils/adSlots';
 import { AD_SLOTS_VERSION_KEY } from './utils/adSlotsSync';
 import { resetAdDedupe } from './utils/adDedupe';
+import { refreshAllGptSlots } from './utils/googletag';
+import { fitAllAdsInDocumentDebounced } from './utils/fitAdsInContainer';
 import { injectTrackingScriptsFromHtml } from './utils/injectTrackingScripts';
 import { preloadAdLibraries } from './utils/preloadAds';
 import { scrollToPageTop } from './utils/scrollToTop';
@@ -288,10 +291,12 @@ export default function App() {
   ]);
 
   // Active Dynamic Coupons database
-  const [coupons, setCoupons] = useState([
-    { code: 'SALE100', discount: 20, discountType: 'flat', minPurchase: 199 },
-    { code: 'FESTIVE50', discount: 50, discountType: 'flat', minPurchase: 499 },
-  ]);
+  const [coupons, setCoupons] = useState(() =>
+    mergeSpinWheelCoupons([
+      { code: 'SALE100', discount: 20, discountType: 'flat', minPurchase: 199 },
+      { code: 'FESTIVE50', discount: 50, discountType: 'flat', minPurchase: 499 },
+    ]),
+  );
   const [siteSettings, setSiteSettings] = useState(null);
   const [adCodes, setAdCodes] = useState({});
 
@@ -606,6 +611,32 @@ export default function App() {
     }
   };
 
+  const adPageKey =
+    viewMode === 'checkout'
+      ? `checkout-${checkoutSlug}`
+      : viewMode === 'product-detail'
+        ? `product-${selectedProduct?.id || 'none'}`
+        : isCategoryPage
+          ? `category-${activeCategory}`
+          : viewMode === 'info'
+            ? `info-${infoSlug}`
+            : viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result'
+              ? `quiz-${quizSlug || 'hub'}-${quizResultKey || 'flow'}`
+              : viewMode === 'style-finder' || viewMode === 'style-finder-result'
+                ? `style-finder-${styleFinderResultKey || 'flow'}`
+                : viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article'
+                  ? `magazine-${magazineCategorySlug || 'hub'}-${magazineArticleSlug || 'list'}`
+                  : viewMode === 'knowledge' || viewMode === 'knowledge-page'
+                    ? `knowledge-${knowledgePageSlug || 'hub'}`
+                    : viewMode === 'trends' || viewMode === 'trend-page'
+                      ? `trends-${trendSlug || 'hub'}`
+                      : viewMode === 'celebrity-match'
+                        ? 'celebrity-match'
+                        : viewMode === 'games' || viewMode === 'game-play'
+                          ? `games-${gameSlug || 'hub'}`
+                          : 'home';
+  resetAdDedupe(adPageKey);
+
   // Sync route state on hard refresh / direct URL entry
   useEffect(() => {
     const route = resolveAppRoute(window.location.pathname, productsList, giftCombos);
@@ -634,7 +665,7 @@ export default function App() {
 
     runWhenIdle(() => {
       fetchStoreCoupons().then((list) => {
-        if (list?.length) setCoupons(list);
+        if (list?.length) setCoupons(mergeSpinWheelCoupons(list));
       });
       fetchStoreGiftCombos().then((list) => {
         if (list?.length) setGiftCombos(list);
@@ -802,6 +833,21 @@ export default function App() {
   useEffect(() => {
     scrollToPageTop();
   }, [viewMode, isCategoryPage, activeCategory, infoSlug, checkoutSlug, quizSlug, quizResultKey, styleFinderResultKey, magazineCategorySlug, magazineArticleSlug, knowledgePageSlug, gameSlug, celebrityLookSlug, trendSlug, selectedProduct?.id]);
+
+  useEffect(() => {
+    const t1 = window.setTimeout(() => {
+      refreshAllGptSlots();
+      fitAllAdsInDocumentDebounced();
+    }, 400);
+    const t2 = window.setTimeout(() => {
+      refreshAllGptSlots();
+      fitAllAdsInDocumentDebounced();
+    }, 1500);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
+  }, [adPageKey]);
 
   useEffect(() => {
     document.body.classList.toggle('home-page', viewMode === 'home' && !isCategoryPage);
@@ -1172,32 +1218,6 @@ export default function App() {
     setTimeout(scroll, 350);
   };
 
-  const adPageKey =
-    viewMode === 'checkout'
-      ? `checkout-${checkoutSlug}`
-      : viewMode === 'product-detail'
-        ? `product-${selectedProduct?.id || 'none'}`
-        : isCategoryPage
-          ? `category-${activeCategory}`
-          : viewMode === 'info'
-            ? `info-${infoSlug}`
-            : viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result'
-              ? `quiz-${quizSlug || 'hub'}-${quizResultKey || 'flow'}`
-              : viewMode === 'style-finder' || viewMode === 'style-finder-result'
-                ? `style-finder-${styleFinderResultKey || 'flow'}`
-                : viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article'
-                  ? `magazine-${magazineCategorySlug || 'hub'}-${magazineArticleSlug || 'list'}`
-                  : viewMode === 'knowledge' || viewMode === 'knowledge-page'
-                    ? `knowledge-${knowledgePageSlug || 'hub'}`
-                    : viewMode === 'trends' || viewMode === 'trend-page'
-                      ? `trends-${trendSlug || 'hub'}`
-                    : viewMode === 'celebrity-match'
-                        ? 'celebrity-match'
-                        : viewMode === 'games' || viewMode === 'game-play'
-                        ? `games-${gameSlug || 'hub'}`
-            : 'home';
-  resetAdDedupe(adPageKey);
-
   return (
     <div className="app-container">
       <JourneyTracker
@@ -1340,6 +1360,7 @@ export default function App() {
           <FashionGamePlay
             gameSlug={gameSlug}
             products={productsList}
+            adCodes={adCodes}
             onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
             onSelectCategory={handleSelectCategory}
             onOpenArticle={handleOpenMagazineArticle}
@@ -1456,6 +1477,7 @@ export default function App() {
           <FashionQuizFlow
             quizSlug={quizSlug}
             products={productsList}
+            adCodes={adCodes}
             onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
             onSelectCategory={handleSelectCategory}
             onOpenArticle={handleOpenMagazineArticle}

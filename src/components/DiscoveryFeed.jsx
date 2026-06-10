@@ -86,7 +86,13 @@ export default function DiscoveryFeed({
             }
           />
           {(index + 1) % 2 === 0 ? (
-            <PlacedAdSlot adCodes={adCodes} placement="discover_feed_mid" variant="section" />
+            <PlacedAdSlot
+              adCodes={adCodes}
+              placement="discover_feed_mid"
+              ownerKey={`discover_feed_mid-${index}`}
+              allowDuplicateSource
+              variant="section"
+            />
           ) : null}
         </React.Fragment>
       ))}

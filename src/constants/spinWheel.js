@@ -1,6 +1,7 @@
 export const SPIN_WHEEL_MIN_ORDER = 1000;
 
 export const SPIN_WHEEL_STORAGE_KEY = 'trendkaari_spin_wheel_claims';
+export const SPIN_WHEEL_PENDING_COUPON_KEY = 'trendkaari_spin_pending_coupon';
 
 /** Trendkaari brand palette — plum, gold, festival orange */
 export const SPIN_BRAND = {
@@ -61,6 +62,7 @@ export function saveSpinClaim(orderId, prize) {
     const claims = loadSpinClaims();
     claims[String(orderId)] = { prizeId: prize.id, code: prize.code, at: Date.now() };
     localStorage.setItem(SPIN_WHEEL_STORAGE_KEY, JSON.stringify(claims));
+    if (prize.code) savePendingSpinCoupon(prize);
   } catch {
     /* ignore */
   }
@@ -71,4 +73,38 @@ export function getSavedSpinForOrder(orderId) {
   const entry = claims[String(orderId)];
   if (!entry) return null;
   return SPIN_WHEEL_PRIZES.find((p) => p.id === entry.prizeId) || null;
+}
+
+export function savePendingSpinCoupon(prize) {
+  if (!prize?.code) return;
+  try {
+    localStorage.setItem(
+      SPIN_WHEEL_PENDING_COUPON_KEY,
+      JSON.stringify({
+        code: prize.code,
+        prizeId: prize.id,
+        label: prize.label,
+        at: Date.now(),
+      }),
+    );
+  } catch {
+    /* ignore */
+  }
+}
+
+export function loadPendingSpinCoupon() {
+  try {
+    const raw = localStorage.getItem(SPIN_WHEEL_PENDING_COUPON_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function clearPendingSpinCoupon() {
+  try {
+    localStorage.removeItem(SPIN_WHEEL_PENDING_COUPON_KEY);
+  } catch {
+    /* ignore */
+  }
 }

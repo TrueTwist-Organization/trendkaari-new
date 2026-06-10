@@ -1,12 +1,16 @@
 import { useMemo, useState } from 'react';
-import { Copy, Check, Sparkles, X } from 'lucide-react';
+import { Copy, Check, Sparkles, X, Tag } from 'lucide-react';
 import {
   SPIN_WHEEL_PRIZES,
   pickSpinPrizeIndex,
   saveSpinClaim,
   getSavedSpinForOrder,
   hasClaimedSpinForOrder,
+  savePendingSpinCoupon,
 } from '../constants/spinWheel';
+import { getSpinCouponByCode } from '../data/spinWheelCoupons';
+import { formatCouponDiscountShort } from '../utils/couponDiscount';
+import PlacedAdSlot from './PlacedAdSlot';
 import './SpinWheel.css';
 
 const SEGMENT_COUNT = SPIN_WHEEL_PRIZES.length;
@@ -21,7 +25,7 @@ function buildWheelGradient() {
   return `conic-gradient(from -${SEGMENT_DEG / 2}deg, ${stops.join(', ')})`;
 }
 
-export default function SpinWheel({ orderId, orderTotal, onClose }) {
+export default function SpinWheel({ orderId, orderTotal, adCodes = {}, onClose, onShopNow }) {
   const savedPrize = useMemo(() => getSavedSpinForOrder(orderId), [orderId]);
   const alreadySpun = hasClaimedSpinForOrder(orderId);
 
@@ -31,6 +35,11 @@ export default function SpinWheel({ orderId, orderTotal, onClose }) {
   const [copied, setCopied] = useState(false);
 
   const wheelGradient = useMemo(() => buildWheelGradient(), []);
+
+  const prizeCoupon = useMemo(() => {
+    if (!prize?.code) return null;
+    return getSpinCouponByCode(prize.code);
+  }, [prize]);
 
   const spin = () => {
     if (spinning || prize || alreadySpun) return;
@@ -48,6 +57,7 @@ export default function SpinWheel({ orderId, orderTotal, onClose }) {
       setSpinning(false);
       setPrize(selected);
       saveSpinClaim(orderId, selected);
+      if (selected.code) savePendingSpinCoupon(selected);
     }, 4200);
   };
 
@@ -75,10 +85,12 @@ export default function SpinWheel({ orderId, orderTotal, onClose }) {
             <p className="spin-wheel-modal__eyebrow">₹{orderTotal}+ order reward</p>
             <h2 className="spin-wheel-modal__title">Spin &amp; win!</h2>
             <p className="spin-wheel-modal__sub">
-              Your order unlocked a bonus spin. Win a coupon for your next purchase.
+              Orders above ₹1000 unlock this spin. Win a discount coupon for your next purchase.
             </p>
           </div>
         </div>
+
+        <PlacedAdSlot adCodes={adCodes} placement="spin_wheel_top" variant="inline" />
 
         <div className="spin-wheel-stage">
           <div className="spin-wheel-pointer" aria-hidden />
@@ -118,13 +130,24 @@ export default function SpinWheel({ orderId, orderTotal, onClose }) {
             <p className="spin-wheel-result__prize">{prize.label}</p>
             <p className="spin-wheel-result__sub">{prize.sublabel}</p>
             {prize.code ? (
-              <div className="spin-wheel-result__code-row">
-                <code>{prize.code}</code>
-                <button type="button" onClick={copyCode}>
-                  {copied ? <Check size={14} /> : <Copy size={14} />}
-                  {copied ? 'Copied' : 'Copy'}
-                </button>
-              </div>
+              <>
+                {prizeCoupon ? (
+                  <p className="spin-wheel-result__deal">
+                    <Tag size={14} aria-hidden />
+                    {formatCouponDiscountShort(prizeCoupon)} on orders ₹{prizeCoupon.minPurchase}+
+                  </p>
+                ) : null}
+                <div className="spin-wheel-result__code-row">
+                  <code>{prize.code}</code>
+                  <button type="button" onClick={copyCode}>
+                    {copied ? <Check size={14} /> : <Copy size={14} />}
+                    {copied ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+                <p className="spin-wheel-result__saved">
+                  Saved for your next order — discount applies automatically at checkout.
+                </p>
+              </>
             ) : (
               <p className="spin-wheel-result__note">Place another ₹1000+ order to spin again.</p>
             )}
@@ -133,9 +156,18 @@ export default function SpinWheel({ orderId, orderTotal, onClose }) {
           <p className="spin-wheel-modal__hint">Tap SPIN to reveal your reward</p>
         )}
 
-        <button type="button" className="spin-wheel-modal__done btn btn-primary" onClick={onClose}>
-          Continue shopping
-        </button>
+        <PlacedAdSlot adCodes={adCodes} placement="spin_wheel_bottom" variant="inline" />
+
+        <div className="spin-wheel-modal__actions">
+          {prize?.code && onShopNow ? (
+            <button type="button" className="spin-wheel-modal__shop btn btn-primary" onClick={onShopNow}>
+              Shop with discount
+            </button>
+          ) : null}
+          <button type="button" className="spin-wheel-modal__done btn btn-primary" onClick={onClose}>
+            Continue shopping
+          </button>
+        </div>
       </div>
     </div>
   );

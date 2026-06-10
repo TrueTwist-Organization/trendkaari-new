@@ -637,6 +637,10 @@
   gap: 25px 20px;
 }
 
+.collection-products-grid-ad {
+  grid-column: 1 / -1;
+}
+
 /* ==================== HIGH-FIDELITY PRODUCT CARD ==================== */
 .collection-item-card {
   background-color: #ffffff;

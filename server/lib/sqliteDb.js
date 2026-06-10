@@ -10,6 +10,13 @@ const DEFAULT_COUPONS = [
   { code: 'SALE100', discount: 20, discountType: 'flat', minPurchase: 199 },
   { code: 'FESTIVE50', discount: 50, discountType: 'flat', minPurchase: 249 },
   { code: 'FFLAT30', discount: 30, discountType: 'flat', minPurchase: 149 },
+  { code: 'SPIN5', discount: 5, discountType: 'percent', minPurchase: 499 },
+  { code: 'SPIN10', discount: 10, discountType: 'percent', minPurchase: 799 },
+  { code: 'SPIN15', discount: 15, discountType: 'percent', minPurchase: 999 },
+  { code: 'SPIN50', discount: 50, discountType: 'flat', minPurchase: 799 },
+  { code: 'SPIN75', discount: 75, discountType: 'flat', minPurchase: 599 },
+  { code: 'SPIN100', discount: 100, discountType: 'flat', minPurchase: 1499 },
+  { code: 'SPINFREE', discount: 49, discountType: 'flat', minPurchase: 399 },
 ];
 
 let client = null;

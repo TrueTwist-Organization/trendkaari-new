@@ -18,7 +18,10 @@ export function getAdUnitFingerprint(code = '', sourceKey = '') {
     text.match(/id=['"](div-gpt-ad-[^'"]+)['"]/)?.[1] ||
     text.match(/display\s*\(\s*['"](div-gpt-ad-[^'"]+)['"]/)?.[1] ||
     text.match(/(div-gpt-ad-[a-zA-Z0-9_-]+)/)?.[1];
-  if (divId) return `gpt:${divId}`;
+  if (divId) {
+    const suffix = String(sourceKey || '').trim();
+    return suffix ? `gpt:${divId}::${suffix}` : `gpt:${divId}`;
+  }
   if (sourceKey) return `key:${String(sourceKey).trim()}`;
   if (text) return `html:${text.length}:${text.slice(0, 96)}`;
   return 'empty';

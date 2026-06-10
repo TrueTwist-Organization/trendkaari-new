@@ -20,6 +20,7 @@ import {
   recordStyleVote,
 } from '../utils/gameVotesStorage';
 import EndlessDiscovery from './EndlessDiscovery';
+import PlacedAdSlot from './PlacedAdSlot';
 import './FashionGames.css';
 
 function StarRatingInput({ value, onChange }) {
@@ -69,6 +70,7 @@ const BATTLE_GENDERS = [
 export default function FashionGamePlay({
   gameSlug,
   products = [],
+  adCodes = {},
   onBackToHub,
   onBackToHome,
   onSelectProduct,
@@ -461,6 +463,8 @@ export default function FashionGamePlay({
           <h1>{game.title}</h1>
         </header>
 
+        <PlacedAdSlot adCodes={adCodes} placement="game_play_mid" variant="section" />
+
         {phase === 'play' ? renderPlay() : renderResults()}
 
         {phase === 'results' ? (
@@ -486,6 +490,8 @@ export default function FashionGamePlay({
             </button>
           </div>
         ) : null}
+
+        <PlacedAdSlot adCodes={adCodes} placement="game_play_bottom" variant="section" />
 
         {products.length > 0 && phase === 'results' ? (
           <EndlessDiscovery

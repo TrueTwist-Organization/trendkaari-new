@@ -515,6 +515,30 @@ const CONTENT_SLOTS = [
     placeholder: 'Paste ad HTML/script…',
   },
   {
+    key: 'quiz_flow_mid',
+    title: 'Quiz Flow — Mid',
+    description: '/quiz/:slug step flow — below progress, above question.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'quiz_flow_bottom',
+    title: 'Quiz Flow — Bottom',
+    description: '/quiz/:slug step flow — below next button / discovery.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'game_play_mid',
+    title: 'Game Play — Mid',
+    description: '/games/:slug play screen — mid-page.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'game_play_bottom',
+    title: 'Game Play — Bottom',
+    description: '/games/:slug play screen — before endless discovery.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
     key: 'knowledge_page_mid',
     title: 'Knowledge Guide — Mid',
     description: 'Mid-page on fashion knowledge / styling guides.',
@@ -609,6 +633,18 @@ const CONTENT_SLOTS = [
     title: 'AI Style Finder Result — Bottom',
     description: '/style-finder/result — before finale CTA.',
     placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'spin_wheel_top',
+    title: 'Spin Wheel — Top',
+    description: 'Order success spin modal — below headline, above wheel.',
+    placeholder: 'Paste ad HTML/script for spin wheel…',
+  },
+  {
+    key: 'spin_wheel_bottom',
+    title: 'Spin Wheel — Bottom',
+    description: 'Order success spin modal — below result, above continue button.',
+    placeholder: 'Paste ad HTML/script for spin wheel…',
   },
   {
     key: 'knowledge_hub_mid',

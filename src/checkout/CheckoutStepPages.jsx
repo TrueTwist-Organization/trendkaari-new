@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import {
   Mail,
   Phone,
@@ -13,14 +14,16 @@ import {
   Tag,
   ShoppingBag,
 } from 'lucide-react';
+import SpinWheel from '../components/SpinWheel';
+import '../components/SpinWheel.css';
 import OrderSummary from './OrderSummary';
 import OrderSuccess from './OrderSuccess';
 import CheckoutStepPageShell from './CheckoutStepPageShell';
 import PlacedAdSlot from '../components/PlacedAdSlot';
 import { CheckoutFreeShipBar } from './CheckoutStepExtras';
 import { SUCCESS_STEP_INDEX } from './checkoutSteps';
-import { formatCouponDiscountShort } from '../utils/couponDiscount';
-import { isSpinWheelEligible, SPIN_WHEEL_MIN_ORDER } from '../constants/spinWheel';
+import { formatCouponDiscountShort, formatSpinDiscountSummary } from '../utils/couponDiscount';
+import { SPIN_WHEEL_MIN_ORDER } from '../constants/spinWheel';
 
 function wrapStep(stepIndex, node, adCodes, shellProps = {}) {
   return (
@@ -97,6 +100,15 @@ export default function CheckoutStepPages({ step, ctx }) {
     updatePayment,
     completedOrder,
     successPause,
+    showPaymentSpin,
+    openPaymentSpin,
+    closePaymentSpin,
+    paymentSpinDone,
+    paymentSpinPrize,
+    handlePaymentSpinPrize,
+    isCheckoutSpinEligible,
+    spinDiscountAmount,
+    spinDiscountPercent,
     onContinueShopping,
     onClose,
     reservedMinutes,
@@ -625,15 +637,29 @@ export default function CheckoutStepPages({ step, ctx }) {
   }
 
   if (step === 7) {
+    const spinRequired = isCheckoutSpinEligible && !paymentSpinDone;
+    const spinWonDiscount = spinDiscountAmount > 0;
+    const spinSummary =
+      spinWonDiscount && appliedCoupon
+        ? formatSpinDiscountSummary(appliedCoupon, subtotal, spinDiscountAmount)
+        : '';
+
     return wrapStep(
       7,
       (
+        <>
         <div className={cardClass}>
           <div className="co-page-head">
             <span className="co-page-badge">08</span>
             <div>
               <h2 className="co-step-heading">Payment</h2>
-              <p className="co-step-sub">Pay ₹{grandTotal} · secure checkout</p>
+              <p className="co-step-sub">
+                {paymentSpinDone && spinWonDiscount ? (
+                  <>Pay <strong>₹{grandTotal}</strong> after spin discount</>
+                ) : (
+                  <>Pay ₹{grandTotal} · secure checkout</>
+                )}
+              </p>
             </div>
           </div>
           {reservedMinutes > 0 && (
@@ -641,21 +667,64 @@ export default function CheckoutStepPages({ step, ctx }) {
               Complete within {reservedMinutes} min — items reserved
             </div>
           )}
-          {isSpinWheelEligible(grandTotal) ? (
-            <div className="co-spin-teaser co-spin-teaser--unlocked" role="note">
-              <Sparkles size={16} aria-hidden />
-              <span>
-                <strong>Spin wheel unlocked!</strong> Place this ₹{grandTotal} order to spin and win coupons.
-              </span>
-            </div>
+          {isCheckoutSpinEligible ? (
+            paymentSpinDone ? (
+              <div className="co-spin-teaser co-spin-teaser--unlocked co-spin-teaser--done" role="note">
+                <Sparkles size={16} aria-hidden />
+                <span>
+                  <strong>Spin used.</strong> One spin per order — you cannot spin again on this checkout.
+                </span>
+              </div>
+            ) : (
+              <div className="co-spin-teaser co-spin-teaser--unlocked co-spin-teaser--action" role="note">
+                <Sparkles size={16} aria-hidden />
+                <span>
+                  <strong>Spin wheel unlocked!</strong> Spin once to win a discount on this ₹{subtotal} order.
+                </span>
+                <button
+                  type="button"
+                  className="co-spin-teaser__btn"
+                  onClick={openPaymentSpin}
+                >
+                  Spin now
+                </button>
+              </div>
+            )
           ) : (
             <div className="co-spin-teaser" role="note">
               <Sparkles size={16} aria-hidden />
               <span>
-                Shop ₹{SPIN_WHEEL_MIN_ORDER}+ to unlock a <strong>free spin wheel</strong> reward after checkout.
+                Shop ₹{SPIN_WHEEL_MIN_ORDER}+ to unlock a <strong>free spin wheel</strong> before payment.
               </span>
             </div>
           )}
+          {paymentSpinDone ? (
+            <div className="co-spin-breakdown" aria-label="Order total after spin">
+              <div className="co-spin-breakdown__row">
+                <span>Order total (before spin)</span>
+                <strong>₹{subtotal}</strong>
+              </div>
+              {spinWonDiscount ? (
+                <div className="co-spin-breakdown__row co-spin-breakdown__row--discount">
+                  <span>
+                    Spin reward · {paymentSpinPrize?.label || appliedCoupon?.code}
+                    <em>{spinDiscountPercent}% off</em>
+                  </span>
+                  <strong>−₹{spinDiscountAmount}</strong>
+                </div>
+              ) : (
+                <div className="co-spin-breakdown__row co-spin-breakdown__row--muted">
+                  <span>Spin result</span>
+                  <strong>No discount</strong>
+                </div>
+              )}
+              <div className="co-spin-breakdown__row co-spin-breakdown__row--total">
+                <span>Pay after spin</span>
+                <strong>₹{grandTotal}</strong>
+              </div>
+              {spinSummary ? <p className="co-spin-breakdown__note">{spinSummary}</p> : null}
+            </div>
+          ) : null}
           <div className="co-pay-methods" role="tablist">
             {PAY_METHODS.map((m) => {
               const isActive = stored.payment?.method === m.id;
@@ -690,13 +759,37 @@ export default function CheckoutStepPages({ step, ctx }) {
           )}
           {paymentFail && <p className="co-field-error">Payment failed — try again.</p>}
           {error && <p className="co-field-error">{error}</p>}
+          {couponError && <p className="co-field-error">{couponError}</p>}
           <NavRow
             onBack={() => goStep(6)}
             onNext={placeOrder}
-            nextLabel={paymentProcessing ? 'Processing…' : 'Place order'}
+            nextLabel={
+              paymentProcessing
+                ? 'Processing…'
+                : spinRequired
+                  ? 'Spin to continue'
+                  : spinWonDiscount
+                    ? `Place order · ₹${grandTotal}`
+                    : 'Place order'
+            }
+            nextDisabled={spinRequired || !stored.payment?.codConfirmed}
             nextLoading={paymentProcessing}
           />
         </div>
+        {showPaymentSpin && isCheckoutSpinEligible && !paymentSpinDone && typeof document !== 'undefined'
+          ? createPortal(
+              <SpinWheel
+                mode="checkout"
+                orderTotal={subtotal}
+                adCodes={adCodes}
+                spinCompleted={false}
+                onPrizeWon={handlePaymentSpinPrize}
+                onClose={closePaymentSpin}
+              />,
+              document.body,
+            )
+          : null}
+        </>
       ),
       adCodes,
       shellProps

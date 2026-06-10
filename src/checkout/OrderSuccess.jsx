@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { SITE_NAME } from '../constants/brand';
-import { isSpinWheelEligible } from '../constants/spinWheel';
-import SpinWheel from '../components/SpinWheel';
-import '../components/SpinWheel.css';
+import { getOrderPayableTotal } from '../constants/spinWheel';
 import {
   CircleCheck,
   Package,
@@ -35,18 +33,15 @@ export default function OrderSuccess({
   onContinueShopping,
 }) {
   const [trackingCopied, setTrackingCopied] = useState(false);
-  const [showSpinWheel, setShowSpinWheel] = useState(false);
-  const orderTotal = order.grandTotal ?? grandTotal;
+  const orderTotal = useMemo(
+    () => getOrderPayableTotal(order, grandTotal),
+    [order, grandTotal],
+  );
   const eta = order.eta || orderEta || '3–5 business days';
   const trackingId = order.trackingId || order.id;
   const activeDeliveryStep = 1;
-  const spinEligible = isSpinWheelEligible(orderTotal);
-
-  useEffect(() => {
-    if (!spinEligible) return;
-    const timer = window.setTimeout(() => setShowSpinWheel(true), 700);
-    return () => window.clearTimeout(timer);
-  }, [spinEligible, order.id]);
+  const spinPrize = order.spinPrize;
+  const orderDiscount = Number(order.discount) || 0;
 
   const copyTracking = async () => {
     try {
@@ -75,24 +70,16 @@ export default function OrderSuccess({
             </p>
           </header>
 
-          {spinEligible ? (
-            <section className="co-spin-unlock" aria-label="Spin wheel reward unlocked">
+          {spinPrize?.code && orderDiscount > 0 ? (
+            <section className="co-spin-unlock" aria-label="Spin discount applied">
               <span className="co-spin-unlock__badge">
                 <Sparkles size={12} aria-hidden />
-                Bonus unlocked
+                Spin reward used
               </span>
-              <p className="co-spin-unlock__title">You earned a spin wheel!</p>
+              <p className="co-spin-unlock__title">{spinPrize.label} applied on this order</p>
               <p className="co-spin-unlock__sub">
-                Orders of ₹1000+ get a free spin. Win coupons for your next purchase.
+                You saved ₹{orderDiscount} with code {spinPrize.code}. Paid total: ₹{orderTotal}.
               </p>
-              <button
-                type="button"
-                className="co-btn-primary co-spin-unlock__btn"
-                onClick={() => setShowSpinWheel(true)}
-              >
-                <Sparkles size={16} aria-hidden />
-                Spin now
-              </button>
             </section>
           ) : null}
 
@@ -183,15 +170,6 @@ export default function OrderSuccess({
         </div>
       </div>
 
-      {showSpinWheel && spinEligible ? (
-        <SpinWheel
-          orderId={order.id}
-          orderTotal={orderTotal}
-          adCodes={adCodes}
-          onShopNow={onContinueShopping}
-          onClose={() => setShowSpinWheel(false)}
-        />
-      ) : null}
     </>
   );
 }

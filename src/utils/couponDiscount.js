@@ -37,3 +37,23 @@ export function formatCouponOfferText(coupon) {
   const code = String(coupon?.code || '').toUpperCase();
   return { min, off, code };
 }
+
+/** Percent shown to shopper — coupon % or effective % for flat spin rewards. */
+export function getEffectiveDiscountPercent(coupon, subtotal, discountAmount) {
+  const st = Math.max(0, Number(subtotal) || 0);
+  const saved = Math.max(0, Number(discountAmount) || 0);
+  if (!st || !saved || !coupon) return 0;
+  if (normalizeCouponDiscountType(coupon) === COUPON_DISCOUNT_PERCENT) {
+    return Math.min(100, Math.max(0, Number(coupon.discount) || 0));
+  }
+  return Math.round((saved / st) * 1000) / 10;
+}
+
+export function formatSpinDiscountSummary(coupon, subtotal, discountAmount) {
+  if (!coupon || !discountAmount) return '';
+  const pct = getEffectiveDiscountPercent(coupon, subtotal, discountAmount);
+  if (normalizeCouponDiscountType(coupon) === COUPON_DISCOUNT_PERCENT) {
+    return `${pct}% off · you save ₹${discountAmount}`;
+  }
+  return `${formatCouponDiscountShort(coupon)} · ${pct}% off · you save ₹${discountAmount}`;
+}

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { X, WifiOff, RefreshCw } from 'lucide-react';
 import { userLogin, userRegister } from '../api/userApi';
 import { setUserToken } from '../api/client';
@@ -17,8 +17,19 @@ import {
   hasOrderFailure,
   pincodeServiceable,
 } from './checkoutStorage';
-import { computeCouponDiscountAmount } from '../utils/couponDiscount';
-import { loadPendingSpinCoupon, clearPendingSpinCoupon } from '../constants/spinWheel';
+import { computeCouponDiscountAmount, getEffectiveDiscountPercent } from '../utils/couponDiscount';
+import {
+  buildCheckoutSpinCartKey,
+  clearCheckoutSpinSession,
+  isCheckoutSpinEligible,
+  isSpinCouponCode,
+  loadCheckoutSpinSession,
+  loadPendingSpinCoupon,
+  clearPendingSpinCoupon,
+  restorePrizeFromCheckoutSession,
+  saveCheckoutSpinSession,
+  saveSpinClaim,
+} from '../constants/spinWheel';
 import { getSpinCouponByCode } from '../data/spinWheelCoupons';
 import {
   contactFromShipping,
@@ -161,6 +172,9 @@ export default function CheckoutFlow({
   const [confetti, setConfetti] = useState([]);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [successPause, setSuccessPause] = useState(false);
+  const [showPaymentSpin, setShowPaymentSpin] = useState(false);
+  const [paymentSpinDone, setPaymentSpinDone] = useState(false);
+  const [paymentSpinPrize, setPaymentSpinPrize] = useState(null);
   const [shipLoading, setShipLoading] = useState(false);
   const [reservedMinutes, setReservedMinutes] = useState(12);
   const panelRef = useRef(null);
@@ -300,13 +314,14 @@ export default function CheckoutFlow({
   }, [isOpen, handleClose]);
 
   const subtotal = cartItems.reduce((a, i) => a + i.price * i.quantity, 0);
+  const checkoutSpinCartKey = useMemo(() => buildCheckoutSpinCartKey(cartItems), [cartItems]);
   const discount = computeCouponDiscountAmount(appliedCoupon, subtotal);
   const shipping = 0;
   const tax = 0;
   const grandTotal = Math.max(0, subtotal - discount + shipping + tax);
 
   useEffect(() => {
-    if (!isOpen || appliedCoupon || step >= SUCCESS_STEP_INDEX) return;
+    if (!isOpen || appliedCoupon || step >= SUCCESS_STEP_INDEX || step === 7) return;
     const pending = loadPendingSpinCoupon();
     if (!pending?.code) return;
 
@@ -321,6 +336,79 @@ export default function CheckoutFlow({
       clearPendingSpinCoupon();
     }
   }, [isOpen, appliedCoupon, step, coupons, subtotal, persist]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setShowPaymentSpin(false);
+      setPaymentSpinDone(false);
+      setPaymentSpinPrize(null);
+    }
+  }, [isOpen]);
+
+  const applyCheckoutSpinPrize = useCallback(
+    (prize, { persistSession = true } = {}) => {
+      if (!prize) return;
+      setPaymentSpinDone(true);
+      setPaymentSpinPrize(prize);
+      setShowPaymentSpin(false);
+      setCouponError('');
+
+      if (persistSession) {
+        saveCheckoutSpinSession(checkoutSpinCartKey, prize);
+      }
+
+      if (!prize.code) return;
+
+      const code = prize.code.toUpperCase();
+      const found = coupons.find((c) => c.code === code) || getSpinCouponByCode(code);
+      if (!found) return;
+
+      if (subtotal < found.minPurchase) {
+        setCouponError(`You won ${prize.label}, but it needs a minimum bag of ₹${found.minPurchase}.`);
+        return;
+      }
+
+      setCouponCode(code);
+      setAppliedCoupon(found);
+      persist({ coupon: { code, applied: found } });
+      clearPendingSpinCoupon();
+    },
+    [checkoutSpinCartKey, coupons, subtotal, persist],
+  );
+
+  useEffect(() => {
+    if (!isOpen || step !== 7 || paymentSpinDone) return;
+    const session = loadCheckoutSpinSession(checkoutSpinCartKey);
+    if (!session) return;
+    const prize = restorePrizeFromCheckoutSession(session);
+    if (!prize) return;
+    applyCheckoutSpinPrize(prize, { persistSession: false });
+  }, [isOpen, step, checkoutSpinCartKey, paymentSpinDone, applyCheckoutSpinPrize]);
+
+  useEffect(() => {
+    if (!isOpen || step !== 7 || paymentSpinDone) return;
+    if (!isCheckoutSpinEligible(subtotal)) return;
+    const timer = window.setTimeout(() => setShowPaymentSpin(true), 450);
+    return () => window.clearTimeout(timer);
+  }, [isOpen, step, subtotal, paymentSpinDone]);
+
+  const handlePaymentSpinPrize = useCallback(
+    (prize) => {
+      if (paymentSpinDone) return;
+      applyCheckoutSpinPrize(prize);
+    },
+    [paymentSpinDone, applyCheckoutSpinPrize],
+  );
+
+  const openPaymentSpin = useCallback(() => {
+    if (paymentSpinDone) return;
+    setShowPaymentSpin(true);
+  }, [paymentSpinDone]);
+
+  const closePaymentSpin = useCallback(() => {
+    if (paymentSpinDone) return;
+    setShowPaymentSpin(false);
+  }, [paymentSpinDone]);
 
   const goStep = (n, anim) => {
     const target = Math.max(0, Math.min(n, SUCCESS_STEP_INDEX));
@@ -584,7 +672,22 @@ export default function CheckoutFlow({
       setError('');
       setOrderFailMessage('');
       setOrderFailed(false);
-      setCompletedOrder(result.order);
+      const finalizedOrder = {
+        ...result.order,
+        subtotal: result.order.subtotal ?? orderPayload.subtotal,
+        discount: result.order.discount ?? orderPayload.discount,
+        grandTotal: result.order.grandTotal ?? orderPayload.grandTotal,
+        items: result.order.items?.length ? result.order.items : orderPayload.items,
+        spinPrize: paymentSpinPrize || null,
+      };
+      if (paymentSpinPrize && result.order?.id) {
+        saveSpinClaim(result.order.id, paymentSpinPrize);
+      }
+      setCompletedOrder(finalizedOrder);
+      setShowPaymentSpin(false);
+      setPaymentSpinDone(false);
+      setPaymentSpinPrize(null);
+      clearCheckoutSpinSession();
       clearCheckoutState();
       spawnConfetti();
       goStep(SUCCESS_STEP_INDEX);
@@ -688,6 +791,18 @@ export default function CheckoutFlow({
     updatePayment,
     completedOrder,
     successPause,
+    showPaymentSpin,
+    openPaymentSpin,
+    closePaymentSpin,
+    paymentSpinDone,
+    paymentSpinPrize,
+    handlePaymentSpinPrize,
+    isCheckoutSpinEligible: isCheckoutSpinEligible(subtotal),
+    spinDiscountAmount: appliedCoupon && isSpinCouponCode(appliedCoupon.code) ? discount : 0,
+    spinDiscountPercent:
+      appliedCoupon && isSpinCouponCode(appliedCoupon.code)
+        ? getEffectiveDiscountPercent(appliedCoupon, subtotal, discount)
+        : 0,
     onContinueShopping,
     onClose,
     reservedMinutes,

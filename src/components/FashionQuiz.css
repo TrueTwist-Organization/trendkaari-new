@@ -312,6 +312,14 @@
   gap: 2rem;
 }
 
+.fashion-quiz--result .discovery-rail__head {
+  display: flex;
+}
+
+.fashion-quiz--result .discovery-rail__actions {
+  display: flex;
+}
+
 .fashion-quiz-result__content-block {
   display: flex;
   flex-direction: column;

@@ -1209,6 +1209,16 @@ export default function App() {
     navigateToRoute('/');
   };
 
+  const showHeaderBack = viewMode !== 'home' || isCategoryPage;
+
+  const handleHeaderBack = () => {
+    if (viewMode === 'checkout') {
+      handleExitCheckout();
+      return;
+    }
+    handleGoBack();
+  };
+
   const handleScrollToSection = (sectionId) => {
     const scroll = () =>
       document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1249,6 +1259,8 @@ export default function App() {
         wishlistCount={wishlistItems.length}
         user={user}
         solidHeader={viewMode === 'home' || viewMode === 'product-detail' || isCategoryPage || viewMode === 'info' || viewMode === 'discover' || viewMode === 'celebrity-match' || viewMode === 'celebrity-look' || viewMode === 'trends' || viewMode === 'trend-page' || viewMode === 'games' || viewMode === 'game-play' || viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result' || viewMode === 'style-finder' || viewMode === 'style-finder-result' || viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article' || viewMode === 'knowledge' || viewMode === 'knowledge-page'}
+        showBack={showHeaderBack}
+        onBack={handleHeaderBack}
         onOpenMenu={() => setIsMenuOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenCart={() => setIsCartOpen(true)}
@@ -1300,6 +1312,7 @@ export default function App() {
             onOpenArticle={handleOpenMagazineArticle}
             onOpenKnowledgePage={handleOpenKnowledgePage}
             onStartQuiz={(slug) => navigateToRoute(`/quiz/${slug}`)}
+            onBack={handleGoBack}
             adCodes={adCodes}
             fullPage
             maxRails={14}

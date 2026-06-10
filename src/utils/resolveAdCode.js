@@ -17,7 +17,6 @@ const CONTENT_AD_FALLBACKS = {
   spin_wheel_bottom: ['games_hub_bottom', 'quiz_hub_bottom'],
   discover_feed_mid: ['discover_feed_bottom'],
   category_after_grid: ['category_page_bottom', 'category_below_sort'],
-  ads_every_2_products: ['category_below_sort', 'category_page_bottom'],
   knowledge_page_mid: ['knowledge_hub_mid'],
   knowledge_page_bottom: ['knowledge_hub_bottom'],
   magazine_article_mid: ['magazine_hub_mid'],

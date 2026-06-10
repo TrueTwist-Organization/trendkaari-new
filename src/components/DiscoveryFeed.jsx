@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { buildDiscoveryRails } from '../utils/discoveryEngine';
 import DiscoveryRail from './DiscoveryRail';
+import PageBackButton from './PageBackButton';
 import PlacedAdSlot from './PlacedAdSlot';
 import RecommendationRails from './RecommendationRails';
 import './DiscoveryFeed.css';
@@ -15,6 +16,7 @@ export default function DiscoveryFeed({
   onOpenArticle,
   onOpenKnowledgePage,
   onStartQuiz,
+  onBack,
   adCodes = {},
   fullPage = false,
   maxRails = 12,
@@ -61,13 +63,20 @@ export default function DiscoveryFeed({
   return (
     <div className={`discovery-feed${fullPage ? ' discovery-feed--full' : ''}`}>
       {fullPage ? (
-        <header className="discovery-feed__hero-text">
-          <p className="discovery-feed__eyebrow">Fashion discovery</p>
-          <h1 className="discovery-feed__headline">Explore without limits</h1>
-          <p className="discovery-feed__sub">
-            Scroll through curated edits — every rail leads somewhere new.
-          </p>
-        </header>
+        <>
+          {onBack ? (
+            <div className="discovery-feed__top-bar">
+              <PageBackButton onClick={onBack} label="Back" />
+            </div>
+          ) : null}
+          <header className="discovery-feed__hero-text">
+            <p className="discovery-feed__eyebrow">Fashion discovery</p>
+            <h1 className="discovery-feed__headline">Explore without limits</h1>
+            <p className="discovery-feed__sub">
+              Scroll through curated edits — every rail leads somewhere new.
+            </p>
+          </header>
+        </>
       ) : null}
 
       {shown.map((rail, index) => (

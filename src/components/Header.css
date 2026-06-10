@@ -202,6 +202,14 @@ body.info-page .header-search-trigger:hover {
   transition: var(--transition-fast);
 }
 
+.header-back-btn {
+  flex-shrink: 0;
+}
+
+.header-back-btn:hover {
+  color: var(--brand-peach);
+}
+
 .header-btn:hover {
   color: var(--brand-peach);
 }

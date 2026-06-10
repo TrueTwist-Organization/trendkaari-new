@@ -153,11 +153,12 @@ export const PLACEMENT_GPT_UNIT = {
   homepage_before_spotlight: 'a10',
   homepage_after_finale: 'a11',
 
-  /* Category — exactly 6 in-page ads (unique unit each) */
+  /* Category — static slots + repeating in-grid (a2 shared via unique div ids per row) */
   category_top: 'a1',
   category_after_banner: 'a2',
   category_sidebar_top: 'a3',
   category_below_sort: 'a5',
+  ads_every_2_products: 'a2',
   category_after_grid: 'a10',
   category_page_bottom: 'a4',
 

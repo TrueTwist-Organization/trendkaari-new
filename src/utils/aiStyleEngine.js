@@ -4,6 +4,7 @@
  */
 
 import { filterProductsByCategory } from './categoryFilter';
+import { getCategoryImage } from './categoryImages';
 import { FASHION_GUIDES } from '../data/fashionGuides';
 import { buildRecommendationRails } from './recommendationEngine';
 import {
@@ -167,8 +168,33 @@ export function getStyleFinderArticles(profile) {
   return (matched.length ? matched : FASHION_GUIDES).slice(0, 4);
 }
 
-export function getStyleFinderCollections(profile) {
-  return profile?.collections || [];
+const BROKEN_COLLECTION_IMAGES = new Set([
+  '/kurtas/Kurtas/1/040A2925_700x.webp',
+  '/sarees/Sarees/1/040A3523_700x.webp',
+]);
+
+function resolveCollectionImage(col, allProducts = []) {
+  const category = col?.category;
+  const fromCatalog = allProducts.find((product) => {
+    const tags = [product.category, ...(product.tags || [])].map((t) => String(t).toLowerCase());
+    return tags.includes(String(category || '').toLowerCase()) && product.image;
+  });
+
+  if (fromCatalog?.image) return fromCatalog.image;
+
+  const staticImage = String(col?.image || '').trim();
+  if (staticImage && !BROKEN_COLLECTION_IMAGES.has(staticImage)) {
+    return staticImage;
+  }
+
+  return getCategoryImage(category);
+}
+
+export function getStyleFinderCollections(profile, allProducts = []) {
+  return (profile?.collections || []).map((col) => ({
+    ...col,
+    image: resolveCollectionImage(col, allProducts),
+  }));
 }
 
 export function getStyleFinderRecommendationRails(allProducts, profile) {

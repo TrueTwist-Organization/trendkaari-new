@@ -133,6 +133,7 @@ export default function DiscoveryHero({
 }) {
   const config = { ...DEFAULT_HOMEPAGE_CONFIG.hero, ...hero };
   const backgroundImage = config.backgroundImage || '';
+  const backgroundImageMobile = config.backgroundImageMobile || backgroundImage;
   const modelsImage = config.modelsImage || config.desktopImage || DEFAULT_HOMEPAGE_CONFIG.hero.desktopImage;
   const mobileModelsImage =
     config.mobileModelsImage || config.mobileImage || DEFAULT_HOMEPAGE_CONFIG.hero.mobileImage;
@@ -174,10 +175,26 @@ export default function DiscoveryHero({
   return (
     <section
       className={`discovery-hero${backgroundImage ? ' discovery-hero--photo-bg' : ''}`}
-      style={backgroundImage ? { '--hero-bg-url': `url("${backgroundImage}")` } : undefined}
       aria-label="Featured collection"
     >
-      {!backgroundImage ? <HeroFlorals /> : null}
+      {backgroundImage ? (
+        <div className="discovery-hero__photo" aria-hidden="true">
+          <picture>
+            <source media="(max-width: 767px)" srcSet={backgroundImageMobile} />
+            <img
+              src={backgroundImage}
+              alt=""
+              className="discovery-hero__photo-img"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
+          <div className="discovery-hero__photo-scrim" />
+        </div>
+      ) : (
+        <HeroFlorals />
+      )}
       <div className="discovery-hero__shell">
         <div className="discovery-hero__copy">
           <Sparkles size={18} className="discovery-hero__ornament" aria-hidden="true" />
@@ -243,9 +260,7 @@ export default function DiscoveryHero({
               />
             </picture>
           </div>
-        ) : (
-          <div className="discovery-hero__visual discovery-hero__visual--spacer" aria-hidden="true" />
-        )}
+        ) : null}
       </div>
 
       <span className="visually-hidden">{alt}</span>

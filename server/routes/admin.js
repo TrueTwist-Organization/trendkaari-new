@@ -982,21 +982,34 @@ router.post('/homepage-config/seed', requireAdmin, requireWritableStore, async (
 
 /* ─── Image Manager ──────────────────────────────────────────────────────── */
 
+const PROJECT_ROOT = path.join(__dirname, '../..');
+const PUBLIC_ROOT = path.join(PROJECT_ROOT, 'public');
+const DIST_ROOT = path.join(PROJECT_ROOT, 'dist');
+
 const IMAGE_CATEGORIES = [
-  { key: 'product-media', label: 'Uploaded', dir: path.join(__dirname, '../../public/product-media') },
-  { key: 'lehengas',      label: 'Lehengas',    dir: path.join(__dirname, '../../dist/lehengas') },
-  { key: 'sarees',        label: 'Sarees',      dir: path.join(__dirname, '../../dist/sarees') },
-  { key: 'kurtas',        label: 'Kurtas',      dir: path.join(__dirname, '../../dist/kurtas') },
-  { key: 'co-ords',       label: 'Co-ords',     dir: path.join(__dirname, '../../dist/co-ords') },
-  { key: 'tops',          label: 'Tops',        dir: path.join(__dirname, '../../dist/tops') },
-  { key: 'sarees',        label: 'Sarees',      dir: path.join(__dirname, '../../dist/sarees') },
-  { key: 'mens',          label: 'Mens',        dir: path.join(__dirname, '../../dist/mens') },
-  { key: 'dresses',       label: 'Dresses',     dir: path.join(__dirname, '../../dist/dresses') },
-  { key: 'dupatta-sets',  label: 'Dupatta Sets',dir: path.join(__dirname, '../../dist/dupatta-sets') },
-  { key: 'suit-sets',     label: 'Suit Sets',   dir: path.join(__dirname, '../../dist/suit-sets') },
-  { key: 'combos',        label: 'Combos',      dir: path.join(__dirname, '../../dist/combos') },
-  { key: 'banners',       label: 'Banners',     dir: path.join(__dirname, '../../dist/banners') },
+  { key: 'product-media', label: 'Uploaded' },
+  { key: 'lehengas', label: 'Lehengas' },
+  { key: 'sarees', label: 'Sarees' },
+  { key: 'kurtas', label: 'Kurtas' },
+  { key: 'co-ords', label: 'Co-ords' },
+  { key: 'tops', label: 'Tops' },
+  { key: 'mens', label: 'Mens' },
+  { key: 'dresses', label: 'Dresses' },
+  { key: 'dupatta-sets', label: 'Dupatta Sets' },
+  { key: 'suit-sets', label: 'Suit Sets' },
+  { key: 'banners', label: 'Banners' },
+  { key: 'combos', label: 'Combos' },
 ];
+
+/** Catalog assets live in public/ (deployed); dist/ is a local dev mirror. */
+function resolveImageCategoryDir(key) {
+  if (key === 'product-media') return path.join(PUBLIC_ROOT, 'product-media');
+  const publicDir = path.join(PUBLIC_ROOT, key);
+  if (fs.existsSync(publicDir)) return publicDir;
+  const distDir = path.join(DIST_ROOT, key);
+  if (fs.existsSync(distDir)) return distDir;
+  return publicDir;
+}
 
 function scanImagesInDir(baseDir, urlPrefix, limit = 200) {
   const results = [];
@@ -1024,28 +1037,20 @@ function scanImagesInDir(baseDir, urlPrefix, limit = 200) {
 /** GET /api/admin/images?category=lehengas */
 router.get('/images', requireAdmin, (req, res) => {
   const cat = req.query.category || 'product-media';
-  // deduplicate category keys (sarees was listed twice)
-  const seen = new Set();
-  const categories = IMAGE_CATEGORIES.filter((c) => {
-    if (seen.has(c.key)) return false;
-    seen.add(c.key);
-    return true;
-  });
-  const found = categories.find((c) => c.key === cat);
+  const found = IMAGE_CATEGORIES.find((c) => c.key === cat);
   if (!found) return res.status(400).json({ error: 'Unknown category' });
-  const images = scanImagesInDir(found.dir, `/${found.key}`, 300);
+  const dir = resolveImageCategoryDir(found.key);
+  const images = scanImagesInDir(dir, `/${found.key}`, 300);
   res.json({ category: cat, images, total: images.length });
 });
 
 /** GET /api/admin/images/categories — list all categories with counts */
 router.get('/images/categories', requireAdmin, (_req, res) => {
-  const seen = new Set();
-  const out = IMAGE_CATEGORIES
-    .filter((c) => { if (seen.has(c.key)) return false; seen.add(c.key); return true; })
-    .map((c) => {
-      const images = scanImagesInDir(c.dir, `/${c.key}`, 10);
-      return { key: c.key, label: c.label, preview: images[0]?.url || null };
-    });
+  const out = IMAGE_CATEGORIES.map((c) => {
+    const dir = resolveImageCategoryDir(c.key);
+    const images = scanImagesInDir(dir, `/${c.key}`, 10);
+    return { key: c.key, label: c.label, preview: images[0]?.url || null };
+  });
   res.json(out);
 });
 

@@ -9,6 +9,7 @@ import { ChevronLeft } from 'lucide-react';
 import { CELEBRITY_LOOKS, fetchCelebrityLooks } from '../utils/celebrityLooksData';
 import ProductImage from './ProductImage';
 import EndlessDiscovery from './EndlessDiscovery';
+import PlacedAdSlot from './PlacedAdSlot';
 import './FashionQuiz.css';
 import './ExplorationHomepage.css';
 
@@ -21,6 +22,7 @@ export default function CelebrityStyleMatch({
   onStartQuiz,
   onNavigate,
   onBack,
+  adCodes = {},
 }) {
   const [looks, setLooks] = useState(CELEBRITY_LOOKS);
 
@@ -47,6 +49,10 @@ export default function CelebrityStyleMatch({
             Tap any look — we&apos;ll show you the styling story, shoppable picks, and a style guide built around it.
           </p>
         </div>
+      </div>
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="celebrity_hub_mid" variant="section" />
       </div>
 
       <div className="container">
@@ -77,6 +83,8 @@ export default function CelebrityStyleMatch({
             ))}
           </div>
         </section>
+
+        <PlacedAdSlot adCodes={adCodes} placement="celebrity_hub_bottom" variant="section" />
 
         {products.length > 0 ? (
           <EndlessDiscovery

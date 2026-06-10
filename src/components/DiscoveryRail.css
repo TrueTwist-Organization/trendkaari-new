@@ -269,7 +269,7 @@
 }
 
 .discovery-rail--similar {
-  background: linear-gradient(180deg, var(--brand-peach-light) 0%, transparent 100%);
+  background: transparent;
 }
 
 .discovery-rail--social .discovery-rail__hook {

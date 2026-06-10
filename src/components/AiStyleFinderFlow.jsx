@@ -4,6 +4,7 @@ import { STYLE_FINDER_STEPS, buildStyleFinderResultKey } from '../data/aiStyleFi
 import './FashionQuiz.css';
 import './AiStyleFinder.css';
 import EndlessDiscovery from './EndlessDiscovery';
+import PlacedAdSlot from './PlacedAdSlot';
 
 export default function AiStyleFinderFlow({
   onComplete,
@@ -15,6 +16,7 @@ export default function AiStyleFinderFlow({
   onOpenArticle,
   onOpenKnowledgePage,
   onStartQuiz,
+  adCodes = {},
 }) {
   const [stepIndex, setStepIndex] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -70,6 +72,10 @@ export default function AiStyleFinderFlow({
           </div>
         </div>
       ) : null}
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="style_finder_mid" variant="section" />
+      </div>
 
       <div className="fashion-quiz__topbar container">
         <button type="button" className="fashion-quiz__back" onClick={handlePrev}>
@@ -131,6 +137,10 @@ export default function AiStyleFinderFlow({
             <ChevronRight size={18} aria-hidden />
           </button>
         </div>
+      </div>
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="style_finder_bottom" variant="section" />
       </div>
 
       {products.length > 0 ? (

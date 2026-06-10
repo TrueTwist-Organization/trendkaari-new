@@ -4,6 +4,7 @@ import ProductImage from './ProductImage';
 import { buildCategoryPageData } from '../utils/magazineEngine';
 import './FashionMagazine.css';
 import EndlessDiscovery from './EndlessDiscovery';
+import PlacedAdSlot from './PlacedAdSlot';
 
 export default function FashionMagazineCategory({
   categorySlug,
@@ -15,6 +16,7 @@ export default function FashionMagazineCategory({
   onSelectCategory,
   onOpenKnowledgePage,
   onStartQuiz,
+  adCodes = {},
 }) {
   const data = buildCategoryPageData(categorySlug);
 
@@ -53,6 +55,8 @@ export default function FashionMagazineCategory({
       </header>
 
       <div className="container fashion-magazine__body">
+        <PlacedAdSlot adCodes={adCodes} placement="magazine_category_mid" variant="section" />
+
         <div className="fashion-magazine__grid">
           {articles.map((article) => (
             <button
@@ -91,6 +95,8 @@ export default function FashionMagazineCategory({
             </button>
           </div>
         </aside>
+
+        <PlacedAdSlot adCodes={adCodes} placement="magazine_category_bottom" variant="section" />
 
         {products.length > 0 ? (
           <EndlessDiscovery

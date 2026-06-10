@@ -263,6 +263,10 @@ export default function ViralFashionHub({
         </div>
       ) : null}
 
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="viral_hub_bottom" variant="section" />
+      </div>
+
       <footer className="viral-hub__finale">
         <div className="container">
           <p>Rankings refresh weekly · product picks update as the catalog grows</p>

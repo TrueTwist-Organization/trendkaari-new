@@ -7,6 +7,7 @@ import DiscoveryLoopSection from './DiscoveryLoopSection';
 import { getKnowledgeTopics } from '../data/fashionKnowledge';
 import { fetchKnowledgePages } from '../utils/editorialContentData';
 import { ensureUniqueGuideImages } from '../utils/guideImages';
+import PlacedAdSlot from './PlacedAdSlot';
 import './FashionKnowledge.css';
 
 function KnowledgeCard({ page, topic, onOpenPage }) {
@@ -39,6 +40,7 @@ export default function FashionKnowledgeHub({
   onBack,
   onStartQuiz,
   onNavigate,
+  adCodes = {},
 }) {
   const topics = getKnowledgeTopics();
   const [allPages, setAllPages] = useState([]);
@@ -99,6 +101,8 @@ export default function FashionKnowledgeHub({
           </div>
         </section>
 
+        <PlacedAdSlot adCodes={adCodes} placement="knowledge_hub_mid" variant="section" />
+
         {topics.map((topic) => {
           const pages = ensureUniqueGuideImages(
             allPages.filter((p) => p.topicSlug === topic.slug && !featuredIds.has(p.id)),
@@ -128,6 +132,8 @@ export default function FashionKnowledgeHub({
           );
         })}
       </div>
+
+      <PlacedAdSlot adCodes={adCodes} placement="knowledge_hub_bottom" variant="section" />
 
       <DiscoveryLoopSection
         sourceContext="knowledge_hub"

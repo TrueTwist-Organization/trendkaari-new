@@ -187,6 +187,31 @@ export const PLACEMENT_GPT_UNIT = {
   content_page_bottom: 'a4',
   magazine_article_mid: 'a3',
   magazine_article_bottom: 'a10',
+  magazine_hub_mid: 'a1',
+  magazine_hub_bottom: 'a4',
+  magazine_category_mid: 'a2',
+  magazine_category_bottom: 'a5',
+
+  trend_hub_mid: 'a3',
+  trend_hub_bottom: 'a10',
+  trend_page_mid: 'a1',
+  trend_page_bottom: 'a4',
+
+  celebrity_hub_mid: 'a1',
+  celebrity_hub_bottom: 'a2',
+  celebrity_look_mid: 'a3',
+  celebrity_look_bottom: 'a10',
+
+  style_finder_mid: 'a5',
+  style_finder_bottom: 'a2',
+  style_finder_result_mid: 'a4',
+  style_finder_result_bottom: 'a11',
+
+  knowledge_hub_mid: 'a1',
+  knowledge_hub_bottom: 'a4',
+
+  viral_hub_bottom: 'a2',
+  games_hub_bottom: 'a10',
 };
 
 export function getGptHtmlForUnit(unit) {

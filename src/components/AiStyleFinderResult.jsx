@@ -11,6 +11,7 @@ import {
 import DiscoveryRail from './DiscoveryRail';
 import RecommendationRails from './RecommendationRails';
 import ProductImage from './ProductImage';
+import PlacedAdSlot from './PlacedAdSlot';
 import {
   getStyleFinderArticles,
   getStyleFinderCollections,
@@ -94,6 +95,10 @@ export default function AiStyleFinderResult({
             </button>
           </div>
         </div>
+      </div>
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="style_finder_result_mid" variant="section" />
       </div>
 
       <div className="container fashion-quiz-result__body">
@@ -184,6 +189,8 @@ export default function AiStyleFinderResult({
             ))}
           </div>
         </section>
+
+        <PlacedAdSlot adCodes={adCodes} placement="style_finder_result_bottom" variant="section" />
 
         <section className="fashion-quiz-result__finale ai-style-finder__finale">
           <Compass size={22} aria-hidden />

@@ -1287,6 +1287,7 @@ export default function App() {
           <Suspense fallback={<RouteFallback />}>
             <CelebrityStyleMatch
               products={productsList}
+              adCodes={adCodes}
               onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
               onSelectCategory={handleSelectCategory}
               onOpenArticle={handleOpenMagazineArticle}
@@ -1301,6 +1302,7 @@ export default function App() {
             <CelebrityLookPage
               lookId={celebrityLookSlug}
               products={productsList}
+              adCodes={adCodes}
               onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
               onSelectCategory={handleSelectCategory}
               onOpenArticle={handleOpenMagazineArticle}
@@ -1315,6 +1317,7 @@ export default function App() {
             <TrendPage
               trendSlug={viewMode === 'trend-page' ? trendSlug : null}
               products={productsList}
+              adCodes={adCodes}
               onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
               onSelectCategory={handleSelectCategory}
               onOpenArticle={handleOpenMagazineArticle}
@@ -1354,6 +1357,7 @@ export default function App() {
             onBack={() => navigateToRoute('/')}
             onStartQuiz={(slug) => navigateToRoute(`/quiz/${slug}`)}
             onNavigate={navigateToRoute}
+            adCodes={adCodes}
           />
         ) : viewMode === 'knowledge-page' ? (
           <FashionKnowledgePage
@@ -1372,6 +1376,7 @@ export default function App() {
         ) : viewMode === 'magazine' ? (
           <FashionMagazineHub
             products={productsList}
+            adCodes={adCodes}
             onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
             onSelectCategory={handleSelectCategory}
             onOpenKnowledgePage={handleOpenKnowledgePage}
@@ -1384,6 +1389,7 @@ export default function App() {
           <FashionMagazineCategory
             categorySlug={magazineCategorySlug}
             products={productsList}
+            adCodes={adCodes}
             onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
             onSelectCategory={handleSelectCategory}
             onOpenKnowledgePage={handleOpenKnowledgePage}
@@ -1413,6 +1419,7 @@ export default function App() {
         ) : viewMode === 'style-finder' ? (
           <AiStyleFinderFlow
             products={productsList}
+            adCodes={adCodes}
             onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
             onSelectCategory={handleSelectCategory}
             onOpenArticle={handleOpenMagazineArticle}

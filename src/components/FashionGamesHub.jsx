@@ -110,6 +110,10 @@ export default function FashionGamesHub({
           </div>
         </section>
       ) : null}
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="games_hub_bottom" variant="section" />
+      </div>
     </PageShell>
   );
 }

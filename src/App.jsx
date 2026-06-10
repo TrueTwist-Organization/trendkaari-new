@@ -80,7 +80,6 @@ const FashionMagazineCategory = lazy(() => import('./components/FashionMagazineC
 const FashionMagazineArticle = lazy(() => import('./components/FashionMagazineArticle'));
 const FashionKnowledgeHub = lazy(() => import('./components/FashionKnowledgeHub'));
 const FashionKnowledgePage = lazy(() => import('./components/FashionKnowledgePage'));
-const ViralFashionHub = lazy(() => import('./components/ViralFashionHub'));
 const CelebrityStyleMatch = lazy(() => import('./components/CelebrityStyleMatch'));
 const CelebrityLookPage = lazy(() => import('./components/CelebrityLookPage'));
 const TrendPage = lazy(() => import('./components/TrendPage'));
@@ -93,7 +92,13 @@ function RouteFallback() {
 }
 
 function resolveAppRoute(pathname, productsList, giftCombos = []) {
-  const route = parseRouteFromPath(pathname);
+  const legacyViral = pathname === '/viral' || pathname.startsWith('/viral/');
+  const effectivePath = legacyViral ? '/discover' : pathname;
+  if (legacyViral && typeof window !== 'undefined') {
+    window.history.replaceState({}, '', '/discover');
+  }
+
+  const route = parseRouteFromPath(effectivePath);
   if (route.viewMode === 'info' && route.infoSlug && !getInfoPage(route.infoSlug)) {
     return {
       viewMode: 'home',
@@ -514,20 +519,6 @@ export default function App() {
         setQuizResultKey(null);
       }
       scrollToPageTop();
-    } else if (segments[0] === 'viral') {
-      setActiveCategory('all');
-      setSelectedProduct(null);
-      setIsCategoryPage(false);
-      setInfoSlug(null);
-      setQuizSlug(null);
-      setQuizResultKey(null);
-      setStyleFinderResultKey(null);
-      setMagazineCategorySlug(null);
-      setMagazineArticleSlug(null);
-      setKnowledgePageSlug(null);
-      setGameSlug(null);
-      setViewMode('viral');
-      scrollToPageTop();
     } else if (segments[0] === 'celebrity-match') {
       setActiveCategory('all');
       setSelectedProduct(null);
@@ -834,7 +825,6 @@ export default function App() {
       'knowledge-page',
       viewMode === 'knowledge' || viewMode === 'knowledge-page',
     );
-    document.body.classList.toggle('viral-page', viewMode === 'viral');
     document.body.classList.toggle(
       'celebrity-match-page',
       viewMode === 'celebrity-match' || viewMode === 'celebrity-look',
@@ -853,7 +843,6 @@ export default function App() {
       document.body.classList.remove('style-finder-page');
       document.body.classList.remove('magazine-page');
       document.body.classList.remove('knowledge-page');
-      document.body.classList.remove('viral-page');
       document.body.classList.remove('celebrity-match-page');
       document.body.classList.remove('games-page');
     };
@@ -1038,10 +1027,6 @@ export default function App() {
     navigateToRoute('/discover');
   };
 
-  const handleOpenViralHub = () => {
-    navigateToRoute('/viral');
-  };
-
   const handleOpenGamesHub = () => {
     navigateToRoute('/games');
   };
@@ -1204,9 +1189,7 @@ export default function App() {
                   ? `magazine-${magazineCategorySlug || 'hub'}-${magazineArticleSlug || 'list'}`
                   : viewMode === 'knowledge' || viewMode === 'knowledge-page'
                     ? `knowledge-${knowledgePageSlug || 'hub'}`
-                    : viewMode === 'viral'
-                      ? 'viral-hub'
-                      : viewMode === 'celebrity-match'
+                    : viewMode === 'celebrity-match'
                         ? 'celebrity-match'
                         : viewMode === 'games' || viewMode === 'game-play'
                         ? `games-${gameSlug || 'hub'}`
@@ -1239,7 +1222,7 @@ export default function App() {
         cartCount={cartItems.reduce((acc, item) => acc + item.quantity, 0)}
         wishlistCount={wishlistItems.length}
         user={user}
-        solidHeader={viewMode === 'home' || viewMode === 'product-detail' || isCategoryPage || viewMode === 'info' || viewMode === 'discover' || viewMode === 'viral' || viewMode === 'celebrity-match' || viewMode === 'celebrity-look' || viewMode === 'trends' || viewMode === 'trend-page' || viewMode === 'games' || viewMode === 'game-play' || viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result' || viewMode === 'style-finder' || viewMode === 'style-finder-result' || viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article' || viewMode === 'knowledge' || viewMode === 'knowledge-page'}
+        solidHeader={viewMode === 'home' || viewMode === 'product-detail' || isCategoryPage || viewMode === 'info' || viewMode === 'discover' || viewMode === 'celebrity-match' || viewMode === 'celebrity-look' || viewMode === 'trends' || viewMode === 'trend-page' || viewMode === 'games' || viewMode === 'game-play' || viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result' || viewMode === 'style-finder' || viewMode === 'style-finder-result' || viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article' || viewMode === 'knowledge' || viewMode === 'knowledge-page'}
         onOpenMenu={() => setIsMenuOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenCart={() => setIsCartOpen(true)}
@@ -1294,17 +1277,6 @@ export default function App() {
             adCodes={adCodes}
             fullPage
             maxRails={14}
-          />
-        ) : viewMode === 'viral' ? (
-          <ViralFashionHub
-            products={productsList}
-            adCodes={adCodes}
-            onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
-            onSelectCategory={handleSelectCategory}
-            onOpenArticle={handleOpenMagazineArticle}
-            onOpenKnowledgePage={handleOpenKnowledgePage}
-            onStartQuiz={(slug) => navigateToRoute(`/quiz/${slug}`)}
-            onBack={() => navigateToRoute('/discover')}
           />
         ) : viewMode === 'celebrity-match' ? (
           <Suspense fallback={<RouteFallback />}>
@@ -1600,7 +1572,6 @@ export default function App() {
         onNavigateInfoPage={handleNavigateInfoPage}
         onOpenMagazine={handleOpenMagazine}
         onOpenKnowledge={handleOpenKnowledge}
-        onOpenViralHub={handleOpenViralHub}
         onOpenGamesHub={handleOpenGamesHub}
         siteSettings={siteSettings}
       />
@@ -1616,7 +1587,6 @@ export default function App() {
         onOpenStyleFinder={handleOpenStyleFinder}
         onOpenMagazine={handleOpenMagazine}
         onOpenKnowledge={handleOpenKnowledge}
-        onOpenViralHub={handleOpenViralHub}
         onOpenGamesHub={handleOpenGamesHub}
         onOpenCelebrityMatch={() => navigateToRoute('/celebrity-match')}
         onOpenTrends={() => navigateToRoute('/trends')}

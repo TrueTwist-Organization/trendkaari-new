@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Sparkles, MapPin, Gift, Phone, ChevronDown, Compass, HelpCircle, Wand2, BookOpen, GraduationCap, Flame, Gamepad2, Star, TrendingUp } from 'lucide-react';
+import { X, Sparkles, MapPin, Gift, Phone, ChevronDown, Compass, HelpCircle, Wand2, BookOpen, GraduationCap, Gamepad2, Star, TrendingUp } from 'lucide-react';
 import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '../constants/contact';
 import { MENU_WOMEN_GROUPS, MENU_MEN_GROUPS } from '../data/navCategories';
 import './MenuDrawer.css';
@@ -84,7 +84,6 @@ export default function MenuDrawer({
   onOpenStyleFinder,
   onOpenMagazine,
   onOpenKnowledge,
-  onOpenViralHub,
   onOpenGamesHub,
   onOpenCelebrityMatch,
   onOpenTrends,
@@ -144,14 +143,6 @@ export default function MenuDrawer({
                 icon={Wand2}
                 label="AI STYLE FINDER"
                 onClick={() => handleRouteAction(onOpenStyleFinder)}
-              />
-            ) : null}
-
-            {onOpenViralHub ? (
-              <MenuNavItem
-                icon={Flame}
-                label="VIRAL FASHION HUB"
-                onClick={() => handleRouteAction(onOpenViralHub)}
               />
             ) : null}
 

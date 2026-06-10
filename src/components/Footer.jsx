@@ -16,7 +16,6 @@ export default function Footer({
   onNavigateInfoPage,
   onOpenMagazine,
   onOpenKnowledge,
-  onOpenViralHub,
   onOpenGamesHub,
   siteSettings = null,
 }) {
@@ -143,11 +142,6 @@ export default function Footer({
                 <li>
                   <button type="button" className="footer-link-btn" onClick={() => onOpenGamesHub?.()}>
                     Mini Fashion Games
-                  </button>
-                </li>
-                <li>
-                  <button type="button" className="footer-link-btn" onClick={() => onOpenViralHub?.()}>
-                    Viral Fashion Hub
                   </button>
                 </li>
                 <li>

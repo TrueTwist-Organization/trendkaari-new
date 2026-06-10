@@ -1189,6 +1189,8 @@ export default function App() {
                   ? `magazine-${magazineCategorySlug || 'hub'}-${magazineArticleSlug || 'list'}`
                   : viewMode === 'knowledge' || viewMode === 'knowledge-page'
                     ? `knowledge-${knowledgePageSlug || 'hub'}`
+                    : viewMode === 'trends' || viewMode === 'trend-page'
+                      ? `trends-${trendSlug || 'hub'}`
                     : viewMode === 'celebrity-match'
                         ? 'celebrity-match'
                         : viewMode === 'games' || viewMode === 'game-play'

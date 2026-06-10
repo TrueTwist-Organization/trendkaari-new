@@ -1,7 +1,9 @@
 import React, { useMemo, useRef } from 'react';
 import {
   ArrowRight,
+  ChevronLeft,
   ChevronRight,
+  Flame,
   Share2,
   Star,
   Trophy,

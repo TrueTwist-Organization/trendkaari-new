@@ -47,6 +47,7 @@ import { categoryPath, normalizeCategoryPathname, slugToCategory } from './utils
 import { isValidCelebrityLookId } from './utils/celebrityLooksData';
 import { recordCategoryBrowse, recordProductView } from './utils/viewHistory';
 import JourneyTracker from './components/JourneyTracker';
+import RouteErrorBoundary from './components/RouteErrorBoundary';
 import { isValidQuizResult, isValidQuizSlug, prefetchEditorialContent } from './utils/editorialContentData';
 import { isValidStyleFinderResultKey } from './data/aiStyleFinder';
 import {
@@ -613,6 +614,27 @@ export default function App() {
       scrollToPageTop();
     }
   };
+
+  // Sync route state on hard refresh / direct URL entry
+  useEffect(() => {
+    const route = resolveAppRoute(window.location.pathname, productsList, giftCombos);
+    setActiveCategory(route.activeCategory);
+    setViewMode(route.viewMode);
+    setSelectedProduct(route.selectedProduct);
+    setIsCategoryPage(route.isCategoryPage);
+    setInfoSlug(route.infoSlug ?? null);
+    setCheckoutSlug(route.checkoutSlug ?? 'bag');
+    setQuizSlug(route.quizSlug ?? null);
+    setQuizResultKey(route.quizResultKey ?? null);
+    setStyleFinderResultKey(route.styleFinderResultKey ?? null);
+    setMagazineCategorySlug(route.magazineCategorySlug ?? null);
+    setMagazineArticleSlug(route.magazineArticleSlug ?? null);
+    setKnowledgePageSlug(route.knowledgePageSlug ?? null);
+    setGameSlug(route.gameSlug ?? null);
+    setCelebrityLookSlug(route.celebrityLookSlug ?? null);
+    setTrendSlug(route.trendSlug ?? null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount for direct URL loads
+  }, []);
 
   useEffect(() => {
     fetchStoreSettings().then((s) => {
@@ -1245,6 +1267,7 @@ export default function App() {
 
       {/* Main Page Layout */}
       <main className={`main-content ${viewMode === 'checkout' ? 'main-content--checkout' : ''}`}>
+        <RouteErrorBoundary>
         <Suspense fallback={<RouteFallback />}>
         {viewMode === 'info' ? (
           <InfoPage
@@ -1566,6 +1589,7 @@ export default function App() {
         )}
 
         </Suspense>
+        </RouteErrorBoundary>
       </main>
 
       {/* Footer */}

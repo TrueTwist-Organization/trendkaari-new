@@ -145,6 +145,10 @@ export default function DiscoveryHero({
   const subtitle =
     config.subtitle ||
     'Curated Indian ethnic & contemporary wear for festivals, weddings, and everyday style.';
+  const mobileHeroBakedCopy = Boolean(config.mobileHeroBakedCopy);
+  const subtitleMobile =
+    config.subtitleMobile || 'Indian ethnic & contemporary wear for every occasion.';
+  const secondaryCtaMobile = config.secondaryCtaMobile || 'Explore';
   const primaryCta = config.primaryCta || 'Shop Now';
   const secondaryCta = config.secondaryCta || 'Explore Collections';
   const trustBadges = config.trustBadges || DEFAULT_HOMEPAGE_CONFIG.hero.trustBadges;
@@ -175,7 +179,7 @@ export default function DiscoveryHero({
 
   return (
     <section
-      className={`discovery-hero${backgroundImage ? ' discovery-hero--photo-bg' : ''}${mobileHeroArtwork ? ' discovery-hero--mobile-artwork' : ''}`}
+      className={`discovery-hero${backgroundImage ? ' discovery-hero--photo-bg' : ''}${mobileHeroArtwork ? ' discovery-hero--mobile-artwork' : ''}${mobileHeroBakedCopy ? ' discovery-hero--mobile-baked' : ''}`}
       aria-label="Featured collection"
     >
       {backgroundImage ? (
@@ -211,7 +215,8 @@ export default function DiscoveryHero({
             <span />
           </div>
 
-          <p className="discovery-hero__subtitle">{subtitle}</p>
+          <p className="discovery-hero__subtitle discovery-hero__subtitle--desktop">{subtitle}</p>
+          <p className="discovery-hero__subtitle discovery-hero__subtitle--mobile">{subtitleMobile}</p>
 
           <div className="discovery-hero__actions">
             <button
@@ -227,7 +232,8 @@ export default function DiscoveryHero({
               className="discovery-hero__btn discovery-hero__btn--ghost"
               onClick={handleExplore}
             >
-              {secondaryCta}
+              <span className="discovery-hero__btn-text discovery-hero__btn-text--long">{secondaryCta}</span>
+              <span className="discovery-hero__btn-text discovery-hero__btn-text--short">{secondaryCtaMobile}</span>
               <ArrowRight size={16} aria-hidden="true" />
             </button>
           </div>

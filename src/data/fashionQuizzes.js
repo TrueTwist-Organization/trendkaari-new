@@ -430,7 +430,7 @@ export const FASHION_QUIZZES = {
     title: 'Wedding Style Finder',
     subtitle: 'From mehendi to reception — find your lane',
     description: 'Tell us your role and event. We’ll recommend wedding-ready products and styling guides.',
-    coverImage: '/lehengas/Lehengas/1/040A3523_700x.webp',
+    coverImage: '/lehengas/Lehengas/9/040A1719_700x.webp',
     accent: '#880e4f',
     steps: [
       {

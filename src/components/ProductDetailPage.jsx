@@ -9,6 +9,7 @@ import StoreCouponsPromo from './StoreCouponsPromo';
 import PdpAdZone from './PdpAdZone';
 import ProductImage from './ProductImage';
 import { getProductGalleryImages } from '../utils/productImages';
+import { createPageImageRegistry } from '../utils/pageImageDedupe';
 import { scrollToPageTop } from '../utils/scrollToTop';
 import { recordProductView } from '../utils/viewHistory';
 
@@ -39,6 +40,14 @@ export default function ProductDetailPage({
   const sizeChart = getSizeChartForProduct(product);
   const sizeChartMeta = getSizeChartMeta(product);
   const pImages = getProductGalleryImages(product);
+
+  const pdpReservedImages = useMemo(() => {
+    const registry = createPageImageRegistry();
+    pImages.forEach((url) => {
+      if (url) registry.used.add(url);
+    });
+    return registry.used;
+  }, [product.id, pImages.join('|')]);
 
   const breadcrumbCategory = (product.subCategory || product.category || 'Shop')
     .replace(/\b\w/g, (c) => c.toUpperCase());
@@ -333,6 +342,7 @@ export default function ProductDetailPage({
             onStartQuiz={onStartQuiz}
             adCodes={adCodes}
             productsPerRail={10}
+            reservedImages={pdpReservedImages}
           />
         </section>
 

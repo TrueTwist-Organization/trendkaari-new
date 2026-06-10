@@ -1,6 +1,48 @@
 {
   "sessions": [
     {
+      "id": "4dc821ce-9ea6-4707-ad03-000c7b4c1bfa",
+      "startedAt": 1781092778927,
+      "pageCount": 1,
+      "lastPage": "/games/choose-style",
+      "updatedAt": 1781092778927
+    },
+    {
+      "id": "204cce58-80dc-4553-90dc-5d44de743f60",
+      "startedAt": 1781089965162,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1781089965162
+    },
+    {
+      "id": "905c3068-98a9-4b14-9751-af2f7bfefe69",
+      "startedAt": 1781091188831,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1781091188831
+    },
+    {
+      "id": "7086e890-00a3-4be9-be46-624baa6c8b67",
+      "startedAt": 1781091188843,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1781091188843
+    },
+    {
+      "id": "9c083339-74f4-4258-86c8-ca1474edc011",
+      "startedAt": 1781085547043,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1781085547043
+    },
+    {
+      "id": "05b3599d-01dd-4217-9040-55a1c7dd813b",
+      "startedAt": 1781078161841,
+      "pageCount": 1,
+      "lastPage": "/",
+      "updatedAt": 1781078161841
+    },
+    {
       "id": "af511bcd-c76a-492e-a432-a703dcb4f825",
       "startedAt": 1781074508567,
       "pageCount": 1,
@@ -290,18 +332,18 @@
   ],
   "pageStats": {
     "/": {
-      "views": 350,
+      "views": 421,
       "scroll": {
-        "25": 66,
-        "50": 40,
-        "75": 29,
-        "100": 18
+        "25": 68,
+        "50": 42,
+        "75": 31,
+        "100": 20
       },
-      "totalDurationMs": 185805072,
-      "clicks": 78,
+      "totalDurationMs": 217677095,
+      "clicks": 82,
       "heatmap": {
         "7,8": 1,
-        "4,4": 2,
+        "4,4": 3,
         "6,6": 7,
         "4,7": 3,
         "5,5": 4,
@@ -322,7 +364,7 @@
         "2,4": 2,
         "6,7": 1,
         "5,1": 1,
-        "1,0": 7,
+        "1,0": 9,
         "0,6": 1,
         "1,5": 1,
         "1,4": 1,
@@ -336,7 +378,8 @@
         "3,6": 1,
         "0,0": 3,
         "0,5": 1,
-        "5,3": 1
+        "5,3": 1,
+        "0,3": 1
       }
     },
     "/product/1036": {
@@ -419,38 +462,42 @@
       }
     },
     "/trends": {
-      "views": 10,
+      "views": 15,
       "scroll": {
-        "25": 3,
-        "50": 3,
-        "75": 3,
-        "100": 1
+        "25": 5,
+        "50": 5,
+        "75": 5,
+        "100": 2
       },
-      "totalDurationMs": 1194538,
-      "clicks": 5,
+      "totalDurationMs": 1562234,
+      "clicks": 6,
       "heatmap": {
         "1,0": 2,
         "4,1": 1,
-        "4,0": 1,
+        "4,0": 2,
         "0,2": 1
       }
     },
     "/magazine": {
-      "views": 5,
+      "views": 9,
       "scroll": {
-        "25": 3,
-        "50": 3,
-        "75": 2,
-        "100": 2
+        "25": 5,
+        "50": 5,
+        "75": 4,
+        "100": 4
       },
-      "totalDurationMs": 123369,
-      "clicks": 6,
+      "totalDurationMs": 556912,
+      "clicks": 10,
       "heatmap": {
         "6,3": 1,
         "5,0": 1,
         "4,0": 2,
         "0,0": 1,
-        "8,7": 1
+        "8,7": 1,
+        "1,0": 1,
+        "0,2": 1,
+        "2,0": 1,
+        "1,4": 1
       }
     },
     "/category/kurtas": {
@@ -688,28 +735,33 @@
       }
     },
     "/discover": {
-      "views": 32,
+      "views": 43,
       "scroll": {
-        "25": 11,
-        "50": 8,
-        "75": 8,
-        "100": 6
+        "25": 16,
+        "50": 13,
+        "75": 12,
+        "100": 9
       },
-      "totalDurationMs": 3384360,
-      "clicks": 18,
+      "totalDurationMs": 4658458,
+      "clicks": 34,
       "heatmap": {
         "5,0": 1,
         "7,6": 1,
         "7,2": 3,
         "4,0": 2,
         "4,3": 1,
-        "1,0": 1,
+        "1,0": 2,
         "1,2": 1,
         "3,5": 1,
         "8,3": 4,
         "6,0": 1,
         "0,0": 1,
-        "0,2": 1
+        "0,2": 2,
+        "2,0": 3,
+        "1,1": 1,
+        "8,7": 8,
+        "3,1": 1,
+        "0,5": 1
       }
     },
     "/product/1016": {
@@ -869,38 +921,41 @@
       }
     },
     "/style-finder": {
-      "views": 7,
+      "views": 9,
       "scroll": {
-        "25": 3,
-        "50": 3,
-        "75": 1,
-        "100": 1
+        "25": 5,
+        "50": 5,
+        "75": 3,
+        "100": 3
       },
-      "totalDurationMs": 16893379,
-      "clicks": 6,
-      "heatmap": {
-        "1,0": 2,
-        "0,1": 1,
-        "0,2": 1,
-        "5,0": 1,
-        "3,6": 1
-      }
-    },
-    "/category/all": {
-      "views": 3,
-      "scroll": {
-        "25": 3,
-        "50": 2,
-        "75": 2,
-        "100": 0
-      },
-      "totalDurationMs": 19977,
-      "clicks": 6,
+      "totalDurationMs": 16906845,
+      "clicks": 10,
       "heatmap": {
         "1,0": 2,
         "0,1": 2,
-        "1,1": 1,
-        "0,0": 1
+        "0,2": 1,
+        "5,0": 1,
+        "3,6": 1,
+        "2,0": 2,
+        "1,1": 1
+      }
+    },
+    "/category/all": {
+      "views": 4,
+      "scroll": {
+        "25": 4,
+        "50": 3,
+        "75": 3,
+        "100": 0
+      },
+      "totalDurationMs": 25265,
+      "clicks": 8,
+      "heatmap": {
+        "1,0": 2,
+        "0,1": 2,
+        "1,1": 2,
+        "0,0": 1,
+        "2,0": 1
       }
     },
     "/viral": {
@@ -916,22 +971,24 @@
       "heatmap": {}
     },
     "/quiz": {
-      "views": 3,
+      "views": 4,
       "scroll": {
-        "25": 2,
-        "50": 1,
-        "75": 1,
-        "100": 1
+        "25": 3,
+        "50": 2,
+        "75": 2,
+        "100": 2
       },
-      "totalDurationMs": 208921,
-      "clicks": 7,
+      "totalDurationMs": 214990,
+      "clicks": 11,
       "heatmap": {
         "4,6": 1,
         "1,0": 2,
         "1,1": 1,
-        "1,4": 1,
+        "1,4": 2,
         "4,4": 1,
-        "3,5": 1
+        "3,5": 1,
+        "2,1": 1,
+        "2,0": 2
       }
     },
     "/quiz/outfit-finder/result/party-ready": {
@@ -963,20 +1020,27 @@
       }
     },
     "/games": {
-      "views": 2,
+      "views": 7,
       "scroll": {
-        "25": 1,
-        "50": 1,
-        "75": 1,
-        "100": 0
+        "25": 3,
+        "50": 2,
+        "75": 2,
+        "100": 1
       },
-      "totalDurationMs": 175922,
-      "clicks": 6,
+      "totalDurationMs": 196840,
+      "clicks": 14,
       "heatmap": {
         "1,0": 3,
         "0,1": 1,
         "0,6": 1,
-        "0,7": 1
+        "0,7": 1,
+        "4,5": 2,
+        "7,4": 1,
+        "7,5": 1,
+        "2,5": 1,
+        "2,1": 1,
+        "2,0": 1,
+        "1,2": 1
       }
     },
     "/product/1028": {
@@ -1033,14 +1097,14 @@
       "heatmap": {}
     },
     "/games/look-battle": {
-      "views": 2,
+      "views": 3,
       "scroll": {
-        "25": 1,
-        "50": 1,
-        "75": 1,
+        "25": 2,
+        "50": 2,
+        "75": 2,
         "100": 1
       },
-      "totalDurationMs": 1394096,
+      "totalDurationMs": 1397840,
       "clicks": 0,
       "heatmap": {}
     },
@@ -1364,20 +1428,64 @@
         "8,2": 5,
         "8,9": 1
       }
+    },
+    "/knowledge": {
+      "views": 13,
+      "scroll": {
+        "25": 5,
+        "50": 5,
+        "75": 5,
+        "100": 5
+      },
+      "totalDurationMs": 1802975,
+      "clicks": 5,
+      "heatmap": {
+        "0,6": 1,
+        "2,0": 2,
+        "1,4": 1,
+        "1,3": 1
+      }
+    },
+    "/games/choose-style": {
+      "views": 2,
+      "scroll": {
+        "25": 2,
+        "50": 2,
+        "75": 2,
+        "100": 2
+      },
+      "totalDurationMs": 28100,
+      "clicks": 2,
+      "heatmap": {
+        "1,1": 1,
+        "4,4": 1
+      }
+    },
+    "/games/rate-outfit": {
+      "views": 1,
+      "scroll": {
+        "25": 1,
+        "50": 1,
+        "75": 1,
+        "100": 1
+      },
+      "totalDurationMs": 2619,
+      "clicks": 0,
+      "heatmap": {}
     }
   },
   "pathEdges": {
     "/product/1036 → /product/1036": 6,
     "/product/1036 → /": 1,
-    "/ → /": 281,
+    "/ → /": 345,
     "/celebrity-match/alia-reception → /celebrity-match/alia-reception": 8,
     "/ → /dmin": 1,
     "/dmin → /dmin": 1,
     "/quiz/personality → /quiz/personality": 4,
     "/product/2107 → /product/2107": 3,
     "/product/2107 → /trends": 1,
-    "/trends → /trends": 8,
-    "/trends → /": 1,
+    "/trends → /trends": 12,
+    "/trends → /": 2,
     "/ → /celebrity-match/alia-reception": 5,
     "/celebrity-match/alia-reception → /": 4,
     "/ → /magazine": 3,
@@ -1440,8 +1548,8 @@
     "/product/2201 → /trends": 1,
     "/trends → /style-finder": 1,
     "/style-finder → /category/all": 1,
-    "/category/all → /discover": 3,
-    "/discover → /style-finder": 2,
+    "/category/all → /discover": 4,
+    "/discover → /style-finder": 3,
     "/style-finder → /viral": 1,
     "/viral → /viral": 7,
     "/viral → /style-finder": 1,
@@ -1460,7 +1568,7 @@
     "/celebrity-match/alia-reception → /product/1028": 1,
     "/product/1028 → /product/1028": 3,
     "/product/1028 → /": 1,
-    "/ → /games": 1,
+    "/ → /games": 2,
     "/games → /category/gents-kurtas": 1,
     "/category/gents-kurtas → /category/gents-kurtas": 8,
     "/category/gents-kurtas → /": 1,
@@ -1482,7 +1590,7 @@
     "/checkout/contact → /": 1,
     "/ → /viral": 1,
     "/viral → /discover": 1,
-    "/discover → /discover": 22,
+    "/discover → /discover": 30,
     "/ → /category/gents-kurtas": 1,
     "/category/gents-kurtas → /product/3903": 1,
     "/product/3903 → /discover": 1,
@@ -1510,8 +1618,25 @@
     "/checkout/error → /checkout/error": 4,
     "/magazine → /magazine/celebrity-looks/deepika-red-carpet-recreate": 1,
     "/magazine/celebrity-looks/deepika-red-carpet-recreate → /product/1026": 1,
-    "/product/1026 → /checkout/bag": 1
+    "/product/1026 → /checkout/bag": 1,
+    "/knowledge → /knowledge": 12,
+    "/knowledge → /magazine": 1,
+    "/magazine → /magazine": 2,
+    "/magazine → /style-finder": 1,
+    "/style-finder → /discover": 2,
+    "/discover → /category/all": 1,
+    "/discover → /quiz": 1,
+    "/quiz → /magazine": 1,
+    "/magazine → /knowledge": 1,
+    "/knowledge → /games": 1,
+    "/games → /games/choose-style": 2,
+    "/games/choose-style → /games": 1,
+    "/games → /games/look-battle": 1,
+    "/games/look-battle → /games": 1,
+    "/games → /games/rate-outfit": 1,
+    "/games/rate-outfit → /games": 1,
+    "/games → /trends": 1
   },
-  "totalEvents": 2882,
-  "updatedAt": "2026-06-10T06:55:08.569Z"
+  "totalEvents": 3342,
+  "updatedAt": "2026-06-10T11:59:41.635Z"
 }

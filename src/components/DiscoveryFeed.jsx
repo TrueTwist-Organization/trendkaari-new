@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { buildDiscoveryRails } from '../utils/discoveryEngine';
+import { dedupeDiscoveryRails } from '../utils/pageImageDedupe';
 import DiscoveryRail from './DiscoveryRail';
 import PageBackButton from './PageBackButton';
 import PlacedAdSlot from './PlacedAdSlot';
@@ -24,10 +25,10 @@ export default function DiscoveryFeed({
   const [visibleRails, setVisibleRails] = useState(INITIAL_RAILS);
   const sentinelRef = useRef(null);
 
-  const rails = useMemo(
-    () => buildDiscoveryRails(products, { maxRails }),
-    [products, maxRails],
-  );
+  const { rails, pageUsedImages } = useMemo(() => {
+    const built = buildDiscoveryRails(products, { maxRails });
+    return dedupeDiscoveryRails(built);
+  }, [products, maxRails]);
 
   useEffect(() => {
     setVisibleRails(fullPage ? INITIAL_RAILS + 2 : INITIAL_RAILS);
@@ -87,7 +88,7 @@ export default function DiscoveryFeed({
             hook={rail.hook}
             products={rail.products}
             tone={rail.tone}
-            showHead={!fullPage}
+            showHead
             onSelectProduct={onSelectProduct}
             onSeeAll={
               rail.category
@@ -125,6 +126,7 @@ export default function DiscoveryFeed({
             subtitle=""
             showIntro={false}
             showAds={false}
+            reservedImages={pageUsedImages}
           />
           {fullPage ? (
             <PlacedAdSlot adCodes={adCodes} placement="discover_feed_bottom" variant="section" />

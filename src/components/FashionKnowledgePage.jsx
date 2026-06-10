@@ -20,6 +20,8 @@ import {
   getKnowledgePageProducts,
   getRelatedKnowledgePages,
 } from '../utils/knowledgeEngine';
+import { createPageImageRegistry } from '../utils/pageImageDedupe';
+import { ensureUniqueGuideImages } from '../utils/guideImages';
 import { trackGuidePageViewed } from '../utils/ga4';
 import './FashionKnowledge.css';
 
@@ -90,6 +92,42 @@ export default function FashionKnowledgePage({
     [related, page?.slug],
   );
 
+  const {
+    pageUsedImages,
+    heroImage,
+    sidebarPreviewImage,
+    dedupedShopProducts,
+    dedupedRelated,
+    dedupedCollections,
+  } = useMemo(() => {
+    if (!page) {
+      return {
+        pageUsedImages: new Set(),
+        heroImage: '',
+        sidebarPreviewImage: '',
+        dedupedShopProducts: [],
+        dedupedRelated: [],
+        dedupedCollections: [],
+      };
+    }
+
+    const registry = createPageImageRegistry();
+    const hero = page.image || '';
+    if (hero) registry.used.add(hero);
+    const sidebarPreview = hero
+      ? registry.assignItemImage({ image: hero }).image
+      : '';
+
+    return {
+      pageUsedImages: registry.used,
+      heroImage: hero,
+      sidebarPreviewImage: sidebarPreview,
+      dedupedCollections: registry.assignItemsWithImage(collections),
+      dedupedRelated: ensureUniqueGuideImages(related, 2, registry.used),
+      dedupedShopProducts: registry.assignProducts(shopProducts),
+    };
+  }, [page, collections, related, shopProducts]);
+
   useEffect(() => {
     if (page) trackGuidePageViewed(page.slug, page.title, page.topicSlug);
   }, [pageSlug, page]);
@@ -146,7 +184,7 @@ export default function FashionKnowledgePage({
             </header>
 
             <figure className="knowledge-page__figure">
-              <ProductImage src={page.image} alt={page.title} className="knowledge-page__hero-img" />
+              <ProductImage src={heroImage} alt={page.title} className="knowledge-page__hero-img" />
             </figure>
 
             <article className="knowledge-page__content">
@@ -197,7 +235,7 @@ export default function FashionKnowledgePage({
                   </div>
                 </div>
                 <div className="knowledge-page__collection-grid">
-                  {collections.map((col) => (
+                  {dedupedCollections.map((col) => (
                     <button
                       key={`${col.category}-${col.label}`}
                       type="button"
@@ -223,7 +261,7 @@ export default function FashionKnowledgePage({
 
           <aside className="knowledge-page__sidebar">
             <div className="knowledge-page__sidebar-card knowledge-page__sidebar-card--shop">
-              <ProductImage src={page.image} alt="" className="knowledge-page__sidebar-preview" />
+              <ProductImage src={sidebarPreviewImage} alt="" className="knowledge-page__sidebar-preview" />
               <h3>Shop this guide</h3>
               <p>Browse {page.shopCategory} picks inspired by {page.title.toLowerCase()}.</p>
               <button
@@ -238,7 +276,7 @@ export default function FashionKnowledgePage({
 
             <div className="knowledge-page__sidebar-card">
               <h3>Related guides</h3>
-              {related.map((rel) => {
+              {dedupedRelated.map((rel) => {
                 const relTopic = getTopicBySlug(rel.topicSlug);
                 return (
                   <button
@@ -257,11 +295,11 @@ export default function FashionKnowledgePage({
               })}
             </div>
 
-            {collections.length > 0 ? (
+            {dedupedCollections.length > 0 ? (
               <div className="knowledge-page__sidebar-card">
                 <h3>Quick shop</h3>
                 <div className="knowledge-page__sidebar-collections">
-                  {collections.map((col) => (
+                  {dedupedCollections.map((col) => (
                     <button
                       key={`sidebar-${col.category}`}
                       type="button"
@@ -308,12 +346,12 @@ export default function FashionKnowledgePage({
           <PlacedAdSlot adCodes={adCodes} placement="knowledge_page_mid" variant="section" />
         </div>
 
-        {shopProducts.length ? (
+        {dedupedShopProducts.length ? (
           <div className="container knowledge-page__shop-rail">
             <DiscoveryRail
               title={`Shop ${page.title.replace(/^What is /i, '').replace(/\?$/, '') || page.title}`}
               hook={`Curated ${page.shopCategory} — hand-picked for this guide`}
-              products={shopProducts}
+              products={dedupedShopProducts}
               tone="editorial"
               compact
               onSelectProduct={onSelectProduct}
@@ -328,6 +366,7 @@ export default function FashionKnowledgePage({
           celebIds={page.relatedCelebrityIds || []}
           quizSlugs={page.relatedQuizSlugs || []}
           guideSlugs={loopGuides}
+          reservedImages={pageUsedImages}
           title="Where to go next"
           subtitle="Trends, celebrity looks, quizzes, and guides connected to this topic"
           onNavigate={onNavigate}

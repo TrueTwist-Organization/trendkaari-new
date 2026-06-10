@@ -332,6 +332,14 @@ export default function CollectionListingPage({
     () => items.map((product) => product.id),
     [items],
   );
+  const categoryPageUsedImages = useMemo(() => {
+    const used = new Set();
+    sortedItems.forEach((product) => {
+      const img = getProductPrimaryImage(product);
+      if (img) used.add(img);
+    });
+    return used;
+  }, [sortedItems]);
   const hasMore = visibleCount < sortedItems.length;
   const rangeStart = sortedItems.length === 0 ? 0 : 1;
   const rangeEnd = Math.min(visibleCount, sortedItems.length);
@@ -878,6 +886,7 @@ export default function CollectionListingPage({
             onOpenKnowledgePage={onOpenKnowledgePage}
             placement="bottom"
             adCodes={adCodes}
+            reservedImages={categoryPageUsedImages}
           />
         </>
       ) : null}

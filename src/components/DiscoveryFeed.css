@@ -21,6 +21,7 @@
 
 .discovery-feed--full .discovery-feed__hero-text,
 .discovery-feed--full .discovery-rail__head,
+.discovery-feed--full .discovery-rail__rail-wrap,
 .discovery-feed--full .discovery-rail__track,
 .discovery-feed--full .recommendation-rails__intro,
 .discovery-feed--full .endless-discovery__block,
@@ -84,11 +85,7 @@
   line-height: 1.55;
 }
 
-/* Discover page — single page heading; hide per-rail titles */
-.discovery-feed--full .discovery-rail__head {
-  display: none;
-}
-
+/* Discover page — tighter rail spacing */
 .discovery-feed--full .discovery-rail {
   padding-top: 8px;
 }

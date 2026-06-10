@@ -6,7 +6,7 @@ import ProductImage from './ProductImage';
 import DiscoveryLoopSection from './DiscoveryLoopSection';
 import { getKnowledgeTopics } from '../data/fashionKnowledge';
 import { fetchKnowledgePages } from '../utils/editorialContentData';
-import { ensureUniqueGuideImages } from '../utils/guideImages';
+import { assignHubGuideImages } from '../utils/guideImages';
 import PlacedAdSlot from './PlacedAdSlot';
 import './FashionKnowledge.css';
 
@@ -49,13 +49,30 @@ export default function FashionKnowledgeHub({
     fetchKnowledgePages().then(setAllPages);
   }, []);
 
-  const featured = useMemo(() => {
+  const { featured, topicSections, hubUsedImages } = useMemo(() => {
+    const usedImages = new Set();
     const featuredList = allPages.filter((p) => p.featured);
     const rest = allPages.filter((p) => !p.featured);
-    return ensureUniqueGuideImages([...featuredList, ...rest].slice(0, 8), 4);
-  }, [allPages]);
+    const featuredPages = assignHubGuideImages(
+      [...featuredList, ...rest].slice(0, 8),
+      4,
+      usedImages,
+    );
+    const featuredIdSet = new Set(featuredPages.map((p) => p.id));
 
-  const featuredIds = useMemo(() => new Set(featured.map((p) => p.id)), [featured]);
+    const sections = topics
+      .map((topic) => ({
+        topic,
+        pages: assignHubGuideImages(
+          allPages.filter((p) => p.topicSlug === topic.slug && !featuredIdSet.has(p.id)),
+          3,
+          usedImages,
+        ),
+      }))
+      .filter((section) => section.pages.length > 0);
+
+    return { featured: featuredPages, topicSections: sections, hubUsedImages: usedImages };
+  }, [allPages, topics]);
 
   const topicMap = useMemo(
     () => Object.fromEntries(topics.map((t) => [t.slug, t])),
@@ -105,13 +122,7 @@ export default function FashionKnowledgeHub({
 
         <PlacedAdSlot adCodes={adCodes} placement="knowledge_hub_mid" variant="section" />
 
-        {topics.map((topic) => {
-          const pages = ensureUniqueGuideImages(
-            allPages.filter((p) => p.topicSlug === topic.slug && !featuredIds.has(p.id)),
-            3,
-          );
-          if (!pages.length) return null;
-          return (
+        {topicSections.map(({ topic, pages }) => (
             <section key={topic.slug} className="fashion-knowledge__section">
               <div
                 className="fashion-knowledge__topic-head"
@@ -131,8 +142,7 @@ export default function FashionKnowledgeHub({
                 ))}
               </div>
             </section>
-          );
-        })}
+          ))}
       </div>
 
       <PlacedAdSlot adCodes={adCodes} placement="knowledge_hub_bottom" variant="section" />
@@ -143,6 +153,7 @@ export default function FashionKnowledgeHub({
         trendSlugs={['festival-fashion', 'wedding-fashion', 'summer-fashion']}
         celebIds={['kiara-festive', 'deepika-airport']}
         quizSlugs={['outfit-finder', 'festival-look']}
+        reservedImages={hubUsedImages}
         title="Keep exploring"
         subtitle="Trends, celebrity looks, quizzes, and more style guides"
         onNavigate={onNavigate}

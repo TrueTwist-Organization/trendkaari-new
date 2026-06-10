@@ -26,6 +26,7 @@ import EndlessDiscovery from './EndlessDiscovery';
 import DiscoveryLoopSection from './DiscoveryLoopSection';
 import PlacedAdSlot from './PlacedAdSlot';
 import { getDiscoveryContext } from '../utils/discoveryContext';
+import { createPageImageRegistry, seedRegistryFromProducts } from '../utils/pageImageDedupe';
 import { trackCelebrityPageViewed } from '../utils/ga4';
 import './CelebrityLookPage.css';
 
@@ -168,6 +169,21 @@ export default function CelebrityLookPage({
     if (matched.length) return matched.slice(0, 8);
     return products.slice(0, 8);
   }, [look, products]);
+
+  const pageUsedImages = useMemo(() => {
+    if (!look) return new Set();
+    const registry = createPageImageRegistry();
+    [look.heroImage, look.image].forEach((url) => {
+      if (url) registry.used.add(url);
+    });
+    otherLooks.forEach((entry) => {
+      [entry.heroImage, entry.image].forEach((url) => {
+        if (url) registry.used.add(url);
+      });
+    });
+    seedRegistryFromProducts(relatedProducts, registry);
+    return registry.used;
+  }, [look, otherLooks, relatedProducts]);
 
   if (!looksReady) {
     return (
@@ -437,6 +453,7 @@ export default function CelebrityLookPage({
             subtitle="Products, articles, quizzes — keep the exploration going."
             compact
             showAds={false}
+            reservedImages={pageUsedImages}
           />
         )}
       </div>
@@ -456,6 +473,7 @@ export default function CelebrityLookPage({
             ? [look.knowledgeSlug, ...discoveryCtx.guideSlugs.filter((s) => s !== look.knowledgeSlug)].slice(0, 2)
             : discoveryCtx.guideSlugs
         }
+        reservedImages={pageUsedImages}
         title="Keep exploring"
         subtitle="Trends, looks, quizzes, and guides matched to this style"
         onNavigate={onNavigate}

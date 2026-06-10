@@ -4,6 +4,7 @@ import ProductImage from './ProductImage';
 import DiscoveryRail from './DiscoveryRail';
 import { getCategoryDisplayName } from '../utils/categoryFilter';
 import { buildCollectionHub, countCollectionHubClicks } from '../utils/collectionHubEngine';
+import { dedupeDiscoveryRails } from '../utils/pageImageDedupe';
 import './CollectionHubSections.css';
 
 export default function CollectionHubSections({
@@ -15,11 +16,17 @@ export default function CollectionHubSections({
   onOpenKnowledgePage,
   placement = 'full',
   adCodes = {},
+  reservedImages = null,
 }) {
   const hub = useMemo(
     () => buildCollectionHub(allProducts, activeCategory, { excludeProductIds }),
     [allProducts, activeCategory, excludeProductIds],
   );
+
+  const dedupedRails = useMemo(() => {
+    if (!hub?.rails?.length) return [];
+    return dedupeDiscoveryRails(hub.rails, reservedImages).rails;
+  }, [hub, reservedImages]);
 
   if (!hub) return null;
 
@@ -94,12 +101,12 @@ export default function CollectionHubSections({
   }
 
   if (placement === 'bottom') {
-    if (!hub.rails?.length) return null;
+    if (!dedupedRails.length) return null;
 
     return (
       <section className="collection-hub collection-hub--bottom" aria-label={`${categoryLabel} suggestions`}>
         <div className="container collection-hub__rails">
-          {hub.rails.map((rail) => (
+          {dedupedRails.map((rail) => (
             <DiscoveryRail
               key={rail.id}
               title={rail.title}

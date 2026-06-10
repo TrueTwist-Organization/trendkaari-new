@@ -1,7 +1,9 @@
 import React, { useMemo, useRef } from 'react';
 import {
   ArrowRight,
+  ChevronLeft,
   ChevronRight,
+  Flame,
   Share2,
   Star,
   Trophy,
@@ -262,6 +264,10 @@ export default function ViralFashionHub({
           />
         </div>
       ) : null}
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="viral_hub_bottom" variant="section" />
+      </div>
 
       <footer className="viral-hub__finale">
         <div className="container">

@@ -17,6 +17,7 @@ import {
 import { buildMagazineHubSections } from '../utils/magazineEngine';
 import './FashionMagazine.css';
 import EndlessDiscovery from './EndlessDiscovery';
+import PlacedAdSlot from './PlacedAdSlot';
 
 const CATEGORY_ICONS = {
   trending: TrendingUp,
@@ -64,6 +65,7 @@ export default function FashionMagazineHub({
   onSelectCategory,
   onOpenKnowledgePage,
   onStartQuiz,
+  adCodes = {},
 }) {
   const categories = getMagazineCategories();
   const { featured, latest } = useMemo(() => buildMagazineHubSections(), []);
@@ -120,6 +122,8 @@ export default function FashionMagazineHub({
           </div>
         </section>
 
+        <PlacedAdSlot adCodes={adCodes} placement="magazine_hub_mid" variant="section" />
+
         <section className="fashion-magazine__section">
           <div className="fashion-magazine__section-head">
             <h2>Editor&apos;s picks</h2>
@@ -153,6 +157,8 @@ export default function FashionMagazineHub({
             ))}
           </div>
         </section>
+
+        <PlacedAdSlot adCodes={adCodes} placement="magazine_hub_bottom" variant="section" />
 
         {products.length > 0 ? (
           <EndlessDiscovery

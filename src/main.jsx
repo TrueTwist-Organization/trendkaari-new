@@ -14,30 +14,33 @@ const isAdminRoute =
   typeof window !== 'undefined' &&
   (window.location.pathname === '/admin' || window.location.pathname.startsWith('/admin/'));
 
-async function bootstrap() {
+async function preloadTrackingAds() {
+  try {
+    const res = await fetch('/api/store/ad-slots');
+    if (res.ok) {
+      const data = await res.json();
+      const codes = adSlotsToCodeMap(data?.adSlots || []);
+      if (codes.site_common_ad) {
+        injectTrackingScriptsFromHtml(codes.site_common_ad, 'site_common_ad');
+      }
+      void preloadAdLibraries(codes);
+      return;
+    }
+  } catch {
+    /* fall through */
+  }
+  void preloadAdLibraries();
+}
+
+function bootstrap() {
   if (!isAdminRoute) {
     installScrollRestoration();
-
-    try {
-      const res = await fetch('/api/store/ad-slots');
-      if (res.ok) {
-        const data = await res.json();
-        const codes = adSlotsToCodeMap(data?.adSlots || []);
-        if (codes.site_common_ad) {
-          injectTrackingScriptsFromHtml(codes.site_common_ad, 'site_common_ad');
-        }
-        void preloadAdLibraries(codes);
-      } else {
-        void preloadAdLibraries();
-      }
-    } catch {
-      void preloadAdLibraries();
-    }
+    void preloadTrackingAds();
   }
 
   createRoot(document.getElementById('root')).render(
-    <StrictMode>{isAdminRoute ? <AdminApp /> : <App />}</StrictMode>
+    <StrictMode>{isAdminRoute ? <AdminApp /> : <App />}</StrictMode>,
   );
 }
 
-void bootstrap();
+bootstrap();

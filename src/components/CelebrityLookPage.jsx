@@ -24,6 +24,7 @@ import { filterProductsByCategory } from '../utils/categoryFilter';
 import ProductImage from './ProductImage';
 import EndlessDiscovery from './EndlessDiscovery';
 import DiscoveryLoopSection from './DiscoveryLoopSection';
+import PlacedAdSlot from './PlacedAdSlot';
 import { getDiscoveryContext } from '../utils/discoveryContext';
 import { trackCelebrityPageViewed } from '../utils/ga4';
 import './CelebrityLookPage.css';
@@ -112,6 +113,7 @@ function MoreLookCard({ look, onNavigate }) {
 export default function CelebrityLookPage({
   lookId,
   products = [],
+  adCodes = {},
   onBack,
   onSelectProduct,
   onSelectCategory,
@@ -314,6 +316,8 @@ export default function CelebrityLookPage({
 
       <div className="container celeb-look__body">
 
+        <PlacedAdSlot adCodes={adCodes} placement="celebrity_look_mid" variant="section" />
+
         {/* ─── Style Notes ────────────────────────────────────────────── */}
         <section className="celeb-look__notes-section">
           <p className="celeb-look__section-eyebrow">STYLE NOTES</p>
@@ -415,6 +419,8 @@ export default function CelebrityLookPage({
             <ArrowRight size={15} aria-hidden="true" />
           </button>
         </section>
+
+        <PlacedAdSlot adCodes={adCodes} placement="celebrity_look_bottom" variant="section" />
 
         {/* ─── Endless Discovery ───────────────────────────────────────── */}
         {products.length > 0 && (

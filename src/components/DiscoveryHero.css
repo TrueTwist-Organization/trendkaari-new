@@ -458,52 +458,57 @@ body.home-page .discovery-hero {
     min-height: auto;
   }
 
-  /* Photo hero: stack image on top, copy panel below (no full-screen overlay). */
+  /* Photo hero: full-bleed portrait artwork with copy overlaid on top. */
   .discovery-hero--photo-bg {
-    display: flex;
-    flex-direction: column;
-    min-height: auto;
+    display: block;
+    min-height: min(92vh, 680px);
   }
 
   .discovery-hero--photo-bg .discovery-hero__photo {
-    position: relative;
-    inset: auto;
-    flex: 0 0 auto;
+    position: absolute;
+    inset: 0;
+    flex: none;
     width: 100%;
-    height: clamp(252px, 52vw, 340px);
-    max-height: 340px;
+    height: 100%;
+    max-height: none;
   }
 
   .discovery-hero--photo-bg .discovery-hero__photo-img {
     object-fit: cover;
-    object-position: 62% 14%;
+    object-position: center bottom;
   }
 
   .discovery-hero--photo-bg .discovery-hero__photo-scrim {
     background: linear-gradient(
       180deg,
-      transparent 0%,
-      transparent 62%,
-      rgba(42, 6, 24, 0.45) 88%,
-      rgba(42, 6, 24, 1) 100%
+      rgba(26, 4, 16, 0.72) 0%,
+      rgba(42, 6, 24, 0.28) 22%,
+      transparent 42%,
+      transparent 68%,
+      rgba(42, 6, 24, 0.22) 88%,
+      rgba(42, 6, 24, 0.5) 100%
     );
   }
 
   .discovery-hero--photo-bg .discovery-hero__shell {
     position: relative;
     z-index: 1;
-    flex: 1 1 auto;
-    display: block;
-    min-height: auto;
+    flex: none;
+    display: flex;
+    align-items: flex-start;
+    min-height: min(92vh, 680px);
     width: 100%;
-    margin-top: -2px;
-    background: linear-gradient(180deg, var(--hero-plum) 0%, var(--hero-plum-deep) 100%);
+    margin-top: 0;
+    background: transparent;
   }
 
   .discovery-hero--photo-bg .discovery-hero__copy {
     justify-content: flex-start;
+    max-width: min(100%, 22rem);
     padding:
-      1.1rem 1rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+      calc(1rem + env(safe-area-inset-top, 0px))
+      1rem
+      calc(1.25rem + env(safe-area-inset-bottom, 0px));
   }
 
   .discovery-hero__title-line {
@@ -591,9 +596,21 @@ body.home-page .discovery-hero {
 }
 
 @media (max-width: 767px) and (orientation: landscape) {
+  .discovery-hero--photo-bg {
+    min-height: min(100vh, 520px);
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__shell {
+    min-height: min(100vh, 520px);
+  }
+
   .discovery-hero--photo-bg .discovery-hero__photo {
-    height: clamp(180px, 38vh, 240px);
-    max-height: 240px;
+    height: 100%;
+    max-height: none;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__photo-img {
+    object-position: center 38%;
   }
 
   .discovery-hero--photo-bg .discovery-hero__actions {

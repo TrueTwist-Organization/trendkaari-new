@@ -22,6 +22,7 @@ import ProductImage from './ProductImage';
 import PageBackButton from './PageBackButton';
 import { trackTrendPageViewed } from '../utils/ga4';
 import EndlessDiscovery from './EndlessDiscovery';
+import PlacedAdSlot from './PlacedAdSlot';
 import './TrendPage.css';
 
 /* ─── Shared sub-components ──────────────────────────────────────────────── */
@@ -189,7 +190,7 @@ function MoreTrends({ relatedSlugs, onNavigate, allTrends }) {
 
 /* ─── Trend Hub (index at /trends) ────────────────────────────────────────── */
 
-function TrendHub({ onNavigate, onBack }) {
+function TrendHub({ onNavigate, onBack, adCodes = {} }) {
   const [trends, setTrends] = useState(TREND_PAGES);
 
   useEffect(() => {
@@ -207,10 +208,18 @@ function TrendHub({ onNavigate, onBack }) {
         </p>
       </div>
 
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="trend_hub_mid" variant="section" />
+      </div>
+
       <div className="trend-hub__grid container">
         {trends.map((trend) => (
           <TrendHeroCard key={trend.slug} trend={trend} onNavigate={onNavigate} />
         ))}
+      </div>
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="trend_hub_bottom" variant="section" />
       </div>
     </div>
   );
@@ -222,6 +231,7 @@ function TrendPageFull({
   trend,
   allTrends,
   products,
+  adCodes = {},
   onBack,
   onNavigate,
   onSelectProduct,
@@ -359,6 +369,8 @@ function TrendPageFull({
           </aside>
         </section>
 
+        <PlacedAdSlot adCodes={adCodes} placement="trend_page_mid" variant="section" />
+
         {/* ─── Celebrity Looks ────────────────────────────────────────── */}
         {featuredCelebs.length > 0 && (
           <section className="trend-page__celebs">
@@ -416,6 +428,8 @@ function TrendPageFull({
         {/* ─── More Trends ────────────────────────────────────────────── */}
         <MoreTrends relatedSlugs={trend.relatedTrends} onNavigate={onNavigate} allTrends={allTrends} />
 
+        <PlacedAdSlot adCodes={adCodes} placement="trend_page_bottom" variant="section" />
+
         {/* ─── Endless Discovery ──────────────────────────────────────── */}
         {products.length > 0 && (
           <EndlessDiscovery
@@ -443,6 +457,7 @@ function TrendPageFull({
 export default function TrendPage({
   trendSlug = null,
   products = [],
+  adCodes = {},
   onBack,
   onNavigate,
   onSelectProduct,
@@ -482,6 +497,7 @@ export default function TrendPage({
       <TrendHub
         onNavigate={onNavigate}
         onBack={onBack}
+        adCodes={adCodes}
       />
     );
   }
@@ -510,6 +526,7 @@ export default function TrendPage({
       trend={trend}
       allTrends={allTrends}
       products={products}
+      adCodes={adCodes}
       onBack={onBack}
       onNavigate={onNavigate}
       onSelectProduct={onSelectProduct}

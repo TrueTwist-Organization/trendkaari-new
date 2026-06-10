@@ -10,7 +10,7 @@ export const DEFAULT_HOMEPAGE_CONFIG = {
     primaryCta: 'Shop Now',
     secondaryCta: 'Explore Collections',
     backgroundImage: '/hero/home-hero-bg.png?v=2',
-    backgroundImageMobile: '/hero/home-hero-bg-mobile.jpg?v=1',
+    backgroundImageMobile: '/hero/home-hero-bg-mobile.jpg?v=2',
     desktopImage: '/hero/home-hero-banner.png?v=celebrate-special-v2',
     mobileImage: '/hero/home-hero-banner-mobile.png?v=celebrate-special-v2',
     modelsImage: '/hero/home-hero-models.png?v=5',

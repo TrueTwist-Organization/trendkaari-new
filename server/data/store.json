@@ -2124,7 +2124,7 @@
       ],
       "rating": "4.5",
       "reviewsCount": 85,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -2137,7 +2137,7 @@
           "stockBySize": {
             "XS": 4,
             "S": 4,
-            "M": 4,
+            "M": 3,
             "L": 4,
             "XL": 4,
             "XXL": 4
@@ -2604,7 +2604,7 @@
       ],
       "rating": "4.8",
       "reviewsCount": 154,
-      "stock": 24,
+      "stock": 20,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -2615,7 +2615,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 0,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -4264,7 +4264,7 @@
       ],
       "rating": "4.7",
       "reviewsCount": 104,
-      "stock": 24,
+      "stock": 20,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -4275,7 +4275,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 0,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -9858,7 +9858,7 @@
       ],
       "rating": "4.7",
       "reviewsCount": 40,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -9869,7 +9869,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -9974,7 +9974,7 @@
       ],
       "rating": "4.7",
       "reviewsCount": 75,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -9985,7 +9985,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -10088,7 +10088,7 @@
       ],
       "rating": "4.8",
       "reviewsCount": 110,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -10099,7 +10099,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -10205,7 +10205,7 @@
       ],
       "rating": "4.8",
       "reviewsCount": 145,
-      "stock": 23,
+      "stock": 22,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -10216,7 +10216,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 3,
+            "XS": 2,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -10322,7 +10322,7 @@
       ],
       "rating": "4.9",
       "reviewsCount": 180,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -10333,7 +10333,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -10436,7 +10436,7 @@
       ],
       "rating": "4.5",
       "reviewsCount": 40,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -10447,7 +10447,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -10552,7 +10552,7 @@
       ],
       "rating": "4.5",
       "reviewsCount": 62,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -10563,7 +10563,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -10668,7 +10668,7 @@
       ],
       "rating": "4.6",
       "reviewsCount": 84,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -10679,7 +10679,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -10784,7 +10784,7 @@
       ],
       "rating": "4.6",
       "reviewsCount": 106,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -10795,7 +10795,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -10898,7 +10898,7 @@
       ],
       "rating": "4.7",
       "reviewsCount": 128,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -10909,7 +10909,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -11013,7 +11013,7 @@
       ],
       "rating": "4.7",
       "reviewsCount": 150,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -11024,7 +11024,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -11129,7 +11129,7 @@
       ],
       "rating": "4.8",
       "reviewsCount": 32,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -11140,7 +11140,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -11244,7 +11244,7 @@
       ],
       "rating": "4.8",
       "reviewsCount": 54,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -11255,7 +11255,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -11359,7 +11359,7 @@
       ],
       "rating": "4.9",
       "reviewsCount": 76,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -11370,7 +11370,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -11473,7 +11473,7 @@
       ],
       "rating": "4.9",
       "reviewsCount": 98,
-      "stock": 24,
+      "stock": 23,
       "gender": "ladies",
       "fabricTags": [
         "Cotton"
@@ -11484,7 +11484,7 @@
           "color": "Default",
           "colorHex": "#f5f5f5",
           "stockBySize": {
-            "XS": 4,
+            "XS": 3,
             "S": 4,
             "M": 4,
             "L": 4,
@@ -22375,6 +22375,1850 @@
   ],
   "orders": [
     {
+      "id": "ORD-484130",
+      "userId": null,
+      "customerName": "Jinal",
+      "email": "jinalman32@gmail.com",
+      "address": "op, u, y, i, 123456, i",
+      "items": [
+        {
+          "id": 1026,
+          "title": "Black Sequin Floral Saree",
+          "price": 249,
+          "originalPrice": 498,
+          "image": "/sarees/Sarees/6/1_3ece2f65-ea7e-4e5a-9a42-99b2b54b139a_700x.webp",
+          "selectedSize": "XS",
+          "quantity": 6,
+          "gender": "ladies",
+          "subCategory": "sarees",
+          "category": "women"
+        }
+      ],
+      "subtotal": 1494,
+      "discount": 75,
+      "grandTotal": 1419,
+      "status": "Pending",
+      "paymentStatus": "Paid",
+      "date": "10/6/2026, 12:24:25 pm",
+      "createdAt": "2026-06-10T06:54:25.812Z"
+    },
+    {
+      "id": "ORD-144761",
+      "userId": null,
+      "customerName": "Jinal",
+      "email": "jinalman32@gmail.com",
+      "address": "popp, ₹po, uo, o, 123466, opo",
+      "items": [
+        {
+          "id": 1012,
+          "title": "Wine Maroon Mirror Work Brocade Lehenga",
+          "price": 249,
+          "originalPrice": 498,
+          "image": "/lehengas/Lehengas/2/Lavanya70993_700x.webp",
+          "selectedSize": "XS",
+          "quantity": 6,
+          "gender": "ladies",
+          "subCategory": "lehengas",
+          "category": "women"
+        }
+      ],
+      "subtotal": 1494,
+      "discount": 75,
+      "grandTotal": 1419,
+      "status": "Pending",
+      "paymentStatus": "Paid",
+      "date": "10/6/2026, 12:13:47 pm",
+      "createdAt": "2026-06-10T06:43:47.075Z"
+    },
+    {
+      "id": "ORD-683337",
+      "userId": null,
+      "customerName": "Jinal",
+      "email": "jinalman32@gmail.com",
+      "address": "ui, ui, iu, ui, 123456, ui",
+      "items": [
+        {
+          "id": 1008,
+          "title": "Rose Pink Chikankari Palazzo Kurta Set",
+          "price": 199,
+          "originalPrice": 398,
+          "image": "/kurtas/Kurtas/8/LBCL101KS240_10_5b52c956-72f9-4243-9ffc-9d52c230f150_700x.webp",
+          "selectedSize": "M",
+          "quantity": 1,
+          "gender": "ladies",
+          "subCategory": "kurtas",
+          "category": "women"
+        },
+        {
+          "id": 2309,
+          "title": "Midnight Navy Skinny Denim Jeans",
+          "price": 99,
+          "originalPrice": 198,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "bottoms",
+          "wearType": "western",
+          "image": "/bottoms/bottom_wear/9/1.webp",
+          "images": [
+            "/bottoms/bottom_wear/9/1.webp",
+            "/bottoms/bottom_wear/9/2.webp",
+            "/bottoms/bottom_wear/9/3.webp",
+            "/bottoms/bottom_wear/9/4.webp"
+          ],
+          "description": "Discover Midnight Navy Skinny Denim Jeans from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.9",
+          "reviewsCount": 76,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Midnight Navy Skinny Denim Jeans from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Midnight Navy Skinny Denim Jeans features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2308,
+          "title": "Sky Blue Ripped Wide-Leg Jeans",
+          "price": 99,
+          "originalPrice": 198,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "bottoms",
+          "wearType": "western",
+          "image": "/bottoms/bottom_wear/8/1.webp",
+          "images": [
+            "/bottoms/bottom_wear/8/1.webp",
+            "/bottoms/bottom_wear/8/2.webp",
+            "/bottoms/bottom_wear/8/3.webp",
+            "/bottoms/bottom_wear/8/4.webp"
+          ],
+          "description": "Discover Sky Blue Ripped Wide-Leg Jeans from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.8",
+          "reviewsCount": 54,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Sky Blue Ripped Wide-Leg Jeans from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Sky Blue Ripped Wide-Leg Jeans features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2307,
+          "title": "Mustard Yellow Vintage Wash Wide-Leg Jeans",
+          "price": 99,
+          "originalPrice": 198,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "bottoms",
+          "wearType": "western",
+          "image": "/bottoms/bottom_wear/7/1.webp",
+          "images": [
+            "/bottoms/bottom_wear/7/1.webp",
+            "/bottoms/bottom_wear/7/2.webp",
+            "/bottoms/bottom_wear/7/3.webp",
+            "/bottoms/bottom_wear/7/4.webp",
+            "/bottoms/bottom_wear/7/5.webp"
+          ],
+          "description": "Discover Mustard Yellow Vintage Wash Wide-Leg Jeans from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.8",
+          "reviewsCount": 32,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Mustard Yellow Vintage Wash Wide-Leg Jeans from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Mustard Yellow Vintage Wash Wide-Leg Jeans features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2306,
+          "title": "Royal Blue Flared High-Waist Jeans",
+          "price": 149,
+          "originalPrice": 298,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "bottoms",
+          "wearType": "western",
+          "image": "/bottoms/bottom_wear/6/1.webp",
+          "images": [
+            "/bottoms/bottom_wear/6/1.webp",
+            "/bottoms/bottom_wear/6/2.webp",
+            "/bottoms/bottom_wear/6/3.webp",
+            "/bottoms/bottom_wear/6/4.webp"
+          ],
+          "description": "Discover Royal Blue Flared High-Waist Jeans from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Linen for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.7",
+          "reviewsCount": 150,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Royal Blue Flared High-Waist Jeans from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Linen for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Linen",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Linen for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Royal Blue Flared High-Waist Jeans features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2305,
+          "title": "Sky Blue Wide-Leg Denim Jeans",
+          "price": 149,
+          "originalPrice": 298,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "bottoms",
+          "wearType": "western",
+          "image": "/bottoms/bottom_wear/5/1.webp",
+          "images": [
+            "/bottoms/bottom_wear/5/1.webp",
+            "/bottoms/bottom_wear/5/2.webp",
+            "/bottoms/bottom_wear/5/3.webp"
+          ],
+          "description": "Discover Sky Blue Wide-Leg Denim Jeans from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.7",
+          "reviewsCount": 128,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Sky Blue Wide-Leg Denim Jeans from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Sky Blue Wide-Leg Denim Jeans features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2304,
+          "title": "Emerald Green Cigarette Ankle Pants",
+          "price": 149,
+          "originalPrice": 298,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "bottoms",
+          "wearType": "western",
+          "image": "/bottoms/bottom_wear/4/1.webp",
+          "images": [
+            "/bottoms/bottom_wear/4/1.webp",
+            "/bottoms/bottom_wear/4/2.webp",
+            "/bottoms/bottom_wear/4/3.webp",
+            "/bottoms/bottom_wear/4/5.webp",
+            "/bottoms/bottom_wear/4/6.webp"
+          ],
+          "description": "Discover Emerald Green Cigarette Ankle Pants from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Silk Blend for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.6",
+          "reviewsCount": 106,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Emerald Green Cigarette Ankle Pants from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Silk Blend for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Silk Blend",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Silk Blend for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Emerald Green Cigarette Ankle Pants features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2303,
+          "title": "Sage Mint Green Wide-Leg Palazzo Pants",
+          "price": 149,
+          "originalPrice": 298,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "bottoms",
+          "wearType": "western",
+          "image": "/bottoms/bottom_wear/3/1.webp",
+          "images": [
+            "/bottoms/bottom_wear/3/1.webp",
+            "/bottoms/bottom_wear/3/2.webp",
+            "/bottoms/bottom_wear/3/3.webp",
+            "/bottoms/bottom_wear/3/4.webp",
+            "/bottoms/bottom_wear/3/5.webp"
+          ],
+          "description": "Discover Sage Mint Green Wide-Leg Palazzo Pants from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.6",
+          "reviewsCount": 84,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Sage Mint Green Wide-Leg Palazzo Pants from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Sage Mint Green Wide-Leg Palazzo Pants features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2302,
+          "title": "Ivory White Pleated Wide-Leg Trousers",
+          "price": 99,
+          "originalPrice": 198,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "bottoms",
+          "wearType": "western",
+          "image": "/bottoms/bottom_wear/2/1.webp",
+          "images": [
+            "/bottoms/bottom_wear/2/1.webp",
+            "/bottoms/bottom_wear/2/2.webp",
+            "/bottoms/bottom_wear/2/3.webp",
+            "/bottoms/bottom_wear/2/4.webp",
+            "/bottoms/bottom_wear/2/5.webp"
+          ],
+          "description": "Discover Ivory White Pleated Wide-Leg Trousers from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.5",
+          "reviewsCount": 62,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Ivory White Pleated Wide-Leg Trousers from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Ivory White Pleated Wide-Leg Trousers features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2301,
+          "title": "Black Flared High-Waist Leggings",
+          "price": 99,
+          "originalPrice": 198,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "bottoms",
+          "wearType": "western",
+          "image": "/bottoms/bottom_wear/1/1.webp",
+          "images": [
+            "/bottoms/bottom_wear/1/1.webp",
+            "/bottoms/bottom_wear/1/2.webp",
+            "/bottoms/bottom_wear/1/3.webp"
+          ],
+          "description": "Discover Black Flared High-Waist Leggings from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Linen for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.5",
+          "reviewsCount": 40,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Black Flared High-Waist Leggings from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Linen for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Linen",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Linen for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Black Flared High-Waist Leggings features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2210,
+          "title": "Wine Maroon Ribbed Long Sleeve Top",
+          "price": 99,
+          "originalPrice": 198,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "t-shirts",
+          "wearType": "western",
+          "image": "/t-shirts/t-shirt/10/1.webp",
+          "images": [
+            "/t-shirts/t-shirt/10/1.webp",
+            "/t-shirts/t-shirt/10/2.webp",
+            "/t-shirts/t-shirt/10/3.webp",
+            "/t-shirts/t-shirt/10/4.webp",
+            "/t-shirts/t-shirt/10/5.webp",
+            "/t-shirts/t-shirt/10/6.webp"
+          ],
+          "description": "Discover Wine Maroon Ribbed Long Sleeve Top from FlexFit Studio—where tradition meets contemporary design. This t-shirts is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.9",
+          "reviewsCount": 180,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Wine Maroon Ribbed Long Sleeve Top from FlexFit Studio—where tradition meets contemporary design. This t-shirts is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Wine Maroon Ribbed Long Sleeve Top features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2209,
+          "title": "Black Classic Polo T-Shirt",
+          "price": 99,
+          "originalPrice": 198,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "t-shirts",
+          "wearType": "western",
+          "image": "/t-shirts/t-shirt/9/1.webp",
+          "images": [
+            "/t-shirts/t-shirt/9/1.webp",
+            "/t-shirts/t-shirt/9/2.webp",
+            "/t-shirts/t-shirt/9/3.webp",
+            "/t-shirts/t-shirt/9/4.webp",
+            "/t-shirts/t-shirt/9/5.webp",
+            "/t-shirts/t-shirt/9/6.webp"
+          ],
+          "description": "Discover Black Classic Polo T-Shirt from FlexFit Studio—where tradition meets contemporary design. This t-shirts is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.8",
+          "reviewsCount": 145,
+          "stock": 23,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 3,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Black Classic Polo T-Shirt from FlexFit Studio—where tradition meets contemporary design. This t-shirts is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Black Classic Polo T-Shirt features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2208,
+          "title": "Ivory Beige Oversized Combo T-Shirt",
+          "price": 99,
+          "originalPrice": 198,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "t-shirts",
+          "wearType": "western",
+          "image": "/t-shirts/t-shirt/8/1.webp",
+          "images": [
+            "/t-shirts/t-shirt/8/1.webp",
+            "/t-shirts/t-shirt/8/2.webp",
+            "/t-shirts/t-shirt/8/3.webp"
+          ],
+          "description": "Discover Ivory Beige Oversized Combo T-Shirt from FlexFit Studio—where tradition meets contemporary design. This t-shirts is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.8",
+          "reviewsCount": 110,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Ivory Beige Oversized Combo T-Shirt from FlexFit Studio—where tradition meets contemporary design. This t-shirts is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Ivory Beige Oversized Combo T-Shirt features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2207,
+          "title": "Sky Blue Contrast Collar Polo T-Shirt",
+          "price": 99,
+          "originalPrice": 198,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "t-shirts",
+          "wearType": "western",
+          "image": "/t-shirts/t-shirt/7/1.webp",
+          "images": [
+            "/t-shirts/t-shirt/7/1.webp",
+            "/t-shirts/t-shirt/7/2.webp",
+            "/t-shirts/t-shirt/7/3.webp",
+            "/t-shirts/t-shirt/7/4.webp",
+            "/t-shirts/t-shirt/7/5.webp"
+          ],
+          "description": "Discover Sky Blue Contrast Collar Polo T-Shirt from FlexFit Studio—where tradition meets contemporary design. This t-shirts is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.7",
+          "reviewsCount": 75,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Sky Blue Contrast Collar Polo T-Shirt from FlexFit Studio—where tradition meets contemporary design. This t-shirts is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Sky Blue Contrast Collar Polo T-Shirt features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2206,
+          "title": "Lime Yellow Have a Good Day Graphic Tee",
+          "price": 99,
+          "originalPrice": 198,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "t-shirts",
+          "wearType": "western",
+          "image": "/t-shirts/t-shirt/6/1.webp",
+          "images": [
+            "/t-shirts/t-shirt/6/1.webp",
+            "/t-shirts/t-shirt/6/2.webp",
+            "/t-shirts/t-shirt/6/3.webp",
+            "/t-shirts/t-shirt/6/4.webp"
+          ],
+          "description": "Discover Lime Yellow Have a Good Day Graphic Tee from FlexFit Studio—where tradition meets contemporary design. This t-shirts is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.7",
+          "reviewsCount": 40,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Lime Yellow Have a Good Day Graphic Tee from FlexFit Studio—where tradition meets contemporary design. This t-shirts is crafted in Premium Viscose / Muslin Cotton for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Viscose / Muslin Cotton",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Viscose / Muslin Cotton for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Lime Yellow Have a Good Day Graphic Tee features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        },
+        {
+          "id": 2310,
+          "title": "Sky Blue Drawstring Wide-Leg Culottes",
+          "price": 149,
+          "originalPrice": 298,
+          "discount": "50% OFF",
+          "category": "women",
+          "subCategory": "bottoms",
+          "wearType": "western",
+          "image": "/bottoms/bottom_wear/10/1.webp",
+          "images": [
+            "/bottoms/bottom_wear/10/1.webp",
+            "/bottoms/bottom_wear/10/2.webp",
+            "/bottoms/bottom_wear/10/3.webp"
+          ],
+          "description": "Discover Sky Blue Drawstring Wide-Leg Culottes from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Linen for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "rating": "4.9",
+          "reviewsCount": 98,
+          "stock": 24,
+          "gender": "ladies",
+          "fabricTags": [
+            "Cotton"
+          ],
+          "variants": [
+            {
+              "id": "default",
+              "color": "Default",
+              "colorHex": "#f5f5f5",
+              "stockBySize": {
+                "XS": 4,
+                "S": 4,
+                "M": 4,
+                "L": 4,
+                "XL": 4,
+                "XXL": 4
+              }
+            }
+          ],
+          "descriptionLong": "Discover Sky Blue Drawstring Wide-Leg Culottes from FlexFit Studio—where tradition meets contemporary design. This bottoms is crafted in Premium Linen for a luxurious feel and flattering fall. Whether you are dressing for a festival, reception or intimate celebration, this piece delivers statement style with everyday comfort. Made in India with quality you can trust.",
+          "highlights": {
+            "Material composition": "Premium Linen",
+            "Fit type": "Regular / Straight Fit",
+            "Neck style": "Designer Neckline",
+            "Sleeve type": "Three-Quarter (3/4) Sleeves",
+            "Pattern": "Ethnic weave / print",
+            "Country of Origin": "India"
+          },
+          "aboutItems": [
+            "PREMIUM FABRIC: Handpicked Premium Linen for graceful drape, breathability and all-day comfort—ideal for festive celebrations, weddings and special occasions.",
+            "DESIGN & CRAFT: Sky Blue Drawstring Wide-Leg Culottes features thoughtful detailing with refined finishing. The silhouette is designed to complement Indian body types while staying easy to style.",
+            "VERSATILE STYLING: Pair with minimal jewellery and heels for events, or keep it light for brunch and family gatherings. A FlexFit Studio favourite for modern ethnic dressing.",
+            "COMFORT FIT: Tailored for ease of movement without compromising elegance. Soft lining and quality stitching ensure you feel as good as you look.",
+            "CARE INSTRUCTIONS: Dry clean recommended for first wear; gentle hand wash thereafter. Store folded in a cool, dry place away from direct sunlight."
+          ],
+          "additionalInfo": {
+            "Net Quantity": "1 Set",
+            "Country of Origin": "India",
+            "Ideal For": "Festive, wedding guest, party wear",
+            "Product Care": "Dry clean / gentle hand wash"
+          },
+          "sizeChart": [
+            {
+              "size": "XS",
+              "chest": "32 – 34",
+              "shoulder": "14",
+              "length": "38",
+              "sleeve": "16"
+            },
+            {
+              "size": "S",
+              "chest": "34 – 36",
+              "shoulder": "14.5",
+              "length": "40",
+              "sleeve": "17"
+            },
+            {
+              "size": "M",
+              "chest": "36 – 38",
+              "shoulder": "15",
+              "length": "42",
+              "sleeve": "17.5"
+            },
+            {
+              "size": "L",
+              "chest": "38 – 40",
+              "shoulder": "15.5",
+              "length": "44",
+              "sleeve": "18"
+            },
+            {
+              "size": "XL",
+              "chest": "40 – 42",
+              "shoulder": "16",
+              "length": "46",
+              "sleeve": "18.5"
+            },
+            {
+              "size": "XXL",
+              "chest": "42 – 44",
+              "shoulder": "16.5",
+              "length": "48",
+              "sleeve": "19"
+            }
+          ],
+          "sizeChartType": "ethnic",
+          "selectedSize": "XS",
+          "quantity": 1
+        }
+      ],
+      "subtotal": 1934,
+      "discount": 0,
+      "grandTotal": 1934,
+      "status": "Pending",
+      "paymentStatus": "Paid",
+      "date": "10/6/2026, 12:08:07 pm",
+      "createdAt": "2026-06-10T06:38:07.771Z"
+    },
+    {
       "id": "ORD-909376",
       "userId": null,
       "customerName": "Jinal",
@@ -25594,7 +27438,7 @@
       "updatedAt": "2026-05-21T05:37:10.557Z"
     }
   ],
-  "_storeUpdatedAt": "2026-06-10T06:17:30.701Z",
+  "_storeUpdatedAt": "2026-06-10T06:54:25.823Z",
   "homepage_blocks": [
     {
       "id": "style-quizSAdxcvb",

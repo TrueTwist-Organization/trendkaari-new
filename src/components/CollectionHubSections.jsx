@@ -4,9 +4,6 @@ import ProductImage from './ProductImage';
 import DiscoveryRail from './DiscoveryRail';
 import { getCategoryDisplayName } from '../utils/categoryFilter';
 import { buildCollectionHub, countCollectionHubClicks } from '../utils/collectionHubEngine';
-import PlacedAdSlot from './PlacedAdSlot';
-import { SUGGESTION_RAIL_AD_EVERY_N } from '../constants/adGridIntervals';
-import { getAdCode } from '../utils/resolveAdCode';
 import './CollectionHubSections.css';
 
 export default function CollectionHubSections({
@@ -99,32 +96,19 @@ export default function CollectionHubSections({
   if (placement === 'bottom') {
     if (!hub.rails?.length) return null;
 
-    const hubRailAdCode = getAdCode(adCodes, 'category_suggestions_every_6');
-
     return (
       <section className="collection-hub collection-hub--bottom" aria-label={`${categoryLabel} suggestions`}>
         <div className="container collection-hub__rails">
-          {hub.rails.map((rail, index) => (
-            <React.Fragment key={rail.id}>
-              <DiscoveryRail
-                title={rail.title}
-                hook={rail.hook}
-                products={rail.products}
-                tone={rail.tone}
-                onSelectProduct={onSelectProduct}
-                onSeeAll={rail.seeAllCategory ? () => onSelectCategory?.(rail.seeAllCategory) : undefined}
-                adCodes={adCodes}
-                adPlacement={hubRailAdCode ? 'category_suggestions_every_6' : ''}
-                adEveryN={hubRailAdCode ? SUGGESTION_RAIL_AD_EVERY_N : 0}
-              />
-              <PlacedAdSlot
-                adCodes={adCodes}
-                placement="category_suggestions_mid"
-                variant="section"
-                ownerKey={`category_suggestions_mid-${index}`}
-                allowDuplicateSource
-              />
-            </React.Fragment>
+          {hub.rails.map((rail) => (
+            <DiscoveryRail
+              key={rail.id}
+              title={rail.title}
+              hook={rail.hook}
+              products={rail.products}
+              tone={rail.tone}
+              onSelectProduct={onSelectProduct}
+              onSeeAll={rail.seeAllCategory ? () => onSelectCategory?.(rail.seeAllCategory) : undefined}
+            />
           ))}
         </div>
       </section>

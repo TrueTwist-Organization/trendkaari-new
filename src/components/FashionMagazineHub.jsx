@@ -89,6 +89,8 @@ export default function FashionMagazineHub({
       }
     >
       <div className="container fashion-magazine__body">
+        <PlacedAdSlot adCodes={adCodes} placement="magazine_hub_top" variant="section" />
+
         <section className="fashion-magazine__categories">
           <div className="fashion-magazine__section-head">
             <h2>Browse by category</h2>

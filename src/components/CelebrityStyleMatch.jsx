@@ -52,6 +52,10 @@ export default function CelebrityStyleMatch({
       </div>
 
       <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="celebrity_hub_top" variant="section" />
+      </div>
+
+      <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="celebrity_hub_mid" variant="section" />
       </div>
 

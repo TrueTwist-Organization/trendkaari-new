@@ -50,7 +50,7 @@ export default function FashionQuizHub({
     >
 
       <div className="container">
-        <PlacedAdSlot adCodes={adCodes} placement="quiz_hub_mid" variant="section" />
+        <PlacedAdSlot adCodes={adCodes} placement="quiz_hub_top" variant="section" />
       </div>
 
       <section className="fashion-quiz-hub__stage" aria-label="Choose a quiz">
@@ -73,6 +73,8 @@ export default function FashionQuizHub({
               </span>
             </button>
           ) : null}
+
+          <PlacedAdSlot adCodes={adCodes} placement="quiz_hub_mid" variant="section" />
 
           <div className="fashion-quiz-hub__grid">
             {quizzes.map((quiz) => {

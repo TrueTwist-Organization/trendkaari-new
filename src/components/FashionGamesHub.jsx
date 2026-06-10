@@ -50,6 +50,10 @@ export default function FashionGamesHub({
     >
 
       <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="games_hub_top" variant="section" />
+      </div>
+
+      <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="games_hub_mid" variant="section" />
       </div>
 

@@ -209,6 +209,10 @@ function TrendHub({ onNavigate, onBack, adCodes = {} }) {
       </div>
 
       <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="trend_hub_top" variant="section" />
+      </div>
+
+      <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="trend_hub_mid" variant="section" />
       </div>
 

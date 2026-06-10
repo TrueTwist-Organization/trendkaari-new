@@ -467,9 +467,15 @@ const CHECKOUT_SLOTS = [
 
 const CONTENT_SLOTS = [
   {
+    key: 'discover_feed_top',
+    title: 'Discover — Top',
+    description: '/discover page — below hero, before first product rail.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
     key: 'discover_feed_mid',
     title: 'Discover — Mid Feed',
-    description: '/discover page — after every 2nd product rail.',
+    description: '/discover page — once after the 2nd product rail.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
@@ -488,6 +494,12 @@ const CONTENT_SLOTS = [
     key: 'magazine_article_bottom',
     title: 'Magazine Article — Bottom',
     description: 'Below recommendation rails, above “Where to go next”.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'quiz_hub_top',
+    title: 'Quiz Hub — Top',
+    description: '/quiz index — below hero, before featured AI Style Finder card.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
@@ -569,6 +581,12 @@ const CONTENT_SLOTS = [
     placeholder: 'Paste ad HTML/script…',
   },
   {
+    key: 'games_hub_top',
+    title: 'Games Hub — Top',
+    description: '/games index — below hero, before game cards.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
     key: 'games_hub_mid',
     title: 'Games Hub — Mid',
     description: 'Mid-page on fashion games hub.',
@@ -584,6 +602,12 @@ const CONTENT_SLOTS = [
     key: 'viral_hub_bottom',
     title: 'Viral Fashion — Bottom',
     description: 'Bottom of viral fashion hub, above footer.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'celebrity_hub_top',
+    title: 'Bollywood Style Match — Top',
+    description: '/celebrity-match hub — below hero, before look grid.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
@@ -608,6 +632,12 @@ const CONTENT_SLOTS = [
     key: 'celebrity_look_bottom',
     title: 'Celebrity Look — Bottom',
     description: '/celebrity-match/:id — before endless discovery.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'style_finder_top',
+    title: 'AI Style Finder — Top',
+    description: '/style-finder flow — below intro hero, above step flow.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
@@ -647,6 +677,12 @@ const CONTENT_SLOTS = [
     placeholder: 'Paste ad HTML/script for spin wheel…',
   },
   {
+    key: 'knowledge_hub_top',
+    title: 'Fashion Knowledge Hub — Top',
+    description: '/knowledge index — below hero, before featured guides.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
     key: 'knowledge_hub_mid',
     title: 'Fashion Knowledge Hub — Mid',
     description: '/knowledge index — after featured guides.',
@@ -656,6 +692,12 @@ const CONTENT_SLOTS = [
     key: 'knowledge_hub_bottom',
     title: 'Fashion Knowledge Hub — Bottom',
     description: '/knowledge index — before discovery loop.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'magazine_hub_top',
+    title: 'Fashion Magazine Hub — Top',
+    description: '/magazine index — below hero, before category cards.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
@@ -685,6 +727,12 @@ const CONTENT_SLOTS = [
 ];
 
 const TREND_SLOTS = [
+  {
+    key: 'trend_hub_top',
+    title: 'Trend Hub — Top',
+    description: '/trends — below intro hero, before trend card grid.',
+    placeholder: 'Paste ad HTML/script…',
+  },
   {
     key: 'trend_hub_mid',
     title: 'Trend Hub — Mid',

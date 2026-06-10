@@ -74,6 +74,10 @@ export default function AiStyleFinderFlow({
       ) : null}
 
       <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="style_finder_top" variant="section" />
+      </div>
+
+      <div className="container">
         <PlacedAdSlot adCodes={adCodes} placement="style_finder_mid" variant="section" />
       </div>
 

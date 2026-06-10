@@ -76,6 +76,7 @@ export default function DiscoveryFeed({
               Scroll through curated edits — every rail leads somewhere new.
             </p>
           </header>
+          <PlacedAdSlot adCodes={adCodes} placement="discover_feed_top" variant="section" />
         </>
       ) : null}
 
@@ -94,12 +95,10 @@ export default function DiscoveryFeed({
                 : undefined
             }
           />
-          {(index + 1) % 2 === 0 ? (
+          {index === 1 ? (
             <PlacedAdSlot
               adCodes={adCodes}
               placement="discover_feed_mid"
-              ownerKey={`discover_feed_mid-${index}`}
-              allowDuplicateSource
               variant="section"
             />
           ) : null}

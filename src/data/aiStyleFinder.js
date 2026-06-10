@@ -103,7 +103,7 @@ export const OCCASION_PROFILES = {
     label: 'Everyday ease',
     categories: ['kurtas', 'tops', 'co-ords'],
     collections: [
-      { id: 'daily-kurtas', title: 'Daily Kurtas', category: 'kurtas', image: '/kurtas/Kurtas/1/040A2925_700x.webp' },
+      { id: 'daily-kurtas', title: 'Daily Kurtas', category: 'kurtas', image: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp' },
       { id: 'daily-coords', title: 'Casual Co-ords', category: 'co-ords', image: '/co-ords/co-ord_set/1/1.webp' },
       { id: 'daily-tops', title: 'Easy Tops', category: 'tops', image: '/tops/4/1.webp' },
     ],
@@ -114,7 +114,7 @@ export const OCCASION_PROFILES = {
     label: 'Office polish',
     categories: ['kurtas', 'tops', 'co-ords'],
     collections: [
-      { id: 'office-kurtas', title: 'Work Kurtas', category: 'kurtas', image: '/kurtas/Kurtas/1/040A2925_700x.webp' },
+      { id: 'office-kurtas', title: 'Work Kurtas', category: 'kurtas', image: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp' },
       { id: 'office-tops', title: 'Smart Tops', category: 'tops', image: '/tops/7/1.webp' },
       { id: 'office-coords', title: 'Desk Co-ords', category: 'co-ords', image: '/co-ords/co-ord_set/1/1.webp' },
     ],
@@ -125,9 +125,9 @@ export const OCCASION_PROFILES = {
     label: 'Festive ready',
     categories: ['suit sets', 'sarees', 'kurtas'],
     collections: [
-      { id: 'festive-suits', title: 'Festive Suit Sets', category: 'suit sets', image: '/kurtas/Kurtas/1/040A2925_700x.webp' },
-      { id: 'festive-sarees', title: 'Celebration Sarees', category: 'sarees', image: '/sarees/Sarees/1/040A3523_700x.webp' },
-      { id: 'festive-kurtas', title: 'Embroidered Kurtas', category: 'kurtas', image: '/kurtas/Kurtas/1/040A2925_700x.webp' },
+      { id: 'festive-suits', title: 'Festive Suit Sets', category: 'suit sets', image: '/suit-sets/Suit Sets/9/L12.01.25_1930_700x.webp' },
+      { id: 'festive-sarees', title: 'Celebration Sarees', category: 'sarees', image: '/sarees/Sarees/1/0T3A5495_700x.webp' },
+      { id: 'festive-kurtas', title: 'Embroidered Kurtas', category: 'kurtas', image: '/kurtas/Kurtas/9/DishaParmarVaidya_2_700x.webp' },
     ],
     guideIds: ['festive-colour-palette', 'wedding-guest-dress-code'],
     keywords: ['festive', 'embroidered', 'silk', 'gold'],
@@ -137,8 +137,8 @@ export const OCCASION_PROFILES = {
     categories: ['lehengas', 'sarees', 'suit sets'],
     collections: [
       { id: 'wedding-lehengas', title: 'Guest Lehengas', category: 'lehengas', image: '/lehengas/Lehengas/1/040A3523_700x.webp' },
-      { id: 'wedding-sarees', title: 'Ceremony Sarees', category: 'sarees', image: '/sarees/Sarees/1/040A3523_700x.webp' },
-      { id: 'wedding-suits', title: 'Celebration Sets', category: 'suit sets', image: '/kurtas/Kurtas/1/040A2925_700x.webp' },
+      { id: 'wedding-sarees', title: 'Ceremony Sarees', category: 'sarees', image: '/sarees/Sarees/1/0T3A5495_700x.webp' },
+      { id: 'wedding-suits', title: 'Celebration Sets', category: 'suit sets', image: '/suit-sets/Suit Sets/9/L12.01.25_1930_700x.webp' },
     ],
     guideIds: ['wedding-guest-dress-code', 'saree-drape-101'],
     keywords: ['wedding', 'lehenga', 'saree', 'silk'],

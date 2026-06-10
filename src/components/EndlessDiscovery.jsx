@@ -99,7 +99,7 @@ export default function EndlessDiscovery({
         products={discovery.similarProducts.products}
         tone={discovery.similarProducts.tone}
         compact={compact}
-        showHead={!(showIntro && title)}
+        showHead={variant === 'browse' || !(showIntro && title)}
         onSelectProduct={onSelectProduct}
         onSeeAll={() => onSelectCategory?.(discovery.similarProducts.category)}
         adCodes={{}}

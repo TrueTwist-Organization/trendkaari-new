@@ -40,7 +40,10 @@ export default function AiStyleFinderResult({
     [products, profile],
   );
   const articles = useMemo(() => getStyleFinderArticles(profile), [profile]);
-  const collections = useMemo(() => getStyleFinderCollections(profile), [profile]);
+  const collections = useMemo(
+    () => getStyleFinderCollections(profile, products),
+    [profile, products],
+  );
 
   if (!profile) {
     return (
@@ -142,22 +145,30 @@ export default function AiStyleFinderResult({
           </div>
         </section>
 
-        <RecommendationRails
-          allProducts={products}
-          category={profile.discoverCategory}
-          quizResult={profile}
-          onSelectProduct={onSelectProduct}
-          onSelectCategory={onSelectCategory}
-          onOpenArticle={onOpenArticle}
-          onOpenKnowledgePage={onOpenKnowledgePage}
-          onStartQuiz={onStartQuiz}
-          adCodes={adCodes}
-          title="Keep exploring"
-          subtitle="Similar products, related collections, articles, quizzes, and trending picks."
-          variant="browse"
-          showAds={false}
-          compact
-        />
+        <section className="fashion-quiz-result__content-block">
+          <div className="fashion-quiz-result__block-head">
+            <Sparkles size={18} aria-hidden />
+            <div>
+              <h2>Keep exploring</h2>
+              <p>Similar products, related collections, articles, quizzes, and trending picks.</p>
+            </div>
+          </div>
+          <RecommendationRails
+            allProducts={products}
+            category={profile.discoverCategory}
+            quizResult={profile}
+            onSelectProduct={onSelectProduct}
+            onSelectCategory={onSelectCategory}
+            onOpenArticle={onOpenArticle}
+            onOpenKnowledgePage={onOpenKnowledgePage}
+            onStartQuiz={onStartQuiz}
+            adCodes={adCodes}
+            showIntro={false}
+            variant="browse"
+            showAds={false}
+            compact
+          />
+        </section>
 
         <section className="fashion-quiz-result__content-block">
           <div className="fashion-quiz-result__block-head">

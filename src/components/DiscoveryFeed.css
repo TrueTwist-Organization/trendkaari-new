@@ -36,6 +36,28 @@
   box-sizing: border-box;
 }
 
+.discovery-feed__top-bar {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 12px 16px 0;
+}
+
+.discovery-feed--full .discovery-feed__top-bar {
+  max-width: var(--discovery-max);
+  padding: 12px var(--discovery-inner) 0;
+}
+
+.discovery-feed__top-bar {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 12px 16px 0;
+}
+
+.discovery-feed--full .discovery-feed__top-bar {
+  max-width: var(--discovery-max);
+  padding: 12px var(--discovery-inner) 0;
+}
+
 .discovery-feed__hero-text {
   max-width: 1440px;
   margin: 0 auto 8px;

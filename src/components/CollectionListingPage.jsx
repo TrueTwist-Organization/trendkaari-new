@@ -16,6 +16,8 @@ import { scrollToPageTop } from '../utils/scrollToTop';
 import ProductImage from './ProductImage';
 import { getProductHoverImage, getProductPrimaryImage, getProductGalleryImages } from '../utils/productImages';
 import CollectionHubSections from './CollectionHubSections';
+import { CATEGORY_GRID_AD_EVERY_N } from '../constants/adGridIntervals';
+import { getAdCode } from '../utils/resolveAdCode';
 import './CollectionHubSections.css';
 
 const MOBILE_TABS_MQ = '(max-width: 768px)';
@@ -401,6 +403,7 @@ export default function CollectionListingPage({
   };
 
   const quickTabsTrack = isMobileTabs ? [...tabList, ...tabList] : tabList;
+  const gridInlineAdCode = getAdCode(adCodes, 'ads_every_2_products');
 
   return (
     <div className="collection-listing-page-wrapper">
@@ -702,7 +705,8 @@ export default function CollectionListingPage({
                 const primaryImage = getProductPrimaryImage(product);
                 const hasSecondaryImage = gallery.length > 1;
                 const hoverImage = getProductHoverImage(product);
-                const showInlineAd = (index + 1) % 2 === 0;
+                const showInlineAd =
+                  gridInlineAdCode && (index + 1) % CATEGORY_GRID_AD_EVERY_N === 0;
 
                 return (
                   <React.Fragment key={product.id}>
@@ -805,9 +809,9 @@ export default function CollectionListingPage({
                       <PlacedAdSlot
                         adCodes={adCodes}
                         placement="ads_every_2_products"
-                        ownerKey={`ads_every_2_products-${index}`}
+                        ownerKey={`ads_every_2_products-${activeCategory}-${index}`}
                         allowDuplicateSource
-                        variant="container"
+                        variant="grid-full"
                       />
                     </div>
                   ) : null}
@@ -863,7 +867,7 @@ export default function CollectionListingPage({
             onSelectCategory={onSelectCategory}
             onOpenKnowledgePage={onOpenKnowledgePage}
             placement="top"
-            adCodes={{}}
+            adCodes={adCodes}
           />
           <CollectionHubSections
             activeCategory={activeCategory}
@@ -873,7 +877,7 @@ export default function CollectionListingPage({
             onSelectCategory={onSelectCategory}
             onOpenKnowledgePage={onOpenKnowledgePage}
             placement="bottom"
-            adCodes={{}}
+            adCodes={adCodes}
           />
         </>
       ) : null}

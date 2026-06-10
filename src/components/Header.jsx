@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Search, User, Heart, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, Menu, Search, User, Heart, ShoppingBag } from 'lucide-react';
 import { SITE_LOGO_ALT, SITE_LOGO_SRC, SITE_EXPERTISE_LINE, ARBITRAGE_EXPERT_YEARS } from '../constants/brand';
 import './Header.css';
 
@@ -14,6 +14,8 @@ export default function Header({
   onOpenProfile,
   onLogoClick,
   solidHeader = false,
+  showBack = false,
+  onBack,
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -53,6 +55,17 @@ export default function Header({
         <div className="header-container">
           {/* Left: Menu & Search */}
           <div className="header-left">
+            {showBack ? (
+              <button
+                type="button"
+                className="header-btn header-back-btn"
+                onClick={onBack}
+                aria-label="Go back"
+              >
+                <ArrowLeft size={20} />
+                <span className="btn-label">Back</span>
+              </button>
+            ) : null}
             <button className="header-btn" onClick={onOpenMenu} aria-label="Open Menu">
               <Menu size={20} />
               <span className="btn-label">MENU</span>

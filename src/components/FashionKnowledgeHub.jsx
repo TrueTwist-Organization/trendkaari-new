@@ -81,6 +81,8 @@ export default function FashionKnowledgeHub({
       }
     >
       <div className="container fashion-knowledge__body">
+        <PlacedAdSlot adCodes={adCodes} placement="knowledge_hub_top" variant="section" />
+
         <section className="fashion-knowledge__section fashion-knowledge__section--featured">
           <div className="fashion-knowledge__section-head">
             <BookMarked size={18} aria-hidden />

@@ -153,9 +153,9 @@ export const PLACEMENT_GPT_UNIT = {
   homepage_before_spotlight: 'a10',
   homepage_after_finale: 'a11',
 
-  /* Category — static slots + repeating in-grid (a2 shared via unique div ids per row) */
+  /* Category — 7 unique static slots; in-grid uses a2 only in the product grid */
   category_top: 'a1',
-  category_after_banner: 'a2',
+  category_after_banner: 'a11',
   category_sidebar_top: 'a3',
   category_below_sort: 'a5',
   ads_every_2_products: 'a2',
@@ -175,24 +175,20 @@ export const PLACEMENT_GPT_UNIT = {
   checkout_all_steps_top: 'a11',
   checkout_all_steps_bottom: 'a10',
 
-  /* Discover / content hubs */
+  /* Explore Feed — 3 unique in-page slots */
+  discover_feed_top: 'a1',
   discover_feed_mid: 'a4',
   discover_feed_bottom: 'a2',
-  quiz_hub_mid: 'a3',
-  quiz_hub_bottom: 'a10',
-  viral_hub_mid: 'a4',
-  games_hub_mid: 'a5',
-  knowledge_page_mid: 'a10',
-  knowledge_page_bottom: 'a2',
-  content_page_top: 'a1',
-  content_page_bottom: 'a4',
-  magazine_article_mid: 'a3',
-  magazine_article_bottom: 'a10',
-  magazine_hub_mid: 'a1',
-  magazine_hub_bottom: 'a4',
-  magazine_category_mid: 'a2',
-  magazine_category_bottom: 'a5',
 
+  /* AI Style Finder — flow (3) + result (2) */
+  style_finder_top: 'a1',
+  style_finder_mid: 'a5',
+  style_finder_bottom: 'a2',
+  style_finder_result_mid: 'a4',
+  style_finder_result_bottom: 'a11',
+
+  /* Trend Reports hub + detail */
+  trend_hub_top: 'a1',
   trend_hub_mid: 'a3',
   trend_hub_bottom: 'a10',
   trend_page_top: 'a5',
@@ -200,21 +196,50 @@ export const PLACEMENT_GPT_UNIT = {
   trend_page_after_shop: 'a11',
   trend_page_bottom: 'a4',
 
+  /* Bollywood Style Match hub + look detail */
+  celebrity_hub_top: 'a5',
   celebrity_hub_mid: 'a1',
   celebrity_hub_bottom: 'a2',
   celebrity_look_mid: 'a3',
   celebrity_look_bottom: 'a10',
 
-  style_finder_mid: 'a5',
-  style_finder_bottom: 'a2',
-  style_finder_result_mid: 'a4',
-  style_finder_result_bottom: 'a11',
-
-  knowledge_hub_mid: 'a1',
-  knowledge_hub_bottom: 'a4',
-
-  viral_hub_bottom: 'a2',
+  /* Mini Fashion Games hub + play screen */
+  games_hub_top: 'a1',
+  games_hub_mid: 'a5',
   games_hub_bottom: 'a10',
+  game_play_mid: 'a3',
+  game_play_bottom: 'a4',
+
+  /* Fashion Knowledge hub + guide detail */
+  knowledge_hub_top: 'a1',
+  knowledge_hub_mid: 'a3',
+  knowledge_hub_bottom: 'a4',
+  knowledge_page_mid: 'a10',
+  knowledge_page_bottom: 'a2',
+
+  /* Fashion Magazine hub + category/article */
+  magazine_hub_top: 'a1',
+  magazine_hub_mid: 'a2',
+  magazine_hub_bottom: 'a4',
+  magazine_category_mid: 'a3',
+  magazine_category_bottom: 'a5',
+  magazine_article_mid: 'a3',
+  magazine_article_bottom: 'a10',
+
+  /* Fashion Quiz Hub + flow + result */
+  quiz_hub_top: 'a1',
+  quiz_hub_mid: 'a3',
+  quiz_hub_bottom: 'a10',
+  quiz_flow_mid: 'a5',
+  quiz_flow_bottom: 'a4',
+  quiz_result_mid: 'a1',
+  quiz_result_bottom: 'a2',
+
+  /* Other content hubs */
+  viral_hub_mid: 'a4',
+  viral_hub_bottom: 'a2',
+  content_page_top: 'a1',
+  content_page_bottom: 'a4',
 };
 
 export function getGptHtmlForUnit(unit) {

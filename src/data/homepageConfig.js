@@ -9,6 +9,7 @@ export const DEFAULT_HOMEPAGE_CONFIG = {
       'Curated Indian ethnic & contemporary wear for festivals, weddings, and everyday style.',
     primaryCta: 'Shop Now',
     secondaryCta: 'Explore Collections',
+    backgroundImage: '/hero/home-hero-bg.png?v=1',
     desktopImage: '/hero/home-hero-banner.png?v=celebrate-special-v2',
     mobileImage: '/hero/home-hero-banner-mobile.png?v=celebrate-special-v2',
     modelsImage: '/hero/home-hero-models.png?v=5',

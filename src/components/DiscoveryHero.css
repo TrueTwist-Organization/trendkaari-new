@@ -12,6 +12,25 @@
   overflow: hidden;
 }
 
+.discovery-hero--photo-bg {
+  background:
+    linear-gradient(
+      105deg,
+      rgba(26, 4, 16, 0.78) 0%,
+      rgba(42, 6, 24, 0.42) 34%,
+      rgba(42, 6, 24, 0.08) 58%,
+      transparent 72%
+    ),
+    var(--hero-bg-url) center center / cover no-repeat;
+  background-color: var(--hero-plum-deep);
+}
+
+.discovery-hero--photo-bg .discovery-hero__visual--spacer {
+  min-height: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
 /* Floral decorative layer */
 .discovery-hero__florals {
   position: absolute;
@@ -400,6 +419,28 @@ body.home-page .discovery-hero {
 @media (max-width: 767px) {
   .discovery-hero__shell {
     min-height: auto;
+  }
+
+  .discovery-hero--photo-bg {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(26, 4, 16, 0.82) 0%,
+        rgba(42, 6, 24, 0.55) 42%,
+        rgba(42, 6, 24, 0.2) 100%
+      ),
+      var(--hero-bg-url) center top / cover no-repeat;
+    min-height: min(92vh, 720px);
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__shell {
+    min-height: min(92vh, 720px);
+    grid-template-columns: 1fr;
+    align-content: end;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__visual--spacer {
+    display: none;
   }
 
   .discovery-hero__visual {

@@ -12,6 +12,8 @@
 
 .exploration-home--discovery {
   background: var(--bg-white);
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .exploration-home--discovery .discovery-hero {

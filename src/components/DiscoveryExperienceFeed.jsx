@@ -658,7 +658,7 @@ function TrendingIndiaBlock({ block, onNavigate, onSelectCategory, trendingSearc
   };
 
   return (
-    <BlockShell block={block} ctaLabel={null}>
+    <BlockShell block={block} hideHeaderCta>
       <div className="discovery-xp__trending-showcase">
         <div className="discovery-xp__trending-index">
           <div className="discovery-xp__trending-spotlight">

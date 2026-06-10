@@ -5,6 +5,8 @@
   --hero-gold-light: #e2c06a;
   position: relative;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background:
     radial-gradient(ellipse 80% 70% at 18% 40%, rgba(139, 21, 104, 0.35) 0%, transparent 55%),
     radial-gradient(ellipse 60% 55% at 85% 20%, rgba(201, 168, 76, 0.12) 0%, transparent 50%),
@@ -13,22 +15,55 @@
 }
 
 .discovery-hero--photo-bg {
+  background-color: var(--hero-plum-deep);
+  min-height: min(86vh, 620px);
+}
+
+.discovery-hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.discovery-hero__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+.discovery-hero__photo-scrim {
+  position: absolute;
+  inset: 0;
   background:
     linear-gradient(
       105deg,
-      rgba(26, 4, 16, 0.78) 0%,
-      rgba(42, 6, 24, 0.42) 34%,
-      rgba(42, 6, 24, 0.08) 58%,
-      transparent 72%
-    ),
-    var(--hero-bg-url) center center / cover no-repeat;
-  background-color: var(--hero-plum-deep);
+      rgba(26, 4, 16, 0.82) 0%,
+      rgba(42, 6, 24, 0.48) 36%,
+      rgba(42, 6, 24, 0.1) 58%,
+      transparent 74%
+    );
 }
 
-.discovery-hero--photo-bg .discovery-hero__visual--spacer {
-  min-height: 0;
-  background: transparent;
-  pointer-events: none;
+.discovery-hero--photo-bg .discovery-hero__shell {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 768px) {
+  .discovery-hero--photo-bg .discovery-hero__shell {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__copy {
+    max-width: 560px;
+  }
+
+  .discovery-hero__photo-img {
+    object-position: 58% center;
+  }
 }
 
 /* Floral decorative layer */
@@ -161,6 +196,8 @@ body.home-page .discovery-hero {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-sizing: border-box;
+  max-width: 100%;
   padding: 2rem 1.25rem 2.25rem;
   color: #fff;
 }
@@ -421,25 +458,92 @@ body.home-page .discovery-hero {
     min-height: auto;
   }
 
+  /* Photo hero: stack image on top, copy panel below (no full-screen overlay). */
   .discovery-hero--photo-bg {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(26, 4, 16, 0.82) 0%,
-        rgba(42, 6, 24, 0.55) 42%,
-        rgba(42, 6, 24, 0.2) 100%
-      ),
-      var(--hero-bg-url) center top / cover no-repeat;
-    min-height: min(92vh, 720px);
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__photo {
+    position: relative;
+    inset: auto;
+    flex: 0 0 auto;
+    width: 100%;
+    height: clamp(252px, 52vw, 340px);
+    max-height: 340px;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__photo-img {
+    object-fit: cover;
+    object-position: 62% 14%;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__photo-scrim {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 62%,
+      rgba(42, 6, 24, 0.45) 88%,
+      rgba(42, 6, 24, 1) 100%
+    );
   }
 
   .discovery-hero--photo-bg .discovery-hero__shell {
-    min-height: min(92vh, 720px);
-    grid-template-columns: 1fr;
-    align-content: end;
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    display: block;
+    min-height: auto;
+    width: 100%;
+    margin-top: -2px;
+    background: linear-gradient(180deg, var(--hero-plum) 0%, var(--hero-plum-deep) 100%);
   }
 
-  .discovery-hero--photo-bg .discovery-hero__visual--spacer {
+  .discovery-hero--photo-bg .discovery-hero__copy {
+    justify-content: flex-start;
+    padding:
+      1.1rem 1rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .discovery-hero__title-line {
+    font-size: clamp(1.65rem, 7.8vw, 2.25rem);
+  }
+
+  .discovery-hero__title-accent {
+    font-size: clamp(1.85rem, 8.6vw, 2.55rem);
+  }
+
+  .discovery-hero__subtitle {
+    max-width: none;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .discovery-hero__divider {
+    margin: 0.75rem 0 0.7rem;
+    max-width: 200px;
+  }
+
+  .discovery-hero__actions {
+    flex-direction: column;
+    margin-top: 1.1rem;
+  }
+
+  .discovery-hero__btn {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .discovery-hero__trust {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    margin-top: 1rem;
+  }
+
+  .discovery-hero__trust li:not(:last-child)::after {
     display: none;
   }
 
@@ -459,18 +563,6 @@ body.home-page .discovery-hero {
 
   .discovery-hero__copy {
     padding-top: 1.5rem;
-  }
-
-  .discovery-hero__actions {
-    flex-direction: column;
-  }
-
-  .discovery-hero__btn {
-    width: 100%;
-  }
-
-  .discovery-hero__trust li:not(:last-child)::after {
-    display: none;
   }
 
   .discovery-hero__vine,
@@ -495,5 +587,41 @@ body.home-page .discovery-hero {
     right: 28%;
     top: 52%;
     width: 90px;
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .discovery-hero--photo-bg .discovery-hero__photo {
+    height: clamp(180px, 38vh, 240px);
+    max-height: 240px;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__actions {
+    flex-direction: row;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__btn {
+    width: auto;
+    flex: 1;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__trust {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .discovery-hero--photo-bg .discovery-hero__title-line {
+    font-size: 1.55rem;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__title-accent {
+    font-size: 1.75rem;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__ornament {
+    width: 16px;
+    height: 16px;
   }
 }

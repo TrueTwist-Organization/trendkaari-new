@@ -20,7 +20,7 @@ function getAvailableWidth(host) {
 
   const viewport = viewportWidth();
   const wrap =
-    host.closest('.page-ad-slot-wrap, .site-top-ad-strip, .container, .main-content') ||
+    host.closest('.pdp-ad-zone, .page-ad-slot-wrap, .site-top-ad-strip, .container, .main-content') ||
     host.parentElement ||
     host;
 
@@ -317,7 +317,7 @@ function fitAdsInContainerInner(host, box, content, cacheKey) {
   let { w: contentW, h: contentH } = widestInContent(content, box);
 
   const needsScale = contentW > box + 1 || stillOverflows(host, box);
-  if (needsScale && !isMobileView()) {
+  if (needsScale) {
     contentW = Math.max(contentW, content.scrollWidth, host.scrollWidth, box + 1);
     contentH = Math.max(contentH, content.scrollHeight, 250);
     applyViewportScale(host, content, box, contentW, contentH);

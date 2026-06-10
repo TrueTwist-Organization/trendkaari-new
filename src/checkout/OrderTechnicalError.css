@@ -29,7 +29,7 @@
   color: var(--co-primary);
   background: var(--co-bg-soft);
   border: 2px solid var(--co-primary);
-  box-shadow: 0 4px 16px rgba(96, 11, 69, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .checkout-flow-root .co-fail-eyebrow {

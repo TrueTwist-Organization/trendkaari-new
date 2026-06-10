@@ -65,8 +65,7 @@
   letter-spacing: 0.02em;
   color: #faf8f5;
   text-shadow:
-    0 2px 24px rgba(0, 0, 0, 0.35),
-    0 0 40px rgba(212, 180, 131, 0.15);
+    0 2px 24px rgba(0, 0, 0, 0.35);
   padding: 0 0.05em;
 }
 
@@ -137,7 +136,7 @@
   height: 5px;
   border-radius: 50%;
   background: #d4b483;
-  box-shadow: 0 0 14px rgba(212, 180, 131, 0.65);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.65);
   flex-shrink: 0;
   transform: rotate(45deg);
 }
@@ -181,7 +180,7 @@
   /* Dark base so photos stay visible while loading */
   border: 3.5px solid #600b45;
   /* Ultra bold dark plum brand border! */
-  box-shadow: 0 15px 35px rgba(96, 11, 69, 0.12);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

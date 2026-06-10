@@ -186,7 +186,17 @@
 
   .page-ad-slot-wrap--pdp {
     margin: 10px auto;
-    overflow: visible;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .ad-slot-embed--pdp {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .page-ad-slot-wrap--sidebar {

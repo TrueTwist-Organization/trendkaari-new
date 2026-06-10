@@ -194,7 +194,9 @@ export const PLACEMENT_GPT_UNIT = {
 
   trend_hub_mid: 'a3',
   trend_hub_bottom: 'a10',
+  trend_page_top: 'a5',
   trend_page_mid: 'a1',
+  trend_page_after_shop: 'a11',
   trend_page_bottom: 'a4',
 
   celebrity_hub_mid: 'a1',

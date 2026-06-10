@@ -54,7 +54,7 @@ export default function AiStyleFinderResult({
   }
 
   return (
-    <div className="fashion-quiz fashion-quiz--result ai-style-finder" style={{ '--quiz-accent': '#4527a0' }}>
+    <div className="fashion-quiz fashion-quiz--result ai-style-finder">
       <div className="fashion-quiz-result__hero ai-style-finder__hero">
         <div className="container">
           <button type="button" className="fashion-quiz__back" onClick={onBack}>

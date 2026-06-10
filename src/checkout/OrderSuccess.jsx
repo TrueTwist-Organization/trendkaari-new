@@ -29,6 +29,7 @@ export default function OrderSuccess({
   grandTotal,
   orderEta,
   itemCount,
+  adCodes = {},
   successPause,
   transition,
   onContinueShopping,
@@ -186,6 +187,8 @@ export default function OrderSuccess({
         <SpinWheel
           orderId={order.id}
           orderTotal={orderTotal}
+          adCodes={adCodes}
+          onShopNow={onContinueShopping}
           onClose={() => setShowSpinWheel(false)}
         />
       ) : null}

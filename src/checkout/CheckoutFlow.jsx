@@ -18,6 +18,8 @@ import {
   pincodeServiceable,
 } from './checkoutStorage';
 import { computeCouponDiscountAmount } from '../utils/couponDiscount';
+import { loadPendingSpinCoupon, clearPendingSpinCoupon } from '../constants/spinWheel';
+import { getSpinCouponByCode } from '../data/spinWheelCoupons';
 import {
   contactFromShipping,
   validateContactFields,
@@ -303,6 +305,23 @@ export default function CheckoutFlow({
   const tax = 0;
   const grandTotal = Math.max(0, subtotal - discount + shipping + tax);
 
+  useEffect(() => {
+    if (!isOpen || appliedCoupon || step >= SUCCESS_STEP_INDEX) return;
+    const pending = loadPendingSpinCoupon();
+    if (!pending?.code) return;
+
+    const code = pending.code.toUpperCase();
+    const found = coupons.find((c) => c.code === code) || getSpinCouponByCode(code);
+    if (!found) return;
+
+    setCouponCode(code);
+    if (subtotal >= found.minPurchase) {
+      setAppliedCoupon(found);
+      persist({ coupon: { code, applied: found } });
+      clearPendingSpinCoupon();
+    }
+  }, [isOpen, appliedCoupon, step, coupons, subtotal, persist]);
+
   const goStep = (n, anim) => {
     const target = Math.max(0, Math.min(n, SUCCESS_STEP_INDEX));
     setTransition(anim || 'co-step-enter');
@@ -326,7 +345,7 @@ export default function CheckoutFlow({
   const handleApplyCoupon = () => {
     setCouponError('');
     const code = couponCode.trim().toUpperCase();
-    const found = coupons.find((c) => c.code === code);
+    const found = coupons.find((c) => c.code === code) || getSpinCouponByCode(code);
     if (!found) {
       setCouponError('Invalid coupon code');
       return;

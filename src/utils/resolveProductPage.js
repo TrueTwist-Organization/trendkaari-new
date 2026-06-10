@@ -212,13 +212,6 @@ export function parseRouteFromPath(pathname = '') {
     };
   }
 
-  if (segments[0] === 'viral') {
-    return {
-      ...ROUTE_DEFAULTS,
-      viewMode: 'viral',
-    };
-  }
-
   if (segments[0] === 'celebrity-match') {
     if (segments[1]) {
       return {

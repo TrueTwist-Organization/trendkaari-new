@@ -22,7 +22,7 @@
   position: absolute;
   width: 32px;
   height: 32px;
-  color: rgba(96, 11, 69, 0.04);
+  color: rgba(0, 0, 0, 0.04);
 }
 .banner-star-1 {
   top: 15%;
@@ -241,10 +241,29 @@
 /* 3. Main Workspace: left sidebar & right product grid */
 .collection-main-workspace-grid {
   display: grid;
-  grid-template-columns: 24% 73%;
-  gap: 3%;
+  grid-template-columns: minmax(220px, 26%) minmax(0, 1fr);
+  gap: 24px;
   margin-top: 30px;
   align-items: start;
+}
+
+.collection-listing-main-content {
+  min-width: 0;
+}
+
+/* overflow-x on ancestors breaks position:sticky — unlock on category listing (desktop) */
+@media (min-width: 993px) {
+  body.category-page .app-container,
+  body.category-page .main-content {
+    overflow: visible;
+  }
+
+  .collection-filters-sidebar {
+    align-self: start;
+    height: fit-content;
+    max-height: calc(100vh - var(--layout-sticky-sidebar, calc(var(--site-header-total) + 52px)) - 16px);
+    overscroll-behavior: contain;
+  }
 }
 
 /* ==================== LEFT FILTER SIDEBAR ==================== */
@@ -357,9 +376,9 @@
   width: 100%;
   padding: 8px 10px;
   margin-bottom: 4px;
-  border: 1px solid rgba(96, 11, 69, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 6px;
-  background: rgba(96, 11, 69, 0.04);
+  background: rgba(0, 0, 0, 0.04);
   font-family: inherit;
   font-size: 0.72rem;
   font-weight: 700;
@@ -372,8 +391,8 @@
 }
 
 .filter-cat-wear-btn:hover {
-  background: rgba(96, 11, 69, 0.08);
-  border-color: rgba(96, 11, 69, 0.25);
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.25);
 }
 
 .filter-cat-wear-btn.active {
@@ -386,7 +405,7 @@
   list-style: none;
   margin: 0 0 4px;
   padding: 0 0 0 10px;
-  border-left: 2px solid rgba(96, 11, 69, 0.12);
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
 }
 
 .filter-cat-sublist li {
@@ -411,13 +430,13 @@
 
 .filter-cat-link:hover {
   color: #600b45;
-  background: rgba(96, 11, 69, 0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .filter-cat-link.active {
   color: #600b45;
   font-weight: 700;
-  background: rgba(96, 11, 69, 0.08);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .filter-options-stack {
@@ -618,6 +637,10 @@
   gap: 25px 20px;
 }
 
+.collection-products-grid-ad {
+  grid-column: 1 / -1;
+}
+
 /* ==================== HIGH-FIDELITY PRODUCT CARD ==================== */
 .collection-item-card {
   background-color: #ffffff;
@@ -632,7 +655,7 @@
 
 .collection-item-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(96, 11, 69, 0.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   border-color: #e5dac9;
 }
 
@@ -682,7 +705,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(96, 11, 69, 0.95);
+  background-color: rgba(0, 0, 0, 0.95);
   border: none;
   color: #ffffff;
   display: flex;
@@ -1092,7 +1115,7 @@
   background: #600b45;
   border-color: #600b45;
   color: #fff;
-  box-shadow: 0 4px 14px rgba(96, 11, 69, 0.22);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
 }
 
 .collection-page-btn:disabled {

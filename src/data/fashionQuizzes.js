@@ -155,7 +155,7 @@ export const FASHION_QUIZZES = {
     subtitle: 'Tell us the moment — we’ll build the look',
     description: 'Occasion, fit, and weather in four steps. Get a curated outfit lane with products ready to explore.',
     coverImage: '/kurtas/Kurtas/1/LBL101KS612_1_700x.webp',
-    accent: '#1565c0',
+    accent: '#600b45',
     steps: [
       {
         id: 'occasion',

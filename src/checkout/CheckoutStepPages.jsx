@@ -711,6 +711,7 @@ export default function CheckoutStepPages({ step, ctx }) {
           order={completedOrder}
           grandTotal={ctx.grandTotal}
           orderEta={ctx.pinInfo?.eta}
+          adCodes={adCodes}
           itemCount={
             completedOrder.items?.reduce((n, i) => n + (i.quantity || 1), 0) ||
             cartItems.reduce((n, i) => n + (i.quantity || 1), 0)

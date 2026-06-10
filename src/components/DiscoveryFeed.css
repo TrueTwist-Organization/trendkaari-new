@@ -5,12 +5,83 @@
 .discovery-feed--full {
   padding-top: 12px;
   min-height: 60vh;
+  box-sizing: border-box;
+  --discovery-max: 1440px;
+  --discovery-side: max(20px, calc((100vw - var(--discovery-max)) / 2));
+  --discovery-inner: 24px;
+  padding-left: var(--discovery-side);
+  padding-right: var(--discovery-side);
+}
+
+@media (min-width: 768px) {
+  .discovery-feed--full {
+    --discovery-inner: 32px;
+  }
+}
+
+.discovery-feed--full .discovery-feed__hero-text,
+.discovery-feed--full .discovery-rail__head,
+.discovery-feed--full .discovery-rail__track,
+.discovery-feed--full .recommendation-rails__intro,
+.discovery-feed--full .endless-discovery__block,
+.discovery-feed--full > .page-ad-slot-wrap,
+.discovery-feed--full .discovery-feed__loader,
+.discovery-feed--full .discovery-feed__end {
+  width: 100%;
+  max-width: var(--discovery-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--discovery-inner);
+  padding-right: var(--discovery-inner);
+  box-sizing: border-box;
 }
 
 .discovery-feed__hero-text {
   max-width: 1440px;
   margin: 0 auto 8px;
   padding: 16px 16px 8px;
+  text-align: left;
+}
+
+.discovery-feed--full .discovery-feed__hero-text {
+  max-width: var(--discovery-max);
+  margin-bottom: 12px;
+  padding: 12px var(--discovery-inner) 4px;
+}
+
+.discovery-feed--full .discovery-feed__headline {
+  font-size: clamp(1.85rem, 4.2vw, 2.75rem);
+  font-weight: 500;
+  margin-top: 6px;
+  color: var(--text-primary);
+}
+
+.discovery-feed--full .discovery-feed__sub {
+  margin-top: 8px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* Discover page — single page heading; hide per-rail titles */
+.discovery-feed--full .discovery-rail__head {
+  display: none;
+}
+
+.discovery-feed--full .discovery-rail {
+  padding-top: 8px;
+}
+
+.discovery-feed--full .discovery-rail:first-of-type {
+  padding-top: 0;
+}
+
+.discovery-feed--full .endless-discovery__block-head,
+.discovery-feed--full .recommendation-rails__intro {
+  display: none;
+}
+
+.discovery-feed--full .endless-discovery__block {
+  padding-top: 8px;
 }
 
 .discovery-feed__eyebrow {
@@ -46,6 +117,12 @@
   font-size: 0.9rem;
 }
 
+.discovery-feed--full .discovery-feed__loader,
+.discovery-feed--full .discovery-feed__end {
+  align-items: flex-start;
+  text-align: left;
+}
+
 .discovery-feed__loader-dot {
   width: 10px;
   height: 10px;
@@ -67,4 +144,17 @@
   padding: 48px 16px;
   text-align: center;
   color: var(--text-muted);
+}
+
+/* Discover page — wider cards, ~4–5 visible per row on desktop */
+@media (min-width: 1280px) {
+  .discovery-feed--full .discovery-rail__card {
+    flex-basis: 300px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .discovery-feed--full .discovery-rail__card {
+    flex-basis: 320px;
+  }
 }

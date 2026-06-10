@@ -313,6 +313,7 @@ function TrendPageFull({
       </header>
 
       <div className="container trend-page__body">
+        <PlacedAdSlot adCodes={adCodes} placement="trend_page_top" variant="section" />
 
         {/* ─── Editorial ──────────────────────────────────────────────── */}
         <section className="trend-page__editorial">
@@ -417,6 +418,8 @@ function TrendPageFull({
             </div>
           </section>
         )}
+
+        <PlacedAdSlot adCodes={adCodes} placement="trend_page_after_shop" variant="section" />
 
         {/* ─── Go Deeper ──────────────────────────────────────────────── */}
         <GoDeeper

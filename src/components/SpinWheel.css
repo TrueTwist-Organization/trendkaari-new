@@ -93,7 +93,7 @@
   border-right: 12px solid transparent;
   border-bottom: 24px solid var(--spin-gold);
   z-index: 3;
-  filter: drop-shadow(0 2px 4px rgba(74, 8, 52, 0.35));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
 }
 
 .spin-wheel-disc {
@@ -235,7 +235,41 @@
 
 .spin-wheel-modal__done {
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 0.35rem;
+}
+
+.spin-wheel-modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.spin-wheel-modal__shop {
+  width: 100%;
+}
+
+.spin-wheel-result__deal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--spin-plum);
+}
+
+.spin-wheel-result__saved {
+  margin: 0.65rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #555;
+}
+
+.spin-wheel-modal .page-ad-slot {
+  margin: 0.75rem 0;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .co-spin-unlock {

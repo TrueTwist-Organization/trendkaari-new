@@ -5,6 +5,7 @@ import { resolveQuizResult } from '../utils/quizEngine';
 import { trackQuizStarted } from '../utils/ga4';
 import './FashionQuiz.css';
 import EndlessDiscovery from './EndlessDiscovery';
+import PlacedAdSlot from './PlacedAdSlot';
 
 export default function FashionQuizFlow({
   quizSlug,
@@ -12,6 +13,7 @@ export default function FashionQuizFlow({
   onBack,
   onExit,
   products = [],
+  adCodes = {},
   onSelectProduct,
   onSelectCategory,
   onOpenArticle,
@@ -95,6 +97,10 @@ export default function FashionQuizFlow({
         </button>
       </div>
 
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="quiz_flow_mid" variant="section" />
+      </div>
+
       <div className="container fashion-quiz-flow">
         <div className="fashion-quiz-flow__head">
           <p className="fashion-quiz-flow__quiz-name">{quiz.title}</p>
@@ -140,6 +146,10 @@ export default function FashionQuizFlow({
             <ChevronRight size={18} aria-hidden />
           </button>
         </div>
+      </div>
+
+      <div className="container">
+        <PlacedAdSlot adCodes={adCodes} placement="quiz_flow_bottom" variant="section" />
       </div>
 
       {products.length > 0 ? (

@@ -16,6 +16,7 @@ import UserAuthModal from './components/UserAuthModal';
 import AccountDrawer from './components/AccountDrawer';
 import QuickViewModal from './components/QuickViewModal';
 import MobileNavbar from './components/MobileNavbar';
+import { mergeSpinWheelCoupons } from './data/spinWheelCoupons';
 import {
   fetchStoreAdSlots,
   fetchStoreCoupons,
@@ -30,6 +31,8 @@ import { applySiteSettingsToDocument } from './utils/siteSettings';
 import { adSlotsToCodeMap } from './utils/adSlots';
 import { AD_SLOTS_VERSION_KEY } from './utils/adSlotsSync';
 import { resetAdDedupe } from './utils/adDedupe';
+import { refreshAllGptSlots } from './utils/googletag';
+import { fitAllAdsInDocumentDebounced } from './utils/fitAdsInContainer';
 import { injectTrackingScriptsFromHtml } from './utils/injectTrackingScripts';
 import { preloadAdLibraries } from './utils/preloadAds';
 import { scrollToPageTop } from './utils/scrollToTop';
@@ -80,7 +83,6 @@ const FashionMagazineCategory = lazy(() => import('./components/FashionMagazineC
 const FashionMagazineArticle = lazy(() => import('./components/FashionMagazineArticle'));
 const FashionKnowledgeHub = lazy(() => import('./components/FashionKnowledgeHub'));
 const FashionKnowledgePage = lazy(() => import('./components/FashionKnowledgePage'));
-const ViralFashionHub = lazy(() => import('./components/ViralFashionHub'));
 const CelebrityStyleMatch = lazy(() => import('./components/CelebrityStyleMatch'));
 const CelebrityLookPage = lazy(() => import('./components/CelebrityLookPage'));
 const TrendPage = lazy(() => import('./components/TrendPage'));
@@ -93,7 +95,13 @@ function RouteFallback() {
 }
 
 function resolveAppRoute(pathname, productsList, giftCombos = []) {
-  const route = parseRouteFromPath(pathname);
+  const legacyViral = pathname === '/viral' || pathname.startsWith('/viral/');
+  const effectivePath = legacyViral ? '/discover' : pathname;
+  if (legacyViral && typeof window !== 'undefined') {
+    window.history.replaceState({}, '', '/discover');
+  }
+
+  const route = parseRouteFromPath(effectivePath);
   if (route.viewMode === 'info' && route.infoSlug && !getInfoPage(route.infoSlug)) {
     return {
       viewMode: 'home',
@@ -283,10 +291,12 @@ export default function App() {
   ]);
 
   // Active Dynamic Coupons database
-  const [coupons, setCoupons] = useState([
-    { code: 'SALE100', discount: 20, discountType: 'flat', minPurchase: 199 },
-    { code: 'FESTIVE50', discount: 50, discountType: 'flat', minPurchase: 499 },
-  ]);
+  const [coupons, setCoupons] = useState(() =>
+    mergeSpinWheelCoupons([
+      { code: 'SALE100', discount: 20, discountType: 'flat', minPurchase: 199 },
+      { code: 'FESTIVE50', discount: 50, discountType: 'flat', minPurchase: 499 },
+    ]),
+  );
   const [siteSettings, setSiteSettings] = useState(null);
   const [adCodes, setAdCodes] = useState({});
 
@@ -514,20 +524,6 @@ export default function App() {
         setQuizResultKey(null);
       }
       scrollToPageTop();
-    } else if (segments[0] === 'viral') {
-      setActiveCategory('all');
-      setSelectedProduct(null);
-      setIsCategoryPage(false);
-      setInfoSlug(null);
-      setQuizSlug(null);
-      setQuizResultKey(null);
-      setStyleFinderResultKey(null);
-      setMagazineCategorySlug(null);
-      setMagazineArticleSlug(null);
-      setKnowledgePageSlug(null);
-      setGameSlug(null);
-      setViewMode('viral');
-      scrollToPageTop();
     } else if (segments[0] === 'celebrity-match') {
       setActiveCategory('all');
       setSelectedProduct(null);
@@ -615,6 +611,32 @@ export default function App() {
     }
   };
 
+  const adPageKey =
+    viewMode === 'checkout'
+      ? `checkout-${checkoutSlug}`
+      : viewMode === 'product-detail'
+        ? `product-${selectedProduct?.id || 'none'}`
+        : isCategoryPage
+          ? `category-${activeCategory}`
+          : viewMode === 'info'
+            ? `info-${infoSlug}`
+            : viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result'
+              ? `quiz-${quizSlug || 'hub'}-${quizResultKey || 'flow'}`
+              : viewMode === 'style-finder' || viewMode === 'style-finder-result'
+                ? `style-finder-${styleFinderResultKey || 'flow'}`
+                : viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article'
+                  ? `magazine-${magazineCategorySlug || 'hub'}-${magazineArticleSlug || 'list'}`
+                  : viewMode === 'knowledge' || viewMode === 'knowledge-page'
+                    ? `knowledge-${knowledgePageSlug || 'hub'}`
+                    : viewMode === 'trends' || viewMode === 'trend-page'
+                      ? `trends-${trendSlug || 'hub'}`
+                      : viewMode === 'celebrity-match'
+                        ? 'celebrity-match'
+                        : viewMode === 'games' || viewMode === 'game-play'
+                          ? `games-${gameSlug || 'hub'}`
+                          : 'home';
+  resetAdDedupe(adPageKey);
+
   // Sync route state on hard refresh / direct URL entry
   useEffect(() => {
     const route = resolveAppRoute(window.location.pathname, productsList, giftCombos);
@@ -643,7 +665,7 @@ export default function App() {
 
     runWhenIdle(() => {
       fetchStoreCoupons().then((list) => {
-        if (list?.length) setCoupons(list);
+        if (list?.length) setCoupons(mergeSpinWheelCoupons(list));
       });
       fetchStoreGiftCombos().then((list) => {
         if (list?.length) setGiftCombos(list);
@@ -813,6 +835,21 @@ export default function App() {
   }, [viewMode, isCategoryPage, activeCategory, infoSlug, checkoutSlug, quizSlug, quizResultKey, styleFinderResultKey, magazineCategorySlug, magazineArticleSlug, knowledgePageSlug, gameSlug, celebrityLookSlug, trendSlug, selectedProduct?.id]);
 
   useEffect(() => {
+    const t1 = window.setTimeout(() => {
+      refreshAllGptSlots();
+      fitAllAdsInDocumentDebounced();
+    }, 400);
+    const t2 = window.setTimeout(() => {
+      refreshAllGptSlots();
+      fitAllAdsInDocumentDebounced();
+    }, 1500);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
+  }, [adPageKey]);
+
+  useEffect(() => {
     document.body.classList.toggle('home-page', viewMode === 'home' && !isCategoryPage);
     document.body.classList.toggle('category-page', isCategoryPage);
     document.body.classList.toggle('discover-page', viewMode === 'discover');
@@ -834,7 +871,6 @@ export default function App() {
       'knowledge-page',
       viewMode === 'knowledge' || viewMode === 'knowledge-page',
     );
-    document.body.classList.toggle('viral-page', viewMode === 'viral');
     document.body.classList.toggle(
       'celebrity-match-page',
       viewMode === 'celebrity-match' || viewMode === 'celebrity-look',
@@ -853,7 +889,6 @@ export default function App() {
       document.body.classList.remove('style-finder-page');
       document.body.classList.remove('magazine-page');
       document.body.classList.remove('knowledge-page');
-      document.body.classList.remove('viral-page');
       document.body.classList.remove('celebrity-match-page');
       document.body.classList.remove('games-page');
     };
@@ -1038,10 +1073,6 @@ export default function App() {
     navigateToRoute('/discover');
   };
 
-  const handleOpenViralHub = () => {
-    navigateToRoute('/viral');
-  };
-
   const handleOpenGamesHub = () => {
     navigateToRoute('/games');
   };
@@ -1187,32 +1218,6 @@ export default function App() {
     setTimeout(scroll, 350);
   };
 
-  const adPageKey =
-    viewMode === 'checkout'
-      ? `checkout-${checkoutSlug}`
-      : viewMode === 'product-detail'
-        ? `product-${selectedProduct?.id || 'none'}`
-        : isCategoryPage
-          ? `category-${activeCategory}`
-          : viewMode === 'info'
-            ? `info-${infoSlug}`
-            : viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result'
-              ? `quiz-${quizSlug || 'hub'}-${quizResultKey || 'flow'}`
-              : viewMode === 'style-finder' || viewMode === 'style-finder-result'
-                ? `style-finder-${styleFinderResultKey || 'flow'}`
-                : viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article'
-                  ? `magazine-${magazineCategorySlug || 'hub'}-${magazineArticleSlug || 'list'}`
-                  : viewMode === 'knowledge' || viewMode === 'knowledge-page'
-                    ? `knowledge-${knowledgePageSlug || 'hub'}`
-                    : viewMode === 'viral'
-                      ? 'viral-hub'
-                      : viewMode === 'celebrity-match'
-                        ? 'celebrity-match'
-                        : viewMode === 'games' || viewMode === 'game-play'
-                        ? `games-${gameSlug || 'hub'}`
-            : 'home';
-  resetAdDedupe(adPageKey);
-
   return (
     <div className="app-container">
       <JourneyTracker
@@ -1239,7 +1244,7 @@ export default function App() {
         cartCount={cartItems.reduce((acc, item) => acc + item.quantity, 0)}
         wishlistCount={wishlistItems.length}
         user={user}
-        solidHeader={viewMode === 'home' || viewMode === 'product-detail' || isCategoryPage || viewMode === 'info' || viewMode === 'discover' || viewMode === 'viral' || viewMode === 'celebrity-match' || viewMode === 'celebrity-look' || viewMode === 'trends' || viewMode === 'trend-page' || viewMode === 'games' || viewMode === 'game-play' || viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result' || viewMode === 'style-finder' || viewMode === 'style-finder-result' || viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article' || viewMode === 'knowledge' || viewMode === 'knowledge-page'}
+        solidHeader={viewMode === 'home' || viewMode === 'product-detail' || isCategoryPage || viewMode === 'info' || viewMode === 'discover' || viewMode === 'celebrity-match' || viewMode === 'celebrity-look' || viewMode === 'trends' || viewMode === 'trend-page' || viewMode === 'games' || viewMode === 'game-play' || viewMode === 'quiz' || viewMode === 'quiz-flow' || viewMode === 'quiz-result' || viewMode === 'style-finder' || viewMode === 'style-finder-result' || viewMode === 'magazine' || viewMode === 'magazine-category' || viewMode === 'magazine-article' || viewMode === 'knowledge' || viewMode === 'knowledge-page'}
         onOpenMenu={() => setIsMenuOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenCart={() => setIsCartOpen(true)}
@@ -1294,17 +1299,6 @@ export default function App() {
             adCodes={adCodes}
             fullPage
             maxRails={14}
-          />
-        ) : viewMode === 'viral' ? (
-          <ViralFashionHub
-            products={productsList}
-            adCodes={adCodes}
-            onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
-            onSelectCategory={handleSelectCategory}
-            onOpenArticle={handleOpenMagazineArticle}
-            onOpenKnowledgePage={handleOpenKnowledgePage}
-            onStartQuiz={(slug) => navigateToRoute(`/quiz/${slug}`)}
-            onBack={() => navigateToRoute('/discover')}
           />
         ) : viewMode === 'celebrity-match' ? (
           <Suspense fallback={<RouteFallback />}>
@@ -1366,6 +1360,7 @@ export default function App() {
           <FashionGamePlay
             gameSlug={gameSlug}
             products={productsList}
+            adCodes={adCodes}
             onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
             onSelectCategory={handleSelectCategory}
             onOpenArticle={handleOpenMagazineArticle}
@@ -1482,6 +1477,7 @@ export default function App() {
           <FashionQuizFlow
             quizSlug={quizSlug}
             products={productsList}
+            adCodes={adCodes}
             onSelectProduct={(p) => navigateToRoute(`/product/${p.id}`)}
             onSelectCategory={handleSelectCategory}
             onOpenArticle={handleOpenMagazineArticle}
@@ -1600,7 +1596,6 @@ export default function App() {
         onNavigateInfoPage={handleNavigateInfoPage}
         onOpenMagazine={handleOpenMagazine}
         onOpenKnowledge={handleOpenKnowledge}
-        onOpenViralHub={handleOpenViralHub}
         onOpenGamesHub={handleOpenGamesHub}
         siteSettings={siteSettings}
       />
@@ -1616,7 +1611,6 @@ export default function App() {
         onOpenStyleFinder={handleOpenStyleFinder}
         onOpenMagazine={handleOpenMagazine}
         onOpenKnowledge={handleOpenKnowledge}
-        onOpenViralHub={handleOpenViralHub}
         onOpenGamesHub={handleOpenGamesHub}
         onOpenCelebrityMatch={() => navigateToRoute('/celebrity-match')}
         onOpenTrends={() => navigateToRoute('/trends')}

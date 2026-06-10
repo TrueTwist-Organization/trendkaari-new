@@ -134,6 +134,7 @@ export default function DiscoveryHero({
   const config = { ...DEFAULT_HOMEPAGE_CONFIG.hero, ...hero };
   const backgroundImage = config.backgroundImage || '';
   const backgroundImageMobile = config.backgroundImageMobile || backgroundImage;
+  const mobileHeroArtwork = Boolean(config.mobileHeroArtwork && backgroundImageMobile);
   const modelsImage = config.modelsImage || config.desktopImage || DEFAULT_HOMEPAGE_CONFIG.hero.desktopImage;
   const mobileModelsImage =
     config.mobileModelsImage || config.mobileImage || DEFAULT_HOMEPAGE_CONFIG.hero.mobileImage;
@@ -174,7 +175,7 @@ export default function DiscoveryHero({
 
   return (
     <section
-      className={`discovery-hero${backgroundImage ? ' discovery-hero--photo-bg' : ''}`}
+      className={`discovery-hero${backgroundImage ? ' discovery-hero--photo-bg' : ''}${mobileHeroArtwork ? ' discovery-hero--mobile-artwork' : ''}`}
       aria-label="Featured collection"
     >
       {backgroundImage ? (

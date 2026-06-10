@@ -57,7 +57,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.12);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 50;
 }
@@ -74,7 +74,7 @@
   background: linear-gradient(135deg, var(--trends-pink) 0%, var(--trends-pink-dark) 100%);
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   transform: translateY(-50%) scale(1.08);
 }
 
@@ -140,14 +140,14 @@
   border: 5px solid #ffffff;
   border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 4px 18px rgba(255, 107, 157, 0.14);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.14);
   background-color: #ffffff;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .trend-staggered-card:hover .trend-card-image-viewport {
   transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(255, 107, 157, 0.22);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
 }
 
 .trend-card-img {
@@ -191,7 +191,7 @@
 .trend-staggered-card:hover .trend-shop-pill-btn {
   background-color: #ffffff;
   color: #e85588;
-  box-shadow: 0 6px 18px rgba(255, 107, 157, 0.2);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
 .trend-staggered-card:hover .trend-shop-pill-btn .bag-icon {

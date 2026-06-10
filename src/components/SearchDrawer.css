@@ -76,7 +76,7 @@
 .search-input-wrap:focus-within {
   border-color: var(--brand-plum);
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(96, 11, 69, 0.08);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
 }
 
 .search-input-icon {
@@ -154,7 +154,7 @@
 
 .search-submit-btn:hover {
   background: #4a0836;
-  box-shadow: 0 4px 14px rgba(96, 11, 69, 0.28);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
 }
 
 .search-submit-btn:active {

@@ -108,7 +108,7 @@
 .thumb-wrapper:hover,
 .thumb-wrapper.active {
   border-color: var(--brand-plum);
-  box-shadow: 0 0 0 1px var(--brand-plum);
+  box-shadow: 0 0 0 1px var(--border-color);
 }
 
 .thumb-crop-container {

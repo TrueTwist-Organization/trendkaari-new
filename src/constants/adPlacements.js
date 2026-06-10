@@ -515,6 +515,30 @@ const CONTENT_SLOTS = [
     placeholder: 'Paste ad HTML/script…',
   },
   {
+    key: 'quiz_flow_mid',
+    title: 'Quiz Flow — Mid',
+    description: '/quiz/:slug step flow — below progress, above question.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'quiz_flow_bottom',
+    title: 'Quiz Flow — Bottom',
+    description: '/quiz/:slug step flow — below next button / discovery.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'game_play_mid',
+    title: 'Game Play — Mid',
+    description: '/games/:slug play screen — mid-page.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'game_play_bottom',
+    title: 'Game Play — Bottom',
+    description: '/games/:slug play screen — before endless discovery.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
     key: 'knowledge_page_mid',
     title: 'Knowledge Guide — Mid',
     description: 'Mid-page on fashion knowledge / styling guides.',
@@ -560,30 +584,6 @@ const CONTENT_SLOTS = [
     key: 'viral_hub_bottom',
     title: 'Viral Fashion — Bottom',
     description: 'Bottom of viral fashion hub, above footer.',
-    placeholder: 'Paste ad HTML/script…',
-  },
-  {
-    key: 'trend_hub_mid',
-    title: 'Trend Reports Hub — Mid',
-    description: '/trends index — between hero and trend card grid.',
-    placeholder: 'Paste ad HTML/script…',
-  },
-  {
-    key: 'trend_hub_bottom',
-    title: 'Trend Reports Hub — Bottom',
-    description: '/trends index — below trend cards.',
-    placeholder: 'Paste ad HTML/script…',
-  },
-  {
-    key: 'trend_page_mid',
-    title: 'Trend Report — Mid',
-    description: '/trends/:slug — after editorial section.',
-    placeholder: 'Paste ad HTML/script…',
-  },
-  {
-    key: 'trend_page_bottom',
-    title: 'Trend Report — Bottom',
-    description: '/trends/:slug — before endless discovery.',
     placeholder: 'Paste ad HTML/script…',
   },
   {
@@ -635,6 +635,18 @@ const CONTENT_SLOTS = [
     placeholder: 'Paste ad HTML/script…',
   },
   {
+    key: 'spin_wheel_top',
+    title: 'Spin Wheel — Top',
+    description: 'Order success spin modal — below headline, above wheel.',
+    placeholder: 'Paste ad HTML/script for spin wheel…',
+  },
+  {
+    key: 'spin_wheel_bottom',
+    title: 'Spin Wheel — Bottom',
+    description: 'Order success spin modal — below result, above continue button.',
+    placeholder: 'Paste ad HTML/script for spin wheel…',
+  },
+  {
     key: 'knowledge_hub_mid',
     title: 'Fashion Knowledge Hub — Mid',
     description: '/knowledge index — after featured guides.',
@@ -672,6 +684,45 @@ const CONTENT_SLOTS = [
   },
 ];
 
+const TREND_SLOTS = [
+  {
+    key: 'trend_hub_mid',
+    title: 'Trend Hub — Mid',
+    description: '/trends — between intro and trend card grid.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'trend_hub_bottom',
+    title: 'Trend Hub — Bottom',
+    description: '/trends — below all trend cards.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'trend_page_top',
+    title: 'Trend Report — Top',
+    description: '/trends/wedding-fashion (and every /trends/:slug) — below hero, above “The story” editorial.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'trend_page_mid',
+    title: 'Trend Report — Mid',
+    description: '/trends/:slug — after editorial, before celebrity looks.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'trend_page_after_shop',
+    title: 'Trend Report — After Shop',
+    description: '/trends/:slug — after “Shop the trend” product rail.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+  {
+    key: 'trend_page_bottom',
+    title: 'Trend Report — Bottom',
+    description: '/trends/:slug — after related trends, before endless discovery.',
+    placeholder: 'Paste ad HTML/script…',
+  },
+];
+
 const OTHER_SLOTS = [
   {
     key: 'global_banner',
@@ -690,6 +741,7 @@ export const AD_PLACEMENT_DEFINITIONS = [
   ...CATEGORY_SLOTS,
   ...PRODUCT_SLOTS,
   ...CONTENT_SLOTS,
+  ...TREND_SLOTS,
   ...OTHER_SLOTS,
 ];
 
@@ -705,6 +757,8 @@ export const PRODUCT_AD_PLACEMENT_KEYS = PRODUCT_SLOTS.map((d) => d.key);
 
 export const CONTENT_AD_PLACEMENT_KEYS = CONTENT_SLOTS.map((d) => d.key);
 
+export const TREND_AD_PLACEMENT_KEYS = TREND_SLOTS.map((d) => d.key);
+
 export const OTHER_AD_PLACEMENT_KEYS = OTHER_SLOTS.map((d) => d.key);
 
 /** Admin panel section order */
@@ -715,6 +769,7 @@ export const AD_PLACEMENT_SECTIONS = [
   { id: 'category', title: 'Category Page — Ad Slots', keys: CATEGORY_AD_PLACEMENT_KEYS },
   { id: 'product', title: 'Product Page — Ad Slots', keys: PRODUCT_AD_PLACEMENT_KEYS },
   { id: 'content', title: 'Discover · Magazine · Quiz · Guides', keys: CONTENT_AD_PLACEMENT_KEYS },
+  { id: 'trends', title: 'Trend Reports — Hub & Detail Pages', keys: TREND_AD_PLACEMENT_KEYS },
   { id: 'other', title: 'Other', keys: OTHER_AD_PLACEMENT_KEYS },
 ];
 

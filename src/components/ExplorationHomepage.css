@@ -126,7 +126,7 @@
   border-radius: 14px;
   background: #fff;
   border: 1px solid rgba(96, 11, 69, 0.08);
-  box-shadow: 0 4px 14px rgba(96, 11, 69, 0.06);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -360,7 +360,7 @@
 
 .home-categories__card:hover .home-categories__media {
   transform: translateY(-4px);
-  box-shadow: 0 14px 32px rgba(96, 11, 69, 0.18);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
 .home-categories__media img {
@@ -1565,7 +1565,7 @@
 
 .exploration-home__games-promo:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(69, 39, 160, 0.12);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
 }
 
 .exploration-home__games-promo-text h3 {

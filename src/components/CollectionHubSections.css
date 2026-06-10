@@ -158,7 +158,7 @@
 
 .collection-hub__related-card:hover {
   border-color: rgba(96, 11, 69, 0.25);
-  box-shadow: 0 4px 16px rgba(96, 11, 69, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .collection-hub__related-label {

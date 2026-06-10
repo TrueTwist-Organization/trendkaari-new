@@ -290,7 +290,7 @@
   border: none;
   background: var(--brand-plum, #600b45);
   color: #fff;
-  box-shadow: 0 6px 20px rgba(96, 11, 69, 0.22);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -532,7 +532,7 @@
 @media (hover: hover) and (pointer: fine) {
   .celeb-look__explore-card:hover {
     border-color: var(--brand-plum, #600b45);
-    box-shadow: 0 4px 16px rgba(96, 11, 69, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   }
 }
 

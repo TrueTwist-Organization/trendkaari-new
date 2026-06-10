@@ -202,7 +202,7 @@
 .pdp-thumb-wrapper:hover,
 .pdp-thumb-wrapper.active {
   border-color: var(--brand-plum);
-  box-shadow: 0 0 0 1px var(--brand-plum);
+  box-shadow: 0 0 0 1px var(--border-color);
 }
 
 .pdp-thumb-crop {
@@ -229,7 +229,7 @@
   border: 1px solid var(--pdp-border-soft);
   border-radius: 12px;
   background-color: #fff;
-  box-shadow: 0 12px 40px rgba(96, 11, 69, 0.08);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -378,7 +378,7 @@
   flex-direction: column;
   gap: 18px;
   background: #fff;
-  box-shadow: 0 8px 28px rgba(96, 11, 69, 0.06);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
 }
 
 .pdp-section--assurance {
@@ -395,6 +395,9 @@
 
 .pdp-ad-zone {
   margin: 4px 0 16px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .pdp-ad-zone + .pdp-section,
@@ -681,7 +684,7 @@
   text-transform: uppercase;
   color: #fff;
   background: linear-gradient(135deg, var(--brand-plum-mid), var(--brand-plum));
-  box-shadow: 0 2px 8px rgba(96, 11, 69, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 .pdp-delivery-highlight--cod .pdp-delivery-highlight__badge {
@@ -1087,7 +1090,7 @@
   max-height: 85vh;
   overflow: auto;
   padding: 24px;
-  box-shadow: 0 20px 50px rgba(96, 11, 69, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 }
 
 .pdp-size-chart-head {
@@ -1616,6 +1619,59 @@
 
   .pdp-section--commerce {
     gap: 10px;
+    overflow-x: clip;
+  }
+
+  .pdp-ad-zone {
+    margin: 6px 0 10px;
+    overflow: hidden;
+  }
+
+  .pdp-ad-zone .page-ad-slot-wrap--pdp,
+  .pdp-ad-zone .ad-slot-embed--pdp {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pdp-ad-zone .ad-slot-embed__content,
+  .pdp-ad-zone .ad-fit-viewport,
+  .pdp-ad-zone .ad-fit-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .pdp-ad-zone .ad-fit-viewport {
+    overflow: hidden;
+  }
+
+  .pdp-ad-zone iframe,
+  .pdp-ad-zone [id^='div-gpt-ad-'],
+  .pdp-ad-zone ins.adsbygoogle,
+  .pdp-ad-zone img,
+  .pdp-ad-zone table {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .pdp-ad-zone iframe,
+  .pdp-ad-zone [id^='div-gpt-ad-'] iframe,
+  .pdp-ad-zone ins.adsbygoogle {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .pdp-ad-zone img {
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .pdp-pricing-box {

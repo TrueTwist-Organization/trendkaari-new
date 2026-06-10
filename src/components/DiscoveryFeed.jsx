@@ -77,6 +77,7 @@ export default function DiscoveryFeed({
             hook={rail.hook}
             products={rail.products}
             tone={rail.tone}
+            showHead={!fullPage}
             onSelectProduct={onSelectProduct}
             onSeeAll={
               rail.category

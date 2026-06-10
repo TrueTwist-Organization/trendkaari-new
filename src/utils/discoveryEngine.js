@@ -419,17 +419,6 @@ export function buildDiscoveryRails(products, { maxRails = 10 } = {}) {
     rail.products.forEach((p) => exclude.add(p.id));
   };
 
-  const because = getBecauseYouViewed(products, 14, exclude);
-  if (because.length >= 4) {
-    addRail({
-      id: 'because-you-viewed',
-      title: 'Because you were exploring…',
-      hook: 'Picked from your recent vibe — one tap away',
-      products: because,
-      tone: 'personal',
-    });
-  }
-
   addRail({
     id: 'trending-now',
     title: 'Trending on Trendkaari',

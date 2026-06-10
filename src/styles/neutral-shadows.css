@@ -1,0 +1,14 @@
+/**
+ * Storefront — neutral shadows only (no pink / plum / blue tint on elevation).
+ */
+
+.discovery-rail--related,
+.discovery-rail--look,
+.discovery-rail--editorial,
+.discovery-rail--similar {
+  background: transparent;
+}
+
+.categories-section {
+  --circle-glow: rgba(0, 0, 0, 0.06);
+}

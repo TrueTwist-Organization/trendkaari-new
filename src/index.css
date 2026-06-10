@@ -10,8 +10,9 @@
   --brand-peach-hover: #fcd5d5;
   --brand-surface-warm: #fffefb;
   --brand-surface-cream: #faf6f2;
-  --brand-shadow-plum: rgba(96, 11, 69, 0.08);
-  --brand-shadow-gold: rgba(212, 180, 131, 0.28);
+  --brand-shadow-plum: rgba(0, 0, 0, 0.08);
+  --brand-shadow-gold: rgba(0, 0, 0, 0.12);
+  --focus-ring-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
   --brand-border-soft: rgba(212, 180, 131, 0.42);
   --brand-border-plum: rgba(96, 11, 69, 0.14);
   --text-primary: #1c1c1c;

@@ -146,7 +146,7 @@
 }
 
 .discovery-rail__card {
-  flex: 0 0 clamp(150px, 28vw, 220px);
+  flex: 0 0 clamp(160px, 42vw, 200px);
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -265,7 +265,7 @@
 }
 
 .discovery-rail--related {
-  background: linear-gradient(180deg, var(--surface-blush) 0%, transparent 100%);
+  background: transparent;
 }
 
 .discovery-rail--similar {
@@ -277,11 +277,11 @@
 }
 
 .discovery-rail--look {
-  background: linear-gradient(180deg, var(--brand-peach-light) 0%, transparent 100%);
+  background: transparent;
 }
 
 .discovery-rail--editorial {
-  background: linear-gradient(180deg, var(--brand-peach-light) 0%, transparent 100%);
+  background: transparent;
   border-radius: var(--radius-md);
   margin: 0 8px;
 }
@@ -301,6 +301,18 @@
 .discovery-rail--compact .discovery-rail__name {
   font-size: 0.8rem;
   min-height: 2.2em;
+}
+
+@media (min-width: 640px) {
+  .discovery-rail__card {
+    flex-basis: clamp(200px, 34vw, 240px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .discovery-rail__card {
+    flex-basis: clamp(240px, 24vw, 280px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -325,6 +337,11 @@
   .discovery-rail__track {
     padding-left: max(16px, calc((100vw - 1440px) / 2 + 16px));
     padding-right: max(16px, calc((100vw - 1440px) / 2 + 16px));
+  }
+
+  .discovery-feed--full .discovery-rail__track {
+    padding-left: var(--discovery-inner, 32px);
+    padding-right: var(--discovery-inner, 32px);
   }
 
   .container .discovery-rail__track {

@@ -154,6 +154,12 @@
     max-width: 100% !important;
   }
 
+  .ad-fit-viewport > .ad-slot-embed__content {
+    transform: unset !important;
+    width: auto;
+    max-width: none !important;
+  }
+
   .ad-slot-embed__content,
   .ad-fit-viewport,
   .ad-fit-shell {

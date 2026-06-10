@@ -128,7 +128,7 @@ body.is-scrolling .offer-marquee__track {
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(96, 11, 69, 0.08);
   box-shadow:
-    0 4px 24px rgba(96, 11, 69, 0.06),
+    0 4px 24px rgba(0, 0, 0, 0.06),
     0 1px 0 rgba(255, 255, 255, 0.9) inset;
 }
 
@@ -183,7 +183,7 @@ body.is-scrolling .offer-marquee__track {
   padding: 11px 11px 0;
   border-radius: 4px;
   box-shadow:
-    0 16px 36px rgba(96, 11, 69, 0.12),
+    0 16px 36px rgba(0, 0, 0, 0.12),
     0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
@@ -333,7 +333,7 @@ body.is-scrolling .offer-marquee__track {
   font-weight: 600;
   letter-spacing: 0.05em;
   color: var(--brand-plum);
-  box-shadow: 0 2px 8px rgba(96, 11, 69, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .offer-section__pill svg {
@@ -356,13 +356,13 @@ body.is-scrolling .offer-marquee__track {
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 8px 22px rgba(96, 11, 69, 0.22);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
 }
 
 .offer-section__cta:hover {
   background: var(--brand-plum-hover);
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(96, 11, 69, 0.28);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
 .offer-section__fine {

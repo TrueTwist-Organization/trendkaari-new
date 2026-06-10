@@ -131,7 +131,7 @@
   letter-spacing: 0.2em;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 10px 10px 0px rgba(212, 180, 131, 0.3);
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
 .promo-banner-slider__slide:hover .promo-banner-slider__cta {

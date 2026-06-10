@@ -94,7 +94,7 @@
 }
 
 .ai-style-finder__collection-card:hover {
-  box-shadow: 0 8px 24px rgba(69, 39, 160, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .ai-style-finder__collection-img {

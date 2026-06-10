@@ -13,7 +13,7 @@
 .reviews-premium__ornament {
   display: block;
   margin: 0 auto 8px;
-  filter: drop-shadow(0 1px 2px rgba(96, 11, 69, 0.12));
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
 }
 
 .reviews-premium__title {
@@ -94,7 +94,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(96, 11, 69, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.2s ease;
   z-index: 5;
@@ -103,7 +103,7 @@
 .reviews-premium__nav:hover {
   transform: scale(1.06);
   color: #600b45;
-  box-shadow: 0 6px 24px rgba(96, 11, 69, 0.16);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
 }
 
 .reviews-premium__nav:active {
@@ -133,8 +133,8 @@
   border: 1px solid #d4b483;
   box-shadow:
     0 0 0 3px #fdf9f4,
-    0 0 0 4px rgba(212, 180, 131, 0.55),
-    0 12px 40px rgba(96, 11, 69, 0.08);
+    0 0 0 4px rgba(0, 0, 0, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.08);
 }
 
 .review-arch-card__crown {
@@ -159,7 +159,7 @@
   letter-spacing: 0.04em;
   color: #fff;
   background: linear-gradient(145deg, #8b2d5c 0%, #600b45 55%, #3d0628 100%);
-  box-shadow: 0 6px 16px rgba(96, 11, 69, 0.28);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
 }
 
 .review-arch-card__name {
@@ -366,8 +366,8 @@
     border-radius: 120px 120px 20px 20px;
     box-shadow:
       0 0 0 3px #fdf9f4,
-      0 0 0 4px rgba(212, 180, 131, 0.55),
-      0 10px 32px rgba(96, 11, 69, 0.1);
+    0 0 0 4px rgba(0, 0, 0, 0.12),
+      0 10px 32px rgba(0, 0, 0, 0.1);
   }
 
   .review-arch-card--slide .review-arch-card__avatar {

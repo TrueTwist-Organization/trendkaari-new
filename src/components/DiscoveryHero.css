@@ -96,7 +96,7 @@
 .discovery-hero__flower {
   position: absolute;
   color: rgba(226, 192, 106, 0.38);
-  filter: drop-shadow(0 0 18px rgba(201, 168, 76, 0.15));
+  filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.15));
 }
 
 .discovery-hero__flower--lg {
@@ -458,94 +458,58 @@ body.home-page .discovery-hero {
     min-height: auto;
   }
 
-  /* Photo hero: full-bleed portrait artwork with copy overlaid on top. */
-  .discovery-hero--photo-bg {
-    display: block;
-    min-height: min(92vh, 680px);
-  }
-
-  .discovery-hero--photo-bg .discovery-hero__photo {
-    position: absolute;
-    inset: 0;
-    flex: none;
-    width: 100%;
-    height: 100%;
-    max-height: none;
-  }
-
-  .discovery-hero--photo-bg .discovery-hero__photo-img {
-    object-fit: cover;
-    object-position: center bottom;
-  }
-
-  .discovery-hero--photo-bg .discovery-hero__photo-scrim {
-    background: linear-gradient(
-      180deg,
-      rgba(26, 4, 16, 0.72) 0%,
-      rgba(42, 6, 24, 0.28) 22%,
-      transparent 42%,
-      transparent 68%,
-      rgba(42, 6, 24, 0.22) 88%,
-      rgba(42, 6, 24, 0.5) 100%
-    );
-  }
-
-  .discovery-hero--photo-bg .discovery-hero__shell {
-    position: relative;
-    z-index: 1;
-    flex: none;
-    display: flex;
-    align-items: flex-start;
-    min-height: min(92vh, 680px);
-    width: 100%;
-    margin-top: 0;
-    background: transparent;
-  }
-
-  .discovery-hero--photo-bg .discovery-hero__copy {
-    justify-content: flex-start;
-    max-width: min(100%, 22rem);
-    padding:
-      calc(1rem + env(safe-area-inset-top, 0px))
-      1rem
-      calc(1.25rem + env(safe-area-inset-bottom, 0px));
-  }
-
   .discovery-hero__title-line {
-    font-size: clamp(1.65rem, 7.8vw, 2.25rem);
+    font-size: clamp(1.4rem, 6.5vw, 1.95rem);
   }
 
   .discovery-hero__title-accent {
-    font-size: clamp(1.85rem, 8.6vw, 2.55rem);
+    font-size: clamp(1.55rem, 7.2vw, 2.15rem);
   }
 
   .discovery-hero__subtitle {
-    max-width: none;
-    font-size: 0.875rem;
-    line-height: 1.6;
+    max-width: 30ch;
+    font-size: 0.8125rem;
+    line-height: 1.55;
   }
 
   .discovery-hero__divider {
-    margin: 0.75rem 0 0.7rem;
-    max-width: 200px;
+    margin: 0.6rem 0 0.55rem;
+    max-width: 180px;
   }
 
   .discovery-hero__actions {
-    flex-direction: column;
-    margin-top: 1.1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.85rem;
   }
 
   .discovery-hero__btn {
-    width: 100%;
+    width: auto;
+    min-height: 30px;
     max-width: 100%;
+    padding: 0.32rem 0.62rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.07em;
     box-sizing: border-box;
   }
 
+  .discovery-hero__btn svg {
+    width: 12px;
+    height: 12px;
+  }
+
   .discovery-hero__trust {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.45rem;
-    margin-top: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.65rem;
+    margin-top: 0.85rem;
+  }
+
+  .discovery-hero__trust li {
+    font-size: 0.65rem;
   }
 
   .discovery-hero__trust li:not(:last-child)::after {
@@ -553,8 +517,7 @@ body.home-page .discovery-hero {
   }
 
   .discovery-hero__visual {
-    order: -1;
-    min-height: clamp(240px, 58vw, 340px);
+    min-height: clamp(220px, 52vw, 320px);
   }
 
   .discovery-hero__models {
@@ -593,6 +556,118 @@ body.home-page .discovery-hero {
     top: 52%;
     width: 90px;
   }
+
+  /* Photo background hero — text sits in top safe zone of mobile artwork */
+  .discovery-hero--photo-bg {
+    display: block;
+    min-height: min(90vh, 660px);
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__photo {
+    position: absolute;
+    inset: 0;
+    flex: none;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__photo-img {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__photo-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(26, 4, 16, 0.72) 0%,
+      rgba(42, 6, 24, 0.38) 18%,
+      rgba(42, 6, 24, 0.08) 36%,
+      transparent 52%,
+      transparent 72%,
+      rgba(26, 4, 16, 0.28) 100%
+    );
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__shell {
+    position: relative;
+    z-index: 1;
+    flex: none;
+    display: flex;
+    align-items: flex-start;
+    min-height: min(90vh, 660px);
+    width: 100%;
+    margin-top: 0;
+    background: transparent;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__copy {
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 100%;
+    padding:
+      calc(0.65rem + env(safe-area-inset-top, 0px))
+      1.25rem
+      1rem;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__ornament {
+    width: 14px;
+    height: 14px;
+    margin-bottom: 0.4rem;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__title-line {
+    font-size: clamp(1.28rem, 5.4vw, 1.62rem);
+    line-height: 1.1;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__title-accent {
+    font-size: clamp(1.4rem, 5.9vw, 1.78rem);
+    margin-top: 0.04rem;
+    line-height: 1.1;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__subtitle {
+    max-width: 27ch;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__divider {
+    margin: 0.45rem 0 0.45rem;
+    max-width: 140px;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__btn {
+    width: auto;
+    min-height: 30px;
+    padding: 0.32rem 0.62rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.07em;
+    gap: 0.3rem;
+    flex: 0 1 auto;
+    max-width: 100%;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__btn svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__trust {
+    display: none;
+  }
 }
 
 @media (max-width: 767px) and (orientation: landscape) {
@@ -619,26 +694,31 @@ body.home-page .discovery-hero {
 
   .discovery-hero--photo-bg .discovery-hero__btn {
     width: auto;
-    flex: 1;
+    flex: 0 1 auto;
   }
 
   .discovery-hero--photo-bg .discovery-hero__trust {
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: none;
   }
 }
 
 @media (max-width: 380px) {
   .discovery-hero--photo-bg .discovery-hero__title-line {
-    font-size: 1.55rem;
+    font-size: 1.22rem;
   }
 
   .discovery-hero--photo-bg .discovery-hero__title-accent {
-    font-size: 1.75rem;
+    font-size: 1.34rem;
   }
 
-  .discovery-hero--photo-bg .discovery-hero__ornament {
-    width: 16px;
-    height: 16px;
+  .discovery-hero--photo-bg .discovery-hero__btn {
+    min-height: 28px;
+    padding: 0.28rem 0.55rem;
+    font-size: 0.52rem;
+  }
+
+  .discovery-hero--photo-bg .discovery-hero__subtitle {
+    max-width: 25ch;
+    font-size: 0.74rem;
   }
 }

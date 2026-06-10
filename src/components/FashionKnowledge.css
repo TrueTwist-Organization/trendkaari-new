@@ -566,7 +566,7 @@
 
 .knowledge-page__collection-card:hover {
   border-color: var(--know-accent);
-  box-shadow: 0 6px 20px rgba(96, 11, 69, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .knowledge-page__collection-img {
@@ -1031,7 +1031,7 @@
 @media (hover: hover) and (pointer: fine) {
   .knowledge-quiz-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(96, 11, 69, 0.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
 }
 

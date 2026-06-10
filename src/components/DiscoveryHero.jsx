@@ -132,6 +132,7 @@ export default function DiscoveryHero({
   onExploreCollections,
 }) {
   const config = { ...DEFAULT_HOMEPAGE_CONFIG.hero, ...hero };
+  const backgroundImage = config.backgroundImage || '';
   const modelsImage = config.modelsImage || config.desktopImage || DEFAULT_HOMEPAGE_CONFIG.hero.desktopImage;
   const mobileModelsImage =
     config.mobileModelsImage || config.mobileImage || DEFAULT_HOMEPAGE_CONFIG.hero.mobileImage;
@@ -171,8 +172,12 @@ export default function DiscoveryHero({
   };
 
   return (
-    <section className="discovery-hero" aria-label="Featured collection">
-      <HeroFlorals />
+    <section
+      className={`discovery-hero${backgroundImage ? ' discovery-hero--photo-bg' : ''}`}
+      style={backgroundImage ? { '--hero-bg-url': `url("${backgroundImage}")` } : undefined}
+      aria-label="Featured collection"
+    >
+      {!backgroundImage ? <HeroFlorals /> : null}
       <div className="discovery-hero__shell">
         <div className="discovery-hero__copy">
           <Sparkles size={18} className="discovery-hero__ornament" aria-hidden="true" />
@@ -222,21 +227,25 @@ export default function DiscoveryHero({
           </ul>
         </div>
 
-        <div className="discovery-hero__visual" aria-hidden="true">
-          <div className="discovery-hero__stars" />
-          <HeroArch />
-          <picture className="discovery-hero__picture">
-            <source media="(max-width: 767px)" srcSet={mobileModelsImage} />
-            <img
-              src={modelsImage}
-              alt=""
-              className="discovery-hero__models"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </picture>
-        </div>
+        {!backgroundImage ? (
+          <div className="discovery-hero__visual" aria-hidden="true">
+            <div className="discovery-hero__stars" />
+            <HeroArch />
+            <picture className="discovery-hero__picture">
+              <source media="(max-width: 767px)" srcSet={mobileModelsImage} />
+              <img
+                src={modelsImage}
+                alt=""
+                className="discovery-hero__models"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        ) : (
+          <div className="discovery-hero__visual discovery-hero__visual--spacer" aria-hidden="true" />
+        )}
       </div>
 
       <span className="visually-hidden">{alt}</span>
